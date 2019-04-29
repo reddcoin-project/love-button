@@ -1,0 +1,48 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Modal Module Configuration
+ *
+ */
+
+@include module-set(modal, (
+    close: (
+        // Spacer Between Document Top & Right
+        spacer: size(100),
+
+        // On Hover Button Is Enlarged, Pressed Returns To Original Size
+        scale: (
+            hover: 1.24,
+            pressed: 1
+        )
+    ),
+
+    content: (
+        // Top Margin Is Close Button Size, Bottom Keeps Modals Uniform With Container Spacing
+        margin: (size(600) * 1.5) 0 container(spacer)
+    ),
+
+    max-width: (
+        default: breakpoint(tablet width),
+        small: 480px
+    ),
+
+    // On Open Modal Animates Scaling Down To Original Size
+    not-active: (
+        scale: 1.24
+    ),
+
+    width: calc(100% - (#{container(spacer)} * 2))
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function modal($key) {
+    @return module-get(modal $key);
+}

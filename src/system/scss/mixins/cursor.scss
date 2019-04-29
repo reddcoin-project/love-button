@@ -1,0 +1,17 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Override Annoying Browser Crap ( Mainly Chrome )
+ *
+ */
+
+@mixin cursor($value) {
+    cursor: $value;
+
+    // Stops Google Search Modal From Popping Up To Search For Button, Link text
+    // - Kept Coming Up On Android Chrome
+    user-select: none;
+
+    // Hides On Top Blue Box That Chrome Uses To Highlight
+    -webkit-tap-highlight-color: transparent;
+}

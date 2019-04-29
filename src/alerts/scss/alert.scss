@@ -1,0 +1,88 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Alert Notifications
+ *
+ *  Anchors Module Provides Positioning
+ *
+ */
+
+.alert {
+    @include box-white(true);
+    border-radius: 0 border-radius(300) border-radius(300) 0;
+    overflow: hidden;
+    min-width: alert(width min);
+    width: alert(width default);
+
+    padding: alert(spacer padding);
+    padding-left: first(alert(spacer padding)) + alert(close inactive);
+
+    @include state(not-active) {
+        transform: translateY(-50%);
+    }
+
+    @include state(hover-override pressed-override) {
+        .alert-close.button,
+        .alert-messages {
+            transition-delay: 0s;
+        }
+
+        .alert-close.button {
+            transform: scaleX(1);
+
+            .icon {
+                opacity: 1;
+            }
+        }
+
+        .alert-messages {
+            transform: translateX(#{alert(close active)});
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &-close.button {
+        @include cursor(pointer);
+        @include position(absolute, left);
+        @include transition(transform);
+        border-radius: 0;
+        padding: 0;
+        transform: scaleX(#{alert(close inactive) / alert(close active)});
+        transform-origin: center left;
+        width: alert(close active);
+        z-index: 1;
+
+        .icon {
+            @include position(absolute, center);
+            @include transition(opacity transform);
+            margin: 0;
+            opacity: 0;
+        }
+    }
+
+    &-messages {
+        @include grid(d12);
+        @include transition(transform);
+        z-index: 0;
+
+        p {
+            margin: first(alert(spacer text)) 0 0;
+
+            &:first-child {
+                margin: 0;
+            }
+        }
+    }
+
+    &-close.button,
+    &-messages {
+        transition-delay: 0.12s;
+    }
+}

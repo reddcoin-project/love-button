@@ -1,0 +1,28 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Table Module Configuration
+ *
+ */
+
+@include module-set(table, (
+    spacer: (
+        // Vertical Spacer For Table Header
+        header: size(),
+
+        // Vertical Spacer For Table Rows
+        row: size(500)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function table($key) {
+    @return module-get(table $key);
+}

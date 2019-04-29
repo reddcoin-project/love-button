@@ -1,0 +1,40 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Default Transition Duration
+ *
+ */
+
+@include token-set(transition, (
+
+    // Default Duration
+    duration: 0.16s,
+
+    timing-functions: (
+        easeInOutBack: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+// Simplify Defining Transitions With Default Duration
+@mixin transition($properties, $duration: token-get(transition duration)) {
+    $value: ();
+
+    @each $property in to-list($properties) {
+        $value: append($value, '#{$property} #{$duration}');
+    }
+
+    transition: #{list-implode(',', list-unique($value))};
+}
+
+
+@mixin transition-timing-function($key: easeInOutBack) {
+    transition-timing-function: token-get(transition timing-functions $key);
+}

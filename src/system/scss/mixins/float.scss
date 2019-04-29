@@ -1,0 +1,11 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Time Saving Float Mixin
+ *
+ */
+
+@mixin float($direction: left) {
+    float: $direction;
+    position: relative;
+}

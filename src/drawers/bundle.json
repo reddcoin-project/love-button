@@ -1,0 +1,7 @@
+{
+    "js": "js/drawers.js",
+    "scss": [
+        "scss/drawers.scss",
+        "scss/drawer.scss"
+    ]
+}

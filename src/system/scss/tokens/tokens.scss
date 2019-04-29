@@ -1,0 +1,38 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Global Token Container
+ *
+ *  List Contains Configuration Of All Tokens Defined Within The Token Directory
+ *
+ */
+
+$tokens: ();
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function token-get($key) {
+    @return arr-get($key, $tokens);
+}
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+@mixin token-merge($key, $value) {
+    @include token-set($key, join(token-get($key), $value));
+}
+
+@mixin token-set($key, $value) {
+    $tokens: arr-set($key, $value, $tokens) !global;
+}

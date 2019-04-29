@@ -1,0 +1,100 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Link Module Configuration
+ *
+ */
+
+@include module-set(link, (
+
+    // Border Settings Applied To Links Within Groups
+    border: (
+        radius: 4px,
+
+        // Border Width Of Links Based On Link Size
+        size: (
+            default: 1px,
+
+            // '.link--small'
+            small:   0,
+
+            // '.link--large'
+            large:   2px,
+
+            // '.link--tab'
+            tab: 3px
+        )
+    ),
+
+    // Color States
+    color: (
+        text: (
+            default:   color('text' 300, 0.92),
+            highlight: color('text' 400),
+            pressed:   color('text' 500)
+        ),
+        'white': (
+            default:   color('white', 0.92),
+            highlight: color('white', 0.96),
+            pressed:   color('white')
+        )
+    ),
+
+    // '.link--border' Height
+    divider: 1px,
+
+    spacer: (
+
+        // Group Border Within Vertical Nav
+        border: size(500),
+
+        // Spacer Between Links In Groups
+        group: size(300),
+
+        link: (
+            // Top/Bottom Padding Of Each Vertical Nav Link
+            // - Also Used As A Spacer Between '.link-title' And '.link'
+            vertical: size(100)
+        ),
+
+        // Used For Spacing Within Menu Group
+        // - Top/Bottom Padding Of Entire Menu
+        // - Top/Bottom Margin For '.link-border' Within Menu Group
+        menu: size(200),
+
+        // Vertical Spacer For Scroller
+        scroller: size(200),
+
+        // Used For Spacing Within Vertical Group
+        // - Top Margin Of Group Titles
+        // - Split In 2 For Top/Bottom Margin Of Group Borders
+        vertical: size(600),
+
+
+        /**
+         *----------------------------------------------------------------------
+         *
+         *  @see Button Module Tokens
+         *
+         */
+
+        badge:   button(spacer badge),
+        default: button(spacer default),
+        large:   button(spacer large),
+        small:   button(spacer small),
+
+        tab: size(500)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function link($key) {
+    @return module-get(link $key);
+}

@@ -1,0 +1,12 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Anchored Elements Container
+ *
+ */
+
+.anchors {
+    @include position(fixed, full);
+    pointer-events: none;
+    z-index: 9;
+}

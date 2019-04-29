@@ -1,0 +1,10 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Return Last Item From List/Map
+ *
+ */
+
+@function last($input) {
+    @return nth($input, length($input));
+}

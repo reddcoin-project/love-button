@@ -1,0 +1,71 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Line Height
+ *
+ */
+
+@include token-set(line-heights, (
+    400: 1.64,
+    500: 1.40,
+    600: 1.16
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function line-height($key: token-weight(default)) {
+    @return token-get(line-heights $key);
+}
+
+// Decide Line Height Based On Input
+@function line-height-filter($input: null) {
+    $line-height: null;
+
+    @if $input == null or not $input {
+        $input: font-size();
+    }
+
+    @if type-of($input) == number and unitless($input) {
+        $line-height: $input;
+    }
+    @else if str-contains(px, $input) {
+        $number: strip-unit($input);
+        $weight: 400;
+
+        @if $number > 14 {
+            $weight: 500;
+        }
+
+        @if $number > 18 {
+            $weight: 600;
+        }
+
+        $line-height: token-get(line-heights $weight);
+    }
+
+    @return $line-height;
+}
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+// Macro To Simplify Setting Line Height + Text Crop ( Optional )
+@mixin line-height($input: null, $directions: null) {
+    line-height: line-height-filter($input);
+
+    // Text Crop Will Act On Remaining Directions If Any
+    @if $directions {
+        @include text-crop($input, $directions);
+    }
+}

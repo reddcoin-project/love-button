@@ -1,0 +1,28 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Button Group
+ *
+ *  Import Within Button Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-group {
+    @include grid(d12);
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    .button {
+        margin: button(spacer group) button(spacer group) 0 0;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

@@ -1,0 +1,113 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Form Module Configuration
+ *
+ */
+
+@include module-set(field, (
+
+    border-color: color('text' 500, 0.32),
+    color: color('text' 500),
+
+    opacity: (
+        disabled: 0.48,
+
+        default: 0.8,
+        highlight: 0.9,
+        pressed: 1
+    ),
+
+    checkbox: (
+        // Size Of Each Checkbox Icon
+        // - Switch Is Only Used For It's Width
+        size: (
+            default: size(500),
+            switch: size(500) * 1.5
+        ),
+
+        // Spacer Between Checkbox Icon And Title
+        spacer: size(300)
+    ),
+
+    // Spacer Between Description And Field
+    description: (
+        spacer: size(200)
+    ),
+
+    horizontal: (
+        title: (
+            margin-right: size(300)
+        )
+    ),
+
+    search: (
+        // Size Of Search Field When Inactive
+        scaleX: 0.8,
+
+        // Negative TranslateX Given To '.search--small'
+        // - Makes The 'Drawer' Open Animation Nicer
+        translateX: - size(200)
+    ),
+
+    // Shared By Input, Select, Textarea Fields
+    text: (
+        border: (
+            // Default Bottom Border Width Of Normal Fields Elements
+            // - Also Used For Select Field Border Width
+            default: 2px,
+
+            // '.field--border' Border Width
+            small: 1px,
+
+            // Used For Animated Border Radius
+            radius: 4px
+        ),
+
+        spacer: (
+            // Default Padding Used On Each Field
+            default: size(300),
+
+            // Used When Spacing Is Needed Between Field Mask/Tag And Label
+            top: size(200),
+
+            // Select Field Spacers Primarily Uses Default Spacer
+            // - These Spacers Deal With The Arrow On This Field
+            select: (
+                // Default Padding Right Spacer
+                // - Makes Room For Pseudo Element Down Arrow
+                right: size(400),
+
+                // Used For '.field--border', '.field--grey', '.field--white'
+                large: (
+                    // Spacer Between Right Side Of Select Element And Arrow
+                    arrow: size(200),
+
+                    // Right Padding Of Select Element
+                    right: size(500)
+                )
+            )
+        )
+    ),
+
+    label: (
+        font-size: font-size(),
+
+        spacer: (
+            // Spacer Between Asterisk And Text For '.field--required'
+            required: size(100)
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function field($key) {
+    @return module-get(field $key);
+}

@@ -1,0 +1,24 @@
+&-spacer {
+    display: inline-block;
+    width: inline(spacer default);
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    &--large {
+        width: inline(spacer large);
+    }
+
+    &--small {
+        width: inline(spacer small);
+    }
+
+    &--tiny {
+        width: inline(spacer tiny);
+    }
+}

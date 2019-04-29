@@ -1,0 +1,8 @@
+{
+    "scss": [
+        "scss/mixins/button-color.scss",
+        "scss/mixins/button-modifier.scss",
+
+        "scss/button.scss"
+    ]
+}

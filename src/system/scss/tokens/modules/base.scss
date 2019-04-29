@@ -1,0 +1,30 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Base Module Configuration
+ *
+ *  If Font Family Is Changed Follow Instructions Within '$text-crop' Token
+ *  And Update.
+ *
+ */
+
+@include token-set(base, (
+    html: (
+        css: (
+            background-color: color('grey'),
+            font-family: "'Montserrat', sans-serif"
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function base($key) {
+    @return token-get(base $key);
+}

@@ -1,0 +1,54 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Font Size Tokens
+ *
+ */
+
+@include token-set(font-sizes, (
+    200: 11px,
+    300: 12px,
+    400: 14px,
+    500: 16px,
+
+    // Primarily Used For Headers h1 - h3
+    // - h4 Uses The 500 Weight Above
+    600: 24px,
+    700: 28px,
+    800: 32px
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function font-size-keys() {
+    @return map-keys(token-get(font-sizes));
+}
+
+@function font-size($key: token-weight(default)) {
+    @return token-get(font-sizes $key);
+}
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+// Macro To Simplify Setting Font Size + Line Height + Text Crop ( Optional )
+@mixin font-size($font-size: font-size(), $directions: null) {
+    @include line-height($font-size);
+    font-size: $font-size;
+
+    // Text Crop Will Act On Remaining Directions If Any
+    @if $directions {
+        @include text-crop($font-size, $directions);
+    }
+}

@@ -1,0 +1,33 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Join List Elements With A String
+ *
+ */
+
+@function list-implode($glue, $list) {
+    $output: null;
+
+    @if type-of($list) != list {
+        @error "#{$list} Is Not A Valid List";
+    }
+
+    @for $i from 1 through length($list) {
+        $m: nth($list, $i);
+
+        // If $k Is A List Flatten By Running Through Function Again
+        @if type-of($m) == list {
+            $output: unquote("#{$output}#{$glue}#{list-implode($glue, $m)}");
+        }
+        // Piece Together String
+        @else {
+            $output: unquote("#{$output}#{$glue}#{$m}");
+        }
+    }
+
+    @if $output != null {
+        $output: str-slice($output, str-length($glue) + 1, -1);
+    }
+
+    @return $output;
+}

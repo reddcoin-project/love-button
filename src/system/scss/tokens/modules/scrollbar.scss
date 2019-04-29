@@ -1,0 +1,22 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Scrollbar Module Configuration
+ *
+ */
+
+@include module-set(scrollbar, (
+    width: 4px
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function scrollbar($key) {
+    @return module-get(scrollbar $key);
+}

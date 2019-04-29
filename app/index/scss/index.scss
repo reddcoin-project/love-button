@@ -1,0 +1,121 @@
+.index {
+    $height: 500px;
+
+    &-frame {
+        background: color('white');
+        border: 1px solid color('grey' 500);
+        margin: size(100) 0 0 size(100);
+        max-width: 500px;
+        z-index: 0;
+
+        &:hover {
+            z-index: 1;
+        }
+
+        &-content {
+            border-top: 1px solid color('grey');
+            max-height: calc(#{$height} - #{size(700) + size(600)});
+            overflow-x: hidden;
+
+            &-wrapper {
+                @include grid(d12);
+                padding: size(600) size(500);
+            }
+        }
+
+        &-footer {
+            border-top: 1px solid color('grey');
+            height: (size(700) + (size(500) * 2));
+            padding: size(500);
+
+            &-links {
+                @include float(right);
+                margin: 0 (- size(300)) 0 0;
+            }
+
+            &-link {
+                @include state(default) {
+                    color: color('text');
+                }
+            }
+
+            &-logo {
+                @include float();
+                height: size(500);
+                margin: size(200) 0;
+            }
+        }
+
+        &-tag {
+            @include position(absolute, horizontal);
+            @include transition(opacity transform);
+            background: color('black');
+            border-radius: border-radius();
+            bottom: - 24px;
+            color: color('white');
+            font-size: font-size(300);
+            line-height: normal;
+            padding: size();
+            z-index: 1;
+        }
+
+        &:not(:hover) &-tag {
+            opacity: 0;
+            transform: translate(50%, #{size()});
+        }
+    }
+}
+
+.dashboard {
+    &-accordion {
+        &-content,
+        &-title {
+            @include grid(d12);
+            border-radius: border-radius();
+        }
+
+        &-content {
+            background: color('grey');
+            border-top: 1px solid color('white');
+            padding: size(500);
+        }
+
+        &-title {
+            background: color('grey' 300);
+
+            &:not(:first-child) {
+                margin: size(200) 0 0;
+            }
+
+            @include state(active) {
+                background: color('grey');
+            }
+        }
+    }
+}
+
+.wallet {
+    &-button {
+        margin: size(600) 0 0;
+
+        &--primary {
+            width: calc(60% - #{size(200)});
+        }
+
+        &--secondary {
+            float: right;
+            width: calc(40% - #{size(200)});
+        }
+    }
+
+    &-field {
+        margin: size(500) 0 0;
+        width: 100%;
+    }
+
+    &-header {
+        b {
+            color: color('primary');
+        }
+    }
+}

@@ -1,0 +1,15 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Center Children Within Element
+ *
+ */
+
+@mixin center-children() {
+    text-align: center;
+
+    > * {
+        float: none;
+        display: inline-block;
+    }
+}

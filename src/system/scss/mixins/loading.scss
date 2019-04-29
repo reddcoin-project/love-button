@@ -1,0 +1,27 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Loading Spinner
+ *
+ */
+
+@mixin loading($color: color('white'), $width: 3px) {
+    &::after {
+        @include circle(size());
+        @include position(absolute, center);
+        animation: loading 0.5s infinite linear;
+        border: $width solid $color;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        content: "";
+    }
+}
+
+@keyframes loading {
+    0% {
+        transform: translate(50%, 50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(50%, 50%) rotate(359deg);
+    }
+}

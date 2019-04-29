@@ -1,0 +1,22 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Anchor Module Configuration
+ *
+ */
+
+@include module-set(anchor, (
+    spacer: size()
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function anchor($key) {
+    @return module-get(anchor $key);
+}

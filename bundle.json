@@ -1,0 +1,10 @@
+{
+    "app": [
+        "src/system",
+
+        "src",
+        "app"
+    ],
+    "dev": "dev",
+    "sw":  "sw"
+}

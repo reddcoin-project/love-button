@@ -1,0 +1,86 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Build Grid System/Variable
+ *
+ *  Grid Map Example:
+ *
+ *  desktop: (
+ *      d1: 100%,
+ *      d2: 50%,
+ *      etc.
+ *  )
+ *
+ *  A 'Grid Map' Is Created For Each Device Using The Prefix Defined In The
+ *  Breakpoints Token.
+ *
+ *  .class {
+ *      @include grid(d4 t6 m12);
+ *  }
+ *
+ *  When Used The Grid Mixin Loops Through Each Map To Find The Device And
+ *  Applies The Column Width When The Device Breakpoint Width Is Met.
+ *
+ *  Using The Example Above '.class' Would Be 4 Columns Wide By Default,
+ *  6 Columns Wide When Tablet Breakpoint Kicks In, And 12 Columns
+ *  Wide When Mobile Breakpoint Is Met.
+ *
+ *  Desktop Column Choice Is Applied As The Default Width While The Rest Use
+ *  'max-width' Breakpoint To Alter Width.
+ *
+ */
+
+// Grid Container
+$grid: ();
+
+// Grid Columns
+$grid-columns: 12;
+
+// Build Grid Map
+@each $device, $configuration in breakpoints() {
+    $prefix: arr-get(grid-prefix, $configuration);
+
+    @if $prefix {
+        $keys: ();
+
+        @for $i from 1 through $grid-columns {
+            $keys: map-merge($keys, (
+                #{$prefix}#{$i}: (100% / $grid-columns) * $i
+            ));
+        }
+
+        $grid: map-merge($grid, ($device: $keys));
+    }
+}
+
+// Set Token
+@include token-set(grid, $grid);
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+@mixin grid($keys) {
+    @include float();
+
+    @each $key in $keys {
+        @each $device, $grid-map in token-get(grid) {
+            $column-width: arr-get($key, $grid-map);
+
+            @if $column-width {
+                @if $device == desktop {
+                    width: $column-width;
+                }
+                @else {
+                    @include breakpoint(max-width, $device) {
+                        width: $column-width;
+                    }
+                }
+            }
+        }
+    }
+}

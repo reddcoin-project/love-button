@@ -1,0 +1,26 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Token Weight Configuration
+ *
+ */
+
+@include token-set(token-weight, (
+    // Default Token 'weight' For Tokens With Multiple Options
+    default: 400,
+
+    // Weight Difference Between Choices Within Any Token
+    difference: 100
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function token-weight($key) {
+    @return token-get(token-weight $key);
+}

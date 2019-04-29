@@ -1,0 +1,16 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Convert Input To List
+ *
+ */
+
+@function to-list($input) {
+    $output: $input;
+
+    @if type-of($input) != list {
+        $output: ($input,);
+    }
+
+    @return $output;
+}

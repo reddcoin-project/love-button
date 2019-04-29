@@ -1,0 +1,37 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Lists Module Configuration
+ *
+ */
+
+@include module-set(list, (
+    spacer: (
+        // Used On Right Margin To Horizontally Center Bullet With Numbered List
+        bullet: size(100),
+
+        // List Item Indent Spacer
+        indent: size(500),
+
+        // Spacer Between List Item Text And Psuedo Element (Bulletpoint/Number)
+        pseudo: size(200),
+
+        // Top Margin For Each List Item
+        item: (
+            default: spacer(text), 
+            nested: spacer(text 200)
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function list($key) {
+    @return module-get(list $key);
+}

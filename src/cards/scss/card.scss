@@ -1,0 +1,25 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Individual Card Shell
+ *
+ */
+
+.card {
+    @include box-white(true);
+    @include float();
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Import Children/Modifiers
+     *
+     */
+
+    @import
+        'column',
+        'grid',
+        'scroller'
+    ;
+}

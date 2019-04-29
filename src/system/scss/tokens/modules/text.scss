@@ -1,0 +1,39 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Text Module Configuration
+ *
+ */
+
+@include module-set(text, (
+    icon: (
+        // Icon Sizes
+        size: (
+            large: icon(size large),
+            default: icon(size default),
+            small: icon(size small)
+        )
+    ),
+    image: (
+        // Size Of Images
+        size: (
+            large: size(700),
+            default: size(600),
+            small: size(500)
+        )
+    ),
+    // Spacer Between Each Stat Item
+    spacer: size()
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function text($key) {
+    @return module-get(text $key);
+}

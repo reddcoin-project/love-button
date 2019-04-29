@@ -1,0 +1,22 @@
+.header {
+    @include grid(d12);
+    background: color('white');
+    padding: size();
+
+    &-logo {
+        @include position(absolute, center);
+        height: size(500);
+    }
+
+    &-menu {
+        &-dropdown {
+            background: color('black');
+            border-radius: border-radius();
+            width: 160px;
+        }
+    }
+
+    &-user {
+        float: right;
+    }
+}

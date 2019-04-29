@@ -1,0 +1,169 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Checkbox, Radio, And Switch Fields
+ *
+ *  Import Within Field Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-check {
+    @include cursor(pointer);
+    @include float();
+    max-width: 100%;
+    padding: ((field(checkbox size default) - size()) / 2) (field(checkbox size switch) + field(checkbox spacer));
+
+
+    // Default Checkbox Fields Have Checkbox Mask On The Left Side
+    .field:not(.field--right) & {
+        padding-right: 0;
+    }
+
+    // Modifier Shifts Checkbox Mask To Right Side
+    .field--right & {
+        padding-left: 0;
+    }
+
+
+    // Checkmark, Radio, Switch Design
+    .field-mask {
+        @include position(absolute, vertical);
+        @include transition(background border-color box-shadow transform);
+        background: field(color);
+        border-color: field(border-color);
+        border-style: solid;
+        border-width: 1px;
+        left: 0;
+
+        &::after {
+            @include transition-timing-function();
+            content: "";
+        }
+
+        &:invalid,
+        &:required {
+            box-shadow: none;
+        }
+
+
+        // Normal Design Uses Transparent Bg As Default State
+        #{state(default, '.field')} & {
+            background: transparent;
+        }
+
+        #{state(hover, '.field')} & {
+            box-shadow: box-shadow(500);
+        }
+
+
+        // Modifiers
+        .field--grey & {
+            background: darken(color('grey' 500), 8%);
+            border-color: darken(color('grey' 500), 8%);
+        }
+
+        .field--right & {
+            left: unset;
+            right: 0;
+        }
+
+        @include color-modifiers(background border-color, color-keys(list), '#{state(active, '.field--{r}')} &');
+    }
+
+    // Hidden Checkbox Field Element
+    .field-tag {
+        @include position(absolute, 0 null null 0);
+        @include size(0px);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Checkmark/Radio Modifiers
+     *
+     */
+
+    &--checkmark,
+    &--radio {
+        .field-mask {
+            @include size(field(checkbox size default));
+
+            // Horizontally Center With Switch
+            margin: 0 ((field(checkbox size switch) - field(checkbox size default)) / 2);
+        }
+    }
+
+    // Default Checkmark
+    &--checkmark {
+        .field-mask {
+            border-radius: border-radius(300);
+
+            // Checkmark Using Pseudo Element
+            &::after {
+                @include position(absolute, center);
+                @include size(50%, 110%);
+                box-shadow: 1px 1px 0 color('black' 500, 0.2), -4px 0 0 color('white') inset, 0 -4px 0 0 color('white') inset;
+                transform: translate(50%, 100%) rotate(45deg) scale(0);
+
+                #{state(active, '.field')} & {
+                    transform: translate(calc(50% + 4px), calc(50% - 6px)) rotate(45deg) scale(1);
+                }
+            }
+        }
+    }
+
+    // Circular Radio Button
+    &--radio {
+        .field-mask {
+            border-radius: border-radius(900);
+
+            $circle: (field(checkbox size default) / 2) - 2px;
+            $center: $circle / 2;
+
+            // Circle "Bullet" Using Pseudo Element
+            &::after {
+                @include circle($circle);
+                @include position(absolute, center);
+                box-shadow: 0 1px 0 color('black' 500, 0.2);
+                transform: translate($center, $center) scale(0);
+
+                #{state(active, '.field')} & {
+                    background: color('white');
+                    transform: translate($center, $center) scale(1);
+                }
+            }
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Sliding Switch Modifier ( Horizontal )
+     *
+     */
+
+    &--switch {
+        .field-mask {
+            @include size(field(checkbox size switch), field(checkbox size default));
+            border-radius: border-radius(800);
+
+            // Circle "Bullet" Using Pseudo Element
+            // - 6px = Subtract 3px x 2 Spacer
+            &::after {
+                @include circle(field(checkbox size default) - 2px);
+                @include position(absolute, 0 null null 0);
+                background: color('white');
+                box-shadow: box-shadow();
+
+                #{state(active, '.field')} & {
+                    transform: translateX(field(checkbox size default) / 2);
+                }
+            }
+        }
+    }
+}

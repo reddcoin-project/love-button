@@ -1,0 +1,32 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Sidebar Module Configuration
+ *
+ */
+
+@include module-set(sidebar, (
+    // Sidebar And Content Will Be Full Width Once The Browser Width
+    // Falls Below This Breakpoint
+    breakpoint: 800px,
+
+    width: (
+        default: 320px,
+        small: 240px,
+    ),
+
+    // Gutter Used On Both '.content' And '.sidebar' To Evenly Seperate
+    spacer: spacer(horizontal) / 2
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function sidebar($key) {
+    @return module-get(sidebar $key);
+}

@@ -1,0 +1,31 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Icons Module Configuration
+ *
+ */
+
+@include module-set(icon, (
+    size: (
+        large: size() + size(100),
+        default: size(400),
+        small: size(300),
+        badge: 10px
+    ),
+    spacer: (
+        // Bottom Spacer For '.icon--scroller'
+        scroller: size(200)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function icon($key) {
+    @return module-get(icon $key);
+}

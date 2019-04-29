@@ -1,0 +1,21 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Simplify Searching For Value(s) Within String
+ *
+ */
+
+@function str-contains($needles, $haystack) {
+    $haystack: inspect($haystack);
+    $needles: to-list($needles);
+
+    @each $needle in $needles {
+        $needle: inspect($needle);
+        
+        @if str-index($haystack, $needle) != null {
+            @return true;
+        }
+    }
+
+    @return false;
+}

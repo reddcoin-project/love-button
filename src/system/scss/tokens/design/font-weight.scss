@@ -1,0 +1,24 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  400 Font Weight Isn't Always Usable/Legible
+ *
+ */
+
+@include token-set(font-weights, (
+    400: 500,
+    500: 600,
+    600: 700
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function font-weight($key: token-weight(default)) {
+    @return token-get(font-weights $key);
+}

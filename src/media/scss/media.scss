@@ -1,0 +1,116 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Video Grid/List
+ *
+ */
+
+.media {
+    @include grid(d12);
+    max-width: media(max-width);
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &-thumbnail {
+        @include cursor(pointer);
+        @include grid(d12);
+        border-radius: border-radius(300);
+        overflow: hidden;
+
+        @include state(hover) {
+            box-shadow: box-shadow(500);
+        }
+
+        &-duration {
+            @include position(absolute, null 0 0 null);
+            @include truncate();
+            background: color('black' 500, 0.9);
+            border-radius: border-radius(300) 0 border-radius(300) 0;
+            color: color('white');
+            font-size: font-size(200);
+            padding: media(spacer duration);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        &-play {
+            @include position(absolute, center);
+            @include transition(background-color opacity transform);
+            z-index: 1;
+        }
+
+        &-wrapper {
+            @include aspect-ratio();
+            @include grid(d12);
+            background-color: color('black');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: 0;
+
+            &--full {
+                padding-top: 100%;
+            }
+
+            &-image {
+                @include position(absolute, center);
+                @include size(101%);
+                object-fit: cover;
+            }
+        }
+
+        @include state(default) {
+            .media-thumbnail-play {
+                opacity: 0;
+                transform: translate(50%, 50%) scale(media(play default scale));
+            }
+        }
+    }
+
+    &-footer {
+        @include grid(d12);
+        padding: 0 media(spacer footer) 0 0;
+    }
+
+    &-title {
+        @include line-height((icon(size default) / font-size()), both);
+        @include transition(color);
+        clear: both;
+        color: color('text' 500);
+        font-weight: font-weight(500);
+        margin: media(spacer title);
+        padding: 0;
+    }
+
+    &-creator {
+        @include truncate();
+        clear: both;
+        color: color('text' 300);
+        font-weight: font-weight(500);
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .text-group {
+        margin: media(spacer stat-group) 0 0;
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Import Children/Modifiers
+     *
+     */
+
+    @import
+        'column',
+        'grid'
+    ;
+}

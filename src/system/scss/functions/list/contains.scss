@@ -1,0 +1,19 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Simplify Searching For Value(s) Within List
+ *
+ */
+
+@function list-contains($needles, $haystack) {
+    $haystack: to-list($haystack);
+    $needles: to-list($needles);
+
+    @each $needle in $needles {
+        @if index($haystack, $needle) {
+            @return true;
+        }
+    }
+
+    @return false;
+}

@@ -1,0 +1,43 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Reload CSS Stylesheet
+ *
+ */
+
+.reloadcss {
+    bottom: 0;
+    font-size: 10px;
+    position: fixed;
+    right: 0;
+    z-index: 9999;
+ 
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &-dimensions,
+    &-reloadcss {
+        line-height: normal;
+        padding: 12px;
+        position: relative;
+        text-align: center;
+    }
+
+    &-dimensions {
+        background-color: rgba(0,0,0, 0.88);
+        color: #fff;
+        float: right;
+    }
+
+    &-reloadcss {
+        background-color: rgba(0,0,0, 0.8);
+        color: #fff;
+        cursor: pointer;
+        float: left;
+    }
+}

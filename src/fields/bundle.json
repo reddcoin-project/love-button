@@ -1,0 +1,10 @@
+{
+    "js": [
+        "js/autoresize.js",
+        "js/checkbox.js",
+        "js/password.js",
+        "js/select.js",
+        "js/upload.js"
+    ],
+    "scss": "scss/field.scss"
+}

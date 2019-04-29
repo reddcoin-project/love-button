@@ -1,0 +1,31 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Tooltip Module Configuration
+ *
+ */
+
+@include module-set(tooltip, (
+    // Size Of Tooltip Content When Inactive
+    scale: 0.8,
+
+    spacer: (
+        // Spacer Between '.tooltip-content' And Parent Element
+        content: size(200),
+
+        // '.tooltip-content--message' Padding
+        message: size(300)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function tooltip($key) {
+    @return module-get(tooltip $key);
+}

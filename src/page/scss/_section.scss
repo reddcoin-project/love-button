@@ -1,0 +1,14 @@
+&-section {
+    margin: spacer(vertical) 0 0;
+
+    &--border:not(:last-child) {
+        border-bottom: 1px solid color('grey' 500, 0.72);
+        padding: 0 0 spacer(vertical);
+    }
+}
+
+&-section &-header {
+    &:not(:first-child) {
+        margin: spacer(vertical 300) 0 0;
+    }
+}

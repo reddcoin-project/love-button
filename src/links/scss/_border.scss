@@ -1,0 +1,26 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Horizontal Link Border/Divider Used By Various Link Groups
+ *
+ *  Import Within Link Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-border {
+    @include grid(d12);
+    background: color('grey' 500);
+    height: link(divider);
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    &--white {
+        background: color('white', 0.16);
+    }
+}

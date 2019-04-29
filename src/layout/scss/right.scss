@@ -1,0 +1,10 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Sometimes We Just Need Float Right
+ *
+ */
+
+.right {
+    @include float(right);
+}

@@ -1,0 +1,33 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Horizontal Scroll Wrapper
+ *
+ */
+
+.scroller {
+    @include grid(d12);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+
+    // Arbitrary; Exact Size Is Not Important; We Just Needed To Hide Scrollbar
+    margin: 0 0 -40px;
+    padding: 0 0 40px;
+
+    > * {
+        flex: 0 0 auto;
+    }
+
+    &-wrapper {
+        @include float();
+
+        &--container {
+            padding: 0 container(spacer);
+        }
+
+        &--full {
+            min-width: 100%;
+        }
+    }
+}

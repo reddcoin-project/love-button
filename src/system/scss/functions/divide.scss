@@ -1,0 +1,12 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Divide Values With The Help Of Strip Unit
+ *
+ */
+
+@function divide($numerator, $denominator) {
+    @return strip-unit($numerator) / strip-unit($denominator);
+}
+
+ 

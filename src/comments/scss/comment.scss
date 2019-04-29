@@ -1,0 +1,104 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Comment Thread
+ *
+ */
+
+.comment {
+    @include grid(d12);
+    border-color: color('text', 0.12);
+    border-style: solid;
+    border-width: 0;
+    margin: comment(spacer vertical) 0;
+    padding: 0 0 0 comment(spacer left);
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &-thread {
+        @include cursor(pointer);
+        height: 100%;
+        left: - comment(thread spacer);
+        position: absolute;
+        top: 0;
+
+        &::after {
+            @include float();
+            @include size(comment(thread width), 100%);
+            @include transition(opacity);
+            background: color('black');
+            border-radius: border-radius();
+            content: "";
+            margin: 0 comment(thread spacer);
+            opacity: comment(opacity default);
+            top: 0;
+        }
+
+        @include state(hover) {
+            &::after {
+                opacity: comment(opacity hover);
+            }
+        }
+
+        @include state(pressed) {
+            &::after {
+                opacity: comment(opacity pressed);
+            }
+        }
+    }
+
+    @include state(hover) {
+        > .comment-thread {
+            @include state(default) {
+                &::after {
+                    opacity: comment(opacity hover-thread);
+                }
+            }
+        }
+    }
+
+    &-author {
+        color: color('text' 500);
+        font-weight: font-weight(500);
+    }
+
+    &-text {
+        @include grid(d12);
+        line-height: line-height(500);
+        margin: comment(spacer text) 0 0;
+        max-width: breakpoint(tablet width);
+    }
+
+    &-footer {
+        @include grid(d12);
+        margin: comment(spacer footer) 0 0;
+    }
+
+    &-reply {
+        font-weight: font-weight(500);
+        margin: 0 0 (- comment(spacer reply) * 1.5);
+        padding: comment(spacer reply) 0;
+    }
+
+    &#{&} {
+        margin: comment(spacer nested vertical) 0 0;
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Import Children/Modifiers
+     *
+     */
+
+    @import
+        'group'
+    ;
+}

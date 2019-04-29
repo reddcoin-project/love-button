@@ -1,0 +1,122 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Shared Link Color Properties
+ *
+ */
+
+@mixin link-color($default, $hover, $pressed) {
+    // Apply Modifier Color To Interactive States Only
+    @include state(hover) {
+        border-color: $hover;
+        color: $hover;
+    }
+
+    @include state(active pressed) {
+        border-color: $pressed;
+        color: $pressed;
+    }
+
+
+    // Apply Modifier Color On Active State Only
+    // - Override 'hover'/'pressed' States
+    &.link--active {
+        @include state(hover) {
+            border-color: link(color text highlight);
+            color: link(color text highlight);
+        }
+
+        @include state(pressed) {
+            border-color: link(color text pressed);
+            color: link(color text pressed);
+        }
+
+        &.link--white {
+            @include state(hover) {
+                border-color: link(color 'white' highlight);
+                color: link(color 'white' highlight);
+            }
+
+            @include state(pressed) {
+                border-color: link(color 'white' pressed);
+                color: link(color 'white' pressed);
+            }
+        }
+    }
+
+
+    // Apply Modifier Color Across All States On Border Only
+    // - Original Border Uses A Pseudo Element To Round The Border;
+    //   Display Property Of The Border Determines When It Is
+    //   Visible.
+    // - Override Font Color Of ALL States
+    &.link--border {
+        border-color: $default;
+
+        @include state(hover) {
+            color: link(color text highlight);
+        }
+
+        @include state(active pressed) {
+            color: link(color text pressed);
+        }
+
+        &.link--white {
+            @include state(hover) {
+                color: link(color 'white' highlight);
+            }
+
+            @include state(active pressed) {
+                color: link(color 'white' pressed);
+            }
+        }
+    }
+
+
+    // Apply Color Across All States
+    // - 'default' State Is The Only Remaining State To Override
+    &.link--color {
+        border-color: $default;
+        color: $default;
+    }
+
+
+    // Apply Color To Active Link Border + Icon
+    &.link--icon {
+        @include state(hover) {
+            border-color: link(color text highlight);
+            color: link(color text highlight);
+        }
+
+        @include state(active) {
+            color: link(color text pressed);
+        }
+
+        @include state(pressed) {
+            border-color: link(color text pressed);
+            color: link(color text pressed);
+        }
+
+        &.link--white {
+            @include state(hover) {
+                border-color: link(color 'white' highlight);
+                color: link(color 'white' highlight);
+            }
+
+            @include state(active) {
+                color: link(color 'white' pressed);
+            }
+
+            @include state(pressed) {
+                border-color: link(color 'white' pressed);
+                color: link(color 'white' pressed);
+            }
+        }
+
+        @include state(active) {
+            .icon {
+                color: $pressed;
+            }
+        }
+    }
+}

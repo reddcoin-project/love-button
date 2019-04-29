@@ -1,0 +1,21 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Shared Button Modifiers
+ *
+ */
+
+@mixin button-modifier--black() {
+    &.button--black {
+        background: color('black');
+        border-color: color('black');
+        color: button(color 'white' default);
+    }
+}
+
+@mixin button-modifier--border($color) {
+    &.button--border {
+        border-color: $color;
+        color: $color;
+    }
+}

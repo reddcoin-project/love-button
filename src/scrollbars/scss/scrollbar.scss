@@ -1,0 +1,62 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Scrollbar Replacement
+ *
+ */
+
+// Hide Chrome Mobile Scrollbar
+::-webkit-scrollbar,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:window-inactive {
+    background: transparent;
+    box-shadow: unset;
+}
+
+[data-scrollbar] {
+    display: block;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    // Will Be Overwritten By JS When Exact Scrollbar Width Is Not 17px
+    width: calc(100% + 17px);
+}
+
+.scrollbar {
+    background: color('black' 500);
+    border-radius: 1px 0 0 1px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform-origin: top center;
+    transition: opacity 0.12s linear, transform 0.024s linear;
+    width: scrollbar(width);
+    z-index: 9;
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    &--fixed {
+        position: fixed;
+    }
+
+    &--hidden {
+        opacity: 0;
+    }
+
+    // Color Modifiers
+    &--grey {
+        background: color('grey' 500);
+    }
+
+    &--translucent {
+        opacity: 0.16;
+    }
+}

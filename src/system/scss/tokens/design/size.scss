@@ -1,0 +1,29 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Size Options Used For Small Images, Icons, Spacers, etc.
+ *
+ */
+
+@include token-set(sizes, (
+    100: 4px,
+    200: 8px,
+    300: 12px,
+    400: 16px,
+    500: 24px,
+    600: 32px,
+    700: 40px,
+    800: 48px
+));
+ 
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function size($key: token-weight(default)) {
+    @return token-get(sizes $key);
+}

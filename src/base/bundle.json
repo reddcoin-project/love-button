@@ -1,0 +1,9 @@
+{
+    "js": "js/html.js",
+    "scss": [
+        "scss/normalizer.scss",
+        "scss/base.scss",
+        "scss/forms.scss",
+        "scss/typography.scss"
+    ]
+}

@@ -1,0 +1,17 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Error 404 Not Found Page
+ *
+ */
+
+.not-found {
+    @include position(absolute, center);
+    max-width: 400px;
+    padding: (spacer(vertical) * 2) 0 0;
+
+    &-button {
+        margin: size(700) calc(50% - 100px) 0;
+        width: 200px;
+    }
+} 

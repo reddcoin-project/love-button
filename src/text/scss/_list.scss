@@ -1,0 +1,33 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Text List
+ *
+ *  Import Within Text Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-list {
+    @include float();
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &--links > .text {
+        margin: size(100) 0;
+    }
+
+    > .text {
+        clear: both;
+        margin: (size(100) / 2) 0;
+
+        &::after {
+            display: none;
+        }
+    }
+}

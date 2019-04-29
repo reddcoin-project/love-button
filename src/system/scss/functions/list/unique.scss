@@ -1,0 +1,27 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Remove Duplicate Values From List
+ *
+ */
+
+@function list-unique($list, $recursive: false) {
+    $result: ();
+
+    @if type-of($list) != list {
+        @error "#{$list} Is Not A Valid List";
+    }
+
+    @each $item in $list {
+        @if not index($result, $item) {
+            @if length($item) > 1 and $recursive {
+                $result: append($result, list-unique($item, $recursive));
+            }
+            @else {
+                $result: append($result, $item);
+            }
+        }
+    }
+
+    @return $result;
+}

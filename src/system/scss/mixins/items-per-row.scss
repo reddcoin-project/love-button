@@ -1,0 +1,19 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Items Per Row
+ *
+ */
+
+@mixin items-per-row($count, $spacer) {
+    width: calc(#{100% / $count} - #{$spacer});
+
+    @if $count == 1 {
+        margin-right: 0;
+    }
+    @else {
+        &:nth-child(#{$count}n) {
+            margin-right: 0;
+        }
+    }
+}

@@ -1,0 +1,43 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Nested Map Set
+ *
+ */
+
+@function arr-set($key, $value, $map, $merge: false) {
+    $cache: ();
+    $length: length($key);
+
+    $i: $length;
+
+    // If Map Is An Empty List Do Not Through Error
+    @if type-of($map) != map and (type-of($map) != list and length($map) > 0) {
+        @error "#{$map} Is Not A Valid Map";
+    }
+
+    @while $i > 0 {
+        $k: nth($key, $i);
+        $key: set-nth($key, $i, unquote(''));
+
+        @if $i != $length {
+            $value: arr-get(if($i == 1, $k, $key), $map);
+
+            @if $value {
+                $value: map-merge($value, $cache);
+            }
+            @else {
+                $value: $cache;
+            }
+        }
+
+        @if $merge == true {
+            $value: map-merge(arr-get($k, $map), $value);
+        }
+
+        $cache: ($k: $value);
+        $i: $i - 1;
+    }
+
+    @return map-merge($map, $cache);
+}

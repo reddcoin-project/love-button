@@ -1,0 +1,71 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Media Module Configuration
+ *
+ */
+
+@include module-set(media, (
+
+    column: (
+        width: (
+            footer: 60%,
+            thumbnail: 40%
+        )
+    ),
+
+    // Largest Version Of Media Element Shouldn't Exceed Value listed
+    max-width: 400px,
+
+    play: (
+        default: (
+            scale: 0.64
+        )
+    ),
+
+    spacer: (
+        // Padding
+        duration: size(100) size(200),
+
+        // Padding Right; Prevent(s) Each Items Title From Touching Each Other
+        footer: size(200),
+
+        grid: (
+            gallery: (size(100) / 2),
+            thumbnails: size(100),
+
+            // Used On '--content', '--full' Modifiers
+            // - Top Margin Of Each Media Element
+            top: spacer(vertical 300),
+
+            // - Spacer Between Each Media Grid Item
+            right: size(200)
+        ),
+
+        // Margin Top
+        stat-group: size(100) / 2,
+
+        // '.media-title' Margin
+        title: size() 0 size(300),
+
+        vertical: (
+            // Top Margin Of Each Media Element
+            top: size(200),
+
+            // Spacer Between Media Details And Thumbnail
+            left: size(300)
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function media($key) {
+    @return module-get(media $key);
+}

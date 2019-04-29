@@ -1,0 +1,11 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Simplify Text Transform + Letter Spacing Combination
+ *
+ */
+
+@mixin uppercase() {
+    font-weight: font-weight(500);
+    text-transform: uppercase;
+}

@@ -1,0 +1,65 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Banner
+ *
+ */
+
+.banner {
+    @include grid(d12);
+    height: banner(height default);
+    overflow: hidden;
+    z-index: -1;
+
+    &,
+    &-image {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    &--fixed {
+        @include position(fixed, center);
+        @include size(104vw, 104vh);
+    }
+
+    &--full {
+        height: 100%;
+    }
+
+    &--fullscreen {
+        height: 100vh;
+        min-height: banner(height small);
+    }
+
+    &--small {
+        height: banner(height small);
+    }
+
+    &--top {
+        @include position(absolute, top);
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &-image {
+        @include position(absolute, horizontal);
+        @include size(104%);
+        top: 0;
+        z-index: -1;
+    }
+}

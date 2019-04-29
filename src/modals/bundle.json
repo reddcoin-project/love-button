@@ -1,0 +1,7 @@
+{
+    "js": "js/modals.js",
+    "scss": [
+        "scss/modals.scss",
+        "scss/modal.scss"
+    ]
+}

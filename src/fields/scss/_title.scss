@@ -1,0 +1,54 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Field Titles
+ *
+ *  Import Within Field Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-title {
+    @include grid(d12);
+    color: field(color);
+    font-size: field(label font-size);
+    line-height: icon(size default) / field(label font-size);
+    word-wrap: break-word;
+    z-index: 1;
+
+
+    /** 
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    .field--horizontal & {
+        clear: unset;
+        line-height: icon(size default) / field(label font-size);
+        margin: 0 field(horizontal title margin-right) 0 0;
+        padding: field(text spacer default) 0;
+        width: auto;
+    }
+
+    .field--required & {
+        &::after {
+            @include circle(6px);
+            @include position(absolute, vertical);
+            content: "";
+            right: 0;
+        }
+    }
+
+    &--small {
+        font-size: font-size(300);
+    }
+
+    @include color-modifiers(color, join(color-keys(list), 'black' 'grey' 'white'));
+
+    // Use Modifier Color On Default Required Circle Color
+    @include color-modifiers(background, color-keys(list), '.field--{r} &::after');
+
+    // Active Title Color State
+    @include color-modifiers(color, color-keys(list), '#{state(active, '.field--{r}')} &--color');
+}

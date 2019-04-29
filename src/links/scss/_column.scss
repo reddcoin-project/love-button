@@ -1,0 +1,50 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Vertical Nav/Link Group
+ *
+ *  Import Within Link Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-column {
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    .link,
+    .not-allowed {
+        clear: both;
+
+        &:not(:first-child) {
+            margin: (link(spacer link vertical) * 2) 0 0;
+        }
+    }
+
+    .link {
+        padding: link(spacer link vertical) 0;
+
+        &-border {
+            margin: link(spacer border) 0;
+        }
+
+        &-title {
+            &:not(:first-child) {
+                margin-top: link(spacer vertical);
+            }
+
+            + .link,
+            + .not-allowed {
+                margin: (link(spacer link vertical) * 3) 0 0;
+            }
+        }
+
+        &-border + .link-title {
+            margin-top: 0;
+        }
+    }
+}
