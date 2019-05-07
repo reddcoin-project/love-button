@@ -26,7 +26,6 @@
         "js/node.js",
         "js/pubsub.js",
         "js/render.js",
-        "js/sw.js",
 
         "js/events/delegate/blur.js",
         "js/events/delegate/change.js",

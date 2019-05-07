@@ -9,19 +9,19 @@
 
 (function( window, document ) {
 
-    'use strict';
+    'use strict'; 
 
 
     let development = document.createElement('div');
 
- 
+
     development.innerHTML = `
         <span class='reloadcss-dimensions'>${window.innerWidth} x ${window.innerHeight}</span>
         <span class='reloadcss-reloadcss'>R</span>
     `;
     development.className = 'reloadcss';
 
-    document.body.prepend(development);
+    document.body.appendChild(development);
 
 
     let dimensions = document.getElementsByClassName('reloadcss-dimensions')[0] || null,

@@ -1,0 +1,25 @@
+.wallet {
+    &-button {
+        margin: size(600) 0 0;
+
+        &--primary {
+            width: calc(60% - #{size(200)});
+        }
+
+        &--secondary {
+            float: right;
+            width: calc(40% - #{size(200)});
+        }
+    }
+
+    &-field {
+        margin: size(500) 0 0;
+        width: 100%;
+    }
+
+    &-header {
+        b {
+            color: color('primary');
+        }
+}
+}

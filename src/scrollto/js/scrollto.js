@@ -14,6 +14,10 @@ require(['directive', 'dom'], function(directive, dom) {
         container = dom.id('site'),
         id = (k) => `scrollto-${k}`;
 
+    if (!container) {
+        return;
+    }
+
     let maxScroll = container.scrollHeight - container.clientHeight,
         offset = 0;
 

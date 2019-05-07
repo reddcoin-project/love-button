@@ -11,8 +11,9 @@
 @include token-set(base, (
     html: (
         css: (
-            background-color: color('grey'),
-            font-family: "'Montserrat', sans-serif"
+            background-color: color('white'),
+            font-family: "'Montserrat', sans-serif",
+            letter-spacing: 0.04px
         )
     )
 ));

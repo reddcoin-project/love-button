@@ -1,6 +1,7 @@
 .header {
     @include grid(d12);
     background: color('white');
+    border-bottom: 1px solid color('grey');
     padding: size();
 
     &-logo {

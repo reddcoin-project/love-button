@@ -7,7 +7,7 @@
 
 html,
 body {
-    @include size(100%);
+    @include size(480px);
     overflow-x: hidden;
 }
 
@@ -15,7 +15,6 @@ html {
     @include font-size();
     color: color('text');
     font-weight: font-weight();
-    min-width: 300px;
 
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -25,6 +24,11 @@ html {
         @each $property, $value in base(html css) {
             #{$property}: #{$value};
         }
+    }
+
+    // Fix Font Size Inheritence Problems - Stupid Chrome
+    * {
+        font-size: inherit;
     }
 
     // Global Box Element Properties
@@ -51,7 +55,7 @@ html {
 
     [data-mousemove="drag.move"] {
         cursor: grab;
-        
+
         &:active {
             cursor: grabbing;
         }
