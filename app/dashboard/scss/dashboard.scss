@@ -26,7 +26,6 @@
     }
 
     &-button {
-        @include uppercase();
         margin: size(600) 0 0;
     }
 }
