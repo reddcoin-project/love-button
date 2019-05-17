@@ -1,0 +1,12 @@
+.frames {
+    min-height: 320px;
+}
+
+.frame {
+    display: none;
+    padding: size(600) size(500);
+
+    @include state(active) {
+        display: block;
+    }
+}

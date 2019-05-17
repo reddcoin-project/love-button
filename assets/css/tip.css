@@ -1,0 +1,151 @@
+.reddid_tip_modal {
+    margin: 0;
+    padding: 0;
+    width: 700px;
+    display: none;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: #FFF;
+    color: black;
+    position: fixed;
+    z-index: 10000;
+    top: 25%;
+    left: 25%;
+}
+
+.reddid_tip_dialog {
+    display: flex;
+    flex-direction: row;
+    font-family: sans-serif;
+    /*border: 1px solid black;*/
+}
+.reddid_tip_sidecol {
+    width: 80px;
+    display: flex;
+}
+
+.reddid_tip_maincol {
+    /*border: 1px solid black;*/
+    flex-grow: 6;
+}
+
+.reddid_tip_header {
+    flex-grow: 1;
+    padding-top: 18px;
+}
+.reddid_tip_body {
+    flex-grow: 1;
+}
+
+.reddid_tip_title {
+    font-size: 24px;
+}
+.reddid_tip_caption {
+    font-size: 16px;
+    margin-top: 16px;
+    margin-bottom: 10px;
+}
+.reddid_tip_field {
+    font-size: 16px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+.reddid_tip_username {
+    border-bottom: 3px solid #E6762B;
+    font-size: 24px;
+}
+
+.reddid_tip_input {
+    height: 35px;
+    border: 1px solid #9c9c9c;
+    padding: 0 0 0 15px;
+    font-size: 13px;
+    background-color: #FFF;
+}
+.reddid_tip_input_address {
+    width: 300px;
+}
+.reddid_tip_input_amount {
+    width: 100px;
+    margin-right: 40px;
+}
+.reddid_tip_dropdown {
+    height: 35px;
+    border: 1px solid #9c9c9c;
+    padding: 0 0 0 15px;
+    background-color: #FFF;
+    width: 80px;
+    margin-left: 10px;
+}
+.reddid_tip_textarea {
+    border: 1px solid #9c9c9c;
+    padding: 2px 0 0 15px;
+    font-size: 13px;
+    color: black !important;
+}
+.reddid_tip_input_comment {
+    width: 40em;
+    height: 10em;
+    background-color: #FFF;
+}
+.reddid_tip_logo {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 10px;
+
+}
+.reddid_tip_button_close {
+    font-weight: bold;
+    font-size: 30px;
+    margin: 10px 10px 10px auto;
+    cursor: pointer;
+}
+
+.reddid_tip_footer {
+    background-color: #ececec;
+    display: flex;
+    flex-direction: row;
+}
+
+.reddid_tip_actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.reddid_tip_button_sendtip {
+    background-color: #F9C623;
+    height: 35px;
+    border: none;
+    margin: 10px 20px 10px auto;
+    width: 100px;
+}
+
+.reddid_tip_button_sendtip:hover {
+    text-decoration: underline;
+}
+
+.tipconfirmation_option {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.reddid_tip_error {
+    font-weight: bold;
+    font-size: 12px;
+    color: red;
+}
+
+/* ----------- */
+.reddid_tip_injected_button {
+    height: 12px;
+    vertical-align: middle;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.reddid_tip_container {
+    display: inline-flex;
+    align-items: center;
+}

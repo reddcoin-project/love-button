@@ -1,0 +1,136 @@
+{
+    "manifest_version": 2,
+    "name": "ReddID Tipping Extension (beta)",
+    "short_name": "ReddIDTipping",
+    "description": "A button to tip the World",
+    "version": "0.99.17",
+    "minimum_chrome_version": "38",
+
+    "icons": {
+        "16":  "assets/images/icons/16.png",
+        "48":  "assets/images/icons/48.png",
+        "128": "assets/images/icons/128.png"
+    },
+
+    "browser_action": {
+        "default_icon": "assets/images/icons/16.png",
+        "default_popup": "popup.html",
+        "default_title": "ReddID Tipping Extension"
+    },
+
+    "background": {
+        "scripts": [
+            "assets/js/html/browser-polyfill.min.js",
+            "assets/js/html/jquery-3.3.1.min.js",
+            "assets/js/lib/electrum/reddcore-lib.js",
+            "assets/js/lib/electrum/bitcore.js",
+            "assets/js/lib/electrum/electrum.js",
+            "assets/js/lib/socket.io/socket.io.js",
+            "assets/js/lib/utils/reconnecting-websocket.min.js",
+            "assets/js/html/init.js",
+            "assets/js/lib/background/background.js",
+            "assets/js/lib/background/background_wallet.js",
+            "assets/js/lib/background/background_reddid.js",
+            "assets/js/lib/background/background_appstate.js",
+            "assets/js/lib/background/message_pump.js"
+        ]
+    },
+
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*.reddit.com/*",
+                "https://reddit.com/*"
+            ],
+            "run_at": "document_idle",
+            "all_frames": false,
+            "css": [
+                "assets/css/tip.css"
+            ],
+            "js": [
+                "assets/js/html/browser-polyfill.min.js",
+                "assets/js/html/social/reddit.js",
+                "assets/js/html/init.js",
+                "assets/js/html/modal.js",
+                "assets/js/html/messenger.js",
+                "assets/js/html/content.js"
+            ]
+        },
+        {
+            "matches": [
+                "https://*.facebook.com/*",
+                "https://facebook.com/*"
+            ],
+            "run_at": "document_idle",
+            "all_frames": false,
+            "css": [
+                "assets/css/tip.css"
+            ],
+            "js": [
+                "assets/js/html/browser-polyfill.min.js",
+                "assets/js/html/social/facebook.js",
+                "assets/js/html/init.js",
+                "assets/js/html/modal.js",
+                "assets/js/html/messenger.js",
+                "assets/js/html/content.js"
+            ]
+        },
+        {
+            "matches": [
+                "https://*.twitter.com/*",
+                "https://twitter.com/*"
+            ],
+            "run_at": "document_idle",
+            "all_frames": false,
+            "css": [
+                "assets/css/tip.css"
+            ],
+            "js": [
+                "assets/js/html/browser-polyfill.min.js",
+                "assets/js/html/social/twitter.js",
+                "assets/js/html/init.js",
+                "assets/js/html/modal.js",
+                "assets/js/html/messenger.js",
+                "assets/js/html/content.js"
+            ]
+        },
+        {
+            "matches": [
+                "https://*.youtube.com/*",
+                "https://youtube.com/*"
+            ],
+            "run_at": "document_idle",
+            "all_frames": false,
+            "css": [
+                "assets/css/tip.css"
+            ],
+            "js": [
+                "assets/js/html/browser-polyfill.min.js",
+                "assets/js/html/social/youtube.js",
+                "assets/js/html/init.js",
+                "assets/js/html/modal.js",
+                "assets/js/html/messenger.js",
+                "assets/js/html/content.js"
+            ]
+        }
+    ],
+
+    "web_accessible_resources": [
+        "*.css",
+        "assets/images/reddcoin_content_header.png",
+        "assets/images/reddcoinlogo.png",
+        "assets/images/reddit-tip-button.jpg"
+    ],
+
+    "permissions": [
+        "cookies",
+        "notifications",
+        "downloads",
+        "<all_urls>",
+        "tabs",
+
+        "https://ajax.googleapis.com/",
+        "http://fonts.googleapis.com/",
+        "https://fonts.googleapis.com/"
+    ]
+}
