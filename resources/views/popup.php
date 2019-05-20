@@ -30,7 +30,7 @@
                                 Dashboard
                             </div>
 
-                            <div class="link link--large link--white">
+                            <div class="link link--large link--white" id="menuWallet">
                                 <div class="icon">
                                     <?= $svg('bank-activity') ?>
                                 </div>
@@ -38,7 +38,7 @@
                                 Wallet
                             </div>
 
-                            <div class="link link--large link--white" data-click="frame" data-frame="reddid-register">
+                            <div class="link link--large link--white" id="menuRegister" data-click="frame" data-frame="reddid-register">
                                 <div class="icon">
                                     <?= $svg('user') ?>
                                 </div>
@@ -89,7 +89,8 @@
 
                 <?php
                     $frames = [
-                        'reddid/create',
+                        'reddid/register',
+                        'wallet/interact',
 
                         'about',
                         'buy-sell',
@@ -102,6 +103,8 @@
                         require __DIR__ . "/frames/{$frame}.php";
                     }
                 ?>
+
+                <span id="walletSwapInteract" style='position: absolute; top: 0;left: 0; z-index: -1;opacity: 0;' data-click="frame" data-frame="wallet-interact"></span>
 
             </section>
 
@@ -141,10 +144,10 @@
 
         <?php
             $files = [
-                'browser-polyfill.min.js',
-                'jquery-3.3.1.min.js',
-                'jquery-ui.min.js',
-                'typeahead.bundle.js',
+                'vendor/browser-polyfill.min.js',
+                'vendor/jquery-3.3.1.min.js',
+                'vendor/jquery-ui.min.js',
+                'vendor/typeahead.bundle.js',
                 'init.js',
                 'views/viewSocialNetworks.js',
                 'views/viewWalletAccount.js',
@@ -160,7 +163,7 @@
                 'popup_ui.js',
                 'utils.js',
                 'messenger.js',
-                'sha256.min.js'
+                'vendor/sha256.min.js'
             ];
         ?>
 

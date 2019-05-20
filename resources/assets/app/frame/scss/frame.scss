@@ -1,5 +1,9 @@
 .frames {
     min-height: 320px;
+
+    &--center {
+        min-height: 240px;
+    }
 }
 
 .frame {

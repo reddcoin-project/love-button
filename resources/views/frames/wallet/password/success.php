@@ -12,5 +12,5 @@
         It is safe to close this tab, as the process will continue in the background.
     </p>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary">Continue</button>
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="registerContinue">Continue</button>
 </section>

@@ -4,73 +4,86 @@
 *************************************************/
 
 (function (exports) {
-	var priv = {
-		},
-		pub = {};
 
-	priv.getWalletReceiveHeader = function(data, account){
-		// Add dropdown for accounts
-		var index = account;
-		var html = '<p>All addresses listed below belong to this wallet, and may be used as a way of keeping funds separate for ease of use and organization.</p>';
-		html += '<select id="getWalletReceiveAccountSelect" class="">'
-		var accounts = data.accounts;
-		$.each(accounts, function(i, account){
-			html += priv.getWalletReceiveAccountRow(account, index);
-		});
-		html += '</select>'
-		return html;
-	};
-	priv.getWalletReceiveAccountRow = function(account, index) {
+    var priv = {},
+        pub = {};
 
-		if (account.index == index){
-			return '<option value="' + account.index + '"selected>' + account.name + '</option>';
-		} else {
-			return '<option value="' + account.index + '">' + account.name + '</option>';
-		}
-	};
-	priv.getWalletReceiveAddressRow = function(address, account) {
 
-		return '' +
-		'<div class="WalletReceiveAddressRow">' +
-		'	<div class="WalletReceive">' +
-		'		<div class="WalletReceiveAddress">' + priv.getAddressLink(address.address, 40,  address.name) + ' - ' + address.confirmed * COIN + ' RDD</div>' +
-		'	</div>' +
-		'</div>';
-	};
-	priv.getAddressLink = function(address, length, addressNames){
-		var length = length || 15,
-			name = addressNames[address] || address,
-			shortened = name.substr(0,length),
-			link = 'http://live.reddcoin.com/address/'+address;
+    priv.getWalletReceiveHeader = function(data, account){
+        var accounts = data.accounts,
+            fields = '',
+            index = account;
 
-		if(name.length > shortened.length){
-			shortened += '...'
-		}
+        $.each(accounts, function(i, account){
+            fields += priv.getWalletReceiveAccountRow(account, index);
+        });
 
-		return '<a target="_blank" title="View Address" href="'+link+'">'+
-			shortened
-			+'</a>';
-	};
-	
-	
+        return `
+            <p>All addresses listed below belong to this wallet, and may be used as a way of keeping funds separate for ease of use and organization.</p>
 
-	pub.getView = function(data, account){
+            <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
+                <label class="field-text field-text--select" data-change="select">
+                    <div class="field-mask">${accounts[index].name}</div>
 
-		var html = priv.getWalletReceiveHeader(data, account);
-		$.each(data.addresses, function(i, address) {
-			if (data.addresses[i].accountIndex == account) {
-				html += priv.getWalletReceiveAddressRow(address, account);
-			}	
-		})
-		
+                    <select class="field-tag" id="getWalletReceiveAccountSelect" data-ref="trigger:change">
+                        ${fields}
+                    </select>
+                </label>
+            </div>
+        `;
+    };
 
-		/*$.each(transactions, function(i, transaction){
-			html += priv.getWalletReceiveRow(transaction, '');
-		});
-		*/
+    priv.getWalletReceiveAccountRow = function(account, index) {
+        if (account.index == index){
+            return '<option value="' + account.index + '"selected>' + account.name + '</option>';
+        }
+        else {
+            return '<option value="' + account.index + '">' + account.name + '</option>';
+        }
+    };
 
-		return html;
-	};
+    priv.getWalletReceiveAddressRow = function(address, account) {
+        return `
+            <div class="wallet-interact-row wallet-interact-row--small">
+                <span class='wallet-interact-row-title'>${priv.getAddressLink(address.address, 40,  address.name)}</span>
+                <span class="wallet-interact-row-balance right">${address.confirmed * COIN} RDD</span>
+            </div>
+        `;
+    };
 
-	exports.viewWalletReceive = pub;
+    priv.getAddressLink = function(address, length, addressNames){
+        var length = length || 15,
+            name = addressNames[address] || address,
+            shortened = name.substr(0,length),
+            link = 'http://live.reddcoin.com/address/' + address;
+
+        if(name.length > shortened.length){
+            shortened += '...'
+        }
+
+        return `
+            <a class='link link--inline link--primary tooltip' data-hover='toggle' target="_blank" href="${link}">
+                ${shortened}
+
+                <span class='tooltip-content tooltip-content--message tooltip-content--nw'>View Address</span>
+            </a>
+        `;
+    };
+
+
+    pub.getView = function(data, account){
+        var html = priv.getWalletReceiveHeader(data, account);
+
+        $.each(data.addresses, function(i, address) {
+            if (data.addresses[i].accountIndex == account) {
+                html += priv.getWalletReceiveAddressRow(address, account);
+            }
+        })
+
+        return html;
+    };
+
+
+    exports.viewWalletReceive = pub;
+
 })(exports);

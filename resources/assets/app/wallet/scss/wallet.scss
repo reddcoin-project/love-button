@@ -21,5 +21,74 @@
         b {
             color: color('primary');
         }
-}
+    }
+
+    &-interact {
+        &-frames {
+            margin: size(500) 0 0
+        }
+
+        &-frame {
+            @include state(not-active) {
+                display: none;
+            }
+        }
+
+        &-history {
+            &-date {
+                width: 25%;
+            }
+
+            &-address {
+                @include truncate();
+                padding: 0 size() 0 0;
+                width: 40%;
+            }
+
+            &-amount {
+                text-align: right;
+                width: 35%;
+            }
+        }
+
+        &-links {
+            border-bottom: 1px solid color('grey');
+            margin: (- size(600)) 0 0;
+        }
+
+        &-row {
+            border-top: 1px solid color('grey' 300);
+            padding: size(500) 0;
+
+            &:first-child {
+                margin: (- size(500)) 0 0;
+            }
+
+            &--small {
+                padding: size(400) 0;
+
+                .field + & {
+                    margin: size(500) 0 0;
+                }
+
+                &:first-child {
+                    margin: 0
+                }
+            }
+
+            &,
+            &-section {
+                @include grid(d12);
+            }
+
+            &-balance {
+                text-align: right;
+                width: 32%;
+            }
+
+            &-title {
+                font-weight: font-weight(600);
+            }
+        }
+    }
 }

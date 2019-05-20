@@ -45,30 +45,17 @@ function process_register(data) {
 
 //process incoming tip and highlight row
 function process_tiplink(data) {
-    /*
-    var myTable = document.getElementById("reddidPopupTipFeed_tbl").getElementsByTagName('tbody')[0];
-
-    myTable.insertRow(0).innerHTML = '<td>' + data.network + '</td><td><a href="' + data.url + '">' + data.title + '</a></td><td></td><td>' + (data.value * COIN) + '</td>'
-    */
-    /*
-
-    Find the data.url
-    find the tr/td containing the url
-    if found
-    flash the row
-    */
-
     open_tiplink_tbl();
 
-    var myTable = document.getElementById("reddidPopupTipFeed_tbl"); //.getElementsByTagName('tbody')[0];
+    var myTable = document.getElementById("reddidPopupTipFeed_tbl");
     var urlSelect = "a[href *='" + data.url + "']";
     var myRow = $(myTable).find(urlSelect);
 
     var urlRow = $(myRow).closest("tr");
 
     urlRow.addClass('stylish');
-    setTimeout(function() {
-    urlRow.removeClass('stylish');
+        setTimeout(function() {
+        urlRow.removeClass('stylish');
     }, 1000);
 }
 
@@ -197,9 +184,6 @@ window.onload = function() {
 
     // Set the app listeners for the GUI
     setPopupGuiListeners(); //TODO check if these are obsolete or need to be moved
-
-    // Set the display
-    closeNav();
 
     // Display welcome page
     displayWelcome();

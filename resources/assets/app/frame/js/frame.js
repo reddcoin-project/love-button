@@ -19,7 +19,11 @@ require(['directive', 'dom', 'node', 'modules/state'], function(directive, dom, 
             trigger = this;
 
         if (!target) {
-            return;
+            target = dom.id(this.getAttribute(attribute));
+
+            if (!target) {
+                return;
+            }
         }
 
         if (!state.active(target)) {

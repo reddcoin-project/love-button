@@ -28,14 +28,14 @@
                                 Dashboard
                             </div>
 
-                            <div class="link link--large link--white">
+                            <div class="link link--large link--white" id="menuWallet">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5zm.704 7.977v.773H7.298V11c-.7-.091-1.345-.325-1.745-.636l.463-1.028c.496.364 1.236.615 1.944.615.808 0 1.138-.27 1.138-.631 0-1.103-3.427-.342-3.427-2.532 0-.811.539-1.504 1.627-1.741V4.25h1.406v.736c.556.065 1.083.23 1.493.489l-.418 1.037c-.55-.313-1.115-.464-1.635-.464-.808 0-1.12.303-1.12.672 0 1.086 3.428.337 3.428 2.499.001.823-.577 1.537-1.748 1.758z"/><path opacity=".8" d="M15.999 13.5l-2.505-2.469a.11.11 0 0 0-.155 0l-.878.865a.103.103 0 0 0 0 .151l.747.736H11v1.431h2.208l-.747.734a.106.106 0 0 0 0 .152l.877.864a.108.108 0 0 0 .154.002l.002-.002 2.505-2.464zM.001 2.501L2.506 4.97a.111.111 0 0 0 .155 0l.878-.865a.104.104 0 0 0 0-.152l-.747-.737H5v-1.43H2.792l.747-.734A.106.106 0 0 0 3.54.901L3.539.899 2.662.033a.109.109 0 0 0-.154-.002l-.002.002L.001 2.501z"/></svg>                                </div>
                                 <span class="inline-spacer"></span>
                                 Wallet
                             </div>
 
-                            <div class="link link--large link--white" data-click="frame" data-frame="reddid-register">
+                            <div class="link link--large link--white" id="menuRegister" data-click="frame" data-frame="reddid-register">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm.001 2.289a2.4 2.4 0 1 1-.002 4.798A2.4 2.4 0 0 1 8 2.29zM13 11.211l-.001.008v.027a1 1 0 0 1-.317.691l-.02.017-.003.003c-.134.12-.861.754-1.661 1.072-.934.453-1.966.682-2.998.682s-2.064-.229-2.998-.682c-.8-.318-1.528-.952-1.662-1.072l-.003-.003-.019-.017A.988.988 0 0 1 3 11.246v-.027-.008-.008l.001-.027a.99.99 0 0 1 .318-.691s.006-.007.019-.017l.003-.002c.133-.121.862-.754 1.662-1.073A6.861 6.861 0 0 1 8 8.711c1.033 0 2.064.229 2.998.682.8.319 1.528.952 1.661 1.073a.008.008 0 0 0 .004.002.99.99 0 0 1 .336.708l.001.027v.008z"/></svg>                                </div>
                                 <span class="inline-spacer"></span>
@@ -92,11 +92,11 @@
         <span class="field-title">Funding Address</span>
 
         <label class="field-text field-text--input">
-            <input class="field-mask field-tag" name='' placeholder="RrcMzfNEJhAHrkmFrCsJk1smJGKAonGoYb" type="text">
+            <input class="field-mask field-tag" id="paying_address_input" readonly="readonly" type="text">
         </label>
 
         <label class="field-text field-text--input">
-            <input class="field-mask field-tag" name='' placeholder="0 RDD" type="text">
+            <input class="field-mask field-tag" id="redd_id_balance" readonly="readonly" type="text">
         </label>
     </div>
 
@@ -104,18 +104,147 @@
         <span class="field-title">Username</span>
 
         <label class="field-text field-text--input">
-            <input class="field-mask field-tag" name='' placeholder="Register an ID" type="text">
+            <input class="field-mask field-tag" id="redd_id_input" placeholder="Register an ID" type="text">
         </label>
 
         <label class="field-text field-text--input">
-            <input class="field-mask field-tag" name='' placeholder="0 RDD" type="text">
+            <input class="field-mask field-tag" id="redd_id_value" placeholder="0 RDD" type="text" readonly="readonly">
         </label>
 
         <span class="field-description">Please enter a name to continue</span>
+        <span class="field-description" id="id_msg"></span>
     </div>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary">Order</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black">Register</button>
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="redd_id_btn_order">Order</button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="redd_id_btn_register">Register</button>
+</section>
+<section class="wallet-interact frame" id="frame-wallet-interact">
+
+    <div class="wallet-interact-links link-scroller">
+        <span class="link link--border link--primary link--tab active" data-click="frame" data-frame="WalletBalances">
+            Balance
+        </span>
+        <span class="link link--border link--primary link--tab" data-click="frame" data-frame="WalletHistoryTable">
+            History
+        </span>
+        <span class="link link--border link--primary link--tab" data-click="frame" data-frame="WalletSend">
+            Send
+        </span>
+        <span class="link link--border link--primary link--tab" data-click="frame" data-frame="WalletReceiveTable">
+            Receive
+        </span>
+        <span class="link link--border link--primary link--tab" data-click="frame" data-frame="WalletHelp">
+            Help
+        </span>
+    </div>
+
+    <section class='wallet-interact-frames'>
+        <section class='wallet-interact-frame active' id="WalletBalances"></section>
+
+        <section class='wallet-interact-frame' id="WalletHistoryTable"></section>
+
+        <section class='wallet-interact-frame' id="WalletSend">
+            <div class="wallet-header page-header">
+                <h3 class="page-header-title"><b>Send</b> Reddcoin To:</h3>
+            </div>
+
+
+            <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+                <span class="field-title">
+                    Saved Contacts and ReddID users
+                </span>
+
+                <label class="field-text field-text--input">
+                    <input class="field-mask field-tag" id="walletSend_contactname" type="text" list="contacts">
+                </label>
+
+                <span class="field-description">
+                    Use this dropdown to select a ReddID user or saved contact. You can scroll through the list, or type a part of their name
+                </span>
+            </div>
+
+            <datalist id="contacts"></datalist>
+
+            <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+                <span class="field-title">
+                    Reddcoin Address
+                </span>
+
+                <label class="field-text field-text--input">
+                    <input class="field-mask field-tag" id="walletSend_address" type="text">
+                </label>
+
+                <span class="field-description">
+                    The address where you want to send. This can be populated by filling it in manually, or by selecting from the contacts list above.
+                </span>
+            </div>
+
+            <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+                <span class="field-title">
+                    Contact Name (optional)
+                </span>
+
+                <label class="field-text field-text--input">
+                    <input class="field-mask field-tag" id="walletSend_contact" type="text">
+                </label>
+
+                <span class="field-description">
+                    By adding a contact name, will save the details of this transaction into your address book.
+                </span>
+            </div>
+
+            <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+                <span class="field-title">
+                    Reddcoin Amount
+                </span>
+
+                <label class="field-text field-text--input">
+                    <input class="field-mask field-tag" id="walletSend_amount" type="text">
+                </label>
+
+                <span class="field-description">
+                    The amount of Reddcoin to send.
+                </span>
+            </div>
+
+            <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
+                <span class="field-title">Send from the following account</span>
+
+                <label class="field-text field-text--select" data-change="select">
+                    <select id="sendFromAccount"></select>
+                </label>
+            </div>
+
+            <button class="wallet-button button button--primary" id="walletSend_send">Send</button>
+
+            <p id="error_msg"></p>
+            <p id="send_error_msg_txt"></p>
+
+        </section>
+
+        <section class='wallet-interact-frame' id="WalletReceiveTable"></section>
+
+        <section class='wallet-interact-frame' id="WalletHelp">
+            <p>
+                <b>Balance</b> check your total balance across all addresses in this wallet
+            </p>
+            <p>
+                <b>History</b> check your total balance across all addresses in this wallet
+            </p>
+            <p>
+                <b>Send</b> enter a public address or ReddID name to send the amount of your choice to the recipient.
+            </p>
+            <p>
+                <b>Receive</b> your list of public addresses on which to receive direct payment. Separated into categories.
+                All addresses belong to the same wallet and can be balance checked in the Wallet -> Balance tab.
+                Features to come include additional address generation and custom categories.
+            </p>
+            <p>
+                <b>Help</b> see Help.
+            </p>
+        </section>
+    </section>
+
 </section>
 <section class="about frame" id="frame-about">
     <div class="wallet-header page-header">
@@ -329,6 +458,8 @@
     </div>
 </section>
 
+                <span id="walletSwapInteract" style='position: absolute; top: 0;left: 0; z-index: -1;opacity: 0;' data-click="frame" data-frame="wallet-interact"></span>
+
             </section>
 
 
@@ -362,10 +493,10 @@
         </section>
 
         
-                    <script type="text/javascript" src="assets/js/html/browser-polyfill.min.js"></script>
-                    <script type="text/javascript" src="assets/js/html/jquery-3.3.1.min.js"></script>
-                    <script type="text/javascript" src="assets/js/html/jquery-ui.min.js"></script>
-                    <script type="text/javascript" src="assets/js/html/typeahead.bundle.js"></script>
+                    <script type="text/javascript" src="assets/js/html/vendor/browser-polyfill.min.js"></script>
+                    <script type="text/javascript" src="assets/js/html/vendor/jquery-3.3.1.min.js"></script>
+                    <script type="text/javascript" src="assets/js/html/vendor/jquery-ui.min.js"></script>
+                    <script type="text/javascript" src="assets/js/html/vendor/typeahead.bundle.js"></script>
                     <script type="text/javascript" src="assets/js/html/init.js"></script>
                     <script type="text/javascript" src="assets/js/html/views/viewSocialNetworks.js"></script>
                     <script type="text/javascript" src="assets/js/html/views/viewWalletAccount.js"></script>
@@ -381,7 +512,7 @@
                     <script type="text/javascript" src="assets/js/html/popup_ui.js"></script>
                     <script type="text/javascript" src="assets/js/html/utils.js"></script>
                     <script type="text/javascript" src="assets/js/html/messenger.js"></script>
-                    <script type="text/javascript" src="assets/js/html/sha256.min.js"></script>
+                    <script type="text/javascript" src="assets/js/html/vendor/sha256.min.js"></script>
         
         <script src="assets/js/app.js" type="text/javascript"></script>
     </body>

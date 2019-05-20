@@ -132,6 +132,8 @@
 
         pub.getPayingAddrBalance();
 
+        debug.log(wallet.accounts[0].addresses[1].address);
+
         Reddcoin.messenger.getUserIds(function(result){
           let maxIds = 25;
           $("#regoCount_txt").text(`${result.length} of ${maxIds} registered`)
@@ -374,14 +376,14 @@
 	priv.updateOrderStatus = function(data) {
 		if (data) {
 			var user = data.user;
-      
+
 			if (document.getElementById('redd_id_btn_order')) {
 				document.getElementById('redd_id_btn_order').disabled = true;
 			}
 			if (document.getElementById('redd_id_btn_register')) {
 				document.getElementById('redd_id_btn_register').disabled = true;
 			}
-      
+
 			if (user.error) {
 			    document.getElementById('id_msg').innerText = user.error;
 			} else if(user.confirmed && user.confirmed.address) {
@@ -477,7 +479,7 @@
 		if (!priv.checkAllowedChars(uid)) {
 			return false
 		}
-		
+
 		if (priv.status == 'found') {
 			document.getElementById('id_msg').innerText = "Name already registered, try another.";
 			return false;
@@ -556,38 +558,6 @@
     $('#redd_id_input').attr('title', `${newTitle} Up to ${priv.maxNameLength - priv.defaultNamespace.length} chars`);
 
 	};
-/*
-  // set a timer to poll for network index status 2secs
-  window.setInterval(function () {
-    Reddcoin.messenger.getBlockheight(function (msg) {
-      console.log('Value of height is ' + JSON.stringify(msg));
 
-      if (msg.indexing == true) {
-        priv.indexing = true;
-        $('#error_msg_txt').text(`Reddid Indexing. Blockchain = ${msg.bitcoind_blocks}. ReddID = ${msg.last_block}`);
-        $('#redd_id_btn_order').prop('disabled', true);
-        priv.setStateValue('error_msg_txt', 'value', `Reddid Indexing. Blockchain = ${msg.bitcoind_blocks}. ReddID = ${msg.last_block}`);
-
-      } else {
-        priv.indexing = false;
-        $('#error_msg_txt').text(``);
-        if($('#redd_id_input').val() === '' || priv.available === false){
-          $('#redd_id_btn_order').prop('disabled', true);
-        } else {
-          $('#redd_id_btn_order').prop('disabled', false);
-        }
-
-        priv.setStateValue('error_msg_txt', 'value', ``);
-      }
-    });
-    if($('#paying_address_input').val() !== ''){
-      Reddcoin.messenger.getAddressBalance($('#paying_address_input').val(), function(data) {
-        priv.balance = data.balance.confirmed;
-        $('#redd_id_balance').val(`${data.balance.confirmed * COIN} RDD`)
-
-      })
-    }
-  }, 2000);
-  */
 	exports.viewWalletRegister = pub;
 })(exports);

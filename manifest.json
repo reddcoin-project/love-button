@@ -20,8 +20,8 @@
 
     "background": {
         "scripts": [
-            "assets/js/html/browser-polyfill.min.js",
-            "assets/js/html/jquery-3.3.1.min.js",
+            "assets/js/html/vendor/browser-polyfill.min.js",
+            "assets/js/html/vendor/jquery-3.3.1.min.js",
             "assets/js/lib/electrum/reddcore-lib.js",
             "assets/js/lib/electrum/bitcore.js",
             "assets/js/lib/electrum/electrum.js",
@@ -48,7 +48,7 @@
                 "assets/css/tip.css"
             ],
             "js": [
-                "assets/js/html/browser-polyfill.min.js",
+                "assets/js/html/vendor/browser-polyfill.min.js",
                 "assets/js/html/social/reddit.js",
                 "assets/js/html/init.js",
                 "assets/js/html/modal.js",
@@ -67,7 +67,7 @@
                 "assets/css/tip.css"
             ],
             "js": [
-                "assets/js/html/browser-polyfill.min.js",
+                "assets/js/html/vendor/browser-polyfill.min.js",
                 "assets/js/html/social/facebook.js",
                 "assets/js/html/init.js",
                 "assets/js/html/modal.js",
@@ -86,7 +86,7 @@
                 "assets/css/tip.css"
             ],
             "js": [
-                "assets/js/html/browser-polyfill.min.js",
+                "assets/js/html/vendor/browser-polyfill.min.js",
                 "assets/js/html/social/twitter.js",
                 "assets/js/html/init.js",
                 "assets/js/html/modal.js",
@@ -105,7 +105,7 @@
                 "assets/css/tip.css"
             ],
             "js": [
-                "assets/js/html/browser-polyfill.min.js",
+                "assets/js/html/vendor/browser-polyfill.min.js",
                 "assets/js/html/social/youtube.js",
                 "assets/js/html/init.js",
                 "assets/js/html/modal.js",

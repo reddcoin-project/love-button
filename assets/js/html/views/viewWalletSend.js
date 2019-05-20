@@ -10,7 +10,6 @@
 
 
     priv.updateInputs = function(data){
-        //document.getElementById("walletSend_contact").value = data.user;
         document.getElementById("walletSend_address").value = '';
 
         if (data.address !== 'missing') {
@@ -21,6 +20,7 @@
             let uid = username.slice(0, username.indexOf('.'));
             let namespace = username.slice(username.indexOf('.') + 1);
             var user = {uid: uid, namespace:namespace};
+            
             exports.messenger.lookup(user, function (response) {
                 document.getElementById("walletSend_address").value = response.address;
             });

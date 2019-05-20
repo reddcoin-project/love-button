@@ -68,7 +68,6 @@ $.fn.enterKey = function (fnc) {
     Reddcoin.messenger.getNewSeed(function (seed) {
       $("#wallet_recovery_phrase").val(seed);
       priv.swapPages('#walletCreating', '#walletCreate');
-      $(".reddidPopupPage_Footer_Back").show()
     });
   };
 
@@ -83,13 +82,15 @@ $.fn.enterKey = function (fnc) {
   pub.walletConfirmWallet = function () {
     debug.log('walletConfirmWallet');
     $('#recoverySeedError').hide();
+
     if (!priv.seedsMatch()) {
       $('#recoverySeedError').text('Seeds do not match. Words must be exactly the same order and the same count. Please try again');
       $('#recoverySeedError').show();
-      return
+      return;
     }
+
     $('#recoverySeedError').text('');
-    priv.swapPages('#walletPasswordCreate', '#walletConfirming')
+    $('#walletSwapPassword').trigger('click');
   };
 
   pub.walletCreatePassword = function () {
@@ -100,7 +101,7 @@ $.fn.enterKey = function (fnc) {
       return;
     }
     $('#pw_error').hide();
-    priv.swapPages('#walletPasswordConfirm', '#walletPasswordCreate')
+    $('#walletSwapPasswordConfirm').trigger('click');
   };
 
   pub.walletPasswordConfirm = function () {
@@ -110,12 +111,12 @@ $.fn.enterKey = function (fnc) {
       $('#wallet_password').val('');
       $('#wallet_password_confirm').val('');
       $('#pwd_error').show();
-      priv.swapPages('#walletPasswordCreate', '#walletPasswordConfirm');
+      $('#walletSwapPassword').trigger('click');
       return
     }
     $('#pwd_error').hide();
     $('#pwd_error').text('');
-    priv.swapPages('#walletSettings', '#walletPasswordConfirm')
+    $('#walletSwapSettings').trigger('click');
   };
 
   pub.walletSettings = function () {
@@ -139,8 +140,7 @@ $.fn.enterKey = function (fnc) {
           debug.log(data.error);
         } else {
           debug.log("Create new wallet successful");
-          priv.swapPages('#walletCreatingSuccess', '#walletSettings');
-          $(".reddidPopupPage_Footer_Back").hide()
+          $('#walletSwapSuccess').trigger('click');
           Reddcoin.messenger.createUser(true, function(data){
             debug.log(data);
           })
@@ -151,13 +151,12 @@ $.fn.enterKey = function (fnc) {
 
   pub.startImport = function () {
     debug.log('startImport');
-    priv.swapPages('#walletRecovery', '#walletCreate')
-    $(".reddidPopupPage_Footer_Back").show()
   };
 
   pub.finishImport = function () {
     debug.log('finishImport');
     let seed = $('#recovery_input').val();
+
     Reddcoin.messenger.checkSeed(seed, function (isValid) {
       if (!isValid) {
         //$error.show('slow');
@@ -166,7 +165,7 @@ $.fn.enterKey = function (fnc) {
         $('#import_error').show();
         return
       }
-      priv.swapPages('#walletPasswordCreate', '#walletRecovery')
+      $('#walletSwapPassword').trigger('click');
     })
   };
 

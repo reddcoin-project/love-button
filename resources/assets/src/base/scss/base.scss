@@ -5,7 +5,6 @@
  *
  */
 
-html,
 body {
     @include size(480px);
     overflow-x: hidden;
@@ -64,4 +63,15 @@ html {
             background: transparent;
         }
     }
+
+    &.html--center {
+        background: color('grey');
+    }
+}
+
+body.body--center {
+    @include position(absolute, horizontal);
+    background: color('white');
+    height: auto;
+    top: size(500);
 }

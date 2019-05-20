@@ -88,14 +88,16 @@ function getSocialNetwork(hostname) {
     return '';
 }
 
-const commentTemplateNewUser = 'Thank you for your insightful comment, %USERNAME%. I\'m sending you %AMOUNT% Reddcoins to show my appreciation. ' +
-'You can send and receive RDD easily using the ReddID extension to tip across social platforms and reward others the same way. ' +
-'Good content deserves reward and with Reddcoin you can send a microdonation directly.' + String.fromCharCode(13) +
-'Join the Reddcoin movement and become a ReddHead today!' + String.fromCharCode(13) +
-'What is Reddcoin: www.reddcoin.com' + String.fromCharCode(13) +
-'What is ReddID: www.reddcoin.com/redd-id' + String.fromCharCode(13) +
-'How to install Reddcoin tipping extension: www.reddcoin.com/redd-id' + String.fromCharCode(13) +
-'Live Reddcoin chat & help: https://t.me/ReddcoinOfficial';
+const commentTemplateNewUser = `
+    Thank you for your insightful comment, %USERNAME%. I'm sending you %AMOUNT% Reddcoins to show my appreciation.
+    You can send and receive RDD easily using the ReddID extension to tip across social platforms and reward others the same way.
+    Good content deserves reward and with Reddcoin you can send a microdonation directly. ${String.fromCharCode(13)}
+    Join the Reddcoin movement and become a ReddHead today! ${String.fromCharCode(13)}
+    What is Reddcoin: www.reddcoin.com ${String.fromCharCode(13)}
+    What is ReddID: www.reddcoin.com/redd-id ${String.fromCharCode(13)}
+    How to install Reddcoin tipping extension: www.reddcoin.com/redd-id ${String.fromCharCode(13)}
+    Live Reddcoin chat & help: https://t.me/ReddcoinOfficial
+`;
 
 const commentTemplateExistingUser = 'Thank you for your insightful comment, %USERNAME%. I\'m sending you %AMOUNT% Reddcoins to show my appreciation.';
 

@@ -4,70 +4,64 @@
 *************************************************/
 
 (function (exports) {
-	var priv = {
-		},
-		pub = {};
 
-	priv.getWalletHistoryHeader = function(){
+    var priv = {},
+        pub = {};
 
-		return '' +
-		'<div class="WalletHistoryRow">' +
-		'	<div class="WalletHistory">' +
-		'		<div class="WalletHistoryDate">Date</div>' +
-		'		<div class="WalletHistoryAddress">Address</div>' +
-		'		<div class="WalletHistoryAmount">Amount</div>' +
-		'	</div>' +
-		'</div>';
-	};
 
-	priv.getAddressLink = function(address, txid, length, addressNames){
+    priv.getAddressLink = function(address, txid, length, addressNames){
+        if(address==null){
+            address = 'OP_RETURN';
+        }
 
-		if(address==null){
-			address = 'OP_RETURN';
-			//return '<a target="_blank" title="View Address" href="">OP_RETURN fee</a>';
-		}
+        length = length || 15,
+        name = addressNames[address] || address,
+        link = `http://live.reddcoin.com/tx/${txid}`;
 
-		length = length || 15,
-		name = addressNames[address] || address,
-		shortened = name.substr(0,length),
-		//link = 'http://live.reddcoin.com/address/'+address;
-		link = 'http://live.reddcoin.com/tx/'+txid;
+        return `
+            <a class='link link--inline link--primary tooltip' data-hover='toggle' target="_blank" href="${link}">
+                ${name}
 
-		if(name.length > shortened.length){
-			shortened += '...'
-		}
+                <span class='tooltip-content tooltip-content--message tooltip-content--nw'>View Transaction</span>
+            </a>
+        `;
+    };
 
-		return '<a target="_blank" title="View Transaction" href="'+link+'">'+
-			shortened
-			+'</a>';
-	};
-	
-	priv.getWalletHistoryRow = function(transaction, addressNames) {
+    priv.getWalletHistoryRow = function(transaction, addressNames) {
+        var dateInstance = new Date(transaction.time * 1000),
+            amount = transaction.total * COIN
 
-		var dateInstance = new Date(transaction.time * 1000)
-		var amount = transaction.total * COIN
+        return `
+            <div class='table-row table-row--grey-light'>
+                <span class='wallet-interact-history-date table-item'>${Reddcoin.helpers.formatTime(dateInstance)}</span>
+                <span class='wallet-interact-history-address table-item'>${priv.getAddressLink(transaction.address, transaction.id, 22,  addressNames)}</span>
+                <span class='wallet-interact-history-amount table-item'>${amount.toFixed(8)}</span>
+            </div>
+        `;
+    };
 
-		return '' +
-		'<div class="WalletHistoryRow">' +
-		'	<div class="WalletHistory">' +
-		'		<div class="WalletHistoryDate">' + Reddcoin.helpers.formatTime(dateInstance) + '</div>' +
-		'		<div class="WalletHistoryAddress">' + priv.getAddressLink(transaction.address, transaction.id, 22,  addressNames) + '</div>' +
-		'		<div class="WalletHistoryAmount">' + amount.toFixed(8) + '</div>' +
-		'	</div>' +
-		'</div>';
 
-	};
+    pub.getView = function(transactions, addressNames){
+        let rows = '';
 
-	pub.getView = function(transactions, addressNames){
+        $.each(transactions, function(i, transaction){
+            rows += priv.getWalletHistoryRow(transaction, '');
+        });
 
-		var html = priv.getWalletHistoryHeader();
+        return `
+            <div class='wallet-interact-history table'>
+                <div class='table-header table-header--black'>
+                    <span class='wallet-interact-history-date table-item'>Date</span>
+                    <span class='wallet-interact-history-address table-item'>Address</span>
+                    <span class='wallet-interact-history-amount table-item'>Amount</span>
+                </div>
 
-		$.each(transactions, function(i, transaction){
-			html += priv.getWalletHistoryRow(transaction, '');
-		});
+                ${rows}
+            </div>
+        `;
+    };
 
-		return html;
-	};
 
-	exports.viewWalletHistory = pub;
+    exports.viewWalletHistory = pub;
+
 })(exports);

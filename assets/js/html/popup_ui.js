@@ -26,7 +26,7 @@
         let destTarget = tabName.substr(3);
 
         if(destTarget !== 'password'){
-        localStorage["rddLastWalletTab"] = tabName;
+            localStorage["rddLastWalletTab"] = tabName;
         }
 
         // Show the current tab, and add an "active" class to the link that opened the tab
@@ -50,24 +50,27 @@
             setTimeout(function(){
                 //we're doing this with a timeout as the password check does a bunch of hashes which
                 //may cause some browser lockup
-                debug.log(`send checkPassword`)
-                exports.messenger.checkPassword(val, function(isValid){
-                let $pw = $("#password");
-                $pw.val("");
-                if(isValid || ! requirePw){
-                setTimeout(function(){
-                debug.log(`send transaction`)
-                callback(val, requirePw);
-                $pw.show();
-                $("#pwLoading").hide();
-                }, 1000);
+                debug.log(`send checkPassword`);
 
-                return;
-                }
-                $("#passwordError").slideDown("slow");
-                $("#pwLoading").hide();
-                $pw.show();
-                $pw.focus();
+                exports.messenger.checkPassword(val, function(isValid){
+                    let $pw = $("#password");
+                    $pw.val("");
+
+                    if(isValid || ! requirePw){
+                        setTimeout(function(){
+                            debug.log(`send transaction`)
+                            callback(val, requirePw);
+                            $pw.show();
+                            $("#pwLoading").hide();
+                        }, 1000);
+
+                        return;
+                    }
+
+                    $("#passwordError").slideDown("slow");
+                    $("#pwLoading").hide();
+                    $pw.show();
+                    $pw.focus();
                 });
             }, 100);
         };
@@ -106,25 +109,11 @@
             message : `${message}`,
             iconUrl : "/assets/icon-ID-48.png"
         });
-        /*
-        var $div = $("#popupNotificationDiv"),
-        s = speed || 'slow',
-        waitTime = seconds || 1;
-
-        $div.text(message);
-
-        $div.fadeIn(s, function () {
-        setTimeout(function () {
-        $div.fadeOut(s);
-        }, waitTime * 1000);
-
-        })*/
     };
 
     priv.updateSendForm = function(address, label, amount){
         $("#walletSend_address").val(address || '');
         $("#walletSend_amount").val(amount || '');
-        //$("#sendLabel").val(label || '');
     };
 
     priv.sendGui = function (details) {
@@ -244,7 +233,6 @@
 
         var render = function(data) {
             exports.viewWalletRegister.getView(data);
-            //var html = exports.viewWalletRegister.getView(data);
         };
 
         // set data equal to false if not provided
@@ -279,8 +267,12 @@
         console.log('Render Accounts');
 
         var render = function(data) {
-            var html = exports.viewWalletAccounts.getView(data);
-            document.getElementById('WalletBalances').innerHTML = html
+            var html = exports.viewWalletAccounts.getView(data),
+                node = document.getElementById('WalletBalances');
+
+            if (node) {
+                node.innerHTML = html;
+            }
         };
 
         // set data equal to false if not provided
@@ -325,14 +317,16 @@
         });
 
         exports.messenger.getWalletData(function (data) {
-            const sendFromAccount = $('#sendFromAccount');
-            sendFromAccount.empty();
+            let accounts = data.accounts,
+                options = '',
+                select = $('#sendFromAccount');
 
-            const accounts = data.accounts;
             accounts.forEach(account => {
-                sendFromAccount
-                .append(`<option value="${account.index}">${account.name}</option>`)
+                options += `<option value="${account.index}">${account.name}</option>`;
             });
+
+            select.append(options);
+            select.trigger('change');
         });
     };
 
@@ -352,8 +346,12 @@
         console.log('Render History');
 
         var render = function(data) {
-            var html = exports.viewWalletHistory.getView(data);
-            document.getElementById('WalletHistoryTable').innerHTML = html
+            var html = exports.viewWalletHistory.getView(data),
+                node = document.getElementById('WalletHistoryTable');
+
+            if (node) {
+                node.innerHTML = html;
+            }
         };
 
         // set data equal to false if not provided
@@ -375,8 +373,12 @@
         console.log('Render Received');
 
         var render = function(data) {
-            var html = exports.viewWalletReceive.getView(data, account);
-            document.getElementById('WalletReceiveTable').innerHTML = html
+            var html = exports.viewWalletReceive.getView(data, account),
+                node = document.getElementById('WalletReceiveTable');
+
+            if (node) {
+                node.innerHTML = html;
+            }
         };
 
         // set data equal to false if not provided
@@ -396,10 +398,6 @@
     };
 
     priv.renderWalletData = function (data, transactions) {
-        /*        var format = bitcore.util.formatValue,
-        tipJarBalance = format(data.addresses[0].confirmed),
-        balance = Math.floor(data.totalBalance);
-        balance = exports.helpers.numberWithCommas(balance);*/
         console.log("Update from background - render wallet data.");
 
         var tipJarBalance = data.addresses[0].confirmed;
@@ -420,11 +418,6 @@
         priv.renderContacts('#myContacts');
         priv.renderHistory(transactions);
         priv.renderRegister(data);
-        //        $("#reddCoinBalanceLink").html(balance + " RDD");
-        //        $("#rddFullBalance").html(data.totalBalance);
-        //$("#rddConfirmedBalance").html(data.confirmedBalance);
-        //        $("#rddTipJarBalance").html(tipJarBalance);
-        //        $("#rddUnconfirmedBalance").html(data.unconfirmedBalance);
     };
 
     /*Public*/
@@ -450,65 +443,65 @@
     };
 
     pub.updateHistory = function () {
-    //transactions not provided. Fetch then render.
-    exports.messenger.getWalletTransactions(function (data) {
-    priv.renderHistory(data);
-    });
+        //transactions not provided. Fetch then render.
+        exports.messenger.getWalletTransactions(function (data) {
+            priv.renderHistory(data);
+        });
     };
 
     pub.updateBalance = function () {
-    //transactions not provided. Fetch then render.
-    exports.messenger.getWalletData(function (data) {
-    priv.renderAccounts(data);
-    });
+        //transactions not provided. Fetch then render.
+        exports.messenger.getWalletData(function (data) {
+            priv.renderAccounts(data);
+        });
     };
 
     pub.updateAccount = function () {
-    //transactions not provided. Fetch then render.
-    exports.messenger.getWalletData(function (data) {
-    priv.renderAccounts(data);
-    });
+        //transactions not provided. Fetch then render.
+        exports.messenger.getWalletData(function (data) {
+            priv.renderAccounts(data);
+        });
     };
 
     pub.updateRegister = function (data) {
-    //transactions not provided. Fetch then render.
-    console.log("updateRegister on: " + JSON.stringify(data));
-    priv.renderRegister(data);
+        //transactions not provided. Fetch then render.
+        console.log("updateRegister on: " + JSON.stringify(data));
+        priv.renderRegister(data);
     };
 
     pub.updateRegistered = function (data) {
-    console.log("updateRegistered on: " + JSON.stringify(data));
-    priv.renderRegistered(data);
+        console.log("updateRegistered on: " + JSON.stringify(data));
+        priv.renderRegistered(data);
     };
 
     pub.updateReceive = function (data, account) {
-    //transactions not provided. Fetch then render.
-    exports.messenger.getWalletData(function (data) {
-    priv.renderReceived(data,account);
-    });
+        //transactions not provided. Fetch then render.
+        exports.messenger.getWalletData(function (data) {
+            priv.renderReceived(data,account);
+        });
     };
 
     pub.updateReceiveAccount = function (account) {
-    //transactions not provided. Fetch then render.
-    exports.messenger.getWalletData(function (data) {
-    priv.renderReceived(data,account);
-    });
+        //transactions not provided. Fetch then render.
+        exports.messenger.getWalletData(function (data) {
+            priv.renderReceived(data,account);
+        });
     };
 
     pub.updateNameCost = function (name) {
-    if (Reddcoin.viewWalletRegister.checkName(name, priv.namespace)) {
-    Reddcoin.messenger.getCost(name, priv.namespace, function(data) {
-    debug.log(`UpdateUI getcost: ${JSON.stringify(data)}`)
-    priv.renderRegister(data);
-    });
-    }
+        if (Reddcoin.viewWalletRegister.checkName(name, priv.namespace)) {
+            Reddcoin.messenger.getCost(name, priv.namespace, function(data) {
+                debug.log(`UpdateUI getcost: ${JSON.stringify(data)}`)
+                priv.renderRegister(data);
+            });
+        }
     };
 
     pub.displayOrderStatus = function () {
-    Reddcoin.messenger.getReddidStatus(function(data){
-    priv.renderRegister(data);
-    $('.reddidPopupPage_StatusOverlay').show();
-    })
+        Reddcoin.messenger.getReddidStatus(function(data){
+            priv.renderRegister(data);
+            $('.reddidPopupPage_StatusOverlay').show();
+        })
     };
 
     pub.cancelId = function () {
@@ -525,149 +518,123 @@
             next = true
         });
 
-    async function waitUserInput() {
-    while (next === false) await timeout(50); // pause script but avoid browser to freeze ;)
-    next = false; // reset var
-    console.log('user input detected');
-    }
+        async function waitUserInput() {
+            while (next === false) await timeout(50); // pause script but avoid browser to freeze ;)
+            next = false; // reset var
+            console.log('user input detected');
+        }
 
-    async function orderUp () {
-    let val  = document.getElementById('redd_id_value').value;
-    let uid = document.getElementById('redd_id_input').value;
-    val = val.substring(0, val.indexOf(' RDD'));
+        async function orderUp () {
+            let val  = document.getElementById('redd_id_value').value;
+            let uid = document.getElementById('redd_id_input').value;
+            val = val.substring(0, val.indexOf(' RDD'));
 
-    $("#passwordErrorOverlay").hide();
-    $("#pwLoadingOverlay").hide();
+            $("#passwordErrorOverlay").hide();
+            $("#pwLoadingOverlay").hide();
 
-    let details = await checkTx(val,true);
-    if (details.isPossible) {
-    debug.log(JSON.stringify(details))
-    let msg = "You are about to send <strong>"+details.amount+" RDD</strong> to order the ID <strong>"+uid+"</strong>";
-    msg += '<br/>';
-    msg += '<br/>';
-    $("#passwordMessageOverlay").html(msg).show();
-    $(".reddidPopupPage_PasswordOverlay").show();
+            let details = await checkTx(val,true);
 
-    await waitUserInput();
-    let pwd = $('#passwordOverlay').val();
-    $("#pwLoadingOverlay").show();
-    let checkPwd = await checkPassword(pwd);
-    if (checkPwd) {
-    $("#passwordErrorOverlay").hide();
-    $("#pwLoadingOverlay").hide();
-    $(".reddidPopupPage_PasswordOverlay").hide();
-    document.getElementById('redd_id_input').disabled = true;
-    document.getElementById('redd_id_btn_order').disabled = true;
-    $('#error_msg_txt').text('');
-    $("#orderLoading").show();
-    let oi = await orderId(uid, priv.namespace, pwd);
-    debug.log(`${JSON.stringify(oi)}`)
-    }
-    else {
-    $("#passwordErrorOverlay").show();
-    $(".reddidPopupPage_PasswordOverlay").hide();
-    $('#passwordOverlay').val('');
-    $('#error_msg_txt').text('Wrong Password')
-    }
+            if (details.isPossible) {
+                debug.log(JSON.stringify(details))
+                let msg = "You are about to send <strong>"+details.amount+" RDD</strong> to order the ID <strong>"+uid+"</strong>";
+                msg += '<br/>';
+                msg += '<br/>';
+                $("#passwordMessageOverlay").html(msg).show();
+                $(".reddidPopupPage_PasswordOverlay").show();
 
-    /*		  let count = 3; // how many times to check password
-    for (let i=0; i<count; i++) {
+                await waitUserInput();
+                let pwd = $('#passwordOverlay').val();
+                $("#pwLoadingOverlay").show();
+                let checkPwd = await checkPassword(pwd);
 
-    await waitUserInput();
-    let pwd = $('#passwordOverlay').val();
-    let checkPwd = await checkPassword(pwd);
-    if (checkPwd) {
-    i = count;
-    $("#passwordErrorOverlay").hide();
-    $(".reddidPopupPage_PasswordOverlay").hide();
-    document.getElementById('redd_id_input').disabled = true;
-    document.getElementById('redd_id_btn_order').disabled = true;
-    let oi = await orderId(uid, priv.namespace, pwd);
-    debug.log(`${JSON.stringify(oi)}`)
+                if (checkPwd) {
+                    $("#passwordErrorOverlay").hide();
+                    $("#pwLoadingOverlay").hide();
+                    $(".reddidPopupPage_PasswordOverlay").hide();
+                    document.getElementById('redd_id_input').disabled = true;
+                    document.getElementById('redd_id_btn_order').disabled = true;
+                    $('#error_msg_txt').text('');
+                    $("#orderLoading").show();
+                    let oi = await orderId(uid, priv.namespace, pwd);
+                    debug.log(`${JSON.stringify(oi)}`);
+                }
+                else {
+                    $("#passwordErrorOverlay").show();
+                    $(".reddidPopupPage_PasswordOverlay").hide();
+                    $('#passwordOverlay').val('');
+                    $('#error_msg_txt').text('Wrong Password');
+                }
+            }
+        }
 
-    } else {
-    $("#passwordErrorOverlay").show();
-    if (i === count-1) {
-    $(".reddidPopupPage_PasswordOverlay").hide();
-    $('#passwordOverlay').val('');
-    return
-    }
-    }
-    }*/
+        orderUp();
 
-    /*				let po = await checkOrder(uid,'preorder')
-    if (po) {
-    // Order stored on a block at height
-    document.getElementById('redd_id_btn_register').disabled = false;
-    }*/
-    }
-    }
+        function checkTx(value, tipJarEnabled) {
+            return new Promise (resolve => {
+                Reddcoin.messenger.checkTransaction(value, true, (data) => {
+                    resolve(data);
+                });
+            });
+        };
 
-    orderUp();
+        function checkPassword(password) {
+            return new Promise ((resolve, reject) => {
+                Reddcoin.messenger.checkPassword(password, (data) => {
+                    resolve(data);
+                });
+            });
+        };
 
-    function checkTx(value, tipJarEnabled) {
-    return new Promise (resolve => {
-    Reddcoin.messenger.checkTransaction(value, true, (data) => {
-    resolve(data);
-    })
-    })
-    };
+        function orderId(uid, namespace, password) {
+            return new Promise ((resolve, reject) => {
+                Reddcoin.messenger.order(uid, namespace, password, (data) => {
+                    resolve(data);
+                });
+            });
+        };
 
-    function checkPassword(password) {
-    return new Promise ((resolve, reject) => {
-    Reddcoin.messenger.checkPassword(password, (data) => {
-    resolve(data);
-    })
-    })
-    };
-
-    function orderId(uid, namespace, password) {
-    return new Promise ((resolve, reject) => {
-    Reddcoin.messenger.order(uid, namespace, password, (data) => {
-    resolve(data);
-    })
-    })
-    };
-
-    function checkOrder(user, operation) {
-    return new Promise ((resolve, reject) => {
-    Reddcoin.messenger.checkOrder(user, operation, (data) => {
-    resolve(data);
-    })
-    })
-    };
-
+        function checkOrder(user, operation) {
+            return new Promise ((resolve, reject) => {
+                Reddcoin.messenger.checkOrder(user, operation, (data) => {
+                    resolve(data);
+                });
+            });
+        };
     };
 
     pub.registerId = function () {
-    if (Reddcoin.viewWalletRegister.registerId() == true){
-    console.log("Register started")
-    document.getElementById('redd_id_btn_register').disabled = true;
-    let uid = $('#redd_id_input').val();
-    let password = $('#passwordOverlay').val();
-    Reddcoin.messenger.registerId(uid, priv.namespace, password, function(data) {
-    //TODO
-    // Check progress
-    /*Reddcoin.messenger.checkOrder(uid,'register', function(data) {
-    debug.log(JSON.stringify(data));
-    });*/
-    });
-    }
+        if (Reddcoin.viewWalletRegister.registerId() == true){
+            console.log("Register started");
+            document.getElementById('redd_id_btn_register').disabled = true;
+            let uid = $('#redd_id_input').val();
+            let password = $('#passwordOverlay').val();
+
+            Reddcoin.messenger.registerId(uid, priv.namespace, password, function(data) {
+                //TODO
+                // Check progress
+                /*Reddcoin.messenger.checkOrder(uid,'register', function(data) {
+                debug.log(JSON.stringify(data));
+                });*/
+            });
+        }
     };
+
     priv.processFormdata = function (data) {
-    var profile = {};
-    var saveData = {};
-    var fieldname;
+        var profile = {};
+        var saveData = {};
+        var fieldname;
 
-    // Get all elements with class="reddidPopupSocial_inputdata" and extract values
-    var formData = document.getElementsByClassName("reddidPopupSocial_inputdata");
-    for (var i = 0; i < formData.length; i++) {
-    fieldname = formData[i].id;
-    profile[fieldname] = formData[i].value;
-    }
-    saveData[data]=profile;
+        // Get all elements with class="reddidPopupSocial_inputdata" and extract values
+        var formData = document.getElementsByClassName("reddidPopupSocial_inputdata");
 
-    return saveData;
+        for (var i = 0; i < formData.length; i++) {
+            fieldname = formData[i].id;
+            profile[fieldname] = formData[i].value;
+        }
+
+        saveData[data]=profile;
+
+        return saveData;
     };
 
     pub.getNamespace = function () {
@@ -695,9 +662,8 @@ $(function () {
 });
 
 /**
-* Function to set the popup listeners for the GUI
-*
-*/
+ * Function to set the popup listeners for the GUI
+ */
 function setPopupGuiListeners() {
     debug.log(`Set listeners (onload)`);
     // timer for listening to user input
@@ -705,6 +671,7 @@ function setPopupGuiListeners() {
 
     document.getElementById('reddidPopup').onchange = function (e) {
         console.log("Gui Element onChange: " + e.target.id);
+
         var onchangeName = e.target.id;
         var onchangeValue = e.target.value;
 
@@ -761,16 +728,17 @@ function setPopupGuiListeners() {
         }, 500);
     };
 
+    // COMMENT: ICJR
     /* Make tip links open in new tab */
-    document.getElementById('reddidPopupTipFeed_tbl').onclick = function (e) {
-        var target = e.target.href;
-        if (!target) {
-            return;
-        }
+    //document.getElementById('reddidPopupTipFeed_tbl').onclick = function (e) {
+    //    var target = e.target.href;
+    //    if (!target) {
+    //        return;
+    //    }
 
-        browser.tabs.create({url: target});
-        return false;
-    };
+    //    browser.tabs.create({url: target});
+    //    return false;
+    //};
 
 
     // UI onClick events
@@ -841,7 +809,7 @@ function setPopupGuiListeners() {
                 console.log("Verify Username");
                 break;
             default:
-                console.log("Not what we needed")
+                console.log("Not what we needed");
         }
 
     };
@@ -942,11 +910,10 @@ function displayTipFeed() {
 /* Display the Wallet page */
 function displayWallet() {
     if (localStorage.reddcoinWallet) {
-        $('#walletCreate').hide();
+        $('#walletSwapInteract').trigger('click');
     }
     else {
-        $('#walletActive').hide();
-        $('#walletCreate').show();
+        $('#createWalletSetup').trigger('click');
     }
 
     if (localStorage.reddcoinWallet || localStorage.user) {
@@ -1036,48 +1003,4 @@ function walletSend() {
         }
 
     });
-
-    /*exports.messenger.sendTransaction(amount, account, requirePw, toAddress, password, function () {
-    if (account === '-1' && requirePw) {
-    exports.messenger.unlockTipJar(password, function () {
-    console.log('Tip Jar Unlocked!');
-    });
-    }
-
-    browser.notifications.create('transactioninProgress', {
-    type : "basic",
-    title : "Transaction in progress",
-    message : `Sending ${amount} Reddcoins`,
-    iconUrl : "/assets/icon-ID-48.png"
-    });
-    });*/
 }
-
-/*
-let testURL1 = window.setInterval(function() {
-console.log ("Hello OrderId")
-let orderDetails = Reddcoin.messenger.orderId('monkey00012.tester', function (data){
-if ('error' in data) {
-debug.warn(data.error)
-} else {
-/!*Reddcoin.messenger.monitorOrder('preorder', function (data){
-if (data ===true){
-debug.info('Preorder is successful')
-} else {
-debug.info('Something is wrong')
-}
-});
-debug.info(data)*!/
-}
-});
-
-let registerDetails = Reddcoin.messenger.registerId('monkey00012.tester', function (data){
-if ('error' in data) {
-debug.warn(data.error)
-} else {
-debug.info(data)
-}
-});
-
-},
-10000);*/

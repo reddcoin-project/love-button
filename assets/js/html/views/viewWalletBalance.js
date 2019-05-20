@@ -4,89 +4,61 @@
 *************************************************/
 
 (function (exports) {
-	var priv = {
-		confirmed : 0,
-		unconfirmed : 0
-		},
-		pub = {};
 
-	priv.getWalletAccountHeader = function(){
+    var priv = {
+            confirmed : 0,
+            unconfirmed : 0
+        },
+        pub = {};
 
-		return '' +
-		'<div class="WalletHistoryRow">' +
-		'	<div class="WalletHistory">' +
-		'		<div class="WalletHistoryDate">Date</div>' +
-		'		<div class="WalletHistoryAddress">Address</div>' +
-		'		<div class="WalletHistoryAmount">Amount</div>' +
-		'	</div>' +
-		'</div>';
-	};
 
-	priv.getAddressLink = function(address, length, addressNames){
-		var length = length || 15,
-			name = addressNames[address] || address,
-			shortened = name.substr(0,length),
-			link = 'http://live.reddcoin.com/address/'+address;
+    priv.getWalletAccountTotals = function(data){
+        var confirmed = data.confirmedBalance * COIN,
+            unconfirmed = data.unconfirmedBalance * COIN;
 
-		if(name.length > shortened.length){
-			shortened += '...'
-		}
+        return `
+            <div class="wallet-interact-row">
+                <div class="wallet-interact-row-section">
+                    <span class='wallet-interact-row-title '>All Accounts</span>
+                    <span class="wallet-interact-row-balance right">${confirmed.toFixed(8)}</span>
+                </div>
+                <div class="wallet-interact-row-section">
+                    <span class="wallet-interact-row-balance right">${unconfirmed.toFixed(8)}</span>
+                    <span class='wallet-interact-row-title right'>Unconfirmed</span>
+                </div>
+            </div>
+        `;
+    };
 
-		return '<a target="_blank" title="View Address" href="'+link+'">'+
-			shortened
-			+'</a>';
-	};
+    priv.getWalletAccountRow = function(data) {
+        var confirmed = data.confirmed * COIN,
+            unconfirmed = data.unconfirmed * COIN;
 
-	priv.getWalletAccountTotals = function(data){
-		var confirmed = data.confirmedBalance * COIN;
-		var unconfirmed = data.unconfirmedBalance * COIN;
-    	return '<div class="WalletBalanceRow">' +
-	            '    <div class="WalletAccountRow">' +
-	            '        <div class="WalletAccountName">' +
-	            '        All Accounts:' +
-	            '        </div>' +
-	            '        <div class="WalletAccountBalance">' + confirmed.toFixed(8) +
-	            '        </div>' +
-	            '    </div>' +
-	            '    <div class="UnconfirmedRow">' +
-	            '        <div class="WalletUnconfirmed">Unconfirmed</div>' +
-	            '        <div class="WalletUnconfirmedBalance">' + unconfirmed.toFixed(8) +
-	            '        </div>' +
-	            '    </div>' +
-	            '</div>'
-	};
+        return `
+            <div class="wallet-interact-row">
+                <div class="wallet-interact-row-section">
+                    <span class='wallet-interact-row-title '>${data.name}</span>
+                    <span class="wallet-interact-row-balance right">${confirmed.toFixed(8)}</span>
+                </div>
+                <div class="wallet-interact-row-section">
+                    <span class="wallet-interact-row-balance right">${unconfirmed.toFixed(8)}</span>
+                    <span class='wallet-interact-row-title right'>Unconfirmed</span>
+                </div>
+            </div>
+        `;
+    };
 
-	priv.getWalletAccountRow = function(data) {
+    pub.getView = function(data){
+        var html = priv.getWalletAccountTotals(data);
 
-		var confirmed = data.confirmed * COIN;
-		var unconfirmed = data.unconfirmed * COIN;
+        $.each(data.accounts, function(i, account){
+            html += priv.getWalletAccountRow(account, '');
+        });
 
-		return '<div class="WalletBalanceRow">' +
-              '    <div class="WalletAccountRow">' +
-              '        <div class="WalletAccountName">' + data.name +
-              '        </div>' +
-              '        <div class="WalletAccountBalance">' + confirmed.toFixed(8) +
-              '        </div>' +
-              '    </div>' +
-              '    <div class="UnconfirmedRow">' +
-              '        <div class="WalletUnconfirmed">Unconfirmed</div>' +
-              '        <div class="WalletUnconfirmedBalance">' + unconfirmed.toFixed(8) +
-              '        </div>' +
-              '    </div>' +
-              '</div>'
-	};
+        return html;
+    };
 
-	pub.getView = function(data){
 
-		var html = priv.getWalletAccountTotals(data);
-		//html = priv.getWalletAccountHeader();
+    exports.viewWalletAccounts = pub;
 
-		 $.each(data.accounts, function(i, account){
-			html += priv.getWalletAccountRow(account, '');
-		});
-		 
-		return html;
-	};
-
-	exports.viewWalletAccounts = pub;
 })(exports);

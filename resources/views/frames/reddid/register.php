@@ -11,11 +11,11 @@
         <span class="field-title">Funding Address</span>
 
         <label class="field-text field-text--input">
-            <input class="field-mask field-tag" name='' placeholder="RrcMzfNEJhAHrkmFrCsJk1smJGKAonGoYb" type="text">
+            <input class="field-mask field-tag" id="paying_address_input" readonly="readonly" type="text">
         </label>
 
         <label class="field-text field-text--input">
-            <input class="field-mask field-tag" name='' placeholder="0 RDD" type="text">
+            <input class="field-mask field-tag" id="redd_id_balance" readonly="readonly" type="text">
         </label>
     </div>
 
@@ -23,16 +23,17 @@
         <span class="field-title">Username</span>
 
         <label class="field-text field-text--input">
-            <input class="field-mask field-tag" name='' placeholder="Register an ID" type="text">
+            <input class="field-mask field-tag" id="redd_id_input" placeholder="Register an ID" type="text">
         </label>
 
         <label class="field-text field-text--input">
-            <input class="field-mask field-tag" name='' placeholder="0 RDD" type="text">
+            <input class="field-mask field-tag" id="redd_id_value" placeholder="0 RDD" type="text" readonly="readonly">
         </label>
 
         <span class="field-description">Please enter a name to continue</span>
+        <span class="field-description" id="id_msg"></span>
     </div>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary">Order</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black">Register</button>
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="redd_id_btn_order">Order</button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="redd_id_btn_register">Register</button>
 </section>
