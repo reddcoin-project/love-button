@@ -1,5 +1,5 @@
 function injectYouTube() {
-    const tipImg = browser.extension.getURL("assets/images/reddit-tip-button.jpg");
+    const tipImg = browser.extension.getURL("assets/images/reddid-tip-button.jpg");
     let tipId = 0;
 
     function getAuthorIdAndName(commentDiv) {

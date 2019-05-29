@@ -161,12 +161,10 @@
       //$('#id_msg').text(`Please enter a name.`);
       $('#redd_id_btn_order').prop('disabled', true);
       $('#redd_id_btn_register').prop('disabled', true);
-      $('#redd_id_btn_cancel').prop('disabled', true);
       $("#orderLoading").hide();
 
       priv.setStateValue('redd_id_btn_order', 'state', 'disabled');
       priv.setStateValue('redd_id_btn_register', 'state', 'disabled');
-      priv.setStateValue('redd_id_btn_cancel', 'state', 'disabled');
 
     });
   };
@@ -459,15 +457,23 @@
     document.getElementById("StatusOverlay-table").innerHTML = table + tableHeader + tableContent + tableFooter;
   };
 
-// Public
-	pub.cancelId = function() {
-		/* Cancel the registration process*/
-		document.getElementById('redd_id_input').disabled = false;
-    document.getElementById('redd_id_input').value = '';
-    document.getElementById('redd_id_btn_order').disabled = false;
-    document.getElementById('redd_id_btn_register').disabled = true;
-    document.getElementById('id_msg').innerText = '';
+    // Public
+    pub.resetId = function() {
+        /* Cancel the registration process*/
+        /* Reset the registration process*/
+        document.getElementById('redd_id_input').disabled = false;
+        document.getElementById('redd_id_input').disabled = false;
+        document.getElementById('redd_id_input').value = '';
+        document.getElementById('redd_id_input').value = '';
+        document.getElementById('redd_id_btn_order').disabled = false;
+        document.getElementById('redd_id_btn_order').disabled = true;
+        document.getElementById('redd_id_btn_register').disabled = true;
+        document.getElementById('redd_id_btn_register').disabled = true;
+        document.getElementById('id_msg').innerText = '';
+        document.getElementById('id_msg').innerText = 'Please enter a name.';
+        document.getElementById('redd_id_value').value = '';
 	};
+
 	pub.orderId = function() {
 		// basic field checking !zero and not already registered
 		const uid = document.getElementById('redd_id_input').value;
@@ -492,7 +498,6 @@
 
 		// We are workign with this ID so disable the input field
 		document.getElementById('redd_id_input').disabled = true;
-		document.getElementById('redd_id_btn_cancel').disabled = true;
 		document.getElementById('redd_id_btn_order').disabled = true;
 
 		return true;

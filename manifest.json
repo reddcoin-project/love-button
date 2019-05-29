@@ -3,7 +3,7 @@
     "name": "ReddID Tipping Extension (beta)",
     "short_name": "ReddIDTipping",
     "description": "A button to tip the World",
-    "version": "0.99.17",
+    "version": "0.99.19",
     "minimum_chrome_version": "38",
 
     "icons": {
@@ -45,11 +45,13 @@
             "run_at": "document_idle",
             "all_frames": false,
             "css": [
-                "assets/css/tip.css"
+                "assets/css/app.css"
             ],
             "js": [
+                "assets/js/app.js",
                 "assets/js/html/vendor/browser-polyfill.min.js",
                 "assets/js/html/social/reddit.js",
+                "assets/js/html/qrcode.js",
                 "assets/js/html/init.js",
                 "assets/js/html/modal.js",
                 "assets/js/html/messenger.js",
@@ -64,11 +66,13 @@
             "run_at": "document_idle",
             "all_frames": false,
             "css": [
-                "assets/css/tip.css"
+                "assets/css/app.css"
             ],
             "js": [
+                "assets/js/app.js",
                 "assets/js/html/vendor/browser-polyfill.min.js",
                 "assets/js/html/social/facebook.js",
+                "assets/js/html/qrcode.js",
                 "assets/js/html/init.js",
                 "assets/js/html/modal.js",
                 "assets/js/html/messenger.js",
@@ -83,11 +87,13 @@
             "run_at": "document_idle",
             "all_frames": false,
             "css": [
-                "assets/css/tip.css"
+                "assets/css/app.css"
             ],
             "js": [
+                "assets/js/app.js",
                 "assets/js/html/vendor/browser-polyfill.min.js",
                 "assets/js/html/social/twitter.js",
+                "assets/js/html/qrcode.js",
                 "assets/js/html/init.js",
                 "assets/js/html/modal.js",
                 "assets/js/html/messenger.js",
@@ -102,11 +108,13 @@
             "run_at": "document_idle",
             "all_frames": false,
             "css": [
-                "assets/css/tip.css"
+                "assets/css/app.css"
             ],
             "js": [
+                "assets/js/app.js",
                 "assets/js/html/vendor/browser-polyfill.min.js",
                 "assets/js/html/social/youtube.js",
+                "assets/js/html/qrcode.js",
                 "assets/js/html/init.js",
                 "assets/js/html/modal.js",
                 "assets/js/html/messenger.js",
@@ -116,10 +124,12 @@
     ],
 
     "web_accessible_resources": [
+        "https://fonts.googleapis.com/css?family=Montserrat:500,600,700",
         "*.css",
         "assets/images/reddcoin_content_header.png",
+        "assets/images/logo-reddid.svg",
         "assets/images/reddcoinlogo.png",
-        "assets/images/reddit-tip-button.jpg"
+        "assets/images/reddid-tip-button.jpg"
     ],
 
     "permissions": [

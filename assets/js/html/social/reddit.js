@@ -1,5 +1,5 @@
 function injectReddit() {
-    const tipImg = browser.extension.getURL("assets/images/reddit-tip-button.jpg");
+    const tipImg = browser.extension.getURL("assets/images/reddid-tip-button.jpg");
 
     function getAuthorIdAndName(commentDiv) {
         const links = Array.from(commentDiv.getElementsByTagName('a')).filter(link => link.textContent);

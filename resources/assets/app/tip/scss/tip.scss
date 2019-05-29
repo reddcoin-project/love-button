@@ -1,0 +1,56 @@
+.tip {
+    @include box-white();
+    @include box-shadow(500);
+    @include position(fixed, center);
+    border: 1px solid color('grey' 500);
+    display: none;
+    z-index: 9999;
+
+    @include max-size(640px);
+    @include size(90%);
+
+    @include font-size();
+    color: color('text');
+    font-weight: font-weight();
+
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @if base(html css) {
+        @each $property, $value in base(html css) {
+            #{$property}: #{$value};
+        }
+    }
+
+    &-qr {
+        @include center-children();
+        @include grid(d12);
+
+        &-code {
+            margin-top: size(500);
+            //padding: size(200);
+
+            img {
+                border-radius: border-radius();
+                border: 1px solid color('grey' 500);
+            }
+        }
+    }
+
+    p {
+        margin: size() 0 0;
+    }
+
+    .button + p {
+        margin: size(600) 0 0;
+    }
+}
+
+// Injected Into Social Media Site DOM
+.reddid_tip_injected_button {
+    height: size();
+    vertical-align: middle;
+    margin-left: size(200);
+    cursor: pointer;
+}

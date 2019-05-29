@@ -36,4 +36,5 @@
 
     <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="redd_id_btn_order">Order</button>
     <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="redd_id_btn_register">Register</button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--white" id="redd_id_btn_reset">Reset</button>
 </section>

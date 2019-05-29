@@ -504,8 +504,8 @@
         })
     };
 
-    pub.cancelId = function () {
-        Reddcoin.viewWalletRegister.cancelId();
+    pub.resetId = function () {
+        Reddcoin.viewWalletRegister.resetId();
     };
 
     pub.orderId = function () {
@@ -780,8 +780,8 @@ function setPopupGuiListeners() {
                 walletSend();
                 break;
             // Register UI functions
-            case 'redd_id_btn_cancel':
-                Reddcoin.popup.cancelId();
+            case 'redd_id_btn_reset':
+                Reddcoin.popup.resetId();
                 break;
             case 'redd_id_btn_register':
                 Reddcoin.popup.registerId();

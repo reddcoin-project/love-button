@@ -14,13 +14,15 @@ var namespace = '/account';
 const SERVER_HOST1 = 'wss://api.reddcoin.com';
 let SERVER_PORT1 = 443;
 let namespace1 = '/websocket/';
-
+let startPing;
 
 debug.info(`Connecting to server ${SERVER_HOST1}:${SERVER_PORT1}.`);
 let socket1 = new ReconnectingWebSocket(SERVER_HOST1 + ':' + SERVER_PORT1 + namespace1 );
 
 socket1.onopen = function() {
 	let msg = `Connected to server: ${SERVER_HOST1}:${SERVER_PORT1}. ${(socket1.readyState = 1) ? true : false }`;
+
+	startPing = Date.now();
 	debug.info(msg);
 	Reddcoin.backgnd.connectionState(msg);
 	let manifestData = browser.runtime.getManifest();
@@ -30,8 +32,19 @@ socket1.onopen = function() {
 			'version': manifestData.version
 		}
 	};
+	socket1.send(JSON.stringify({'type': 'ping', 'payload': startPing}));
 	socket1.send(JSON.stringify(payload))
 };
+
+
+const interval = setInterval(() => {
+	debug.log(`send ping`);
+	startPing = Date.now();
+
+	if (socket1.readyState === ReconnectingWebSocket.OPEN) {
+		socket1.send(JSON.stringify({'type': 'ping', 'payload': startPing}));
+	}
+}, 60000);
 
 socket1.onclose = function(e) {
 	let msg = `Connection Closed code:${e.code}, reason:${e.reason}`;
@@ -77,6 +90,13 @@ socket1.onmessage = function(msg) {
 	}
 
 	switch (msg.type) {
+		case 'pong':
+			let endPong = Date.now();
+			let time = endPong - msg.payload;
+			var msg_ = `Ping time: ${time} ms. ${SERVER_HOST1}:${SERVER_PORT1}`
+			debug.info(msg_);
+			Reddcoin.backgnd.pingState(time);
+			break;
 		case 'date':
 			debug.info(JSON.stringify(msg.payload))
 			break;
@@ -155,13 +175,12 @@ socket.on('error', function(error) {
 	debug.error(msg);
 	Reddcoin.backgnd.connectionState(msg);
 });
-*/
-
 socket.on('pong', function(time) {
 	var msg = `Ping time: ${time} ms. ${SERVER_HOST0}:${SERVER_PORT0}`
 	debug.info(msg);
 	Reddcoin.backgnd.pingState(time);
 });
+ */
 // WS Server response
 socket.on('response', function(msg) {
 	debug.info("Response from API: " + JSON.stringify(msg));

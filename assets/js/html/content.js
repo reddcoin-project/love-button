@@ -88,16 +88,15 @@ function getSocialNetwork(hostname) {
     return '';
 }
 
-const commentTemplateNewUser = `
-    Thank you for your insightful comment, %USERNAME%. I'm sending you %AMOUNT% Reddcoins to show my appreciation.
-    You can send and receive RDD easily using the ReddID extension to tip across social platforms and reward others the same way.
-    Good content deserves reward and with Reddcoin you can send a microdonation directly. ${String.fromCharCode(13)}
-    Join the Reddcoin movement and become a ReddHead today! ${String.fromCharCode(13)}
-    What is Reddcoin: www.reddcoin.com ${String.fromCharCode(13)}
-    What is ReddID: www.reddcoin.com/redd-id ${String.fromCharCode(13)}
-    How to install Reddcoin tipping extension: www.reddcoin.com/redd-id ${String.fromCharCode(13)}
-    Live Reddcoin chat & help: https://t.me/ReddcoinOfficial
-`;
+// Do Not Add Tab Or Spaces To Text Within Template Literal 'commentTemplateNewUser' It Is Carried Over To Input Field
+const commentTemplateNewUser = `Thank you for your insightful comment, %USERNAME%. I'm sending you %AMOUNT% Reddcoins to show my appreciation.
+You can send and receive RDD easily using the ReddID extension to tip across social platforms and reward others the same way.
+Good content deserves reward and with Reddcoin you can send a microdonation directly. ${String.fromCharCode(13)}
+Join the Reddcoin movement and become a ReddHead today! ${String.fromCharCode(13)}
+What is Reddcoin: www.reddcoin.com ${String.fromCharCode(13)}
+What is ReddID: www.reddcoin.com/redd-id ${String.fromCharCode(13)}
+How to install Reddcoin tipping extension: www.reddcoin.com/redd-id ${String.fromCharCode(13)}
+Live Reddcoin chat & help: https://t.me/ReddcoinOfficial`;
 
 const commentTemplateExistingUser = 'Thank you for your insightful comment, %USERNAME%. I\'m sending you %AMOUNT% Reddcoins to show my appreciation.';
 
@@ -142,27 +141,40 @@ function registerTipClick(containerNode) {
         const modal = document.getElementById('reddid_modal');
         modal.dataset.tipid = tipId;
         document.getElementById('tipconfirmation_id').style.display = 'none';
-        modal.style.display = 'flex';
+        modal.style.display = 'block';
 
         document.getElementById('reddid_tip_username_id').innerText = authorName;
     });
 }
 
 function registerEventListeners(modal) {
+    modal.addEventListener('scroll', function(e) {
+        e.stopPropagation();
+    });
+
     // When the user clicks on (X), close the modal
     document.getElementById('reddid_tip_button_close_id').addEventListener('click', () => hideModal(modal));
     document.getElementById('reddid_tip_button_sendtip_id').addEventListener('click', () => askTipConfirmation());
     document.getElementById('sendtip_yes').addEventListener('click', () => performTipping(modal));
     document.getElementById('sendtip_no').addEventListener('click', () => cancelTipping());
 
+    // ICJR Comment
+    //document.getElementById('qrplaceholderOver').addEventListener("click", () => toggleSize())
+
     // When the user changes the amount, update the comment field
     document.getElementById('reddid_tip_input_amount_id').addEventListener('keyup', (e) => {
         updateComment();
+        let address = document.getElementById('reddid_tip_input_address_id').value;
+        let amount = document.getElementById('reddid_tip_input_amount_id').value;
+        updateQr(address, amount);
         e.stopPropagation()
     }, true);
 
     document.getElementById('reddid_tip_select_amount_id').addEventListener('change', (e) => {
         updateComment();
+        let address = document.getElementById('reddid_tip_input_address_id').value;
+        let amount = document.getElementById('reddid_tip_select_amount_id').value;
+        updateQr(address, amount);
         e.stopPropagation()
     }, true);
 
@@ -259,6 +271,11 @@ function attachListener() {
             document.getElementById('reddid_tip_error_id').innerText = 'Unable to send tip, probably the user is not registered on this social network';
             document.getElementById('reddid_tip_button_sendtip_id').disabled = true;
         }
+
+        if (address) {
+            let amount = document.getElementById('reddid_tip_select_amount_id').value;
+            updateQr(address, amount);
+        }
     }
 
     function processNetworkError(data) {
@@ -335,4 +352,25 @@ function watchNewElementsWithTagName(tagName, callback) {
     window.addEventListener('scroll', () => {
         throttle(() => Array.from(document.getElementsByTagName(tagName)), callback)
     }, true);
+}
+
+let qrSmall = true;
+
+function updateQr (address, amount) {
+    var container = document.getElementById('qrimage');
+    var typeNumber = 4;
+    var errorCorrectionLevel = 'L';
+    var qr = qrcode(typeNumber, errorCorrectionLevel);
+    var data = `reddcoin:${address}?amount=${amount}`;
+
+    qr.addData(data);
+    qr.make();
+    qr.createImgTag();
+
+    container.innerHTML = qr.createImgTag();
+
+    var code = container.firstElementChild;
+
+    code.height = 84;
+    code.width = 84;
 }
