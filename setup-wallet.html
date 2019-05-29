@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class='html--center' lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+
+        <title>Browser Extension Skeleton</title>
+
+        <link href="assets/css/app.css" rel="stylesheet" id="stylesheet">
+
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:500,600,700' rel='stylesheet'>
+    </head>
+
+    <body class='body--center'>
+        <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' id='site'>
+
+            <section class="frames frames--center">
+
+                <section class="wallet frame" id="frame-wallet-password-confirm">
+    <div class="wallet-header page-header">
+        <h3 class="page-header-title">Reddcoin Wallet: <b>Confirm Password</b></h3>
+    </div>
+
+    <p>
+        Please enter your password again to make sure it is correct.
+    </p>
+
+    <p>
+        <b>Enter the same password.</b>
+    </p>
+
+    <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+        <label class="field-text field-text--input">
+            <input class="field-mask field-tag" id="wallet_password_confirm" type="password">
+        </label>
+    </div>
+
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletConfirmPassword">Confirm Password</button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+        <span class="inline-spacer inline-spacer--small"></span>
+        Start Over
+    </button>
+</section>
+<section class="wallet frame" id="frame-wallet-password-create">
+    <div class="wallet-header page-header">
+        <h3 class="page-header-title">Reddcoin Wallet: <b>Create Password</b></h3>
+    </div>
+
+    <p>
+        Please create a password for your wallet.
+    </p>
+
+    <p>
+        <b>It must be at least 8 characters long.</b>
+    </p>
+
+    <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+        <label class="field-text field-text--input">
+            <input class="field-mask field-tag" id="wallet_password" type="password">
+        </label>
+
+        <span class="field-description" id="pwd_error"></span>
+    </div>
+
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletCreatePassword">Create Password</button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+        <span class="inline-spacer inline-spacer--small"></span>
+        Start Over
+    </button>
+</section>
+<section class="wallet frame" id="frame-wallet-password-success">
+    <div class="wallet-header page-header">
+        <h3 class="page-header-title">Reddcoin Wallet: <b>Creation Successful!</b></h3>
+    </div>
+
+    <p>
+        <b>You have successfully created your Reddcoin wallet.</b>
+    </p>
+
+    <p>
+        If you have imported your wallet this may take a few minutes for the process to complete
+        It is safe to close this tab, as the process will continue in the background.
+    </p>
+
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="registerContinue">Continue</button>
+</section>
+<section class="wallet frame" id="frame-wallet-confirm">
+    <div class="wallet-header page-header">
+        <h3 class="page-header-title">Reddcoin Wallet: <b>Confirm Seed</b></h3>
+    </div>
+
+    <p>
+        To make sure you havent already lost your seed phrase, please enter it below.
+    </p>
+
+    <p>
+        <b>
+            Please enter the 12 word seed phrase.
+        </b>
+    </p>
+
+    <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+        <label class="field-text field-text--textarea">
+            <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_confirm_phrase" name="seed"></textarea>
+        </label>
+
+        <span class="field-description" id="pwd_error"></span>
+        <span class="field-description" id="recoverySeedError"></span>
+    </div>
+
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletConfirmWallet">
+        Confirm Wallet Seed
+    </button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+        <span class="inline-spacer inline-spacer--small"></span>
+        Start Over
+    </button>
+</section>
+<section class="wallet frame" id="frame-wallet-create">
+    <div class="wallet-header page-header">
+        <h3 class="page-header-title">Reddcoin Wallet: <b>Create</b></h3>
+    </div>
+
+    <p>
+        This is your wallet recovery phrase.
+    </p>
+
+    <p>
+        <b>
+            Please save the following 12 words in a safe place. For your convenience these 12 words are automatically copied to the clipboard.
+        </b>
+    </p>
+
+    <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+        <label class="field-text field-text--textarea">
+            <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_recovery_phrase" name="seed" readonly>improve animal wreck you tired tribe sad picnic weasel bacon agent hobby</textarea>
+        </label>
+    </div>
+
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" data-click="frame" data-frame="wallet-confirm">Create Wallet</button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+        <span class="inline-spacer inline-spacer--small"></span>
+        Start Over
+    </button>
+</section>
+<section class="wallet frame active" id="frame-wallet-intro">
+    <div class="wallet-header page-header">
+        <h3 class="page-header-title">Reddcoin Wallet</h3>
+    </div>
+
+    <p> 
+        Welcome to the Reddcoin Browser extension
+    </p>
+
+    <p>
+        To get started you will need to either create, or import an existing wallet.
+    </p>
+
+    <p>
+        If you have an existing Reddcoin electrum seed [12 word phrase] and you want to restore it, you will be able to import through the wizard
+    </p>
+
+    <p>
+        Otherwise, click "Create Wallet Wizard" to create a new wallet.
+    </p>
+
+    <p>
+        Lets get started!!
+    </p>
+
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletCreateNew" data-click="frame" data-frame="wallet-create">Create Wallet</button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletImport" data-click="frame" data-frame="wallet-recovery">Import Wallet</button>
+</section>
+<section class="wallet frame" id="frame-wallet-recovery">
+    <div class="wallet-header page-header">
+        <h3 class="page-header-title">Reddcoin Wallet: <b>Recovery</b></h3>
+    </div>
+
+    <p>
+        <b>
+            To recover your wallet please insert your 12 word recovery phrase.
+        </b>
+    </p>
+
+    <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+        <label class="field-text field-text--textarea">
+            <textarea class="field-mask field-tag field-tag--autoresize" id="recovery_input" name="seed"></textarea>
+            <span class="field-description" id="import_error"></span>
+        </label>
+    </div>
+
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletImportbtn">Import</button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+        <span class="inline-spacer inline-spacer--small"></span>
+        Start Over
+    </button>
+</section>
+<section class="wallet frame" id="frame-wallet-settings">
+    <div class="wallet-header page-header">
+        <h3 class="page-header-title">Reddcoin Wallet: <b>Settings</b></h3>
+    </div>
+
+    <p>
+        Please review the following settings.
+    </p>
+
+    <p>
+        <b>If you are new to Reddcoin and ReddId, it is probably best to leave them as they are.</b>
+    </p>
+
+    <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
+        <span class="field-title">Use Tip Jar</span>
+
+        <label class="field-text field-text--select" data-change="select">
+            <div class="field-mask"></div>
+
+            <select class="field-tag" id="useTipJar" data-ref="trigger:change">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+            </select>
+        </label>
+    </div>
+
+    <p>
+        Using the Tip Jar will give you an account that isn't password protected. This makes tipping faster and easier but is less secure.
+    </p>
+
+    <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
+        <span class="field-title">Savings Account</span>
+
+        <label class="field-text field-text--select" data-change="select">
+            <div class="field-mask"></div>
+
+            <select class="field-tag" id="useSavingsAccount" data-ref="trigger:change">
+                <option value="false">I don't need a Savings Account</option>
+                <option value="true">Yes, I want a Savings Account</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="wallet-field field field--primary" data-change='checkbox'>
+        <label class="field-check field-check--checkmark">
+            <span class="field-title">Make savings account spendable</span>
+
+            <span class="field-mask">
+                <input class="field-tag" type="checkbox" checked="true" id="spendSavings" data-ref='trigger:change'>
+            </span>
+        </label>
+    </div>
+
+    <p>
+        Using the Tip Jar will give you an account that isn't password protected. This makes tipping faster and easier but is less secure.
+    </p>
+
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletSettingsCreateWallet">Create Wallet</button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+        <span class="inline-spacer inline-spacer--small"></span>
+        Start Over
+    </button>
+</section>
+
+                <span id="walletSwapPassword" style='position: absolute; top: 0;left: 0; z-index: -1;opacity: 0;' data-click="frame" data-frame="wallet-password-create"></span>
+                <span id="walletSwapPasswordConfirm" style='position: absolute; top: 0;left: 0; z-index: -1;opacity: 0;' data-click="frame" data-frame="wallet-password-confirm"></span>
+                <span id="walletSwapSettings" style='position: absolute; top: 0;left: 0; z-index: -1;opacity: 0;' data-click="frame" data-frame="wallet-settings"></span>
+                <span id="walletSwapSuccess" style='position: absolute; top: 0;left: 0; z-index: -1;opacity: 0;' data-click="frame" data-frame="wallet-password-success"></span>
+
+            </section>
+
+            <div class="scrollbar scrollbar--fixed" id='site-scrollbar'></div>
+        </section>
+
+        
+                    <script type="text/javascript" src="assets/js/html/vendor/browser-polyfill.min.js"></script>
+                    <script type="text/javascript" src="assets/js/html/vendor/jquery-3.3.1.min.js"></script>
+                    <script type="text/javascript" src="assets/js/html/init.js"></script>
+                    <script type="text/javascript" src="assets/js/html/views/setupWallet.js"></script>
+                    <script type="text/javascript" src="assets/js/html/messenger.js"></script>
+        
+        <script src="assets/js/app.js" type="text/javascript"></script>
+    </body>
+</html>
