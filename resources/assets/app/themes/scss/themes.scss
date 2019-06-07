@@ -1,20 +1,23 @@
 [data-theme] {
     &::after {
         @include position(absolute, full);
+        background-position: center center;
+        background-size: cover;
         opacity: 0.24;
         content: "";
         z-index: -1;
     }
 }
 
+// TODO: Uncomment
 [data-theme="theme1"] {
     &::after {
-        background: url('../images/themes/1.png') center center;
+        //background-image: url('../images/themes/1.png');
     }
 }
 
 [data-theme="theme2"] {
     &::after {
-        background: url('../images/themes/2.png') center center;
+        //background-image: url('../images/themes/2.png');
     }
 }

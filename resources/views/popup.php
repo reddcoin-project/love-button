@@ -15,12 +15,12 @@
         <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' id='site'>
 
             <header class="header">
-                <div class="header-menu button button--icon button--grey button--text button--clear tooltip" data-click="toggle">
+                <div class="header-menu button button--clear button--grey button--icon button--text tooltip" data-click="toggle">
                     <div class="icon" data-stopclick>
                         <?= $svg("menu/hamburger") ?>
                     </div>
 
-                    <div class="header-menu-dropdown tooltip-content tooltip-content--menu tooltip-content--sw" data-stopclick>
+                    <div class="header-menu-dropdown tooltip-content tooltip-content--menu tooltip-content--sw">
                         <section class="link-menu link-menu--black">
                             <div class="link link--large link--white active" data-click="frame" data-frame="dashboard">
                                 <div class="icon">
@@ -94,7 +94,7 @@
 
                         'about',
                         'buy-sell',
-                        'dashboard',
+                        'dashboard2',
                         'settings',
                         'status'
                     ];
@@ -109,7 +109,7 @@
             </section>
 
 
-            <footer class="footer">
+            <!-- <footer class="footer">
                 <img src="assets/images/powered-by.svg" alt="" class="footer-logo">
 
                 <div class="footer-links">
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                 </div>
-            </footer>
+            </footer> -->
 
             <div class="scrollbar scrollbar--fixed" id='site-scrollbar'></div>
         </section>

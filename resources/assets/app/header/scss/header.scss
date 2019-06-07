@@ -1,7 +1,6 @@
 .header {
     @include grid(d12);
-    background: color('white');
-    border-bottom: 1px solid color('grey');
+    border-bottom: 1px solid color('grey', 0.64);
     padding: size();
 
     &-logo {
@@ -10,6 +9,8 @@
     }
 
     &-menu {
+        margin: 0 0 0 (- size(100));
+
         &-dropdown {
             background: color('black');
             border-radius: border-radius();

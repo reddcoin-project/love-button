@@ -9,7 +9,7 @@
     @include cursor(pointer);
     @include float();
     @include transition(background border-color box-shadow color);
-    border-radius: border-radius(300);
+    border-radius: border-radius();
     font-weight: font-weight();
     line-height: divide(size(), font-size());
     padding: button(spacer default);

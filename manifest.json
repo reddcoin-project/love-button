@@ -14,12 +14,12 @@
 
     "browser_action": {
         "default_icon": "assets/images/icons/16.png",
-        "default_popup": "popup.html",
         "default_title": "ReddID Tipping Extension"
     },
 
     "background": {
         "scripts": [
+            "assets/js/window.js",
             "assets/js/html/vendor/browser-polyfill.min.js",
             "assets/js/html/vendor/jquery-3.3.1.min.js",
             "assets/js/lib/electrum/reddcore-lib.js",

@@ -1,0 +1,47 @@
+.dashboard2 {
+    .page-header {
+        b {
+            color: color('primary');
+        }
+    }
+
+    &-buttons {
+        @include grid(d12);
+    }
+
+    &-button {
+        &--primary {
+            width: calc(50% - #{size(200)});
+        }
+
+        &--secondary {
+            float: right;
+            width: calc(50% - #{size(200)});
+        }
+    }
+
+    &-illustration {
+        @include grid(d12);
+        background: color('grey' 300);
+        height: 240px;
+        margin: size(500) 0;
+
+        &::after,
+        &::before {
+            @include circle(size(200));
+            @include position(absolute, horizontal);
+            background: color('black');
+            bottom: size();
+            content: "";
+        }
+
+        &::after {
+            background: color('grey' 500);
+            margin: 0 (- size(100) - 2px) 0 0;
+        }
+
+        &::before {
+            margin: 0 (size(100) + 2px) 0 0;
+        }
+    }
+}

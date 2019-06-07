@@ -1,16 +1,13 @@
-.frames {
-    min-height: 320px;
-
-    &--center {
-        min-height: 240px;
-    }
-}
-
 .frame {
     display: none;
+    min-height: calc(100vh - 72px);
     padding: size(600) size(500);
 
     @include state(active) {
         display: block;
+    }
+
+    .frames--center & {
+        min-height: 240px;
     }
 }
