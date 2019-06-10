@@ -68,5 +68,5 @@
         </div>
     </section>
 
-    <div class="dashboard-button button button--center button--large button--full button--primary" id="createWalletSetup">Create Wallet</div>
+    <div class="dashboard-button button button--center button--large button--full button--primary" id="createWalletSetup" data-click="frame" data-frame="wallet-intro">Create Wallet</div>
 </section>

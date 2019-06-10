@@ -89,12 +89,22 @@
 
                 <?php
                     $frames = [
+                        'wallet/password/confirm',
+                        'wallet/password/create',
+                        'wallet/password/success',
+
+                        'wallet/confirm',
+                        'wallet/create',
+                        'wallet/intro',
+                        'wallet/recovery',
+                        'wallet/settings',
+
                         'reddid/register',
                         'wallet/interact',
 
                         'about',
                         'buy-sell',
-                        'dashboard2',
+                        'dashboard',
                         'settings',
                         'status'
                     ];
@@ -105,6 +115,10 @@
                 ?>
 
                 <span id="walletSwapInteract" style='position: absolute; top: 0;left: 0; z-index: -1;opacity: 0;' data-click="frame" data-frame="wallet-interact"></span>
+                <span id="walletSwapPassword" style='position: absolute; top: 0;left: 0; z-index: -1;opacity: 0;' data-click="frame" data-frame="wallet-password-create"></span>
+                <span id="walletSwapPasswordConfirm" style='position: absolute; top: 0;left: 0; z-index: -1;opacity: 0;' data-click="frame" data-frame="wallet-password-confirm"></span>
+                <span id="walletSwapSettings" style='position: absolute; top: 0;left: 0; z-index: -1;opacity: 0;' data-click="frame" data-frame="wallet-settings"></span>
+                <span id="walletSwapSuccess" style='position: absolute; top: 0;left: 0; z-index: -1;opacity: 0;' data-click="frame" data-frame="wallet-password-success"></span>
 
             </section>
 
@@ -149,6 +163,7 @@
                 'vendor/jquery-ui.min.js',
                 'vendor/typeahead.bundle.js',
                 'init.js',
+                'views/setupWallet.js',
                 'views/viewSocialNetworks.js',
                 'views/viewWalletAccount.js',
                 'views/viewWalletBalance.js',

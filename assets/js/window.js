@@ -5,7 +5,7 @@ if (chrome) {
             type: "popup",
             focused: true,
             height: 500,
-            width: 420
+            width: 480
         });
     });
 }
@@ -16,7 +16,7 @@ else {
             type: "popup",
             focused: true,
             height: 500,
-            width: 420
+            width: 480
         });
     });
 

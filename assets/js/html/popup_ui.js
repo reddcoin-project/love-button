@@ -642,9 +642,9 @@
     };
 
     pub.displayWalletSetup = function () {
-        let url = '/setup-wallet.html';
-        let win = window.open(url,'_blank');
-        win.focus();
+        //let url = '/setup-wallet.html';
+        //let win = window.open(url,'_blank');
+        //win.focus();
     };
 
     pub.init = function () {

@@ -1,9 +1,9 @@
-<section class="wallet frame active" id="frame-wallet-intro">
+<section class="wallet frame" id="frame-wallet-intro">
     <div class="wallet-header page-header">
         <h3 class="page-header-title">Reddcoin Wallet</h3>
     </div>
 
-    <p> 
+    <p>
         Welcome to the Reddcoin Browser extension
     </p>
 
