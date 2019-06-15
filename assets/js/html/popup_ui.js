@@ -854,14 +854,19 @@ function shouldShowRegisterButton(data) {
 * Function to display the welcome page
 */
 function displayWelcome() {
-    $('#createWalletSetup').hide();
+    //$('#createWalletSetup').hide();
+    //$('#header').hide();
+    //$('#frame-wallet-interact').hide();
 
     Reddcoin.messenger.getAppState(response => {
         if (!response.walletObj.dataAvailable) {
-            $('#createWalletSetup').show();
+            $('#header').hide();
+            $('#frame-wallet-interact').hide();
         }
         else {
-            $('#createWalletSetup').hide();
+            $('#frame-dashboard').hide();
+
+            displayWallet();
 
             Reddcoin.messenger.getUserIds(function (result) {
                 debug.log(`${result.length} user ids registered`);

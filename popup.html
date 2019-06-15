@@ -14,19 +14,19 @@
     <body id="reddidPopup">
         <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' id='site'>
 
-            <header class="header">
+            <header class="header" id="header">
                 <div class="header-menu button button--clear button--grey button--icon button--text tooltip" data-click="toggle">
                     <div class="icon" data-stopclick>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M0 2.3A.3.3 0 0 1 .3 2h15.4a.3.3 0 0 1 .3.3v1.4a.3.3 0 0 1-.3.3H.3a.3.3 0 0 1-.3-.3V2.3zm0 5A.3.3 0 0 1 .3 7h15.4a.3.3 0 0 1 .3.3v1.4a.3.3 0 0 1-.3.3H.3a.3.3 0 0 1-.3-.3V7.3zm0 5a.3.3 0 0 1 .3-.3h15.4a.3.3 0 0 1 .3.3v1.4a.3.3 0 0 1-.3.3H.3a.3.3 0 0 1-.3-.3v-1.4z"/></svg>                    </div>
 
                     <div class="header-menu-dropdown tooltip-content tooltip-content--menu tooltip-content--sw">
                         <section class="link-menu link-menu--black">
-                            <div class="link link--large link--white active" data-click="frame" data-frame="dashboard">
+                            <!-- <div class="link link--large link--white active" data-click="frame" data-frame="dashboard">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M7 8.7a.3.3 0 0 1-.3.3H.3a.3.3 0 0 1-.3-.3V.3A.3.3 0 0 1 .3 0h6.4a.3.3 0 0 1 .3.3v8.4zm9 7a.3.3 0 0 1-.3.3H9.3a.3.3 0 0 1-.3-.3V7.3a.3.3 0 0 1 .3-.3h6.4a.3.3 0 0 1 .3.3v8.4zm-.001-11a.3.3 0 0 1-.3.3h-6.4a.3.3 0 0 1-.3-.3V.3a.3.3 0 0 1 .3-.3h6.4a.3.3 0 0 1 .3.3v4.4zM7 15.7a.3.3 0 0 1-.3.3H.3a.3.3 0 0 1-.3-.3v-4.4a.3.3 0 0 1 .3-.3h6.4a.3.3 0 0 1 .3.3v4.4z"/></svg>                                </div>
                                 <span class="inline-spacer"></span>
                                 Dashboard
-                            </div>
+                            </div> -->
 
                             <div class="link link--large link--white" id="menuWallet">
                                 <div class="icon">
@@ -42,19 +42,19 @@
                                 Register
                             </div>
 
-                            <div class="link link--large link--white" data-click="frame" data-frame="buy-sell">
+                            <!-- <div class="link link--large link--white" data-click="frame" data-frame="buy-sell">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M9.924 11.487A3.91 3.91 0 0 1 8 12a3.949 3.949 0 0 1-2.654-1.03c.451-.021.9-.053 1.345-.113 1.194-.163 1.059-.918.62-1.744a24.29 24.29 0 0 0-1.542-2.549C5.314 5.921 4.805 5 3.818 5c-.903 0-1.378.767-1.806 1.364a25.442 25.442 0 0 0-1.681 2.75c-.371.688-.653 1.533.434 1.716.669.113 1.356.148 2.042.161A5.99 5.99 0 0 0 8 14a5.956 5.956 0 0 0 3.971-1.52c-.901-.063-1.565-.499-2.047-.993zM15.234 5.169c-.669-.113-1.356-.148-2.041-.161A5.997 5.997 0 0 0 8 2a5.956 5.956 0 0 0-3.972 1.521c.901.062 1.565.499 2.048.993A3.91 3.91 0 0 1 8 4a3.97 3.97 0 0 1 2.654 1.03c-.45.02-.899.052-1.344.113-1.194.163-1.059.919-.62 1.745.466.873.966 1.73 1.542 2.547.453.645.963 1.566 1.949 1.566.904 0 1.379-.768 1.807-1.365a25.45 25.45 0 0 0 1.682-2.75c.369-.688.652-1.534-.436-1.717z"/></svg>                                </div>
                                 <span class="inline-spacer"></span>
                                 Buy/Sell
-                            </div>
+                            </div> -->
 
-                            <div class="link link--large link--white" data-click="frame" data-frame="settings">
+                            <!-- <div class="link link--large link--white" data-click="frame" data-frame="settings">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M13.956 8.994a6.033 6.033 0 0 0 .001-1.981l1.741-1.242a.246.246 0 0 0 .088-.335l-.836-1.429-.051-.088-.836-1.429a.245.245 0 0 0-.335-.088l-1.931.905a6.037 6.037 0 0 0-1.673-.959L9.934.245A.246.246 0 0 0 9.688 0H6.276a.245.245 0 0 0-.245.245l-.193 2.117a6.007 6.007 0 0 0-1.635.945l-1.931-.905a.244.244 0 0 0-.335.088l-.835 1.428-.052.089-.836 1.429a.246.246 0 0 0 .088.335l1.741 1.242a6.033 6.033 0 0 0 .002 1.981L.302 10.167a.246.246 0 0 0-.088.336l.872 1.49.052.088.871 1.491a.246.246 0 0 0 .335.088l1.884-.946a6.039 6.039 0 0 0 1.596.919l.135 2.122c0 .136.11.245.246.245H9.76a.244.244 0 0 0 .245-.245l.135-2.107a6.045 6.045 0 0 0 1.633-.934l1.884.946a.246.246 0 0 0 .335-.088l.872-1.491.051-.088.872-1.49a.247.247 0 0 0-.088-.336l-1.743-1.173zM8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>                                </div>
                                 <span class="inline-spacer"></span>
                                 Settings
-                            </div>
+                            </div> -->
 
                             <div class="link link--large link--white" data-click="frame" data-frame="status" id="menuStatus">
                                 <div class="icon">
@@ -74,23 +74,27 @@
                 </div>
 
                 <img src="/assets/images/logo-reddid.svg" alt="" class="header-logo">
+
+                <div class="header-menu button button--clear button--grey button--icon button--text right tooltip" data-hover="toggle" data-click="frame" data-frame="settings">
+                    <div class="icon" data-stopclick>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M13.956 8.994a6.033 6.033 0 0 0 .001-1.981l1.741-1.242a.246.246 0 0 0 .088-.335l-.836-1.429-.051-.088-.836-1.429a.245.245 0 0 0-.335-.088l-1.931.905a6.037 6.037 0 0 0-1.673-.959L9.934.245A.246.246 0 0 0 9.688 0H6.276a.245.245 0 0 0-.245.245l-.193 2.117a6.007 6.007 0 0 0-1.635.945l-1.931-.905a.244.244 0 0 0-.335.088l-.835 1.428-.052.089-.836 1.429a.246.246 0 0 0 .088.335l1.741 1.242a6.033 6.033 0 0 0 .002 1.981L.302 10.167a.246.246 0 0 0-.088.336l.872 1.49.052.088.871 1.491a.246.246 0 0 0 .335.088l1.884-.946a6.039 6.039 0 0 0 1.596.919l.135 2.122c0 .136.11.245.246.245H9.76a.244.244 0 0 0 .245-.245l.135-2.107a6.045 6.045 0 0 0 1.633-.934l1.884.946a.246.246 0 0 0 .335-.088l.872-1.491.051-.088.872-1.49a.247.247 0 0 0-.088-.336l-1.743-1.173zM8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--se">Settings</span>
+                </div>
             </header>
 
 
             <section class="frames">
 
-                <section class="wallet frame" id="frame-wallet-password-confirm">
+                <section class="wallet frame frame--large" id="frame-wallet-password-confirm">
     <div class="wallet-header page-header">
-        <h3 class="page-header-title">Reddcoin Wallet: <b>Confirm Password</b></h3>
+        <h3 class="page-header-title">Please enter your password again to make sure it is correct</h3>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            Enter the same password
+        </span>
     </div>
 
-    <p>
-        Please enter your password again to make sure it is correct.
-    </p>
-
-    <p>
-        <b>Enter the same password.</b>
-    </p>
+    <p></p>
 
     <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
         <label class="field-text field-text--input">
@@ -98,26 +102,23 @@
         </label>
     </div>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletConfirmPassword">Confirm Password</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletConfirmPassword">Continue</button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
         <div class="icon icon--rotate180">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
         <span class="inline-spacer inline-spacer--small"></span>
         Start Over
     </button>
 </section>
-<section class="wallet frame" id="frame-wallet-password-create">
+<section class="wallet frame frame--large" id="frame-wallet-password-create">
     <div class="wallet-header page-header">
-        <h3 class="page-header-title">Reddcoin Wallet: <b>Create Password</b></h3>
+        <h3 class="page-header-title">Please create a password for your wallet</h3>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            It must be at least 8 characters long.
+        </span>
     </div>
 
-    <p>
-        Please create a password for your wallet.
-    </p>
-
-    <p>
-        <b>It must be at least 8 characters long.</b>
-    </p>
+    <p></p>
 
     <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
         <label class="field-text field-text--input">
@@ -127,44 +128,38 @@
         <span class="field-description" id="pwd_error"></span>
     </div>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletCreatePassword">Create Password</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletCreatePassword">Continue</button>
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
         <div class="icon icon--rotate180">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
         <span class="inline-spacer inline-spacer--small"></span>
         Start Over
     </button>
 </section>
-<section class="wallet frame" id="frame-wallet-password-success">
+<section class="wallet frame frame--large" id="frame-wallet-password-success">
     <div class="wallet-header page-header">
-        <h3 class="page-header-title">Reddcoin Wallet: <b>Creation Successful!</b></h3>
+        <h3 class="page-header-title">You have successfully created your Reddcoin wallet</b></h3>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            If you have imported your wallet this may take a few minutes for the process to complete
+            It is safe to close this tab, as the process will continue in the background.
+        </span>
     </div>
 
-    <p>
-        <b>You have successfully created your Reddcoin wallet.</b>
-    </p>
+    <p></p>
 
-    <p>
-        If you have imported your wallet this may take a few minutes for the process to complete
-        It is safe to close this tab, as the process will continue in the background.
-    </p>
-
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="registerContinue">Continue</button>
+    <button class="wallet-button button button--center button--large button--primary right" data-click="frame" data-frame="welcome">Continue</button>
 </section>
-<section class="wallet frame" id="frame-wallet-confirm">
+<section class="wallet frame frame--large" id="frame-wallet-confirm">
     <div class="wallet-header page-header">
-        <h3 class="page-header-title">Reddcoin Wallet: <b>Confirm Seed</b></h3>
+        <h3 class="page-header-title">
+            Confirm your backup phrase
+        </h3>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            Please enter the 12 word seed phrase.
+        </span>
     </div>
 
-    <p>
-        To make sure you havent already lost your seed phrase, please enter it below.
-    </p>
-
-    <p>
-        <b>
-            Please enter the 12 word seed phrase.
-        </b>
-    </p>
+    <p></p>
 
     <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
         <label class="field-text field-text--textarea">
@@ -178,75 +173,32 @@
     <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletConfirmWallet">
         Confirm Wallet Seed
     </button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
         <div class="icon icon--rotate180">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
         <span class="inline-spacer inline-spacer--small"></span>
         Start Over
     </button>
 </section>
-<section class="wallet frame" id="frame-wallet-create">
+<section class="wallet frame frame--large" id="frame-wallet-create">
     <div class="wallet-header page-header">
-        <h3 class="page-header-title">Reddcoin Wallet: <b>Create</b></h3>
+        <h3 class="page-header-title">Write down your backup phrase on a piece of paper</h3>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            The following 12 words are the only way to restore your account if lost. Keep them safe and secure.
+        </span>
     </div>
 
-    <p>
-        This is your wallet recovery phrase.
-    </p>
-
-    <p>
-        <b>
-            Please save the following 12 words in a safe place. For your convenience these 12 words are automatically copied to the clipboard.
-        </b>
-    </p>
+    <p></p>
 
     <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
         <label class="field-text field-text--textarea">
-            <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_recovery_phrase" name="seed" readonly>improve animal wreck you tired tribe sad picnic weasel bacon agent hobby</textarea>
+            <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_recovery_phrase" name="seed" readonly></textarea>
         </label>
     </div>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" data-click="frame" data-frame="wallet-confirm">Create Wallet</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
-        <div class="icon icon--rotate180">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
-        <span class="inline-spacer inline-spacer--small"></span>
-        Start Over
-    </button>
+    <button class="wallet-button button button--large button--primary right" data-click="frame" data-frame="wallet-confirm">Continue</button>
 </section>
-<section class="wallet frame" id="frame-wallet-intro">
-    <div class="wallet-header page-header">
-        <h3 class="page-header-title">Reddcoin Wallet</h3>
-    </div>
-
-    <p>
-        Welcome to the Reddcoin Browser extension
-    </p>
-
-    <p>
-        To get started you will need to either create, or import an existing wallet.
-    </p>
-
-    <p>
-        If you have an existing Reddcoin electrum seed [12 word phrase] and you want to restore it, you will be able to import through the wizard
-    </p>
-
-    <p>
-        Otherwise, click "Create Wallet Wizard" to create a new wallet.
-    </p>
-
-    <p>
-        Lets get started!!
-    </p>
-
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletCreateNew" data-click="frame" data-frame="wallet-create">Create Wallet</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletImport" data-click="frame" data-frame="wallet-recovery">Import Wallet</button>
-</section>
-<section class="wallet frame" id="frame-wallet-recovery">
-    <div class="wallet-header page-header">
-        <h3 class="page-header-title">Reddcoin Wallet: <b>Recovery</b></h3>
-    </div>
-
+<section class="wallet frame frame--large" id="frame-wallet-recovery">
     <p>
         <b>
             To recover your wallet please insert your 12 word recovery phrase.
@@ -261,25 +213,22 @@
     </div>
 
     <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletImportbtn">Import</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
         <div class="icon icon--rotate180">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
         <span class="inline-spacer inline-spacer--small"></span>
         Start Over
     </button>
 </section>
-<section class="wallet frame" id="frame-wallet-settings">
+<section class="wallet frame frame--large" id="frame-wallet-settings">
     <div class="wallet-header page-header">
-        <h3 class="page-header-title">Reddcoin Wallet: <b>Settings</b></h3>
+        <h3 class="page-header-title">Please review the following settings</h3>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            If you are new to Reddcoin and ReddId, it is probably best to leave them as they are.
+        </span>
     </div>
 
-    <p>
-        Please review the following settings.
-    </p>
-
-    <p>
-        <b>If you are new to Reddcoin and ReddId, it is probably best to leave them as they are.</b>
-    </p>
+    <p></p>
 
     <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
         <span class="field-title">Use Tip Jar</span>
@@ -321,12 +270,8 @@
         </label>
     </div>
 
-    <p>
-        Using the Tip Jar will give you an account that isn't password protected. This makes tipping faster and easier but is less secure.
-    </p>
-
     <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletSettingsCreateWallet">Create Wallet</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
         <div class="icon icon--rotate180">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
         <span class="inline-spacer inline-spacer--small"></span>
@@ -544,77 +489,22 @@
         The Reddcoin team are working to directly integrate tools to allow the easy conversion of your valuable Reddcoins into alternate cryptocurrencies
     </p>
 </section>
-<section class="dashboard frame active" id="frame-dashboard">
-    <div class="dashboard-accordion-title link link--full link--large link--text link--primary" data-click='accordion' data-accordion='accordion-0'>
-        What is ReddID?
+<section class="dashboard2 frame frame--large active" id="frame-dashboard">
 
-        <div class="accordion-arrow right icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.301 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L8.918 8l-4.031 4.029a.303.303 0 0 0 0 .425l.99.989a.3.3 0 0 0 .424 0L11.745 8 6.301 2.555z"/></svg>
-        </div>
+    <div class="dashboard2-illustration">
+        <b>Illustration 1</b> <br> Straight to the point -> this extension is used to tip via social networks, emails, etc.
+        <br><br>
+        <b>Illustration 2</b> <br> Call to action -> getting started is easy -> create a wallet or import an existing one -> begin tipping
+        <br><br>
+        <b>Illustration 3</b> <br> we make tipping easier by adding a tip button to social media sites
+        <br><br>
+        <b>Illustration 4</b> <br> Buy/sell RDD directly from browser "Coming Soon"
     </div>
-    <section class="accordion" id="accordion-0">
-        <div class="dashboard-accordion-content">
-            <p>
-                ReddID is name-based tipping across social networks and platforms, with all data stored safetly in the blockchain.
-                No centralized sites and databases, no adminstrators with control over your funds.
-                Empower your online persona, collecting tips for your content and comments while keeping your wallet secure and private!
-            </p>
-        </div>
-    </section>
 
-    <div class="dashboard-accordion-title link link--full link--large link--text link--primary" data-click='accordion' data-accordion='accordion-1'>
-        How do I register a ReddId?
-
-        <div class="accordion-arrow right icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.301 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L8.918 8l-4.031 4.029a.303.303 0 0 0 0 .425l.99.989a.3.3 0 0 0 .424 0L11.745 8 6.301 2.555z"/></svg>
-        </div>
+    <div class="dashboard2-buttons">
+        <div class="dashboard2-button dashboard2-button--primary button button--center button--large button--primary" data-click="frame" data-frame="wallet-create">Create Wallet</div>
+        <div class="dashboard2-button dashboard2-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-recovery">Import Wallet</div>
     </div>
-    <section class="accordion" id="accordion-1">
-        <div class="dashboard-accordion-content">
-            <p>
-                Obtain RDD - As ReddID's require a small fee paid to the network, you'll need to obtain RDD.
-                This can be done from the Instant Buy button on the "exchange" Tab (coming soon), or from any crypto exchange trading RDD.
-                See the wiki for a full list.
-            </p>
-            <p>
-                Deposit RDD to your ReddID wallet - Public addresses for deposit are visible in the extension tab.
-                You may wish to send a very small amount of RDD initially as a test before sending larger amounts.
-            </p>
-            <p>
-                Select a ReddID name - Click on the "Register" tab and enter your desired ReddID name.
-                If it is available on the blockchain, the extension will let you know the cost required for that particular ReddID.
-                Ensuring you have adequate funds, click "Order".
-            </p>
-        </div>
-    </section>
-
-    <div class="dashboard-accordion-title link link--full link--large link--text link--primary" data-click='accordion' data-accordion='accordion-2'>
-        How do I register a ReddId?
-
-        <div class="accordion-arrow right icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.301 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L8.918 8l-4.031 4.029a.303.303 0 0 0 0 .425l.99.989a.3.3 0 0 0 .424 0L11.745 8 6.301 2.555z"/></svg>
-        </div>
-    </div>
-    <section class="accordion" id="accordion-2">
-        <div class="dashboard-accordion-content">
-            <p>
-                Obtain RDD - As ReddID's require a small fee paid to the network, you'll need to obtain RDD.
-                This can be done from the Instant Buy button on the "exchange" Tab (coming soon), or from any crypto exchange trading RDD.
-                See the wiki for a full list.
-            </p>
-            <p>
-                Deposit RDD to your ReddID wallet - Public addresses for deposit are visible in the extension tab.
-                You may wish to send a very small amount of RDD initially as a test before sending larger amounts.
-            </p>
-            <p>
-                Select a ReddID name - Click on the "Register" tab and enter your desired ReddID name.
-                If it is available on the blockchain, the extension will let you know the cost required for that particular ReddID.
-                Ensuring you have adequate funds, click "Order".
-            </p>
-        </div>
-    </section>
-
-    <div class="dashboard-button button button--center button--large button--full button--primary" id="createWalletSetup" data-click="frame" data-frame="wallet-intro">Create Wallet</div>
 </section>
 <section class="settings frame" id="frame-settings">
     <div class="wallet-header page-header">

@@ -1,15 +1,12 @@
-<section class="wallet frame" id="frame-wallet-settings">
+<section class="wallet frame frame--large" id="frame-wallet-settings">
     <div class="wallet-header page-header">
-        <h3 class="page-header-title">Reddcoin Wallet: <b>Settings</b></h3>
+        <h3 class="page-header-title">Please review the following settings</h3>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            If you are new to Reddcoin and ReddId, it is probably best to leave them as they are.
+        </span>
     </div>
 
-    <p>
-        Please review the following settings.
-    </p>
-
-    <p>
-        <b>If you are new to Reddcoin and ReddId, it is probably best to leave them as they are.</b>
-    </p>
+    <p></p>
 
     <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
         <span class="field-title">Use Tip Jar</span>
@@ -51,12 +48,8 @@
         </label>
     </div>
 
-    <p>
-        Using the Tip Jar will give you an account that isn't password protected. This makes tipping faster and easier but is less secure.
-    </p>
-
     <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletSettingsCreateWallet">Create Wallet</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
         <div class="icon icon--rotate180">
             <?= $svg('arrow/small') ?>
         </div>

@@ -1,4 +1,4 @@
-<section class="wallet-interact frame" id="frame-wallet-interact">
+<section class="wallet-interact frame active" id="frame-wallet-interact">
 
     <div class="wallet-interact-links link-scroller">
         <span class="link link--border link--primary link--tab active" data-click="frame" data-frame="WalletBalances">

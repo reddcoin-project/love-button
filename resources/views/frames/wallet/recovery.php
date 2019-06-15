@@ -1,8 +1,4 @@
-<section class="wallet frame" id="frame-wallet-recovery">
-    <div class="wallet-header page-header">
-        <h3 class="page-header-title">Reddcoin Wallet: <b>Recovery</b></h3>
-    </div>
-
+<section class="wallet frame frame--large" id="frame-wallet-recovery">
     <p>
         <b>
             To recover your wallet please insert your 12 word recovery phrase.
@@ -17,7 +13,7 @@
     </div>
 
     <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletImportbtn">Import</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="walletBackBtn" data-click="frame" data-frame="wallet-intro">
+    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
         <div class="icon icon--rotate180">
             <?= $svg('arrow/small') ?>
         </div>

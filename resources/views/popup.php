@@ -14,7 +14,7 @@
     <body id="reddidPopup">
         <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' id='site'>
 
-            <header class="header">
+            <header class="header" id="header">
                 <div class="header-menu button button--clear button--grey button--icon button--text tooltip" data-click="toggle">
                     <div class="icon" data-stopclick>
                         <?= $svg("menu/hamburger") ?>
@@ -22,13 +22,13 @@
 
                     <div class="header-menu-dropdown tooltip-content tooltip-content--menu tooltip-content--sw">
                         <section class="link-menu link-menu--black">
-                            <div class="link link--large link--white active" data-click="frame" data-frame="dashboard">
+                            <!-- <div class="link link--large link--white active" data-click="frame" data-frame="dashboard">
                                 <div class="icon">
                                     <?= $svg('dashboard') ?>
                                 </div>
                                 <span class="inline-spacer"></span>
                                 Dashboard
-                            </div>
+                            </div> -->
 
                             <div class="link link--large link--white" id="menuWallet">
                                 <div class="icon">
@@ -46,21 +46,21 @@
                                 Register
                             </div>
 
-                            <div class="link link--large link--white" data-click="frame" data-frame="buy-sell">
+                            <!-- <div class="link link--large link--white" data-click="frame" data-frame="buy-sell">
                                 <div class="icon">
                                     <?= $svg('arrow/swap') ?>
                                 </div>
                                 <span class="inline-spacer"></span>
                                 Buy/Sell
-                            </div>
+                            </div> -->
 
-                            <div class="link link--large link--white" data-click="frame" data-frame="settings">
+                            <!-- <div class="link link--large link--white" data-click="frame" data-frame="settings">
                                 <div class="icon">
                                     <?= $svg('settings') ?>
                                 </div>
                                 <span class="inline-spacer"></span>
                                 Settings
-                            </div>
+                            </div> -->
 
                             <div class="link link--large link--white" data-click="frame" data-frame="status" id="menuStatus">
                                 <div class="icon">
@@ -82,6 +82,14 @@
                 </div>
 
                 <img src="/assets/images/logo-reddid.svg" alt="" class="header-logo">
+
+                <div class="header-menu button button--clear button--grey button--icon button--text right tooltip" data-hover="toggle" data-click="frame" data-frame="settings">
+                    <div class="icon" data-stopclick>
+                        <?= $svg("settings") ?>
+                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--se">Settings</span>
+                </div>
             </header>
 
 
@@ -95,7 +103,7 @@
 
                         'wallet/confirm',
                         'wallet/create',
-                        'wallet/intro',
+                        //'wallet/intro',
                         'wallet/recovery',
                         'wallet/settings',
 
@@ -104,7 +112,7 @@
 
                         'about',
                         'buy-sell',
-                        'dashboard',
+                        'dashboard2',
                         'settings',
                         'status'
                     ];

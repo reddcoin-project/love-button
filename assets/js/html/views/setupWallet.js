@@ -180,7 +180,7 @@ $.fn.enterKey = function (fnc) {
   };
 
   $(function () {
-    $('#walletCreateNew').on('click', () => pub.startNew());
+    $('[data-frame="wallet-create"]').on('click', () => pub.startNew());
 
     $('#walletCreateWallet').on('click', () => pub.createWallet());
     $("#wallet_recovery_phrase").enterKey(pub.createWallet);
@@ -195,13 +195,13 @@ $.fn.enterKey = function (fnc) {
     $('#wallet_password_confirm').enterKey(pub.walletPasswordConfirm);
 
     $('#walletSettingsCreateWallet').on('click', () => pub.walletSettings());
-    $('#walletImport').on('click', () => pub.startImport());
+    $('[data-frame="wallet-recovery"]').on('click', () => pub.startImport());
 
     $('#walletImportbtn').on('click', () => pub.finishImport());
     $("#recovery_input").enterKey(pub.finishImport);
 
-    $('#walletBackBtn').on('click', () => pub.startOver());
-    $('#registerContinue').on('click', () => pub.walletFinished());
+    //$('#walletBackBtn').on('click', () => pub.startOver());
+    //$('#registerContinue').on('click', () => pub.walletFinished());
   });
 
   exports.setupWallet = pub;

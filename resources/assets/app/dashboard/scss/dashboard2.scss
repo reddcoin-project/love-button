@@ -23,8 +23,8 @@
     &-illustration {
         @include grid(d12);
         background: color('grey' 300);
-        height: 240px;
-        margin: size(500) 0;
+        margin: 0 0 size(500);
+        padding: size(500) size(500) size(800);
 
         &::after,
         &::before {

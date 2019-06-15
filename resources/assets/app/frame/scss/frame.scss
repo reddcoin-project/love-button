@@ -3,6 +3,10 @@
     min-height: calc(100vh - 72px);
     padding: size(600) size(500);
 
+    &--large {
+        padding: size(700) size(500);
+    }
+
     @include state(active) {
         display: block;
     }
