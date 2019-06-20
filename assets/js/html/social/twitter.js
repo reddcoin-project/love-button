@@ -51,7 +51,7 @@ function injectTwitter() {
     watchNewElementsWithClassName('tweet', (elements) => addTipping(elements));
 
     let urlPath = '';
-    
+
     setInterval(() => {
         if (urlPath !== document.location.pathname) {
             console.log('scanning after url change');

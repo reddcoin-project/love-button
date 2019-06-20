@@ -11,7 +11,7 @@
     </div>
 
     <div class="dashboard2-buttons">
-        <div class="dashboard2-button dashboard2-button--primary button button--center button--large button--primary" data-click="frame" data-frame="wallet-create">Create Wallet</div>
+        <div class="dashboard2-button dashboard2-button--primary button button--center button--large button--primary" data-click="frame" data-frame="wallet-create">Get Started</div>
         <div class="dashboard2-button dashboard2-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-recovery">Import Wallet</div>
     </div>
 </section>

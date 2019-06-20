@@ -86,31 +86,7 @@
 
             <section class="frames">
 
-                <section class="wallet frame frame--large" id="frame-wallet-password-confirm">
-    <div class="wallet-header page-header">
-        <h3 class="page-header-title">Please enter your password again to make sure it is correct</h3>
-        <span class="page-header-subtitle page-header-subtitle--small">
-            Enter the same password
-        </span>
-    </div>
-
-    <p></p>
-
-    <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
-        <label class="field-text field-text--input">
-            <input class="field-mask field-tag" id="wallet_password_confirm" type="password">
-        </label>
-    </div>
-
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletConfirmPassword">Continue</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
-        <div class="icon icon--rotate180">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
-        <span class="inline-spacer inline-spacer--small"></span>
-        Start Over
-    </button>
-</section>
-<section class="wallet frame frame--large" id="frame-wallet-password-create">
+                <section class="wallet frame frame--large" id="frame-wallet-password-create">
     <div class="wallet-header page-header">
         <h3 class="page-header-title">Please create a password for your wallet</h3>
         <span class="page-header-subtitle page-header-subtitle--small">
@@ -128,8 +104,23 @@
         <span class="field-description" id="pwd_error"></span>
     </div>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletCreatePassword">Continue</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
+    <div class="wallet-header page-header" style='margin-top: 40px;'>
+        <h3 class="page-header-title">Please enter your password again to make sure it is correct</h3>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            Enter the same password
+        </span>
+    </div>
+
+    <p></p>
+
+    <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+        <label class="field-text field-text--input">
+            <input class="field-mask field-tag" id="wallet_password_confirm" type="password">
+        </label>
+    </div>
+
+    <button class="wallet-button button button--center button--large button--primary right" id="walletConfirmPassword">Continue</button>
+    <button class="wallet-button button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
         <div class="icon icon--rotate180">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
         <span class="inline-spacer inline-spacer--small"></span>
@@ -147,38 +138,7 @@
 
     <p></p>
 
-    <button class="wallet-button button button--center button--large button--primary right" data-click="frame" data-frame="welcome">Continue</button>
-</section>
-<section class="wallet frame frame--large" id="frame-wallet-confirm">
-    <div class="wallet-header page-header">
-        <h3 class="page-header-title">
-            Confirm your backup phrase
-        </h3>
-        <span class="page-header-subtitle page-header-subtitle--small">
-            Please enter the 12 word seed phrase.
-        </span>
-    </div>
-
-    <p></p>
-
-    <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
-        <label class="field-text field-text--textarea">
-            <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_confirm_phrase" name="seed"></textarea>
-        </label>
-
-        <span class="field-description" id="pwd_error"></span>
-        <span class="field-description" id="recoverySeedError"></span>
-    </div>
-
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletConfirmWallet">
-        Confirm Wallet Seed
-    </button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
-        <div class="icon icon--rotate180">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
-        <span class="inline-spacer inline-spacer--small"></span>
-        Start Over
-    </button>
+    <button class="wallet-button button button--center button--large button--primary right" id="extension_reload">Continue</button>
 </section>
 <section class="wallet frame frame--large" id="frame-wallet-create">
     <div class="wallet-header page-header">
@@ -192,11 +152,35 @@
 
     <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
         <label class="field-text field-text--textarea">
-            <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_recovery_phrase" name="seed" readonly></textarea>
+            <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_recovery_phrase" readonly></textarea>
         </label>
     </div>
 
-    <button class="wallet-button button button--large button--primary right" data-click="frame" data-frame="wallet-confirm">Continue</button>
+    <div class="wallet-header page-header" style='margin-top: 40px'>
+        <h3 class="page-header-title">
+            Confirm your backup phrase
+        </h3>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            Please enter the 12 word seed phrase.
+        </span>
+    </div>
+
+    <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+        <label class="field-text field-text--textarea">
+            <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_confirm_phrase"></textarea>
+        </label>
+
+        <span class="field-description" id="pwd_error"></span>
+        <span class="field-description" id="recoverySeedError"></span>
+    </div>
+
+    <a class="wallet-button button button--black button--large" id="wallet_recovery_phrase_file">Save To File</a>
+
+    <button class="wallet-button wallet-button--primary button button--center button--large button--primary right" id="walletConfirmWallet">
+        Continue
+    </button>
+
+    <!-- <button class="wallet-button button button--large button--primary right" data-click="frame" data-frame="wallet-confirm">Continue</button> -->
 </section>
 <section class="wallet frame frame--large" id="frame-wallet-recovery">
     <p>
@@ -270,8 +254,8 @@
         </label>
     </div>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletSettingsCreateWallet">Create Wallet</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
+    <button class="wallet-button button button--center button--large button--primary right" id="walletSettingsCreateWallet">Create Wallet</button>
+    <button class="wallet-button button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
         <div class="icon icon--rotate180">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
         <span class="inline-spacer inline-spacer--small"></span>
@@ -318,7 +302,7 @@
     <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="redd_id_btn_register">Register</button>
     <button class="wallet-button wallet-button--secondary button button--center button--large button--white" id="redd_id_btn_reset">Reset</button>
 </section>
-<section class="wallet-interact frame" id="frame-wallet-interact">
+<section class="wallet-interact frame active" id="frame-wallet-interact">
 
     <div class="wallet-interact-links link-scroller">
         <span class="link link--border link--primary link--tab active" data-click="frame" data-frame="WalletBalances">
@@ -502,7 +486,7 @@
     </div>
 
     <div class="dashboard2-buttons">
-        <div class="dashboard2-button dashboard2-button--primary button button--center button--large button--primary" data-click="frame" data-frame="wallet-create">Create Wallet</div>
+        <div class="dashboard2-button dashboard2-button--primary button button--center button--large button--primary" data-click="frame" data-frame="wallet-create">Get Started</div>
         <div class="dashboard2-button dashboard2-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-recovery">Import Wallet</div>
     </div>
 </section>

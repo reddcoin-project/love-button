@@ -9,5 +9,5 @@
 
     <p></p>
 
-    <button class="wallet-button button button--center button--large button--primary right" data-click="frame" data-frame="welcome">Continue</button>
+    <button class="wallet-button button button--center button--large button--primary right" id="extension_reload">Continue</button>
 </section>

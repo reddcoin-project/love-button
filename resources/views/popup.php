@@ -97,11 +97,11 @@
 
                 <?php
                     $frames = [
-                        'wallet/password/confirm',
+                        //'wallet/password/confirm',
                         'wallet/password/create',
                         'wallet/password/success',
 
-                        'wallet/confirm',
+                        //'wallet/confirm',
                         'wallet/create',
                         //'wallet/intro',
                         'wallet/recovery',

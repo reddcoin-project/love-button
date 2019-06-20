@@ -19,7 +19,7 @@
         <span class="field-description" id="recoverySeedError"></span>
     </div>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletConfirmWallet">
+    <button class="wallet-button button button--center button--large button--primary" id="walletConfirmWallet">
         Confirm Wallet Seed
     </button>
     <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">

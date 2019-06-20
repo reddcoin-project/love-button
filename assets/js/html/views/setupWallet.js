@@ -66,7 +66,15 @@ $.fn.enterKey = function (fnc) {
   pub.startNew = function () {
     debug.log('StartNew');
     Reddcoin.messenger.getNewSeed(function (seed) {
+
       $("#wallet_recovery_phrase").val(seed);
+
+      let file = new Blob([seed], {type: 'text/plain'}),
+          link = $("#wallet_recovery_phrase_file");
+
+      link.attr('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(seed));
+      link.attr('download', 'seed.txt');
+
       priv.swapPages('#walletCreating', '#walletCreate');
     });
   };
@@ -199,6 +207,15 @@ $.fn.enterKey = function (fnc) {
 
     $('#walletImportbtn').on('click', () => pub.finishImport());
     $("#recovery_input").enterKey(pub.finishImport);
+
+    $('#extension_reload').on('click', () => {
+        if (chrome) {
+            chrome.tabs.reload();
+        }
+        else {
+            browser.tabs.reload();
+        }
+    })
 
     //$('#walletBackBtn').on('click', () => pub.startOver());
     //$('#registerContinue').on('click', () => pub.walletFinished());

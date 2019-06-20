@@ -48,8 +48,8 @@
         </label>
     </div>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletSettingsCreateWallet">Create Wallet</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
+    <button class="wallet-button button button--center button--large button--primary right" id="walletSettingsCreateWallet">Create Wallet</button>
+    <button class="wallet-button button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
         <div class="icon icon--rotate180">
             <?= $svg('arrow/small') ?>
         </div>
