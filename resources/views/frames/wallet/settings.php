@@ -1,12 +1,10 @@
-<section class="wallet frame frame--large" id="frame-wallet-settings">
-    <div class="wallet-header page-header">
-        <h3 class="page-header-title">Please review the following settings</h3>
+<section class="wallet frame" id="frame-wallet-settings">
+    <div class="page-header">
+        <h4 class="page-header-title">Please review the following settings</h4>
         <span class="page-header-subtitle page-header-subtitle--small">
             If you are new to Reddcoin and ReddId, it is probably best to leave them as they are.
         </span>
     </div>
-
-    <p></p>
 
     <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
         <span class="field-title">Use Tip Jar</span>

@@ -1,9 +1,6 @@
 <?php
 
-$files = [
-    'popup',
-    'setup-wallet'
-];
+$files = ['popup'];
 
 $root = realpath(__DIR__ . "/..");
 $svg = function(string $name) {

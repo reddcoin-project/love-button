@@ -1,8 +1,6 @@
 [
-    "dashboard",
-    "footer",
     "frame",
-    "header",
+    "intro",
     "not-found",
     "settings",
     "status",

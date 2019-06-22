@@ -44,9 +44,9 @@
 
     priv.getWalletReceiveAddressRow = function(address, account) {
         return `
-            <div class="wallet-interact-row wallet-interact-row--small">
-                <span class='wallet-interact-row-title'>${priv.getAddressLink(address.address, 40,  address.name)}</span>
-                <span class="wallet-interact-row-balance right">${address.confirmed * COIN} RDD</span>
+            <div class="wallet-row wallet-interact-row--small">
+                <div class='wallet-row-title'>${priv.getAddressLink(address.address, 40,  address.name)}</div>
+                <span class="wallet-row-balance">${address.confirmed * COIN} RDD</span>
             </div>
         `;
     };

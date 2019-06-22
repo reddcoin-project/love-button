@@ -67,6 +67,7 @@ $.fn.enterKey = function (fnc) {
     debug.log('StartNew');
     Reddcoin.messenger.getNewSeed(function (seed) {
 
+     $("#wallet_confirm_phrase").val('');
       $("#wallet_recovery_phrase").val(seed);
 
       let file = new Blob([seed], {type: 'text/plain'}),

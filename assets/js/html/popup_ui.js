@@ -263,12 +263,12 @@
         });
     };
 
-    priv.renderAccounts = function(data){
+    priv.renderAccounts = function(data, transactions){
         console.log('Render Accounts');
 
         var render = function(data) {
-            var html = exports.viewWalletAccounts.getView(data),
-                node = document.getElementById('WalletBalances');
+            var html = exports.viewWalletAccounts.getView(data, transactions),
+                node = document.getElementById('wallet-balance');
 
             if (node) {
                 node.innerHTML = html;
@@ -318,15 +318,13 @@
 
         exports.messenger.getWalletData(function (data) {
             let accounts = data.accounts,
-                options = '',
-                select = $('#sendFromAccount');
+                select = document.getElementById('sendFromAccount');
 
-            accounts.forEach(account => {
-                options += `<option value="${account.index}">${account.name}</option>`;
-            });
-
-            select.append(options);
-            select.trigger('change');
+            if (accounts) {
+                accounts.forEach(account => {
+                    select.options[select.options.length] = new Option(account.name, account.index + 1);
+                });
+            }
         });
     };
 
@@ -347,7 +345,7 @@
 
         var render = function(data) {
             var html = exports.viewWalletHistory.getView(data),
-                node = document.getElementById('WalletHistoryTable');
+                node = document.getElementById('wallet-history');
 
             if (node) {
                 node.innerHTML = html;
@@ -374,7 +372,7 @@
 
         var render = function(data) {
             var html = exports.viewWalletReceive.getView(data, account),
-                node = document.getElementById('WalletReceiveTable');
+                node = document.getElementById('frame-wallet-receive-table');
 
             if (node) {
                 node.innerHTML = html;
@@ -414,9 +412,9 @@
 
         priv.checkTipJar(data.totalBalance, tipJarBalance);
         priv.renderAccounts(data);
+        priv.renderHistory(transactions);
         priv.renderAddresses('#myAddressList');
         priv.renderContacts('#myContacts');
-        priv.renderHistory(transactions);
         priv.renderRegister(data);
     };
 
@@ -854,17 +852,13 @@ function shouldShowRegisterButton(data) {
 * Function to display the welcome page
 */
 function displayWelcome() {
-    //$('#createWalletSetup').hide();
-    //$('#header').hide();
-    //$('#frame-wallet-interact').hide();
-
     Reddcoin.messenger.getAppState(response => {
         if (!response.walletObj.dataAvailable) {
-            $('#header').hide();
             $('#frame-wallet-interact').hide();
+            $('#settings-toggle').hide();
         }
         else {
-            $('#frame-dashboard').hide();
+            $('#frame-intro').hide();
 
             displayWallet();
 

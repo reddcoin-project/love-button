@@ -32,10 +32,10 @@
             amount = transaction.total * COIN
 
         return `
-            <div class='table-row table-row--grey-light'>
-                <span class='wallet-interact-history-date table-item'>${Reddcoin.helpers.formatTime(dateInstance)}</span>
-                <span class='wallet-interact-history-address table-item'>${priv.getAddressLink(transaction.address, transaction.id, 22,  addressNames)}</span>
-                <span class='wallet-interact-history-amount table-item'>${amount.toFixed(8)}</span>
+            <div class='wallet-transaction'>
+                <span class='wallet-transaction-from'>${priv.getAddressLink(transaction.address, transaction.id, 22,  addressNames)}</span>
+                <span class='wallet-transaction-date'>${Reddcoin.helpers.formatTime(dateInstance)}</span>
+                <span class='wallet-transaction-amount'>${amount.toFixed(8)}</span>
             </div>
         `;
     };
@@ -48,17 +48,7 @@
             rows += priv.getWalletHistoryRow(transaction, '');
         });
 
-        return `
-            <div class='wallet-interact-history table'>
-                <div class='table-header table-header--black'>
-                    <span class='wallet-interact-history-date table-item'>Date</span>
-                    <span class='wallet-interact-history-address table-item'>Address</span>
-                    <span class='wallet-interact-history-amount table-item'>Amount</span>
-                </div>
-
-                ${rows}
-            </div>
-        `;
+        return rows;
     };
 
 

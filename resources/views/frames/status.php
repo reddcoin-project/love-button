@@ -1,6 +1,6 @@
 <section class="status frame" id="frame-status">
-    <div class="wallet-header page-header">
-        <h3 class="page-header-title">Network Status</h3>
+    <div class="page-header">
+        <h4 class="page-header-title">Network Status</h4>
     </div>
 
     <div class="list list--bulletpoint">

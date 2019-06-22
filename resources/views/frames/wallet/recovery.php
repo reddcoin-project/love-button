@@ -1,9 +1,7 @@
-<section class="wallet frame frame--large" id="frame-wallet-recovery">
-    <p>
-        <b>
-            To recover your wallet please insert your 12 word recovery phrase.
-        </b>
-    </p>
+<section class="wallet frame" id="frame-wallet-recovery">
+    <div class="page-header">
+        <h4 class="page-header-title">To recover your wallet please insert your 12 word recovery phrase.</h4>
+    </div>
 
     <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
         <label class="field-text field-text--textarea">
@@ -12,12 +10,10 @@
         </label>
     </div>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="walletImportbtn">Import</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
-        <div class="icon icon--rotate180">
-            <?= $svg('arrow/small') ?>
-        </div>
-        <span class="inline-spacer inline-spacer--small"></span>
-        Start Over
+
+    <button class="wallet-button button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
+        Create Wallet
     </button>
+
+    <button class="wallet-button button button--center button--large button--primary right" id="walletImportbtn">Import</button>
 </section>

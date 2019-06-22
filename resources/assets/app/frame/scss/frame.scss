@@ -1,17 +1,50 @@
 .frame {
     display: none;
     min-height: calc(100vh - 72px);
-    padding: size(600) size(500);
-
-    &--large {
-        padding: size(700) size(500);
-    }
+    padding: size(500) 0;
 
     @include state(active) {
         display: block;
     }
 
-    .frames--center & {
-        min-height: 240px;
+    &--border {
+        border-top: 1px solid color('grey');
+    }
+
+    &--min {
+        padding: 0;
+    }
+
+    &-button {
+        @include position(absolute, container(spacer) null null null);
+        z-index: 1;
+
+        &--left {
+            left: 0;
+        }
+
+        &--right {
+            right: 0;
+        }
+    }
+
+    &-spacer {
+        @include grid(d12);
+        height: size(700);
+        margin: container(spacer) 0 0;
+    }
+
+    &-wrapper {
+        @include grid(d12);
+        border-top: 1px solid color('grey');
+        padding: container(spacer) 0 0;
+    }
+
+    > .page-section:first-child {
+        margin: 0;
+    }
+
+    .field-description:empty {
+        margin: 0;
     }
 }

@@ -1,15 +1,16 @@
 .wallet {
+    &-buttons {
+        @include grid(d12);
+        margin: container(spacer) 0;
+        z-index: 1;
+
+        .button {
+            width: calc(50% - #{container(spacer) / 2});
+        }
+    }
+
     &-button {
         margin: size(600) 0 0;
-
-        &--primary {
-            width: calc(60% - #{size(200)});
-        }
-
-        &--secondary {
-            float: right;
-            width: calc(40% - #{size(200)});
-        }
     }
 
     &-field {
@@ -17,78 +18,91 @@
         width: 100%;
     }
 
-    &-header {
-        b {
-            color: color('primary');
+    &-history {
+        &-date {
+            width: 25%;
+        }
+
+        &-address {
+            @include truncate();
+            padding: 0 size() 0 0;
+            width: 40%;
+        }
+
+        &-amount {
+            text-align: right;
+            width: 35%;
         }
     }
 
-    &-interact {
-        &-frames {
-            margin: size(500) 0 0
+    &-row {
+        border-bottom: 1px solid color('grey');
+        padding: container(spacer) 0;
+
+        &:last-child {
+            margin: 0 0 (- container(spacer));
         }
 
-        &-frame {
-            @include state(not-active) {
-                display: none;
-            }
+        &,
+        &-balance,
+        &-title {
+            @include grid(d12);
         }
 
-        &-history {
-            &-date {
-                width: 25%;
-            }
-
-            &-address {
-                @include truncate();
-                padding: 0 size() 0 0;
-                width: 40%;
-            }
-
-            &-amount {
-                text-align: right;
-                width: 35%;
-            }
-        }
-
-        &-links {
-            border-bottom: 1px solid color('grey');
-            margin: (- size(600)) 0 0;
-        }
-
-        &-row {
-            border-top: 1px solid color('grey' 300);
-            padding: size(500) 0;
-
-            &:first-child {
-                margin: (- size(500)) 0 0;
-            }
-
-            &--small {
-                padding: size(400) 0;
-
-                .field + & {
-                    margin: size(500) 0 0;
-                }
-
-                &:first-child {
-                    margin: 0
-                }
-            }
-
-            &,
-            &-section {
-                @include grid(d12);
-            }
-
-            &-balance {
-                text-align: right;
-                width: 32%;
-            }
-
-            &-title {
-                font-weight: font-weight(600);
-            }
+        &-balance {
+            color: color('text' 500);
+            font-weight: font-weight(500);
+            margin: size(100) 0 0;
         }
     }
+
+    &-balance {
+        background: color('black');
+        border-radius: border-radius();
+        color: color('white');
+        padding: container(spacer);
+
+        &,
+        &-section {
+            @include grid(d12);
+        }
+
+        &-amount {
+            text-align: right;
+        }
+
+        &-title {
+            font-weight: font-weight(600);
+        }
+    }
+
+    &-transaction {
+        @include grid(d12);
+        background: color('grey' 300);
+        border-radius: border-radius();
+        margin: 2px 0 0;
+        padding: size();
+
+        &-from {
+            @include grid(d12);
+
+            a {
+                font-weight: font-weight(500);
+            }
+        }
+
+        &-amount {
+            @include float(right);
+            margin: size(100) 0 0;
+        }
+
+        &-date {
+            @include float();
+            margin: size(100) 0 0;
+        }
+    }
+}
+
+#frame-wallet-balances.active + .frame-button {
+    display: none;
 }

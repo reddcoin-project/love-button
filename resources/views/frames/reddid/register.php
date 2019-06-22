@@ -1,5 +1,5 @@
 <section class="wallet frame" id="frame-reddid-register">
-    <div class="wallet-header page-header">
+    <div class="page-header">
         <h3 class="page-header-title">Create and register your ReddID name</h3>
     </div>
 
@@ -34,7 +34,7 @@
         <span class="field-description" id="id_msg"></span>
     </div>
 
-    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="redd_id_btn_order">Order</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--black" id="redd_id_btn_register">Register</button>
-    <button class="wallet-button wallet-button--secondary button button--center button--large button--white" id="redd_id_btn_reset">Reset</button>
+    <button class="wallet-button button button--center button--large button--primary" id="redd_id_btn_order">Order</button>
+    <button class="wallet-button button button--center button--large button--black" id="redd_id_btn_register">Register</button>
+    <button class="wallet-button button button--center button--large button--white" id="redd_id_btn_reset">Reset</button>
 </section>

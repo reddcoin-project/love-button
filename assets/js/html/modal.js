@@ -13,7 +13,7 @@ const modal_new = `
 
             <section class="frames">
                 <section class="wallet frame active">
-                    <div class="wallet-header page-header">
+                    <div class="page-header">
                         <h3 class="page-header-title">Send Reddcoin Tip To: <b id="reddid_tip_username_id">...</b></h3>
                     </div>
 
@@ -58,7 +58,7 @@ const modal_new = `
                         </label>
                     </div>
 
-                    <button class="wallet-button wallet-button--primary button button--center button--large button--primary" id="reddid_tip_button_sendtip_id">Send Tip</button>
+                    <button class="wallet-button button button--center button--large button--primary" id="reddid_tip_button_sendtip_id">Send Tip</button>
 
                     <p id="reddid_tip_error_id"></p>
                     <p id="tipconfirmation_id">

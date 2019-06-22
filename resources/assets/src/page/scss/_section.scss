@@ -5,6 +5,10 @@
         border-bottom: 1px solid color('grey' 500, 0.72);
         padding: 0 0 spacer(vertical);
     }
+    
+    &--min {
+        margin: spacer(vertical 200) 0 0;
+    }
 }
 
 &-section &-header {

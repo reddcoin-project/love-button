@@ -4,5 +4,8 @@
 
         "src",
         "app"
+    ],
+    "injected": [
+        "injected"
     ]
 }

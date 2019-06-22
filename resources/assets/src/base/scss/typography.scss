@@ -9,6 +9,10 @@ p {
     @include grid(d12);
     margin: spacer(text) 0 0;
 
+    &:empty {
+        margin: 0;
+    }
+
     &:first-child {
         margin: 0;
     }
