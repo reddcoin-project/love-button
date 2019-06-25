@@ -97,3 +97,11 @@
     <section class='frame frame--border' id="frame-wallet-receive-table"></section>
 
 </section>
+
+<button class="frame-button frame-button--left button button--black button--icon tooltip" data-click="frame" data-frame="reddid-register" data-hover="toggle">
+    <div class="icon">
+        <?= $svg('user') ?>
+    </div>
+
+    <span class="tooltip-content tooltip-content--message tooltip-content--e">Register ReddID Name</span>
+</button>

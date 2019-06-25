@@ -215,6 +215,13 @@
     <section class='frame frame--border' id="frame-wallet-receive-table"></section>
 
 </section>
+
+<button class="frame-button frame-button--left button button--black button--icon tooltip" data-click="frame" data-frame="reddid-register" data-hover="toggle">
+    <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm.001 2.289a2.4 2.4 0 1 1-.002 4.798A2.4 2.4 0 0 1 8 2.29zM13 11.211l-.001.008v.027a1 1 0 0 1-.317.691l-.02.017-.003.003c-.134.12-.861.754-1.661 1.072-.934.453-1.966.682-2.998.682s-2.064-.229-2.998-.682c-.8-.318-1.528-.952-1.662-1.072l-.003-.003-.019-.017A.988.988 0 0 1 3 11.246v-.027-.008-.008l.001-.027a.99.99 0 0 1 .318-.691s.006-.007.019-.017l.003-.002c.133-.121.862-.754 1.662-1.073A6.861 6.861 0 0 1 8 8.711c1.033 0 2.064.229 2.998.682.8.319 1.528.952 1.661 1.073a.008.008 0 0 0 .004.002.99.99 0 0 1 .336.708l.001.027v.008z"/></svg>    </div>
+
+    <span class="tooltip-content tooltip-content--message tooltip-content--e">Register ReddID Name</span>
+</button>
 <section class="wallet frame" id="frame-wallet-recovery">
     <div class="page-header">
         <h4 class="page-header-title">To recover your wallet please insert your 12 word recovery phrase.</h4>
@@ -291,13 +298,19 @@
     </button>
 </section>
 <section class="wallet frame" id="frame-reddid-register">
-    <div class="wallet-header page-header">
-        <h3 class="page-header-title">Create and register your ReddID name</h3>
-    </div>
+    <div class="frame-spacer"></div>
 
-    <p>
-        You can create and link a ReddID to an Reddcoin address. In doing so you are able to link yor various social media accounts and allow cross network transactions.
-    </p>
+    <button class="frame-button frame-button--left button button--black button--icon" data-click="frame" data-frame="wallet-interact">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+    </button>
+
+    <div class="page-header">
+        <h4 class="page-header-title">Create and register your ReddID name</h4>
+        <span class="page-header-subtitle">
+            You can create and link a ReddID to an Reddcoin address. In doing so you are able to link yor various social media accounts and allow cross network transactions.
+        </span>
+    </div>
 
     <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
         <span class="field-title">Funding Address</span>
@@ -322,13 +335,11 @@
             <input class="field-mask field-tag" id="redd_id_value" placeholder="0 RDD" type="text" readonly="readonly">
         </label>
 
-        <span class="field-description">Please enter a name to continue</span>
-        <span class="field-description" id="id_msg"></span>
+        <span class="field-description" id="id_msg">Please enter a name to continue</span>
     </div>
 
-    <button class="wallet-button button button--center button--large button--primary" id="redd_id_btn_order">Order</button>
+    <button class="wallet-button button button--center button--large button--primary right" id="redd_id_btn_order">Order</button>
     <button class="wallet-button button button--center button--large button--black" id="redd_id_btn_register">Register</button>
-    <button class="wallet-button button button--center button--large button--white" id="redd_id_btn_reset">Reset</button>
 </section>
 <section class="intro frame active" id="frame-intro">
 

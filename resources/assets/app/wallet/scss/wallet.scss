@@ -106,3 +106,7 @@
 #frame-wallet-balances.active + .frame-button {
     display: none;
 }
+
+#frame-wallet-interact:not(.active) + .frame-button {
+    display: none;
+}
