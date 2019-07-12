@@ -48,28 +48,40 @@ socket.onclose = function(e) {
 	switch (e.code) {
 		case 1000: // CLOSE_NORMAL
 			debug.info(`Websocket: Closed Normally`);
+			break;
 		case 1001: // GOING AWAY
 			debug.info(`Websocket: Going Away`);
+			break;
 		case 1002: // PROTOCOL ERORR
 			debug.info(`Websocket: Protocol Error`);
+			break;
 		case 1003: // UNSUPPORTED DATA
 			debug.info(`Websocket: Unsupported Data`);
+			break;
 		case 1007: // INVALID FRAME PAYLOAD DATA
 			debug.info(`Websocket: Invalid Frame Payload Data`);
+			break;
 		case 1008: // POLICY VIOLATION
 			debug.info(`Websocket: Policy Violation`);
+			break;
 		case 1009: // MESSAGE TOO BIG
 			debug.info(`Websocket: Message Too Big`);
+			break;
 		case 1010: // MISSING EXTENSION
 			debug.info(`Websocket: Missing Extension`);
+			break;
 		case 1011: // INTERNAL ERROR
 			debug.info(`Websocket: Internal Error`);
+			break;
 		case 1012: // SERVER RESTART
 			debug.info(`Websocket: Server Restart`);
+			break;
 		case 1013: // TRY AGAIN LATER
 			debug.info(`Websocket: Try Again Later`);
+			break;
 		case 1014: // BAD GATEWAY
 			debug.info(`Websocket: Bad Gateway`);
+			break;
 		case 1015: // TLS HANDSHAKE
 			debug.info(`Websocket: TLS Handshake`);
 			break;
