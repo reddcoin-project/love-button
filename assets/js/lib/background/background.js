@@ -5,11 +5,6 @@
 
 debug.log(`Initializing Extension ${browser.runtime.getManifest().version}`)
 
-// Server configuration
-var SERVER_HOST0 = 'ws://reddid01.reddcoin.com';
-var SERVER_PORT0 = 5000;
-var namespace = '/account';
-
 // Websocket Server configuration
 const SERVER_HOST1 = 'wss://api.reddcoin.com';
 let SERVER_PORT1 = 443;
@@ -127,113 +122,6 @@ socket1.onerror = function(error) {
 	debug.info(msg);
 };
 
-
-// WS Server connection states
-debug.info(`Connecting to server ${SERVER_HOST0}:${SERVER_PORT0}.`)
-var socket = new io.connect(SERVER_HOST0 + ':' + SERVER_PORT0 + namespace , {transports:['websocket'], timeout: 60000});
-/*
-
-socket.on('connect', function() {
-	var msg = `Connected to server: ${SERVER_HOST0}:${SERVER_PORT0}. ${socket.connected}`
-	debug.info(msg);
-	Reddcoin.backgnd.connectionState(msg);
-	var manifestData = browser.runtime.getManifest();
-	socket.emit('client_version', {data: manifestData.version})
-});
-socket.on('disconnect', function(reason) {
-	var msg = `Disconnected from server: ${SERVER_HOST0}:${SERVER_PORT0}. ${reason}. Retrying`
-	debug.warn(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('reconnect', function(count) {
-	var msg = `Reconnecting to server: ${SERVER_HOST0}:${SERVER_PORT0} Retried ${count}.`
-	debug.warn(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('reconnect_attempt', function(count) {
-	var msg = `Attempting to reconnect to server: ${SERVER_HOST0}:${SERVER_PORT0} Retried ${count}.`
-	debug.warn(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('reconnecting', function(count) {
-	var msg = `Reconnecting to server: ${SERVER_HOST0}:${SERVER_PORT0} Retried ${count}.`
-	debug.warn(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('connect_error', function(error) {
-	var msg = `Connection error to server: ${SERVER_HOST0}:${SERVER_PORT0} ${error}.`
-	debug.error(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('connect_timeout', function(timeout) {
-	var msg = `Connection timeout to server: ${SERVER_HOST0}:${SERVER_PORT0} ${timeout}.`
-	debug.error(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('error', function(error) {
-	var msg = `Error occured: ${SERVER_HOST0}:${SERVER_PORT0} ${error}.`
-	debug.error(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('pong', function(time) {
-	var msg = `Ping time: ${time} ms. ${SERVER_HOST0}:${SERVER_PORT0}`
-	debug.info(msg);
-	Reddcoin.backgnd.pingState(time);
-});
- */
-// WS Server response
-socket.on('response', function(msg) {
-	debug.info("Response from API: " + JSON.stringify(msg));
-	// Send to popup for processing
-	var response = msg;
-	switch (msg.type) {
-		case "cost":
-			//process_cost(msg.payload);
-			//Reddcoin.popup.setCost(msg.payload)
-			Reddcoin.backgnd.setCost(msg.payload);
-			break;
-		case "preorder":
-			Reddcoin.reddId.process_preorder(msg.payload);
-			//process_preorder(msg.payload);
-			break;
-		case "register":
-			Reddcoin.reddId.process_register(msg.payload);
-			//process_register(msg.payload);
-			break;
-		case "getinfo":
-			//process_height(msg.payload);
-			//Reddcoin.backgnd.setInfo(msg.payload, msg.connections);
-			break;
-		case "update":
-			Reddcoin.reddId.process_update(msg.payload);
-			break;
-		case "network":
-			process_network(msg.payload);
-			break;
-		case "tipurl":
-			process_tipurl(msg.payload);
-			break;
-/*		case "lookup":
-			Reddcoin.reddId.process_lookup(msg.payload);
-			break;
-		case "getNamesOwnedByAddress":
-			Reddcoin.reddId.process_getNamesOwnedByAddress(msg.payload);
-			break;*/
-		case "getProfile":
-			Reddcoin.reddId.process_getProfile(msg.payload);
-			break;
-/*		case "getreddidcontacts":
-			Reddcoin.reddId.process_getreddidcontacts(msg.payload);
-		    break;
-		case "getreddidcontactaddress":
-			Reddcoin.reddId.process_getreddidcontactaddress(msg.payload);
-			break;*/
-		case "version":
-			Reddcoin.backgnd.checkVerion(msg.payload);
-			break;
-		};
-	//priv.message = msg;
-});
 
 Reddcoin.backgnd = (function () {
 	var priv = {
@@ -732,11 +620,11 @@ Reddcoin.backgnd = (function () {
  	};
  	pub.getReddidContactAddress = function(data){
  		console.log("Get reddid contact address: " + data)
+		//todo socketio
  		socket.emit('getreddidcontactaddress', data);
  	};
  	pub.networks = function(data) {
-		console.log("Get network user")
-		//socket.emit('network', data);
+		console.log("Get network user");
 		let payload = {
 			"type": "network",
 			"payload": data
@@ -744,8 +632,7 @@ Reddcoin.backgnd = (function () {
 		socket1.send(JSON.stringify(payload));
 	};
 	pub.tipurlhistory = function(data) {
-		console.log("Broadcast Tip URL")
-		//socket.emit('tipurl', data);
+		console.log("Broadcast Tip URL");
 		let payload = {
 			"type": "tipurl",
 			"payload": data
