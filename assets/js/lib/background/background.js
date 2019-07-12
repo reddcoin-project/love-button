@@ -5,22 +5,17 @@
 
 debug.log(`Initializing Extension ${browser.runtime.getManifest().version}`)
 
-// Server configuration
-var SERVER_HOST0 = 'ws://reddid01.reddcoin.com';
-var SERVER_PORT0 = 5000;
-var namespace = '/account';
-
 // Websocket Server configuration
-const SERVER_HOST1 = 'wss://api.reddcoin.com';
-let SERVER_PORT1 = 443;
-let namespace1 = '/websocket/';
+const SERVER_HOST = 'wss://api.reddcoin.com';
+let SERVER_PORT = 443;
+let namespace = '/websocket/';
 let startPing;
 
-debug.info(`Connecting to server ${SERVER_HOST1}:${SERVER_PORT1}.`);
-let socket1 = new ReconnectingWebSocket(SERVER_HOST1 + ':' + SERVER_PORT1 + namespace1 );
+debug.info(`Connecting to server ${SERVER_HOST}:${SERVER_PORT}.`);
+let socket = new ReconnectingWebSocket(SERVER_HOST + ':' + SERVER_PORT + namespace );
 
-socket1.onopen = function() {
-	let msg = `Connected to server: ${SERVER_HOST1}:${SERVER_PORT1}. ${(socket1.readyState = 1) ? true : false }`;
+socket.onopen = function() {
+	let msg = `Connected to server: ${SERVER_HOST}:${SERVER_PORT}. ${(socket.readyState = 1) ? true : false }`;
 
 	startPing = Date.now();
 	debug.info(msg);
@@ -32,8 +27,8 @@ socket1.onopen = function() {
 			'version': manifestData.version
 		}
 	};
-	socket1.send(JSON.stringify({'type': 'ping', 'payload': startPing}));
-	socket1.send(JSON.stringify(payload))
+	socket.send(JSON.stringify({'type': 'ping', 'payload': startPing}));
+	socket.send(JSON.stringify(payload))
 };
 
 
@@ -41,40 +36,52 @@ const interval = setInterval(() => {
 	debug.log(`send ping`);
 	startPing = Date.now();
 
-	if (socket1.readyState === ReconnectingWebSocket.OPEN) {
-		socket1.send(JSON.stringify({'type': 'ping', 'payload': startPing}));
+	if (socket.readyState === ReconnectingWebSocket.OPEN) {
+		socket.send(JSON.stringify({'type': 'ping', 'payload': startPing}));
 	}
 }, 60000);
 
-socket1.onclose = function(e) {
+socket.onclose = function(e) {
 	let msg = `Connection Closed code:${e.code}, reason:${e.reason}`;
 	debug.log(msg);
 	Reddcoin.backgnd.connectionState(msg);
 	switch (e.code) {
 		case 1000: // CLOSE_NORMAL
 			debug.info(`Websocket: Closed Normally`);
+			break;
 		case 1001: // GOING AWAY
 			debug.info(`Websocket: Going Away`);
+			break;
 		case 1002: // PROTOCOL ERORR
 			debug.info(`Websocket: Protocol Error`);
+			break;
 		case 1003: // UNSUPPORTED DATA
 			debug.info(`Websocket: Unsupported Data`);
+			break;
 		case 1007: // INVALID FRAME PAYLOAD DATA
 			debug.info(`Websocket: Invalid Frame Payload Data`);
+			break;
 		case 1008: // POLICY VIOLATION
 			debug.info(`Websocket: Policy Violation`);
+			break;
 		case 1009: // MESSAGE TOO BIG
 			debug.info(`Websocket: Message Too Big`);
+			break;
 		case 1010: // MISSING EXTENSION
 			debug.info(`Websocket: Missing Extension`);
+			break;
 		case 1011: // INTERNAL ERROR
 			debug.info(`Websocket: Internal Error`);
+			break;
 		case 1012: // SERVER RESTART
 			debug.info(`Websocket: Server Restart`);
+			break;
 		case 1013: // TRY AGAIN LATER
 			debug.info(`Websocket: Try Again Later`);
+			break;
 		case 1014: // BAD GATEWAY
 			debug.info(`Websocket: Bad Gateway`);
+			break;
 		case 1015: // TLS HANDSHAKE
 			debug.info(`Websocket: TLS Handshake`);
 			break;
@@ -82,7 +89,7 @@ socket1.onclose = function(e) {
 	}
 };
 
-socket1.onmessage = function(msg) {
+socket.onmessage = function(msg) {
 	try {
 		msg = JSON.parse(msg.data)
 	} catch (e) {
@@ -93,7 +100,7 @@ socket1.onmessage = function(msg) {
 		case 'pong':
 			let endPong = Date.now();
 			let time = endPong - msg.payload;
-			var msg_ = `Ping time: ${time} ms. ${SERVER_HOST1}:${SERVER_PORT1}`
+			var msg_ = `Ping time: ${time} ms. ${SERVER_HOST}:${SERVER_PORT}`
 			debug.info(msg_);
 			Reddcoin.backgnd.pingState(time);
 			break;
@@ -121,119 +128,12 @@ socket1.onmessage = function(msg) {
 	}
 };
 
-socket1.onerror = function(error) {
-	let msg = `Socket encountered error with: ${SERVER_HOST1}:${SERVER_PORT1} ${error.message}.`;
+socket.onerror = function(error) {
+	let msg = `Socket encountered error with: ${SERVER_HOST}:${SERVER_PORT} ${error.message}.`;
 	Reddcoin.backgnd.connectionState(msg);
 	debug.info(msg);
 };
 
-
-// WS Server connection states
-debug.info(`Connecting to server ${SERVER_HOST0}:${SERVER_PORT0}.`)
-var socket = new io.connect(SERVER_HOST0 + ':' + SERVER_PORT0 + namespace , {transports:['websocket'], timeout: 60000});
-/*
-
-socket.on('connect', function() {
-	var msg = `Connected to server: ${SERVER_HOST0}:${SERVER_PORT0}. ${socket.connected}`
-	debug.info(msg);
-	Reddcoin.backgnd.connectionState(msg);
-	var manifestData = browser.runtime.getManifest();
-	socket.emit('client_version', {data: manifestData.version})
-});
-socket.on('disconnect', function(reason) {
-	var msg = `Disconnected from server: ${SERVER_HOST0}:${SERVER_PORT0}. ${reason}. Retrying`
-	debug.warn(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('reconnect', function(count) {
-	var msg = `Reconnecting to server: ${SERVER_HOST0}:${SERVER_PORT0} Retried ${count}.`
-	debug.warn(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('reconnect_attempt', function(count) {
-	var msg = `Attempting to reconnect to server: ${SERVER_HOST0}:${SERVER_PORT0} Retried ${count}.`
-	debug.warn(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('reconnecting', function(count) {
-	var msg = `Reconnecting to server: ${SERVER_HOST0}:${SERVER_PORT0} Retried ${count}.`
-	debug.warn(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('connect_error', function(error) {
-	var msg = `Connection error to server: ${SERVER_HOST0}:${SERVER_PORT0} ${error}.`
-	debug.error(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('connect_timeout', function(timeout) {
-	var msg = `Connection timeout to server: ${SERVER_HOST0}:${SERVER_PORT0} ${timeout}.`
-	debug.error(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('error', function(error) {
-	var msg = `Error occured: ${SERVER_HOST0}:${SERVER_PORT0} ${error}.`
-	debug.error(msg);
-	Reddcoin.backgnd.connectionState(msg);
-});
-socket.on('pong', function(time) {
-	var msg = `Ping time: ${time} ms. ${SERVER_HOST0}:${SERVER_PORT0}`
-	debug.info(msg);
-	Reddcoin.backgnd.pingState(time);
-});
- */
-// WS Server response
-socket.on('response', function(msg) {
-	debug.info("Response from API: " + JSON.stringify(msg));
-	// Send to popup for processing
-	var response = msg;
-	switch (msg.type) {
-		case "cost":
-			//process_cost(msg.payload);
-			//Reddcoin.popup.setCost(msg.payload)
-			Reddcoin.backgnd.setCost(msg.payload);
-			break;
-		case "preorder":
-			Reddcoin.reddId.process_preorder(msg.payload);
-			//process_preorder(msg.payload);
-			break;
-		case "register":
-			Reddcoin.reddId.process_register(msg.payload);
-			//process_register(msg.payload);
-			break;
-		case "getinfo":
-			//process_height(msg.payload);
-			//Reddcoin.backgnd.setInfo(msg.payload, msg.connections);
-			break;
-		case "update":
-			Reddcoin.reddId.process_update(msg.payload);
-			break;
-		case "network":
-			process_network(msg.payload);
-			break;
-		case "tipurl":
-			process_tipurl(msg.payload);
-			break;
-/*		case "lookup":
-			Reddcoin.reddId.process_lookup(msg.payload);
-			break;
-		case "getNamesOwnedByAddress":
-			Reddcoin.reddId.process_getNamesOwnedByAddress(msg.payload);
-			break;*/
-		case "getProfile":
-			Reddcoin.reddId.process_getProfile(msg.payload);
-			break;
-/*		case "getreddidcontacts":
-			Reddcoin.reddId.process_getreddidcontacts(msg.payload);
-		    break;
-		case "getreddidcontactaddress":
-			Reddcoin.reddId.process_getreddidcontactaddress(msg.payload);
-			break;*/
-		case "version":
-			Reddcoin.backgnd.checkVerion(msg.payload);
-			break;
-		};
-	//priv.message = msg;
-});
 
 Reddcoin.backgnd = (function () {
 	var priv = {
@@ -732,25 +632,24 @@ Reddcoin.backgnd = (function () {
  	};
  	pub.getReddidContactAddress = function(data){
  		console.log("Get reddid contact address: " + data)
+		//todo socketio
  		socket.emit('getreddidcontactaddress', data);
  	};
  	pub.networks = function(data) {
-		console.log("Get network user")
-		//socket.emit('network', data);
+		console.log("Get network user");
 		let payload = {
 			"type": "network",
 			"payload": data
 		};
-		socket1.send(JSON.stringify(payload));
+		socket.send(JSON.stringify(payload));
 	};
 	pub.tipurlhistory = function(data) {
-		console.log("Broadcast Tip URL")
-		//socket.emit('tipurl', data);
+		console.log("Broadcast Tip URL");
 		let payload = {
 			"type": "tipurl",
 			"payload": data
 		};
-		socket1.send(JSON.stringify(payload))
+		socket.send(JSON.stringify(payload))
 	};
 	pub.sendtip = function(data) {
 		console.log("Send tip to user");
