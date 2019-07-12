@@ -374,6 +374,15 @@
             var html = exports.viewWalletReceive.getView(data, account),
                 node = document.getElementById('frame-wallet-receive-table');
 
+            // HACKY MVP To Showcase/Test Nicknaming
+            let contacts = {};
+
+            $.each(data.addresses, function(i, address) {
+                contacts[address.address] = `me-${i + 1}`;
+            });
+
+            Reddcoin.popup.updateSend({contacts});
+
             if (node) {
                 node.innerHTML = html;
             }
@@ -681,9 +690,9 @@ function setPopupGuiListeners() {
                 Reddcoin.popup.updateRegistered({user: onchangeValue});
                 break;
             case 'walletSend_contactname':
-                var options = e.target.list.options
-
+                var options = e.target.list.options;
                 var address = '';
+
                 for (key in options){
                     if (options[key].value === onchangeValue){
                         address = options[key].getAttribute('data-value')
@@ -718,6 +727,7 @@ function setPopupGuiListeners() {
                     break;
                 case 'walletSend_contactname':
                     var data = {search: e.target.value};
+
                     Reddcoin.popup.updateSend(data);
                     break;
                 default:
@@ -748,6 +758,9 @@ function setPopupGuiListeners() {
         switch (clickName) {
             case 'menuWelcome':
                 displayWelcome();
+                break;
+            case 'logout':
+                logout();
                 break;
             case 'registerBtn':
             case 'registerContinueFromCreationBtn':
@@ -856,6 +869,8 @@ function displayWelcome() {
         if (!response.walletObj.dataAvailable) {
             $('#frame-wallet-interact').hide();
             $('#settings-toggle').hide();
+
+            $('#frame-wallet-interact').removeClass('active');
         }
         else {
             $('#frame-intro').hide();
@@ -867,6 +882,23 @@ function displayWelcome() {
             });
         }
     });
+}
+
+// If this causes problems look for all keys and user, userids, reddcoinWallet
+// keys only
+function logout() {
+    localStorage.removeItem('reddcoinSettings');
+    localStorage.removeItem('reddcoinWallet');
+    localStorage.removeItem('user');
+    localStorage.removeItem('userids');
+
+    // Reload extension
+    if (chrome) {
+        chrome.tabs.reload();
+    }
+    else {
+        browser.tabs.reload();
+    }
 }
 
 /* Display the Register page */
@@ -918,6 +950,8 @@ function displayWallet() {
     if (localStorage.reddcoinWallet || localStorage.user) {
         Reddcoin.popup.updateBalance();
         Reddcoin.popup.updateHistory();
+
+        // TODO: SEARCH
         Reddcoin.popup.updateSend();
         Reddcoin.popup.updateAccount();
         Reddcoin.popup.updateReceive();

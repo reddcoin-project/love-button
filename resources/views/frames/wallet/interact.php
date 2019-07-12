@@ -7,7 +7,7 @@
         <section id='wallet-history'></section>
     </section>
 
-    <button class="frame-button frame-button--left button button--black button--icon" data-click="frame" data-frame="wallet-balances">
+    <button class="frame-button frame-button--left button button--black button--icon" data-click="frame" data-frame="wallet-balances" style='z-index: 2;'>
         <div class="icon icon--rotate180">
             <?= $svg('arrow/small') ?>
         </div>
@@ -27,6 +27,8 @@
             <label class="field-text field-text--input">
                 <input class="field-mask field-tag" id="walletSend_contactname" type="text" list="contacts">
             </label>
+
+            <datalist id="contacts"></datalist>
 
             <span class="field-description">
                 Use this dropdown to select a ReddID user or saved contact. You can scroll through the list, or type a part of their name
@@ -82,7 +84,7 @@
             <span class="field-title">Send from the following account</span>
 
             <label class="field-text field-text--select">
-                <select class='field-mask' id="sendFromAccount"></select>
+                <select class='field-mask' id="sendFromAccount" style='pointer-events: auto;'></select>
             </label>
         </div>
 
@@ -98,7 +100,7 @@
 
 </section>
 
-<button class="frame-button frame-button--left button button--black button--icon tooltip" data-click="frame" data-frame="reddid-register" data-hover="toggle">
+<button class="frame-button frame-button--left button button--black button--icon tooltip" data-click="frame" data-frame="reddid-register" data-hover="toggle" id="menuRegister">
     <div class="icon">
         <?= $svg('user') ?>
     </div>

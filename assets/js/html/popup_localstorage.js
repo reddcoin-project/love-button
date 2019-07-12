@@ -3,7 +3,7 @@ function setWalletdata (data) {
         console.log("Wallet already exist");
         return
     }
-    
+
     localStorage.setItem("wallet", JSON.stringify(data));
 }
 

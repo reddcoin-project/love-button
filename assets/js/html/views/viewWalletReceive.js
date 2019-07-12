@@ -75,7 +75,8 @@
         var html = priv.getWalletReceiveHeader(data, account);
 
         $.each(data.addresses, function(i, address) {
-            if (data.addresses[i].accountIndex == account) {
+            // ICJR: Hiding Wallet Addresses To Reduce Complexity
+            if (data.addresses[i].accountIndex == account && i < 2) {
                 html += priv.getWalletReceiveAddressRow(address, account);
             }
         })

@@ -19,10 +19,14 @@
                 <div class="field-mask"></div>
 
                 <select class="field-tag js-background-select" data-ref="trigger:change">
+                    <option value="theme0">Remove Theme</option>
                     <option value="theme1">Theme 1</option>
                     <option value="theme2">Theme 2</option>
                 </select>
             </label>
         </div>
+
+        <b class="wallet-button button button--center button--large button--grey" data-click="frame" data-frame="status" id="menuStatus">Network Status</b>
+        <b class="wallet-button button button--center button--large button--black right" id="logout">Logout</b>
     </div>
 </section>

@@ -14,7 +14,7 @@
         </div>
     </section>
 
-    <section class="page-section page-section--min">
+    <section class="page-section page-section--min" id="confirm_seed_fields" style='display: none;'>
         <div class="page-header">
             <h4 class="page-header-title">
                 Confirm your backup phrase
@@ -36,7 +36,5 @@
 
     <a class="wallet-button button button--black button--large" id="wallet_recovery_phrase_file">Save To File</a>
 
-    <button class="wallet-button button button--center button--large button--primary right" id="walletConfirmWallet">
-        Continue
-    </button>
+    <button class="wallet-button button button--center button--large button--primary right" id="walletConfirmWallet" style='display: none;'>Continue</button>
 </section>

@@ -66,6 +66,8 @@ $.fn.enterKey = function (fnc) {
   pub.startNew = function () {
     debug.log('StartNew');
     Reddcoin.messenger.getNewSeed(function (seed) {
+        $('#confirm_seed_fields').hide();
+        $('#walletConfirmWallet').hide();
 
      $("#wallet_confirm_phrase").val('');
       $("#wallet_recovery_phrase").val(seed);
@@ -73,10 +75,18 @@ $.fn.enterKey = function (fnc) {
       let file = new Blob([seed], {type: 'text/plain'}),
           link = $("#wallet_recovery_phrase_file");
 
+    let today = new Date(),
+        timestamp = `${today.getMonth()}_${today.getDate()}_${today.getFullYear()}_${today.getHours()}:${today.getMinutes()}`;
+
       link.attr('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(seed));
-      link.attr('download', 'seed.txt');
+      link.attr('download', `reddid_seed_${timestamp}.txt`);
 
       priv.swapPages('#walletCreating', '#walletCreate');
+
+      link.click(function() {
+          $('#confirm_seed_fields').show();
+          $('#walletConfirmWallet').show();
+      });
     });
   };
 

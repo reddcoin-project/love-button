@@ -107,6 +107,8 @@
     display: none;
 }
 
-#frame-wallet-interact:not(.active) + .frame-button {
+#frame-wallet-interact:not(.active) + .frame-button,
+#frame-wallet-send.active ~ .frame-button,
+#frame-wallet-receive-table.active ~ .frame-button {
     display: none;
 }

@@ -454,7 +454,7 @@
         tableContent = tableContent + `<tr><td id='reddidRegistration_col1'>${section}</td><td id='reddidRegistration_col2'>${subsection}</td><td id='reddidRegistration_col3'>${data[section][subsection]}</tr>`;
       }
     }
-    document.getElementById("StatusOverlay-table").innerHTML = table + tableHeader + tableContent + tableFooter;
+    //document.getElementById("StatusOverlay-table").innerHTML = table + tableHeader + tableContent + tableFooter;
   };
 
     // Public
