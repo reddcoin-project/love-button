@@ -55,7 +55,7 @@
         var length = length || 15,
             name = addressNames[address] || address,
             shortened = name.substr(0,length),
-            link = 'http://live.reddcoin.com/address/' + address;
+            link = 'https://live.reddcoin.com/address/' + address;
 
         if(name.length > shortened.length){
             shortened += '...'

@@ -16,7 +16,7 @@
 
         length = length || 15,
         name = addressNames[address] || address,
-        link = `http://live.reddcoin.com/tx/${txid}`;
+        link = `https://live.reddcoin.com/tx/${txid}`;
 
         return `
             <a class='link link--inline link--primary tooltip' data-hover='toggle' target="_blank" href="${link}">
