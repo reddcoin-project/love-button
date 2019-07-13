@@ -286,9 +286,9 @@ Reddcoin.backgnd = (function () {
 			})
 	};
 	priv.updateInterface = function(funct, data){
-		var popupWindow = browser.extension.getViews({type:'popup'})[0];
+		var popupWindow = browser.extension.getViews()[1];
 
-		if(popupWindow){
+		if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.popup){
 			popupWindow.Reddcoin.popup[funct](data);
 		}
 	};
@@ -333,9 +333,10 @@ Reddcoin.backgnd = (function () {
 
 	};
 	pub.setCost = function(data) {
-		var popupWindow = browser.extension.getViews({type:'popup'})[0];
 		priv.cost = data.cost;
-		if(popupWindow){
+		var popupWindow = browser.extension.getViews()[1];
+
+		if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.popup){
 			popupWindow.Reddcoin.popup.updateRegister(data);
 		}
 	};
@@ -705,7 +706,7 @@ Reddcoin.backgnd = (function () {
 	 */
 	pub.connectionState = function (state) {
     	priv.connectionState = state;
-    	var popupWindow = browser.extension.getViews({type:'popup'})[0];
+		var popupWindow = browser.extension.getViews()[1];
 
         if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.viewWalletStatus){
             popupWindow.Reddcoin.viewWalletStatus.getView({
@@ -737,9 +738,9 @@ Reddcoin.backgnd = (function () {
 		sum += priv.ping_pong_times[i];
 		var ping_avg_10 = Math.round(10 * sum / samples) / 10
 
-    	var popupWindow = browser.extension.getViews({type:'popup'})[0];
+			var popupWindow = browser.extension.getViews()[1];
 
-        if(popupWindow){
+			if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.viewWalletStatus){
             popupWindow.Reddcoin.viewWalletStatus.getView({
                 ping : {
                 	ping: time,
@@ -751,9 +752,9 @@ Reddcoin.backgnd = (function () {
     };
     pub.checkVersion = function(data) {
     	priv.clientRelease = data.release;
-    	var popupWindow = browser.extension.getViews({type:'popup'})[0];
+			var popupWindow = browser.extension.getViews()[1];
 
-        if(popupWindow){
+			if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.viewWalletStatus){
             popupWindow.Reddcoin.viewWalletStatus.getView({
                 version : priv.clientRelease
             });
@@ -791,9 +792,9 @@ Reddcoin.backgnd = (function () {
 				});
 		} else if (data.source === 'pu') {
 			// Send back to popup page
-			const popupWindow = browser.extension.getViews({type:'popup'})[0];
+			var popupWindow = browser.extension.getViews()[1];
 
-			if(popupWindow){
+			if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.viewSocialNetworks){
 				popupWindow.Reddcoin.viewSocialNetworks.processNetwork(data);
 			}
 		} else {

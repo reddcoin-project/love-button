@@ -241,9 +241,9 @@
 
 		// If tx data missing raise an error on the UI
 		if (data.response.result === "") {
-			var popupWindow = browser.extension.getViews({type:'popup'})[0];
+			var popupWindow = browser.extension.getViews()[1];
 
-	        if(popupWindow){
+			if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.popup){
 	            popupWindow.Reddcoin.popup.updateRegister(data);
 	        }
 		}
@@ -265,9 +265,9 @@
 	};
 
     priv.updateInterface = function(){
-        var popupWindow = browser.extension.getViews({type:'popup'})[0];
+			var popupWindow = browser.extension.getViews()[1];
 
-        if(popupWindow){
+			if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.popup){
             popupWindow.Reddcoin.popup.updateRegister({
                 user : priv.user
             });
