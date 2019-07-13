@@ -50,8 +50,7 @@ exports.wallet = (function () {
     };
 
     priv.updateInterface = function(){
-        var popupWindow = browser.extension.getViews({type:'popup'})[0];
-
+        var popupWindow = browser.extension.getViews()[1];
         if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.popup){
             popupWindow.Reddcoin.popup.updateInterface({
                 interfaceData: pub.getInterfaceData(),
