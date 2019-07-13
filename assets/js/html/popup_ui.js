@@ -407,6 +407,7 @@
     priv.renderWalletData = function (data, transactions) {
         console.log("Update from background - render wallet data.");
 
+        var balance = data.totalBalance;
         var tipJarBalance = data.addresses[0].confirmed;
 
         if(balance == 0){
