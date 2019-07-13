@@ -18,14 +18,14 @@
             unconfirmed = data.unconfirmedBalance * COIN;
 
         return `
-            <div class="wallet-row">
-                <div class="wallet-row-section">
-                    <span class='wallet-row-title '>All Accounts</span>
-                    <span class="wallet-row-balance right">${confirmed.toFixed(8)}</span>
+            <div class="wallet-balance">
+                <div class="wallet-balance-section">
+                    <span class='wallet-balance-title'>All Accounts Balance</span>
+                    <span class="wallet-balance-amount right">${confirmed.toFixed(8)}</span>
                 </div>
-                <div class="wallet-row-section">
-                    <span class='wallet-row-title'>Unconfirmed</span>
-                    <span class="wallet-row-balance right">${unconfirmed.toFixed(8)}</span>
+                <div class="wallet-balance-section">
+                    <span class='wallet-balance-title'>Unconfirmed</span>
+                    <span class="wallet-balance-amount right">${unconfirmed.toFixed(8)}</span>
                 </div>
             </div>
         `;
@@ -68,7 +68,7 @@
     };
 
     pub.getView = function(data){
-        var html = ''; //priv.getWalletAccountTotals(data);
+        var html = priv.getWalletAccountTotals(data);
 
         $.each(data.accounts, function(i, account){
             html += priv.getWalletAccountRow(account, '');
