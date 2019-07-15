@@ -56,6 +56,9 @@
 		userids : []
 		},
 		pub = {};
+
+	var defaults = priv;
+
 // private
 	priv.getOwningAddress = function() {
 		if (localStorage.reddcoinWallet) {
@@ -386,6 +389,14 @@
 	};
 
 // public
+	pub.logout = function() {
+	    localStorage.removeItem("reddcoinWallet");
+	    localStorage.removeItem(priv.userStorageKey);
+	    localStorage.removeItem(priv.useridsStorageKey);
+
+		priv = defaults;
+	};
+
 	pub.createUser = function(update) {
 		update = update || false;
 

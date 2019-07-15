@@ -68,7 +68,7 @@
     };
 
     pub.getView = function(data){
-        var html = priv.getWalletAccountTotals(data);
+        var html = '';//priv.getWalletAccountTotals(data);
 
         $.each(data.accounts, function(i, account){
             html += priv.getWalletAccountRow(account, '');

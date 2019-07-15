@@ -29,6 +29,7 @@
                             'wallet/password/create',
                             'wallet/password/success',
                             'wallet/create',
+                            'wallet/intro',
                             'wallet/interact',
                             'wallet/recovery',
                             'wallet/settings',

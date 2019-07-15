@@ -700,6 +700,11 @@ Reddcoin.backgnd = (function () {
     pub.createUser = function(update){
     	return Reddcoin.reddId.createUser(update.update);
     };
+
+	pub.logout = function() {
+		return Reddcoin.reddId.logout(); 
+	};
+
 	/**
 	 * Function to publish the connection state to the popup if open
 	 * @param state
@@ -858,6 +863,7 @@ Reddcoin.backgnd = (function () {
 		} else {
 			data = JSON.parse(data);
 		}
+
 		return data;
 	};
 	priv.getDefaultReddidStatus = function () {

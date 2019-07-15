@@ -24,11 +24,32 @@
                 <section class="frames">
 
                     <section class="wallet frame" id="frame-wallet-password-create">
+
+    <div class="frame-spacer"></div>
+
+    <button class="intro-back frame-button frame-button--left button button--transparent button--icon" data-click="frame" data-frame="wallet-create">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+    </button>
+
+    <span class="wallet-steps">
+        Step 2 of 3
+    </span>
+
+    <div class="page-header page-header--center">
+        <h4 class="page-header-title">Password</h4>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            Lorem ipsum
+        </span>
+    </div>
+
     <section class="page-section page-section--min">
-        <div class="page-header">
-            <h4 class="page-header-title">Please create a password for your wallet</h4>
-            <span class="page-header-subtitle page-header-subtitle--small">
-                It must be at least 8 characters long.
+        <div class="wallet-list list list--bulletpoint">
+            <span class="list-item">
+                Write your phrase and password down. Keep them safe.
+            </span>
+            <span class="list-item">
+                Never share phrase with others
             </span>
         </div>
 
@@ -37,32 +58,21 @@
                 <input class="field-mask field-tag" id="wallet_password" type="password">
             </label>
 
-            <span class="field-description" id="pwd_error"></span>
-        </div>
-    </section>
-
-    <section class="page-section page-section--min">
-        <div class="page-header">
-            <h4 class="page-header-title">Please enter your password again to make sure it is correct</h4>
-            <span class="page-header-subtitle page-header-subtitle--small">
-                Enter the same password
-            </span>
+            <span class="field-description" id="pwd_error">Password must be longer than 8 characters</span>
         </div>
 
         <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
             <label class="field-text field-text--input">
                 <input class="field-mask field-tag" id="wallet_password_confirm" type="password">
             </label>
+
+            <span class="field-description" id="pwd_error">Confirm your password</span>
         </div>
     </section>
 
-    <button class="wallet-button button button--center button--large button--primary right" id="walletConfirmPassword">Continue</button>
-    <button class="wallet-button button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
-        <div class="icon icon--rotate180">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
-        <span class="inline-spacer inline-spacer--small"></span>
-        Start Over
-    </button>
+    <div class="intro-buttons">
+        <button class="intro-button button button--center button--large button--primary" id="walletConfirmPassword">Continue</button>
+    </div>
 </section>
 <section class="wallet frame" id="frame-wallet-password-success">
     <div class="page-header">
@@ -76,11 +86,32 @@
     <button class="wallet-button button button--center button--large button--primary right" id="extension_reload">Continue</button>
 </section>
 <section class="wallet frame" id="frame-wallet-create">
+
+    <div class="frame-spacer"></div>
+
+    <button class="intro-back frame-button frame-button--left button button--transparent button--icon" data-click="frame" data-frame="intro">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+    </button>
+
+    <span class="wallet-steps">
+        Step 1 of 3
+    </span>
+
+    <div class="page-header page-header--center">
+        <h4 class="page-header-title">Recovery Phrase</h4>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            Write down and save your recovery phrase
+        </span>
+    </div>
+
     <section class="page-section page-section--min">
-        <div class="page-header">
-            <h4 class="page-header-title">Write down your backup phrase on a piece of paper</h4>
-            <span class="page-header-subtitle page-header-subtitle--small">
-                The following 12 words are the only way to restore your account if lost. Keep them safe and secure.
+        <div class="wallet-list list list--bulletpoint">
+            <span class="list-item">
+                Write your phrase and password down. Keep them safe.
+            </span>
+            <span class="list-item">
+                Never share phrase with others
             </span>
         </div>
 
@@ -89,31 +120,58 @@
                 <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_recovery_phrase" readonly></textarea>
             </label>
         </div>
-    </section>
 
-    <section class="page-section page-section--min" id="confirm_seed_fields" style='display: none;'>
-        <div class="page-header">
-            <h4 class="page-header-title">
-                Confirm your backup phrase
-            </h4>
-            <span class="page-header-subtitle page-header-subtitle--small">
-                Please enter the 12 word seed phrase.
-            </span>
-        </div>
-
-        <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+        <div class="wallet-field field field--full field--grey" data-focusinout='toggle' id="confirm_seed_fields" style='display: none;'>
             <label class="field-text field-text--textarea">
                 <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_confirm_phrase"></textarea>
             </label>
 
-            <span class="field-description" id="pwd_error"></span>
+            <span class="field-description" id="pwd_error">Confirm your backup phrase</span>
             <span class="field-description" id="recoverySeedError"></span>
         </div>
     </section>
 
-    <a class="wallet-button button button--black button--large" id="wallet_recovery_phrase_file">Save To File</a>
+    <div class="intro-buttons">
+        <a class="intro-button button button--black button--center button--large" id="wallet_recovery_phrase_file">Save To File</a>
 
-    <button class="wallet-button button button--center button--large button--primary right" id="walletConfirmWallet" style='display: none;'>Continue</button>
+        <button class="intro-button button button--center button--large button--primary" id="walletConfirmWallet" style='display: none;'>Continue</button>
+    </div>
+</section>
+<section class="wallet frame" id="frame-wallet-intro">
+
+    <div class="frame-spacer"></div>
+
+    <button class="intro-back frame-button frame-button--left button button--transparent button--icon" data-click="frame" data-frame="intro">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+    </button>
+
+    <div class="wallet-shield">
+        <img src="" alt="" class="wallet-shield-image">
+    </div>
+
+    <div class="page-header page-header--center">
+        <h4 class="page-header-title">
+            <b>Back up your wallet!</b>
+        </h4>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            In the next step you will receive a recovery phrase that will allow you to recover your wallet.
+        </span>
+    </div>
+
+    <div class="wallet-warning page-header page-header--center">
+        <h5 class="page-header-title">
+            What if I lost my phrase or password?
+        </h5>
+        <span class="page-header-subtitle page-header-subtitle--small">
+            WARNING: If you lose your recovery phrase, you will be unable to recover access to your account!
+        </span>
+    </div>
+
+    <div class="intro-buttons">
+        <div class="intro-button button button--center button--large button--primary" data-click="frame" data-frame="wallet-create">Continue, I Understand</div>
+    </div>
+
 </section>
 <section class="wallet frame active" id="frame-wallet-interact">
 
@@ -242,60 +300,70 @@
     <button class="wallet-button button button--center button--large button--primary right" id="walletImportbtn">Import</button>
 </section>
 <section class="wallet frame" id="frame-wallet-settings">
-    <div class="page-header">
+
+    <div class="frame-spacer"></div>
+
+    <button class="intro-back frame-button frame-button--left button button--transparent button--icon" data-click="frame" data-frame="wallet-password-create">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+    </button>
+
+    <span class="wallet-steps">
+        Step 3 of 3
+    </span>
+
+    <div class="page-header page-header--center">
         <h4 class="page-header-title">Please review the following settings</h4>
         <span class="page-header-subtitle page-header-subtitle--small">
             If you are new to Reddcoin and ReddId, it is probably best to leave them as they are.
         </span>
     </div>
 
-    <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
-        <span class="field-title">Use Tip Jar</span>
+    <section class="page-section page-section--min">
+        <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
+            <span class="field-title">Use Tip Jar</span>
 
-        <label class="field-text field-text--select" data-change="select">
-            <div class="field-mask"></div>
+            <label class="field-text field-text--select" data-change="select">
+                <div class="field-mask"></div>
 
-            <select class="field-tag" id="useTipJar" data-ref="trigger:change">
-                <option value="false">No</option>
-                <option value="true">Yes</option>
-            </select>
-        </label>
+                <select class="field-tag" id="useTipJar" data-ref="trigger:change">
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                </select>
+            </label>
+        </div>
+
+        <p>
+            Using the Tip Jar will give you an account that isn't password protected. This makes tipping faster and easier but is less secure.
+        </p>
+
+        <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
+            <span class="field-title">Savings Account</span>
+
+            <label class="field-text field-text--select" data-change="select">
+                <div class="field-mask"></div>
+
+                <select class="field-tag" id="useSavingsAccount" data-ref="trigger:change">
+                    <option value="false">I don't need a Savings Account</option>
+                    <option value="true">Yes, I want a Savings Account</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="wallet-field field field--primary" data-change='checkbox'>
+            <label class="field-check field-check--checkmark">
+                <span class="field-title">Make savings account spendable</span>
+
+                <span class="field-mask">
+                    <input class="field-tag" type="checkbox" checked="true" id="spendSavings" data-ref='trigger:change'>
+                </span>
+            </label>
+        </div>
+    </section>
+
+    <div class="intro-buttons">
+        <button class="intro-button button button--center button--large button--primary right" id="walletSettingsCreateWallet">Create Wallet</button>
     </div>
-
-    <p>
-        Using the Tip Jar will give you an account that isn't password protected. This makes tipping faster and easier but is less secure.
-    </p>
-
-    <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
-        <span class="field-title">Savings Account</span>
-
-        <label class="field-text field-text--select" data-change="select">
-            <div class="field-mask"></div>
-
-            <select class="field-tag" id="useSavingsAccount" data-ref="trigger:change">
-                <option value="false">I don't need a Savings Account</option>
-                <option value="true">Yes, I want a Savings Account</option>
-            </select>
-        </label>
-    </div>
-
-    <div class="wallet-field field field--primary" data-change='checkbox'>
-        <label class="field-check field-check--checkmark">
-            <span class="field-title">Make savings account spendable</span>
-
-            <span class="field-mask">
-                <input class="field-tag" type="checkbox" checked="true" id="spendSavings" data-ref='trigger:change'>
-            </span>
-        </label>
-    </div>
-
-    <button class="wallet-button button button--center button--large button--primary right" id="walletSettingsCreateWallet">Create Wallet</button>
-    <button class="wallet-button button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
-        <div class="icon icon--rotate180">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
-        <span class="inline-spacer inline-spacer--small"></span>
-        Start Over
-    </button>
 </section>
 <section class="wallet frame" id="frame-reddid-register">
     <div class="frame-spacer"></div>
@@ -343,22 +411,73 @@
 </section>
 <section class="intro frame active" id="frame-intro">
 
-    <div class="intro-illustration">
-        <b>Illustration 1</b> <br> Straight to the point -> this extension is used to tip via social networks, emails, etc.
-        <br><br>
-        <b>Illustration 2</b> <br> Call to action -> getting started is easy -> create a wallet or import an existing one -> begin tipping
-        <br><br>
-        <b>Illustration 3</b> <br> we make tipping easier by adding a tip button to social media sites
-        <br><br>
-        <b>Illustration 4</b> <br> Buy/sell RDD directly from browser "Coming Soon"
+    <section class="intro-frame frame active" id="frame-intro-1">
+        <div class="intro-frame-image">
+            <img class='intro-frame-logo' src="" alt="">
+        </div>
+
+        <div class="page-header page-header--center">
+            <h3 class="page-header-title">
+                <b>Welcome to ReddID</b>
+            </h3>
+            <span class="page-header-subtitle">
+                This extension is used to tip via social networks, emails, etc.
+            </span>
+        </div>
+    </section>
+
+    <section class="intro-frame frame" id="frame-intro-2">
+        <div class="intro-frame-image intro-frame-image--black"></div>
+
+        <div class="page-header page-header--center">
+            <h3 class="page-header-title">&nbsp;</h3>
+            <span class="page-header-subtitle">
+                Call to action -> getting started is easy -> create a wallet or import an existing one -> begin tipping
+            </span>
+        </div>
+    </section>
+
+    <section class="intro-frame frame" id="frame-intro-3">
+        <div class="intro-frame-image intro-frame-image--black"></div>
+
+        <div class="page-header page-header--center">
+            <h3 class="page-header-title">&nbsp;</h3>
+            <span class="page-header-subtitle">
+                We make tipping easier by adding a tip button to social media sites
+            </span>
+        </div>
+    </section>
+
+    <section class="intro-frame frame" id="frame-intro-4">
+        <div class="intro-frame-image intro-frame-image--black"></div>
+
+        <div class="page-header page-header--center">
+            <h3 class="page-header-title">&nbsp;</h3>
+            <span class="page-header-subtitle">
+                Buy/sell RDD directly from browser "coming Soon"
+            </span>
+        </div>
+    </section>
+
+    <div class="intro-bubbles">
+        <span class="intro-bubble bubble" data-click="frame" data-frame="intro-1"></span>
+        <span class="intro-bubble bubble" data-click="frame" data-frame="intro-2"></span>
+        <span class="intro-bubble bubble" data-click="frame" data-frame="intro-3"></span>
+        <span class="intro-bubble bubble" data-click="frame" data-frame="intro-4"></span>
     </div>
 
     <div class="intro-buttons">
-        <div class="intro-button intro-button--primary button button--center button--large button--primary" data-click="frame" data-frame="wallet-create">Get Started</div>
-        <div class="intro-button intro-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-recovery">Import Wallet</div>
+        <div class="intro-button button button--center button--large button--primary" data-click="frame" data-frame="wallet-intro">
+            Get Started
+        </div>
+        <div class="intro-button button button--center button--large button--transparent" data-click="frame" data-frame="wallet-recovery">
+            I Already Have A Wallet
+
+            <span class="icon icon--small">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.301 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L8.918 8l-4.031 4.029a.303.303 0 0 0 0 .425l.99.989a.3.3 0 0 0 .424 0L11.745 8 6.301 2.555z"/></svg>            </span>
+        </div>
     </div>
 </section>
-
 <section class="settings frame" id="frame-settings" style='padding-bottom: 0;'>
     <div class="frame-spacer"></div>
 
@@ -489,7 +608,7 @@
             <div class="scrollbar scrollbar--fixed" id='site-scrollbar'></div>
         </section>
 
-
+        
                     <script type="text/javascript" src="assets/js/html/vendor/browser-polyfill.min.js"></script>
                     <script type="text/javascript" src="assets/js/html/vendor/jquery-3.3.1.min.js"></script>
                     <script type="text/javascript" src="assets/js/html/vendor/jquery-ui.min.js"></script>
@@ -511,7 +630,7 @@
                     <script type="text/javascript" src="assets/js/html/utils.js"></script>
                     <script type="text/javascript" src="assets/js/html/messenger.js"></script>
                     <script type="text/javascript" src="assets/js/html/vendor/sha256.min.js"></script>
-
+        
         <script src="assets/js/app.js" type="text/javascript"></script>
     </body>
 </html>

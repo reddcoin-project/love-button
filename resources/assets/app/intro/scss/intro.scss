@@ -1,22 +1,61 @@
 .intro {
-    .page-header {
-        b {
-            color: color('primary');
+
+    &-back {
+        margin: 0 0 0 (- size(200));
+    }
+
+    &-bubbles {
+        @include center-children();
+        @include grid(d12);
+    }
+
+    &-bubble {
+        background: color('grey' 500);
+        border-color: color('white');
+        margin: 0 (size(100) / 2);
+    }
+
+    &-frame {
+        min-height: 1px;
+        padding: 0 0 (size(500) * 2);
+
+        &-image {
+            @include grid(d12);
+            height: 240px;
+
+            &--black {
+                background-color: color('black');
+            }
+        }
+
+        &-logo {
+            @include position(absolute, center);
+            @include size(size(800) * 2);
+            background: color('black');
+        }
+    }
+
+    &-frame.active:first-child ~ &-bubbles &-bubble:first-child {
+        background: color('primary');
+    }
+
+    @for $i from 1 through 4 {
+        &-frame.active:nth-child(#{$i}) ~ &-bubbles &-bubble:nth-child(#{$i}) {
+            background: color('primary');
         }
     }
 
     &-buttons {
         @include grid(d12);
+        margin: size(800) 0 0;
+        padding: 0 size(800) * 1.5;
     }
 
     &-button {
-        &--primary {
-            width: calc(50% - #{size(200)});
-        }
+        width: 100%;
 
-        &--secondary {
-            float: right;
-            width: calc(50% - #{size(200)});
+        &:not(:first-child) {
+            margin: size(200) 0 0;
         }
     }
 

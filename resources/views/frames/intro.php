@@ -1,18 +1,70 @@
 <section class="intro frame active" id="frame-intro">
 
-    <div class="intro-illustration">
-        <b>Illustration 1</b> <br> Straight to the point -> this extension is used to tip via social networks, emails, etc.
-        <br><br>
-        <b>Illustration 2</b> <br> Call to action -> getting started is easy -> create a wallet or import an existing one -> begin tipping
-        <br><br>
-        <b>Illustration 3</b> <br> we make tipping easier by adding a tip button to social media sites
-        <br><br>
-        <b>Illustration 4</b> <br> Buy/sell RDD directly from browser "Coming Soon"
+    <section class="intro-frame frame active" id="frame-intro-1">
+        <div class="intro-frame-image">
+            <img class='intro-frame-logo' src="" alt="">
+        </div>
+
+        <div class="page-header page-header--center">
+            <h3 class="page-header-title">
+                <b>Welcome to ReddID</b>
+            </h3>
+            <span class="page-header-subtitle">
+                This extension is used to tip via social networks, emails, etc.
+            </span>
+        </div>
+    </section>
+
+    <section class="intro-frame frame" id="frame-intro-2">
+        <div class="intro-frame-image intro-frame-image--black"></div>
+
+        <div class="page-header page-header--center">
+            <h3 class="page-header-title">&nbsp;</h3>
+            <span class="page-header-subtitle">
+                Call to action -> getting started is easy -> create a wallet or import an existing one -> begin tipping
+            </span>
+        </div>
+    </section>
+
+    <section class="intro-frame frame" id="frame-intro-3">
+        <div class="intro-frame-image intro-frame-image--black"></div>
+
+        <div class="page-header page-header--center">
+            <h3 class="page-header-title">&nbsp;</h3>
+            <span class="page-header-subtitle">
+                We make tipping easier by adding a tip button to social media sites
+            </span>
+        </div>
+    </section>
+
+    <section class="intro-frame frame" id="frame-intro-4">
+        <div class="intro-frame-image intro-frame-image--black"></div>
+
+        <div class="page-header page-header--center">
+            <h3 class="page-header-title">&nbsp;</h3>
+            <span class="page-header-subtitle">
+                Buy/sell RDD directly from browser "coming Soon"
+            </span>
+        </div>
+    </section>
+
+    <div class="intro-bubbles">
+        <span class="intro-bubble bubble" data-click="frame" data-frame="intro-1"></span>
+        <span class="intro-bubble bubble" data-click="frame" data-frame="intro-2"></span>
+        <span class="intro-bubble bubble" data-click="frame" data-frame="intro-3"></span>
+        <span class="intro-bubble bubble" data-click="frame" data-frame="intro-4"></span>
     </div>
 
     <div class="intro-buttons">
-        <div class="intro-button intro-button--primary button button--center button--large button--primary" data-click="frame" data-frame="wallet-create">Get Started</div>
-        <div class="intro-button intro-button--secondary button button--center button--large button--black" data-click="frame" data-frame="wallet-recovery">Import Wallet</div>
+        <div class="intro-button button button--center button--large button--primary" data-click="frame" data-frame="wallet-intro">
+            Get Started
+        </div>
+        <div class="intro-button button button--center button--large button--transparent" data-click="frame" data-frame="wallet-recovery">
+            I Already Have A Wallet
+
+            <span class="icon icon--small">
+                <?= $svg('arrow/head/small') ?>
+            </span>
+        </div>
     </div>
 </section>
- 

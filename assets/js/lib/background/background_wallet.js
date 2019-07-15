@@ -170,7 +170,7 @@ exports.wallet = (function () {
     pub.getContacts = function(){
         var data = {
                 contacts  : priv.wallet.getContacts()
-            }; 
+            };
         return data
     }
 

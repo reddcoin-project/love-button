@@ -888,6 +888,8 @@ function displayWelcome() {
 // If this causes problems look for all keys and user, userids, reddcoinWallet
 // keys only
 function logout() {
+    Reddcoin.messenger.logout();
+    
     localStorage.removeItem('reddcoinSettings');
     localStorage.removeItem('reddcoinWallet');
     localStorage.removeItem('user');
