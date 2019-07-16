@@ -27,6 +27,6 @@
         </div>
 
         <b class="wallet-button button button--center button--large button--grey" data-click="frame" data-frame="status" id="menuStatus">Network Status</b>
-        <b class="wallet-button button button--center button--large button--black right" id="logout">Logout</b>
+        <b class="wallet-button button button--center button--large button--black right" id="reset">Reset</b>
     </div>
 </section>

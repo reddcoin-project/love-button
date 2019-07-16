@@ -389,7 +389,7 @@
 	};
 
 // public
-	pub.logout = function() {
+	pub.reset = function() {
 	    localStorage.removeItem("reddcoinWallet");
 	    localStorage.removeItem(priv.userStorageKey);
 	    localStorage.removeItem(priv.useridsStorageKey);

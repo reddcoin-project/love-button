@@ -701,8 +701,8 @@ Reddcoin.backgnd = (function () {
     	return Reddcoin.reddId.createUser(update.update);
     };
 
-	pub.logout = function() {
-		return Reddcoin.reddId.logout(); 
+	pub.reset = function() {
+		return Reddcoin.reddId.reset(); 
 	};
 
 	/**

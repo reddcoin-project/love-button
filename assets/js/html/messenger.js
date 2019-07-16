@@ -194,8 +194,8 @@
         priv.message('setSettings', {settings:settings}, callback);
     };
 
-    pub.logout = function() {
-        priv.message('logout');
+    pub.reset = function() {
+        priv.message('reset');
     };
 
     pub.setSetting = function(settingKey, settingValue, callback) {

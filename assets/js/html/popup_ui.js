@@ -760,8 +760,8 @@ function setPopupGuiListeners() {
             case 'menuWelcome':
                 displayWelcome();
                 break;
-            case 'logout':
-                logout();
+            case 'reset':
+                reset();
                 break;
             case 'registerBtn':
             case 'registerContinueFromCreationBtn':
@@ -887,9 +887,9 @@ function displayWelcome() {
 
 // If this causes problems look for all keys and user, userids, reddcoinWallet
 // keys only
-function logout() {
-    Reddcoin.messenger.logout();
-    
+function reset() {
+    Reddcoin.messenger.reset();
+
     localStorage.removeItem('reddcoinSettings');
     localStorage.removeItem('reddcoinWallet');
     localStorage.removeItem('user');
@@ -1037,6 +1037,5 @@ function walletSend() {
         else {
             $('#send_error_msg_txt').text('The transaction is not possible. Maybe you entered the wrong address or you do not have enough funds?');
         }
-
     });
 }
