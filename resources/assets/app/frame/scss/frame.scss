@@ -15,6 +15,11 @@
         padding: 0;
     }
 
+    &--tip_modal {
+        min-height: unset;
+        padding-bottom: 0;
+    }
+
     &-button {
         @include position(absolute, container(spacer) null null null);
         z-index: 1;

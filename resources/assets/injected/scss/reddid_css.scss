@@ -1,0 +1,61 @@
+.reddid_css {
+    @import "../../../../assets/css/app";
+
+    &.tip {
+        @include box-white();
+        @include box-shadow(500);
+        @include position(fixed, center);
+        border: 1px solid color('grey' 500);
+        display: none;
+        padding: size(500);
+        z-index: 9999;
+
+        @include max-size(640px, 90%);
+        @include size(90%, auto);
+
+        @include font-size();
+        color: color('text');
+        font-weight: font-weight();
+
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        @if base(html css) {
+            @each $property, $value in base(html css) {
+                #{$property}: #{$value};
+            }
+        }
+
+        .tip {
+            &-close {
+                $negative: - size() - size(100);
+
+                @include position(absolute, $negative null null $negative);
+            }
+
+            &-qr {
+                @include center-children();
+                @include grid(d12);
+
+                &-code {
+                    margin-top: size(500);
+                    //padding: size(200);
+
+                    img {
+                        border-radius: border-radius();
+                        border: 1px solid color('grey' 500);
+                    }
+                }
+            }
+        }
+
+        p {
+            margin: size() 0 0;
+        }
+
+        .button + p {
+            margin: size(600) 0 0;
+        }
+    }
+}

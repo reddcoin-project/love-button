@@ -506,7 +506,13 @@
         </div>
 
         <b class="wallet-button button button--center button--large button--grey" data-click="frame" data-frame="status" id="menuStatus">Network Status</b>
-        <b class="wallet-button button button--center button--large button--black right" id="reset">Logout</b>
+        <b class="wallet-button button button--center button--large button--black right tooltip" data-click="toggle">
+            Logout
+            <div class="tooltip-content tooltip-content--black tooltip-content--ne" data-stopclick style="padding: 16px;text-align: left;width: 240px;">
+                <p style='padding-bottom: 16px;'>Logging out will delete your seed do not logout if you do not have it saved</p>
+                <div class="button button--large button--primary right" data-stopclick id="reset">Logout</div>
+            </div>
+        </b>
     </div>
 </section>
 <section class="status frame" id="frame-status">

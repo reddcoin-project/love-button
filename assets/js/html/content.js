@@ -148,10 +148,6 @@ function registerTipClick(containerNode) {
 }
 
 function registerEventListeners(modal) {
-    modal.addEventListener('scroll', function(e) {
-        e.stopPropagation();
-    });
-
     // When the user clicks on (X), close the modal
     document.getElementById('reddid_tip_button_close_id').addEventListener('click', () => hideModal(modal));
     document.getElementById('reddid_tip_button_sendtip_id').addEventListener('click', () => askTipConfirmation());
@@ -186,6 +182,7 @@ function registerEventListeners(modal) {
     });
 
     modal.addEventListener('click', (e) => e.stopPropagation());
+    modal.addEventListener('scroll', (e) => e.stopPropagation());
 }
 
 function hideModal(modal) {
