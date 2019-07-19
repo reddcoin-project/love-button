@@ -116,114 +116,6 @@
         $("#walletSend_amount").val(amount || '');
     };
 
-    priv.sendGui = function (details) {
-        var $address = $("#walletSend_address"),
-            $amount = $("#walletSend_amount"),
-            name =  $.trim(details.contact),
-            toAddress = $.trim(details.address),
-            amount = $.trim(details.amount),
-            addressIsValid = /^[Rr][a-zA-Z0-9]{26,34}$/.test(toAddress),
-            amountIsValid = !isNaN(parseFloat(amount)),
-            sendFunction;
-
-            $address.removeClass("error");
-
-        if (!addressIsValid) {
-            $address.addClass("error");
-        }
-
-        $amount.removeClass("error");
-
-        if (!amountIsValid) {
-            $amount.addClass("error");
-        }
-
-        exports.messenger.updateContact(toAddress, name);
-
-        if (!amountIsValid || !addressIsValid) {
-            return;
-        }
-
-        sendFunction = function(password, requirePw){
-            var account = $("#sendAccount").val();
-
-            debug.log(`sendFunction sendTransaction`);
-
-            exports.messenger.sendTransaction(amount, account, requirePw, toAddress, password, function () {
-                priv.updateSendForm();
-
-                if(account === '-1' && requirePw){
-                    exports.messenger.unlockTipJar(password, function(){
-                        dbg('Tip Jar Unlocked!');
-                    });
-                }
-
-                priv.notification("Transaction is being broadcast.", `Sending ${amount} RDD`);
-
-                priv.openTab("tabSend");
-
-                var closePopup = function () { priv.closePopup(); };
-
-                if (priv.isFullPageMode) {
-                    setTimeout(closePopup, 4000);
-                }
-            });
-        };
-
-        var msg = "You are about to send <strong>"+details.amount+" RDD</strong> to <strong>"+details.address+"</strong>";
-        msg += '<br/>';
-        msg += '<br/>';
-        msg += 'This will debit the following account: ';
-        msg += '<select name="sendAccount" id="sendAccount">';
-
-        $.each(details.usableAccounts, function(i, account){
-            var requirePw = 'yes';
-
-            if(!account.requiresPassword){
-                requirePw = 'no';
-            }
-
-            msg += '<option data-with-pass="'+requirePw+'" value="'+account.index+'">'+account.name+'</option>';
-        });
-
-        msg +=  '</select>';
-
-        $("#pwLoading").hide();
-
-        priv.withPassword(sendFunction, msg);
-
-        $("#sendAccount").change(function(){
-            var $pwContainer = $('#sendPwContainer'),
-                requiresPw = $('option:selected', $(this)).attr('data-with-pass');
-
-            if(requiresPw === 'yes'){
-                $pwContainer.show();
-            }
-            else {
-                $pwContainer.hide();
-            }
-
-            amount = amount * 1;
-
-            var hideThreshold = priv.settings.hidePromptThreshold * 1;
-
-            debug.log(amount, hideThreshold, requiresPw);
-            debug.log(amount <= hideThreshold , requiresPw !== 'yes');
-
-            if(amount <= hideThreshold && requiresPw !== 'yes'){
-                console.log('triggering');
-                $("#passwordOkay").trigger('click');
-                priv.openTab('tabAutoSent');//TODO
-
-                setTimeout(function(){
-                    priv.openTab("tabSend");
-                }, 3000);
-            }
-        });
-
-        $("#sendAccount").trigger('change');
-    };
-
     priv.checkTipJar = function(data, balance){
         console.log('Checked Tipjar');
     };
@@ -613,10 +505,6 @@
             });
           });
         };
-    };
-
-    pub.sendGui = function (details) {
-        priv.sendGui(details);
     };
 
     pub.updateInterface = function (data) {
@@ -1195,29 +1083,6 @@ function setPopupMenuDisplay(){
             document.getElementById('menuSocial').style.display = 'none';
             document.getElementById('menuTipFeed').style.display = 'none';
             document.getElementById('menuFollowing').style.display = 'none';
-        }
-    });
-}
-
-function walletSend() {
-    var toAddress = document.getElementById('walletSend_address').value;
-    var toContact = document.getElementById('walletSend_contact').value;
-    var amount = document.getElementById('walletSend_amount').value;
-    var account = document.getElementById('sendFromAccount').value;
-    var requirePw = false;
-    var password = '';
-
-    // TODO tipjar enabled hardcoded? need to make this optional
-    Reddcoin.messenger.checkTransaction(amount, true, function (details) {
-        details.address = toAddress;
-        details.contact = toContact;
-
-        if (details.isPossible) {
-            $('#send_error_msg_txt').text('');
-            exports.popup.sendGui(details);
-        }
-        else {
-            $('#send_error_msg_txt').text('The transaction is not possible. Maybe you entered the wrong address or you do not have enough funds?');
         }
     });
 }
