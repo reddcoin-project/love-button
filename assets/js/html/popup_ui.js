@@ -433,6 +433,188 @@
         console.log("setCost on: " + JSON.stringify(data))
     };
 
+    pub.walletSend = function () {
+
+        let $address = $("#walletSend_address"),
+            $amount = $("#walletSend_amount"),
+            toAddress = $address.val(),
+            toContact = $("#walletSend_contact").val(),
+            amount = $amount.val(),
+            addressIsValid = /^[Rr][a-zA-Z0-9]{26,34}$/.test(toAddress),
+            amountIsValid = !isNaN(parseFloat(amount));
+
+        $address.removeClass("error");
+
+        if (!addressIsValid) {
+            $address.addClass("error");
+        }
+
+        $amount.removeClass("error");
+
+        if (!amountIsValid) {
+            $amount.addClass("error");
+        }
+
+        if (toContact != null || toContact !== "") {
+            Reddcoin.messenger.updateContact(toAddress, toContact);
+        }
+
+        if (!amountIsValid || !addressIsValid) {
+            $('#send_error_msg_txt').text('Missing transaction details.');
+            //document.getElementById('frame-wallet-send').classList.toggle("active");
+            //document.getElementById('frame-wallet-password').classList.toggle("active");
+            return;
+        }
+
+
+        // this is an async timeout util (very useful indeed)
+        const timeout = async ms => new Promise(res => setTimeout(res, ms));
+
+        let next = false; // this is to be changed on user input
+        let sendOpt = false; // set to true if the send button clicked
+        $('#walletSend_password_send').click(function() {
+            next = true;
+            sendOpt = true;
+        });
+
+        $('#walletSend_password_cancel').click(function() {
+            next = true;
+            sendOpt = false;
+        });
+
+        async function waitUserInput() {
+            while (next === false) await timeout(50); // pause script but avoid browser to freeze ;)
+            next = false; // reset var
+            console.log('user input detected');
+        }
+
+        async function send () {
+
+            $("#walletSend_loading").hide();
+
+            $('#send_error_msg_txt').text('');
+
+
+            let details = await checkTx(amount,true);
+            details.address = toAddress;
+
+            if (details.isPossible) {
+                debug.log(JSON.stringify(details));
+                let msg = "You are about to send <strong>"+details.amount+" RDD</strong> to <strong>"+details.address+"</strong>";
+                msg += '<br/>';
+                msg += '<br/>';
+                msg += 'This will debit the following account: ';
+                msg += '<select name="sendAccount" id="sendAccount">';
+
+                $.each(details.usableAccounts, function(i, account){
+                  let requirePw = 'yes';
+
+                  if(!account.requiresPassword){
+                    requirePw = 'no';
+                  }
+
+                  msg += '<option data-with-pass="'+requirePw+'" value="'+account.index+'">'+account.name+'</option>';
+                });
+
+                msg +=  '</select>';
+
+                $("#frame-wallet-password-message").html(msg).show();
+                //$("#frame-wallet-send").hide();
+                document.getElementById('frame-wallet-send').classList.toggle("active");
+                document.getElementById('frame-wallet-password').classList.toggle("active");
+                //$("#frame-wallet-password").addClass("active");
+
+                $("#sendAccount").change(async function(){
+                  let $pwContainer = $("#walletSend_password_field"),
+                      requiresPw = $('option:selected', $(this)).attr('data-with-pass');
+                  if(requiresPw === 'yes'){
+                    $pwContainer.show();
+                  }
+                  else {
+                    $pwContainer.hide();
+                  }
+
+                  amount = amount * 1;
+                  // Check some wallet setting to determine sending
+                  let hideThreshold = priv.settings.hidePromptThreshold * 1;
+                  debug.log(amount, hideThreshold, requiresPw);
+                  debug.log(amount <= hideThreshold , requiresPw !== 'yes');
+                  if(amount <= hideThreshold && requiresPw !== 'yes'){
+                    console.log('triggering');
+                    $("#passwordOkay").trigger('click');
+                    priv.openTab('tabAutoSent');//TODO
+                    setTimeout(function(){
+                      priv.openTab("tabSend");
+                    }, 3000);
+                  }
+
+                  await waitUserInput();
+                  if (sendOpt === true){
+                      let pwd = $('#walletSend_password').val();
+                      $("#walletSend_loading").show();
+                      let checkPwd = await checkPassword(pwd);
+
+                      if (checkPwd) {
+                          $("#walletSend_loading").show();
+                          let account = $("#sendAccount").val();
+
+                          $('#send_error_msg_txt').text('');
+                          $("#orderLoading").show();
+                          let result = await sendTransaction(details.amount, account, requiresPw, details.address, pwd);
+                          debug.log(`${JSON.stringify(result)}`);
+                          $("#walletSend_address").val('');
+                          $("#walletSend_amount").val('');
+
+                      }
+                      else {
+                          $('#send_error_msg_txt').text('The entered password was incorrect.');
+                      }
+
+                      // go back to 'Send Reddcoin' page
+                      document.getElementById('frame-wallet-send').classList.toggle("active");
+                      document.getElementById('frame-wallet-password').classList.toggle("active");
+                      $('#walletSend_password').val('');
+
+                  }
+                });
+
+                $("#sendAccount").trigger('change');
+
+            } else {
+                $('#send_error_msg_txt').text(`Not enough funds available to send ${amount} RDD to ${details.address}.`);
+            }
+        }
+
+        send();
+
+        // Check if transaction is possible
+        function checkTx(value, tipJarEnabled) {
+            return new Promise (resolve => {
+                Reddcoin.messenger.checkTransaction(value, tipJarEnabled, (data) => {
+                    resolve(data);
+                });
+            });
+        }
+
+        // Check if password is correct
+        function checkPassword(password) {
+          return new Promise ((resolve, reject) => {
+            Reddcoin.messenger.checkPassword(password, (data) => {
+              resolve(data);
+            });
+          });
+        }
+
+        // Send Transaction
+        function sendTransaction(amount, account, requirePw, toAddress, password) {
+          return new Promise ((resolve, reject) => {
+            Reddcoin.messenger.sendTransaction(amount, account, requirePw, toAddress, password, (data) => {
+              resolve(data);
+            });
+          });
+        };
+    };
+
     pub.sendGui = function (details) {
         priv.sendGui(details);
     };
@@ -789,7 +971,7 @@ function setPopupGuiListeners() {
                 displayStatus();
                 break;
             case 'walletSend_send':
-                walletSend();
+                Reddcoin.popup.walletSend();
                 break;
             // Register UI functions
             case 'redd_id_btn_reset':
