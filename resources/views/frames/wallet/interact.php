@@ -80,15 +80,6 @@
         </div>
 
 
-        <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
-            <span class="field-title">Send from the following account</span>
-
-            <label class="field-text field-text--select">
-                <select class='field-mask' id="sendFromAccount" style='pointer-events: auto;'></select>
-            </label>
-        </div>
-
-
         <p id="error_msg"></p>
         <p id="send_error_msg_txt"></p>
 
