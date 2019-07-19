@@ -207,17 +207,6 @@
                 render(data);
             });
         });
-
-        exports.messenger.getWalletData(function (data) {
-            let accounts = data.accounts,
-                select = document.getElementById('sendFromAccount');
-
-            if (accounts) {
-                accounts.forEach(account => {
-                    select.options[select.options.length] = new Option(account.name, account.index + 1);
-                });
-            }
-        });
     };
 
     priv.renderAddresses = function(data){
