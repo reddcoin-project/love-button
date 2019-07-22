@@ -87,6 +87,12 @@ exports.wallet = (function () {
         priv.wallet.fromObject(JSON.parse(walletObject));
         priv.startWallet();
     };
+    priv.resetWallet = function () {
+        debug.log(`Reset Wallet:`);
+        localStorage.removeItem(priv.walletStorageKey);
+        priv.create();
+        browser.runtime.reload();
+    };
 
     priv.create = function () {
         var walletObject = localStorage.getItem(priv.walletStorageKey);
@@ -257,7 +263,9 @@ exports.wallet = (function () {
     pub.decodeRawTransaction = function (rawTx) {
         return priv.wallet.decodeRawTransaction (rawTx)
     };
-
+    pub.resetWallet = function () {
+        priv.resetWallet()
+    };
     pub.getInterfaceData = function () {
         var format = bitcore.util.formatValue,
             addresses = priv.wallet.getAddresses('all'),
