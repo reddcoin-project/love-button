@@ -949,11 +949,6 @@ function displayWelcome() {
 function reset() {
     Reddcoin.messenger.reset();
 
-    localStorage.removeItem('reddcoinSettings');
-    localStorage.removeItem('reddcoinWallet');
-    localStorage.removeItem('user');
-    localStorage.removeItem('userids');
-
     // Reload extension
     if (chrome) {
         chrome.tabs.reload();
