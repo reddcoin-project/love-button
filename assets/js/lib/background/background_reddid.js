@@ -365,14 +365,14 @@
 
     priv.loadUser = function (userObject) {
         debug.log("Loading User: ");
-        debug.log(JSON.parse(userObject));
-        priv.user = JSON.parse(userObject);
+        debug.log(userObject);
+        priv.user = userObject;
     };
 
     priv.loadUsers = function (useridsObject) {
         debug.log("Loading Users: ");
-        debug.log(JSON.parse(useridsObject));
-        priv.userids = JSON.parse(useridsObject);
+        debug.log(useridsObject);
+        priv.userids = useridsObject;
     };
     priv.fixProfiles = function () {
     	let isDirty = false;
@@ -389,12 +389,13 @@
 	};
 
 // public
-	pub.reset = function() {
-	    localStorage.removeItem("reddcoinWallet");
-	    localStorage.removeItem(priv.userStorageKey);
-	    localStorage.removeItem(priv.useridsStorageKey);
-
-		priv = defaults;
+	pub.resetIDs = function() {
+		debug.log(`Reset IDs:`);
+		localStorage.removeItem(priv.userStorageKey);
+		localStorage.removeItem(priv.useridsStorageKey);
+		localStorage.removeItem(priv.reddidContactStorageKey);
+		pub.createUser();
+		browser.runtime.reload();
 	};
 
 	pub.createUser = function(update) {
@@ -410,12 +411,18 @@
 		}
 
 		if(userObject !== null){
-			priv.loadUser(userObject);
+			userObject = JSON.parse(userObject);
+			if (!isEmpty(userObject)) {
+				priv.loadUser(userObject);
+			}
 		}
 
 		if(useridsObject !== null){
-			priv.loadUsers(useridsObject);
-			priv.fixProfiles();
+			useridsObject = JSON.parse(useridsObject);
+			if (!isEmpty(useridsObject)) {
+				priv.loadUsers(useridsObject);
+				priv.fixProfiles();
+			}
 		}
 
 		if(update) {
