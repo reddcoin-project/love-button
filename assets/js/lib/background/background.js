@@ -702,7 +702,8 @@ Reddcoin.backgnd = (function () {
     };
 
 	pub.reset = function() {
-		return Reddcoin.reddId.reset(); 
+		Reddcoin.wallet.resetWallet();
+		Reddcoin.reddId.resetIDs();
 	};
 
 	/**
