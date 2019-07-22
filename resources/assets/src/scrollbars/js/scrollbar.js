@@ -74,6 +74,8 @@ require(['dom', 'directive', 'emitter', 'node'], function(dom, directive, emitte
 
 
     directive.on('scrollbar', scroll);
-    emitter.on('modules.mount', mount);
+    emitter.on('modules.mount', function() {
+        setTimeout(mount, 100);
+    });
 
 });
