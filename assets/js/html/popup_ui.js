@@ -869,8 +869,6 @@ function displayWelcome() {
     Reddcoin.messenger.getAppState(response => {
         if (!response.walletObj.dataAvailable) {
             $('#frame-wallet-interact').hide();
-            $('#settings-toggle').hide();
-
             $('#frame-wallet-interact').removeClass('active');
         }
         else {

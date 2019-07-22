@@ -1,0 +1,31 @@
+.news {
+    &-articles {
+        margin-left: - size(500);
+        width: calc(100% + #{size(800)});
+    }
+
+    $image: 120px;
+
+    &-article {
+        @include grid(d12);
+        border-bottom: 1px solid color('grey');
+        padding: size(500) ($image + size() + size(500)) size(500) size(500);
+
+        &-image {
+            @include position(absolute, vertical);
+            background: color('grey' 500);
+            border-radius: border-radius();
+            height: calc(100% - #{size(800)});
+            right: size(500);
+            width: $image;
+        }
+
+        &-title {
+            margin: size(200) 0;
+        }
+    }
+
+    &-header {
+        margin: size(200) 0;
+    }
+}

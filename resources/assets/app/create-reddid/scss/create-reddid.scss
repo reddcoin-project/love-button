@@ -1,0 +1,17 @@
+.create-reddid {
+    font-weight: font-weight(500);
+    margin: size(500) 0 0;
+
+    &,
+    .button {
+        vertical-align: middle;
+    }
+
+    .button { 
+        display: inline-block;
+        color: inherit;
+        float: unset;
+        margin: -2px 0 0 size(300);
+        transition: all 0s;
+    }
+}

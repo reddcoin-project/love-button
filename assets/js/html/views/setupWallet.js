@@ -75,6 +75,8 @@ $.fn.enterKey = function (fnc) {
       let file = new Blob([seed], {type: 'text/plain'}),
           link = $("#wallet_recovery_phrase_file");
 
+         link.show();
+
     let today = new Date(),
         timestamp = `${today.getMonth()}_${today.getDate()}_${today.getFullYear()}_${today.getHours()}:${today.getMinutes()}`;
 
@@ -86,6 +88,8 @@ $.fn.enterKey = function (fnc) {
       link.click(function() {
           $('#confirm_seed_fields').show();
           $('#walletConfirmWallet').show();
+
+          $(this).hide();
       });
     });
   };
@@ -175,6 +179,8 @@ $.fn.enterKey = function (fnc) {
   pub.finishImport = function () {
     debug.log('finishImport');
     let seed = $('#recovery_input').val();
+
+    $('[data-frame="wallet-create"]').hide();
 
     Reddcoin.messenger.checkSeed(seed, function (isValid) {
       if (!isValid) {

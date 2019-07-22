@@ -47,7 +47,6 @@
 
     <div class="intro-buttons">
         <a class="intro-button button button--black button--center button--large" id="wallet_recovery_phrase_file">Save To File</a>
-
         <button class="intro-button button button--center button--large button--primary" id="walletConfirmWallet" style='display: none;'>Continue</button>
     </div>
 </section>

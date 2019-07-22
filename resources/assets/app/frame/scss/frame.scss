@@ -1,6 +1,9 @@
+.frames {
+    padding: 0 0 (size(800) * 2);
+}
+
 .frame {
     display: none;
-    min-height: calc(100vh - 72px);
     padding: size(500) 0;
 
     @include state(active) {
@@ -13,6 +16,11 @@
 
     &--min {
         padding: 0;
+    }
+
+    &--tip_modal {
+        min-height: unset;
+        padding-bottom: 0;
     }
 
     &-button {

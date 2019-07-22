@@ -1,19 +1,18 @@
-const modal_new = `
-    <div id="reddid_modal" class="reddid_tip_modal tip">
-        <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' id="site">
-            <header class="header">
-                <div class="header-menu button button--icon button--grey button--text button--clear tooltip" id="reddid_tip_button_close_id" data-hover="toggle">
-                    <div class="icon" data-stopclick>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>
-                    </div>
-                    <span class='tooltip-content tooltip-content--message tooltip-content--sw'>Close</span>
-                </div>
-                <img src="${browser.extension.getURL("assets/images/logo-reddid.svg")}" alt="" class="header-logo">
-            </header>
+// <img src="${browser.extension.getURL("assets/images/logo-reddid.svg")}" alt="" class="header-logo">
 
+const modal_new = `
+    <div id="reddid_modal" class="reddid_css reddid_tip_modal tip">
+        <div class="tip-close button button--icon button--black tooltip" id="reddid_tip_button_close_id" data-hover="toggle">
+            <div class="icon" data-stopclick>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>
+            </div>
+            <span class='tooltip-content tooltip-content--message tooltip-content--e'>Close</span>
+        </div>
+
+        <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' id="site">
             <section class="frames">
-                <section class="wallet frame active">
-                    <div class="page-header">
+                <section class="wallet frame frame--tip_modal active">
+                    <div class="page-header page-header--center">
                         <h3 class="page-header-title">Send Reddcoin Tip To: <b id="reddid_tip_username_id">...</b></h3>
                     </div>
 

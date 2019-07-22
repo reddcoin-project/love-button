@@ -14,15 +14,58 @@
     <body id="reddidPopup">
         <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' id='site'>
             <div class="container container--small">
-                <div class="frame-button frame-button--right button button--grey button--icon button--text tooltip" data-click="frame" data-frame="settings" data-hover="toggle" id="settings-toggle">
-                    <div class="icon" data-stopclick>
-                        <?= $svg("settings") ?>
-                    </div>
+                <div class="create-reddid button button--center button--faded button--full button--green button--large" data-click="frame" data-frame="reddid-register" id="menuRegister">
+                    Create a Reddid
 
-                    <span class="tooltip-content tooltip-content--message tooltip-content--w">Settings</span>
+                    <div class="button button--green button--icon button--static button--inline">
+                        <div class="icon">
+                            <?= $svg('plus') ?>
+                        </div>
+                    </div>
                 </div>
 
                 <section class="frames">
+                    <div class="new">
+                        <section class="nav">
+                            <div class="nav-link" data-click="frame" data-frame="feed">
+                                <div class="nav-link-icon icon">
+                                    <?= $svg("settings") ?>
+                                </div>
+                                Tip Feed
+                            </div>
+
+                            <div class="nav-link" data-click="frame" data-frame="news">
+                                <div class="nav-link-icon icon">
+                                    <?= $svg("settings") ?>
+                                </div>
+                                News
+                            </div>
+
+                            <div class="nav-link nav-link--center" data-click="frame" data-frame="reddid-register" id="menuRegister">
+                                <div class="button button--green button--faded button--icon button--large tooltip" data-hover="toggle">
+                                    <div class="icon">
+                                        <?= $svg('plus') ?>
+                                    </div>
+
+                                    <span class="tooltip-content tooltip-content--n tooltip-content--message">Create a Reddid</span>
+                                </div>
+                            </div>
+
+                            <div class="nav-link" data-click="frame" data-frame="wallet-interact">
+                                <div class="nav-link-icon icon">
+                                    <?= $svg("settings") ?>
+                                </div>
+                                Wallet
+                            </div>
+
+                            <div class="nav-link" data-click="frame" data-frame="settings">
+                                <div class="nav-link-icon icon">
+                                    <?= $svg("settings") ?>
+                                </div>
+                                Settings
+                            </div>
+                        </section>
+                    </div>
 
                     <?php
                         $frames = [
@@ -36,7 +79,9 @@
 
                             'reddid/register',
 
+                            'feed',
                             'intro',
+                            'news',
                             'settings',
                             'status'
                         ];

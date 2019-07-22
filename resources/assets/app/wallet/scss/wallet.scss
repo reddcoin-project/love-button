@@ -6,6 +6,49 @@
 
         .button {
             width: calc(50% - #{container(spacer) / 2});
+
+            @include state(default) {
+                box-shadow: box-shadow();
+            }
+        }
+    }
+
+    &-header {
+        padding: size() 0;
+    }
+
+    &-table {
+        @include float();
+        margin-left: - size(500);
+        width: calc(100% + #{size(800)});
+
+        &-all {
+            float: right;
+            font-weight: font-weight(500);
+            padding: 2px 0;
+        }
+
+        &-header {
+            @include grid(d12);
+            border-bottom: 1px solid color('grey');
+            border-top: 1px solid color('grey');
+            padding: size(200) size(500);
+        }
+
+        &-history {
+            @include float();
+            font-weight: font-weight(500);
+        }
+
+        &-row {
+            @include grid(d12);
+            border-bottom: 1px solid color('grey');
+            padding: size() size(500);
+
+            &-details {
+                padding: 0 0 0 size(300);
+                width: calc(100% - #{size(700)})
+            }
         }
     }
 
@@ -139,14 +182,4 @@
             margin: size() 0 size(200);
         }
     }
-}
-
-#frame-wallet-balances.active + .frame-button {
-    display: none;
-}
-
-#frame-wallet-interact:not(.active) + .frame-button,
-#frame-wallet-send.active ~ .frame-button,
-#frame-wallet-receive-table.active ~ .frame-button {
-    display: none;
 }

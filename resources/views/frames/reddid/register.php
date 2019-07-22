@@ -1,12 +1,4 @@
 <section class="wallet frame" id="frame-reddid-register">
-    <div class="frame-spacer"></div>
-
-    <button class="frame-button frame-button--left button button--black button--icon" data-click="frame" data-frame="wallet-interact">
-        <div class="icon icon--rotate180">
-            <?= $svg('arrow/small') ?>
-        </div>
-    </button>
-
     <div class="page-header">
         <h4 class="page-header-title">Create and register your ReddID name</h4>
         <span class="page-header-subtitle">

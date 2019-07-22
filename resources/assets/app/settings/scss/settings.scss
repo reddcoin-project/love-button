@@ -3,4 +3,32 @@
         margin: size(500) 0 0;
         width: 100%;
     }
+
+    &-links {
+        @include float();
+        margin: size() 0 0 (- size(500));
+        width: calc(100% + #{size(800)});
+    }
+
+    &-link {
+        width: 100%;
+
+        @include state(default hover active) {
+            border-bottom: 1px solid color('grey' 500);
+        } 
+
+        &:first-child {
+            @include state(default hover active) {
+                border-top: 1px solid color('grey' 500);
+            }
+        }
+    }
+
+    &-list {
+        margin: size(500) 0 0;
+
+        .list-item {
+            margin: 0;
+        }
+    }
 }

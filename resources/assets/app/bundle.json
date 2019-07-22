@@ -1,10 +1,13 @@
 [
+    "create-reddid",
+    "feed",
     "frame",
     "intro",
+    "nav",
+    "news",
     "not-found",
     "settings",
     "status",
     "themes",
-    "tip",
     "wallet"
 ]

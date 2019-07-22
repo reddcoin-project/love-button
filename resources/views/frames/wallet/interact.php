@@ -1,17 +1,17 @@
 <section class="wallet frame active" id="frame-wallet-interact">
 
-    <div class="frame-spacer"></div>
-
     <section class='frame frame--min active' id="frame-wallet-balances">
         <section id='wallet-balance'></section>
-        <section id='wallet-history'></section>
-    </section>
+        
+        <div class="wallet-table">
+            <div class="wallet-table-header">
+                <span class="wallet-table-history">History</span>
+                <span class="wallet-table-all link link--green right">See All</span>
+            </div>
 
-    <button class="frame-button frame-button--left button button--black button--icon" data-click="frame" data-frame="wallet-balances" style='z-index: 2;'>
-        <div class="icon icon--rotate180">
-            <?= $svg('arrow/small') ?>
+            <section id='wallet-history'></section>
         </div>
-    </button>
+    </section>
 
     <section class='frame frame--border' id="frame-wallet-send" style='padding-bottom: 0;'>
         <div class="page-header">
@@ -99,11 +99,3 @@
     <section class='frame frame--border' id="frame-wallet-receive-table"></section>
 
 </section>
-
-<button class="frame-button frame-button--left button button--black button--icon tooltip" data-click="frame" data-frame="reddid-register" data-hover="toggle" id="menuRegister">
-    <div class="icon">
-        <?= $svg('user') ?>
-    </div>
-
-    <span class="tooltip-content tooltip-content--message tooltip-content--e">Register ReddID Name</span>
-</button>
