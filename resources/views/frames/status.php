@@ -1,18 +1,10 @@
 <section class="status frame" id="frame-status">
-    <div class="frame-spacer"></div>
-
-    <button class="frame-button frame-button--left button button--black button--icon" data-click="frame" data-frame="wallet-interact">
-        <div class="icon icon--rotate180">
-            <?= $svg('arrow/small') ?>
-        </div>
-    </button>
-
     <div class="frame-wrapper">
-        <div class="page-header">
+        <div class="page-header page-header--center">
             <h3 class="page-header-title">Network Status</h3>
         </div>
 
-        <div class="list list--bulletpoint">
+        <div class="list list--bulletpoint" style='margin-top: 24px;'>
             <div class="list-item">
                 <span class="status-list-item-title">Average ping/pong latency</span>
 
