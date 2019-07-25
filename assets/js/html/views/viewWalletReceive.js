@@ -19,9 +19,16 @@
         });
 
         return `
-            <p>All addresses listed below belong to this wallet, and may be used as a way of keeping funds separate for ease of use and organization.</p>
+            <button class="frame-button frame-button--left button button--white button--icon button--small" data-click="frame" data-frame="wallet-balances" style='margin: -2px 0;z-index: 2;'>
+                <div class="icon icon--rotate180">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>            </div>
+            </button>
 
-            <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
+            <div class="page-header page-header--center">
+                <h3 class="page-header-title">Receive</h3>
+            </div>
+
+            <div class="wallet-field wallet-field--first field field--full field--grey" data-focusinout="toggle">
                 <label class="field-text field-text--select" data-change="select">
                     <div class="field-mask">${accounts[index].name}</div>
 
@@ -29,6 +36,10 @@
                         ${fields}
                     </select>
                 </label>
+            </div>
+
+            <div class="page-header" style='margin-top: 32px;'>
+                <h5 class="page-header-title">Address</h5>
             </div>
         `;
     };
