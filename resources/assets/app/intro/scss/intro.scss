@@ -30,8 +30,7 @@
 
         &-logo {
             @include position(absolute, center);
-            @include size(size(800) * 2);
-            background: color('black');
+            @include size(size(700) * 2);
         }
     }
 

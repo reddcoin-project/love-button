@@ -9,6 +9,7 @@
     &-link {
         font-size: font-size(300);
         margin: 0 size(300);
+        padding: size(600) 0 0;
         text-align: center;
 
         &--center {
@@ -25,10 +26,14 @@
             }
         }
 
+        &:not(&--center) {
+            position: relative;
+        }
+
         &-icon {
-            clear: both;
-            float: unset;
-            margin: 0 auto size(200);
+            @include position(absolute, horizontal);
+            @include size(size(500));
+            top: 0;
         }
     }
 }

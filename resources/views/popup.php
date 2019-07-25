@@ -25,47 +25,37 @@
                 </div>
 
                 <section class="frames">
-                    <div class="new">
-                        <section class="nav">
-                            <div class="nav-link" data-click="frame" data-frame="feed">
-                                <div class="nav-link-icon icon">
-                                    <?= $svg("settings") ?>
-                                </div>
-                                Tip Feed
-                            </div>
+                    <section class="nav" id="nav">
+                        <div class="nav-link" data-click="frame" data-frame="feed">
+                            <img src="assets/images/nav/feed.svg" alt="" class="nav-link-icon">
+                            Tip Feed
+                        </div>
 
-                            <div class="nav-link" data-click="frame" data-frame="news">
-                                <div class="nav-link-icon icon">
-                                    <?= $svg("settings") ?>
-                                </div>
-                                News
-                            </div>
+                        <div class="nav-link" data-click="frame" data-frame="news">
+                            <img src="assets/images/nav/news.svg" alt="" class="nav-link-icon">
+                            News
+                        </div>
 
-                            <div class="nav-link nav-link--center" data-click="frame" data-frame="reddid-register" id="menuRegister">
-                                <div class="button button--green button--faded button--icon button--large tooltip" data-hover="toggle">
-                                    <div class="icon">
-                                        <?= $svg('plus') ?>
-                                    </div>
-
-                                    <span class="tooltip-content tooltip-content--n tooltip-content--message">Create a Reddid</span>
+                        <div class="nav-link nav-link--center" data-click="frame" data-frame="reddid-register" id="menuRegister">
+                            <div class="button button--green button--faded button--icon button--large tooltip" data-hover="toggle">
+                                <div class="icon">
+                                    <?= $svg('plus') ?>
                                 </div>
-                            </div>
 
-                            <div class="nav-link" data-click="frame" data-frame="wallet-interact">
-                                <div class="nav-link-icon icon">
-                                    <?= $svg("settings") ?>
-                                </div>
-                                Wallet
+                                <span class="tooltip-content tooltip-content--n tooltip-content--message">Create a Reddid</span>
                             </div>
+                        </div>
 
-                            <div class="nav-link" data-click="frame" data-frame="settings">
-                                <div class="nav-link-icon icon">
-                                    <?= $svg("settings") ?>
-                                </div>
-                                Settings
-                            </div>
-                        </section>
-                    </div>
+                        <div class="nav-link" data-click="frame" data-frame="wallet-interact">
+                            <img src="assets/images/nav/wallet.svg" alt="" class="nav-link-icon">
+                            Wallet
+                        </div>
+
+                        <div class="nav-link" data-click="frame" data-frame="settings">
+                            <img src="assets/images/nav/setting.svg" alt="" class="nav-link-icon">
+                            Settings
+                        </div>
+                    </section>
 
                     <?php
                         $frames = [

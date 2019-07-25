@@ -929,9 +929,13 @@ function displayWelcome() {
         if (!response.walletObj.dataAvailable) {
             $('#frame-wallet-interact').hide();
             $('#frame-wallet-interact').removeClass('active');
+            $('#menuRegister').hide();
+            $('#nav').hide();
         }
         else {
             $('#frame-intro').hide();
+            $('#menuRegister').show();
+            $('#nav').show();
 
             displayWallet();
 

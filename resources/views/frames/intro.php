@@ -2,7 +2,7 @@
 
     <section class="intro-frame frame active" id="frame-intro-1">
         <div class="intro-frame-image">
-            <img class='intro-frame-logo' src="" alt="">
+            <img class='intro-frame-logo' src="assets/images/reddcoin_logo.svg" alt="">
         </div>
 
         <div class="page-header page-header--center">
@@ -16,7 +16,7 @@
     </section>
 
     <section class="intro-frame frame" id="frame-intro-2">
-        <div class="intro-frame-image intro-frame-image--black"></div>
+        <img src="assets/images/intro/1.svg" alt="" class="intro-frame-image">
 
         <div class="page-header page-header--center">
             <h3 class="page-header-title">&nbsp;</h3>
@@ -27,7 +27,7 @@
     </section>
 
     <section class="intro-frame frame" id="frame-intro-3">
-        <div class="intro-frame-image intro-frame-image--black"></div>
+        <img src="assets/images/intro/2.svg" alt="" class="intro-frame-image">
 
         <div class="page-header page-header--center">
             <h3 class="page-header-title">&nbsp;</h3>
@@ -38,7 +38,7 @@
     </section>
 
     <section class="intro-frame frame" id="frame-intro-4">
-        <div class="intro-frame-image intro-frame-image--black"></div>
+        <img src="assets/images/intro/3.svg" alt="" class="intro-frame-image">
 
         <div class="page-header page-header--center">
             <h3 class="page-header-title">&nbsp;</h3>
