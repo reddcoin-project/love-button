@@ -214,7 +214,7 @@
 
     <section class='frame frame--min active' id="frame-wallet-balances">
         <section id='wallet-balance'></section>
-
+        
         <div class="wallet-table">
             <div class="wallet-table-header">
                 <span class="wallet-table-history">History</span>
@@ -226,28 +226,14 @@
     </section>
 
     <section class='frame frame--border' id="frame-wallet-send" style='padding-bottom: 0;'>
-        <button class="frame-button frame-button--left button button--white button--icon button--small" data-click="frame" data-frame="wallet-balances" style='margin: -2px 0;z-index: 2;'>
-            <div class="icon icon--rotate180">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>            </div>
-        </button>
-
-        <div class="page-header page-header--center">
-            <h3 class="page-header-title">Send</h3>
+        <div class="page-header">
+            <h3 class="page-header-title">Send Reddcoin To:</h3>
         </div>
 
-        <div class="wallet-field wallet-field--first field field--full field--grey field--horizontal" data-focusinout="toggle">
-            <span class="field-title">From</span>
 
-            <label class="wallet-field-right field-text field-text--select">
-                <select class='field-mask' id="sendFromAccount" style='pointer-events: auto;'></select>
-            </label>
-        </div>
-
-        <span class="wallet-field-left">To</span>
-
-        <div class="wallet-field wallet-field-right field field--full field--grey" data-focusinout='toggle'>
+        <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
             <span class="field-title">
-                ReddID / Contact List
+                Saved Contacts and ReddID users
             </span>
 
             <label class="field-text field-text--input">
@@ -255,11 +241,15 @@
             </label>
 
             <datalist id="contacts"></datalist>
+
+            <span class="field-description">
+                Use this dropdown to select a ReddID user or saved contact. You can scroll through the list, or type a part of their name
+            </span>
         </div>
 
-        <span class="wallet-field-right wallet-field-right--center">or</span>
+        <datalist id="contacts"></datalist>
 
-        <div class="wallet-field wallet-field-right field field--full field--grey" data-focusinout='toggle'>
+        <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
             <span class="field-title">
                 Reddcoin Address
             </span>
@@ -267,9 +257,13 @@
             <label class="field-text field-text--input">
                 <input class="field-mask field-tag" id="walletSend_address" type="text">
             </label>
+
+            <span class="field-description">
+                The address where you want to send. This can be populated by filling it in manually, or by selecting from the contacts list above.
+            </span>
         </div>
 
-        <!-- <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+        <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
             <span class="field-title">
                 Contact Name (optional)
             </span>
@@ -277,15 +271,32 @@
             <label class="field-text field-text--input">
                 <input class="field-mask field-tag" id="walletSend_contact" type="text">
             </label>
-        </div> -->
 
-        <div class="wallet-field field field--full field--grey field--horizontal" data-focusinout='toggle'>
+            <span class="field-description">
+                By adding a contact name, will save the details of this transaction into your address book.
+            </span>
+        </div>
+
+        <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
             <span class="field-title">
-                Amount
+                Reddcoin Amount
             </span>
 
-            <label class="wallet-field-right field-text field-text--input">
+            <label class="field-text field-text--input">
                 <input class="field-mask field-tag" id="walletSend_amount" type="text">
+            </label>
+
+            <span class="field-description">
+                The amount of Reddcoin to send.
+            </span>
+        </div>
+
+
+        <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
+            <span class="field-title">Send from the following account</span>
+
+            <label class="field-text field-text--select">
+                <select class='field-mask' id="sendFromAccount" style='pointer-events: auto;'></select>
             </label>
         </div>
 
@@ -293,9 +304,7 @@
         <p id="error_msg"></p>
         <p id="send_error_msg_txt"></p>
 
-        <section class="wallet-centered">
-            <button class="wallet-button button button--faded button--green button--large" id="walletSend_send">Send</button>
-        </section>
+        <button class="wallet-button button button--large button--primary right" id="walletSend_send">Send</button>
 
     </section>
 
@@ -744,35 +753,7 @@
             <h4 class="page-header-title">Settings</h4>
         </div>
 
-        <div class="settings-field field field--full field--grey" data-focusinout="toggle">
-            <span class="field-title">Background</span>
-
-            <label class="field-text field-text--select" data-change="select">
-                <div class="field-mask"></div>
-
-                <select class="field-tag js-background-select" data-ref="trigger:change">
-                    <option value="theme0">Remove Theme</option>
-                    <option value="theme1">Theme 1</option>
-                    <option value="theme2">Theme 2</option>
-                </select>
-            </label>
-        </div>
-
-        <b class="wallet-button button button--center button--large button--grey" data-click="frame" data-frame="status" id="menuStatus">Network Status</b>
-        <b class="wallet-button button button--center button--large button--black right tooltip" data-click="toggle">
-            Reset
-            <div class="tooltip-content tooltip-content--black tooltip-content--ne" data-stopclick style="padding: 16px;text-align: left;width: 240px;">
-                <p style='padding-bottom: 16px;'>Resetting the extension will wipe your seed. Do not process if you do not have it saved</p>
-                <div class="button button--large button--green button--faded right" data-stopclick id="reset">Reset</div>
-            </div>
-        </b>
-
-        <div class="settings-list list">
-            <span class="list-item list-item--small" style='padding: 0;'>Build: 1</span>
-            <span class="list-item list-item--small" style='padding: 0;'>Version: 1.6.0</span>
-        </div>
-
-        <!-- <div class="settings-links">
+        <div class="settings-links">
             <div class="settings-link link link--full link--large">
                 <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.001 15.699a.3.3 0 0 1-.3.3H6.3a.3.3 0 0 1-.3-.3V.299a.3.3 0 0 1 .3-.3h3.401a.3.3 0 0 1 .3.3v15.4z"/><path d="M16 9.7a.3.3 0 0 1-.3.3H.3a.3.3 0 0 1-.3-.3V6.3A.3.3 0 0 1 .3 6h15.4a.3.3 0 0 1 .3.3v3.4z"/></svg>                </div>
@@ -783,22 +764,62 @@
                 <div class="icon right">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.301 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L8.918 8l-4.031 4.029a.303.303 0 0 0 0 .425l.99.989a.3.3 0 0 0 .424 0L11.745 8 6.301 2.555z"/></svg>                </div>
             </div>
-        </div> -->
+
+            <div class="settings-link link link--full link--large">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.001 15.699a.3.3 0 0 1-.3.3H6.3a.3.3 0 0 1-.3-.3V.299a.3.3 0 0 1 .3-.3h3.401a.3.3 0 0 1 .3.3v15.4z"/><path d="M16 9.7a.3.3 0 0 1-.3.3H.3a.3.3 0 0 1-.3-.3V6.3A.3.3 0 0 1 .3 6h15.4a.3.3 0 0 1 .3.3v3.4z"/></svg>                </div>
+                <span class="inline-spacer"></span>
+
+                Support
+
+                <div class="icon right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.301 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L8.918 8l-4.031 4.029a.303.303 0 0 0 0 .425l.99.989a.3.3 0 0 0 .424 0L11.745 8 6.301 2.555z"/></svg>                </div>
+            </div>
+
+            <div class="settings-link link link--full link--large">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.001 15.699a.3.3 0 0 1-.3.3H6.3a.3.3 0 0 1-.3-.3V.299a.3.3 0 0 1 .3-.3h3.401a.3.3 0 0 1 .3.3v15.4z"/><path d="M16 9.7a.3.3 0 0 1-.3.3H.3a.3.3 0 0 1-.3-.3V6.3A.3.3 0 0 1 .3 6h15.4a.3.3 0 0 1 .3.3v3.4z"/></svg>                </div>
+                <span class="inline-spacer"></span>
+
+                Share Gemini
+
+                <div class="icon right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.301 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L8.918 8l-4.031 4.029a.303.303 0 0 0 0 .425l.99.989a.3.3 0 0 0 .424 0L11.745 8 6.301 2.555z"/></svg>                </div>
+            </div>
+
+            <div class="settings-link link link--full link--large">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.001 15.699a.3.3 0 0 1-.3.3H6.3a.3.3 0 0 1-.3-.3V.299a.3.3 0 0 1 .3-.3h3.401a.3.3 0 0 1 .3.3v15.4z"/><path d="M16 9.7a.3.3 0 0 1-.3.3H.3a.3.3 0 0 1-.3-.3V6.3A.3.3 0 0 1 .3 6h15.4a.3.3 0 0 1 .3.3v3.4z"/></svg>                </div>
+                <span class="inline-spacer"></span>
+
+                Sign In
+
+                <div class="icon right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M6.301 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L8.918 8l-4.031 4.029a.303.303 0 0 0 0 .425l.99.989a.3.3 0 0 0 .424 0L11.745 8 6.301 2.555z"/></svg>                </div>
+            </div>
+
+            <div class="settings-list list">
+                <span class="list-item list-item--small">Build: 1</span>
+                <span class="list-item list-item--small">Version: 1.6.0</span>
+            </div>
+        </div>
     </section>
 
 </section>
 <section class="status frame" id="frame-status">
-    <div class="frame-wrapper">
-        <button class="frame-button frame-button--left button button--white button--icon button--small" data-click="frame" data-frame="wallet-interact" style='margin: -2px 0;z-index: 2;'>
-            <div class="icon icon--rotate180">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>            </div>
-        </button>
+    <div class="frame-spacer"></div>
 
-        <div class="page-header page-header--center">
+    <button class="frame-button frame-button--left button button--black button--icon" data-click="frame" data-frame="wallet-interact">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+    </button>
+
+    <div class="frame-wrapper">
+        <div class="page-header">
             <h3 class="page-header-title">Network Status</h3>
         </div>
 
-        <div class="list list--bulletpoint" style='margin-top: 24px;'>
+        <div class="list list--bulletpoint">
             <div class="list-item">
                 <span class="status-list-item-title">Average ping/pong latency</span>
 
