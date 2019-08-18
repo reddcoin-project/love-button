@@ -619,7 +619,7 @@
                     $("#pwLoadingOverlay").hide();
                     $(".reddidPopupPage_PasswordOverlay").hide();
                     document.getElementById('redd_id_input').disabled = true;
-                    document.getElementById('redd_id_btn_order').disabled = true;
+                    document.getElementById('redd_id_btn_create').disabled = true;
                     $('#error_msg_txt').text('');
                     $("#orderLoading").show();
                     let oi = await orderId(uid, priv.namespace, pwd);
@@ -837,7 +837,7 @@ function setPopupGuiListeners() {
             case 'redd_id_btn_reset':
                 Reddcoin.popup.resetId();
                 break;
-            case 'redd_id_btn_order':
+            case 'redd_id_btn_create':
                 Reddcoin.popup.orderId();
                 break;
             case 'passwordCancelOverLay':

@@ -32,5 +32,5 @@
         <span class="field-description" id="id_msg">Please enter a name to continue</span>
     </div>
 
-    <button class="wallet-button button button--center button--large button--primary right" id="redd_id_btn_order">Order</button>
+    <button class="wallet-button button button--center button--large button--primary right" id="redd_id_btn_create">Create</button>
 </section>

@@ -36,7 +36,7 @@
             }
           },
           {
-            redd_id_btn_order: {
+            redd_id_btn_create: {
               value: '',
               state: 'enabled'
             }
@@ -112,7 +112,7 @@
       //Check the status of the wallet
       if (networkState.walletObj.dataAvailable) {
         debug.log(`Wallet available`);
-        $('#redd_id_btn_order').show();
+        $('#redd_id_btn_create').show();
 
         const wallet = JSON.parse(localStorage.reddcoinWallet);
 
@@ -134,7 +134,7 @@
 
       } else {
         debug.log(`Wallet not available`);
-        $('#redd_id_btn_order').hide();
+        $('#redd_id_btn_create').hide();
 
         //owning address
         $('#owning_address_input').val('Please create or import a wallet');
@@ -151,10 +151,10 @@
       }
 
       //$('#id_msg').text(`Please enter a name.`);
-      $('#redd_id_btn_order').prop('disabled', true);
+      $('#redd_id_btn_create').prop('disabled', true);
       $("#orderLoading").hide();
 
-      priv.setStateValue('redd_id_btn_order', 'state', 'disabled');
+      priv.setStateValue('redd_id_btn_create', 'state', 'disabled');
 
     });
   };
@@ -225,10 +225,10 @@
     const allowedChars = /^[\da-z-_]*$/;
     if (!name.match(allowedChars)) {
       document.getElementById('id_msg').innerText = "The name can only contain lower-case letters, digits, hyphens and underscores.";
-      //document.getElementById('redd_id_btn_order').disabled = true;
+      //document.getElementById('redd_id_btn_create').disabled = true;
       return false;
     }
-    //document.getElementById('redd_id_btn_order').disabled = false;
+    //document.getElementById('redd_id_btn_create').disabled = false;
     return true
   };
   priv.checkLength = function (name, namespace) {
@@ -238,14 +238,14 @@
     if (name.length < 1) {
       $('#id_msg').text("Please enter a name.");
       $('#redd_id_balance').removeAttr('style');
-      //document.getElementById('redd_id_btn_order').disabled = true;
+      //document.getElementById('redd_id_btn_create').disabled = true;
       return false
     } else if (fqn.length > priv.maxNameLength) {
       $('#id_msg').text(`The name ${name} is too long. Maximum length allowed ${priv.maxNameLength - namespace.length} chars. Your name is ${name.length} chars`);
-      //document.getElementById('redd_id_btn_order').disabled = true;
+      //document.getElementById('redd_id_btn_create').disabled = true;
       return false
     }
-    //document.getElementById('redd_id_btn_order').disabled = false;
+    //document.getElementById('redd_id_btn_create').disabled = false;
     return true;
   };
 
@@ -253,10 +253,10 @@
     if (priv.cost > priv.balance) {
       $('#id_msg').text(`Cost: ${priv.cost * COIN} is > ${priv.balance * COIN}`);
       return false;
-      //document.getElementById('redd_id_btn_order').disabled = true;
+      //document.getElementById('redd_id_btn_create').disabled = true;
     } else {
       $('#id_msg').text(`Cost: ${priv.cost * COIN} is <  ${priv.balance * COIN}`);
-      //document.getElementById('redd_id_btn_order').disabled = false;
+      //document.getElementById('redd_id_btn_create').disabled = false;
     }
     return true;
   };
@@ -292,7 +292,7 @@
             console.log("Error: " + data.error);
             document.getElementById('id_msg').innerText = data.error;
             console.log("Error: " + data.error);
-            document.getElementById('redd_id_btn_order').disabled = true;
+            document.getElementById('redd_id_btn_create').disabled = true;
           } else {
             priv.available = true;
             priv.cost = data.cost.est_totalcost;
@@ -325,12 +325,12 @@
     $('#id_msg').text(id_msgText);
     $('#redd_id_value').prop('title', id_msgTitle);
     $('#redd_id_value').val(id_value);
-    $('#redd_id_btn_order').prop('disabled',id_btnOrderDisable);
+    $('#redd_id_btn_create').prop('disabled',id_btnOrderDisable);
 
     priv.setStateValue('id_msg', 'value', id_msgText);
     priv.setStateValue('id_msg', 'title', id_msgTitle);
     priv.setStateValue('redd_id_value', 'value', id_value);
-    priv.setStateValue('redd_id_btn_order', 'state', id_btnOrderDisable);
+    priv.setStateValue('redd_id_btn_create', 'state', id_btnOrderDisable);
 
   };
 	priv.updateTransaction = function(data) {
@@ -360,8 +360,8 @@
 		if (data) {
 			var user = data.user;
 
-			if (document.getElementById('redd_id_btn_order')) {
-				document.getElementById('redd_id_btn_order').disabled = true;
+			if (document.getElementById('redd_id_btn_create')) {
+				document.getElementById('redd_id_btn_create').disabled = true;
 			}
 
 			if (user.error) {
@@ -393,27 +393,27 @@
 
     if (data.preorder && !Object.keys(data.preorder).length) { // preordering has not started
       $("#orderLoading").hide();
-      $('#redd_id_btn_order').prop('disabled', false);
+      $('#redd_id_btn_create').prop('disabled', false);
       $('#id_msg').text(`Please enter a name.`);
       $('#redd_id_input').prop('disabled', false);
     } else if (data.preorder && data.preorder.init && data.preorder.init === true) { // disable buttons Preordering started, cannot register manually
       $("#orderLoading").show();
-      $('#redd_id_btn_order').prop('disabled', true);
+      $('#redd_id_btn_create').prop('disabled', true);
       $('#id_msg').text(`Pre-ordering has started, Check Status history`);
       $('#redd_id_input').prop('disabled', true);
     } else if (data.preorder && data.preorder.init && data.preorder.init === true && data.preorder.complete && data.preorder.complete === true){
-      $('#redd_id_btn_order').prop('disabled', true);
+      $('#redd_id_btn_create').prop('disabled', true);
       $('#id_msg').text(`Pre-ordering complete, Check Status history`);
       $('#redd_id_input').prop('disabled', true);
     }
 
     if (data.register && data.register.init && data.register.init === true && data.register.complete && data.register.complete === false){
-      $('#redd_id_btn_order').prop('disabled', true);
+      $('#redd_id_btn_create').prop('disabled', true);
       $('#id_msg').text(`Registering started, Check Status history`)
       $('#redd_id_input').prop('disabled', true);
     } else if (data.register && data.register.init && data.register.init === true && data.register.complete && data.register.complete === true){
       $("#orderLoading").hide();
-      $('#redd_id_btn_order').prop('disabled', true);
+      $('#redd_id_btn_create').prop('disabled', true);
       $('#id_msg').text(`Registering complete, Check Status history`)
       $('#redd_id_input').prop('disabled', false);
     }
@@ -441,8 +441,8 @@
         document.getElementById('redd_id_input').disabled = false;
         document.getElementById('redd_id_input').value = '';
         document.getElementById('redd_id_input').value = '';
-        document.getElementById('redd_id_btn_order').disabled = false;
-        document.getElementById('redd_id_btn_order').disabled = true;
+        document.getElementById('redd_id_btn_create').disabled = false;
+        document.getElementById('redd_id_btn_create').disabled = true;
         document.getElementById('id_msg').innerText = '';
         document.getElementById('id_msg').innerText = 'Please enter a name.';
         document.getElementById('redd_id_value').value = '';
@@ -472,7 +472,7 @@
 
 		// We are workign with this ID so disable the input field
 		document.getElementById('redd_id_input').disabled = true;
-		document.getElementById('redd_id_btn_order').disabled = true;
+		document.getElementById('redd_id_btn_create').disabled = true;
 
 		return true;
 	}
@@ -483,7 +483,7 @@
 
     priv.available = false;
     $('#id_msg').text(`Checking availablity of ${name}${namespace}`);
-    $('#redd_id_btn_order').prop('disabled', true);
+    $('#redd_id_btn_create').prop('disabled', true);
 
     if (!priv.checkAllowedChars(name, namespace)) {
       return false
