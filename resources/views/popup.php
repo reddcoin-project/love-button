@@ -36,8 +36,8 @@
                             News
                         </div>
 
-                        <div class="nav-link nav-link--center" data-click="frame" data-frame="reddid-register" id="menuRegister">
-                            <div class="button button--green button--faded button--icon button--large tooltip" data-hover="toggle">
+                        <div class="nav-link nav-link--center" data-click="frame" data-frame="reddid-register">
+                            <div class="button button--green button--faded button--icon button--large tooltip" data-hover="toggle" id="menuRegister">
                                 <div class="icon">
                                     <?= $svg('plus') ?>
                                 </div>
