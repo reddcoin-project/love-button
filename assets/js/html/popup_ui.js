@@ -669,23 +669,6 @@
         };
     };
 
-    pub.registerId = function () {
-        if (Reddcoin.viewWalletRegister.registerId() == true){
-            console.log("Register started");
-            document.getElementById('redd_id_btn_register').disabled = true;
-            let uid = $('#redd_id_input').val();
-            let password = $('#passwordOverlay').val();
-
-            Reddcoin.messenger.registerId(uid, priv.namespace, password, function(data) {
-                //TODO
-                // Check progress
-                /*Reddcoin.messenger.checkOrder(uid,'register', function(data) {
-                debug.log(JSON.stringify(data));
-                });*/
-            });
-        }
-    };
-
     priv.processFormdata = function (data) {
         var profile = {};
         var saveData = {};
@@ -853,10 +836,6 @@ function setPopupGuiListeners() {
             // Register UI functions
             case 'redd_id_btn_reset':
                 Reddcoin.popup.resetId();
-                break;
-            case 'redd_id_btn_register':
-                Reddcoin.popup.registerId();
-                //registerid();
                 break;
             case 'redd_id_btn_order':
                 Reddcoin.popup.orderId();

@@ -33,5 +33,4 @@
     </div>
 
     <button class="wallet-button button button--center button--large button--primary right" id="redd_id_btn_order">Order</button>
-    <button class="wallet-button button button--center button--large button--black" id="redd_id_btn_register">Register</button>
 </section>

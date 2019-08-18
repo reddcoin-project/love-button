@@ -42,12 +42,6 @@
             }
           },
           {
-            redd_id_btn_register: {
-              value: '',
-              state: 'enabled'
-            }
-          },
-          {
             redd_id_btn_cancel: {
               value: '',
               state: 'enabled'
@@ -118,7 +112,6 @@
       //Check the status of the wallet
       if (networkState.walletObj.dataAvailable) {
         debug.log(`Wallet available`);
-        $('#redd_id_btn_register').show();
         $('#redd_id_btn_order').show();
 
         const wallet = JSON.parse(localStorage.reddcoinWallet);
@@ -141,7 +134,6 @@
 
       } else {
         debug.log(`Wallet not available`);
-        $('#redd_id_btn_register').hide();
         $('#redd_id_btn_order').hide();
 
         //owning address
@@ -160,11 +152,9 @@
 
       //$('#id_msg').text(`Please enter a name.`);
       $('#redd_id_btn_order').prop('disabled', true);
-      $('#redd_id_btn_register').prop('disabled', true);
       $("#orderLoading").hide();
 
       priv.setStateValue('redd_id_btn_order', 'state', 'disabled');
-      priv.setStateValue('redd_id_btn_register', 'state', 'disabled');
 
     });
   };
@@ -236,11 +226,9 @@
     if (!name.match(allowedChars)) {
       document.getElementById('id_msg').innerText = "The name can only contain lower-case letters, digits, hyphens and underscores.";
       //document.getElementById('redd_id_btn_order').disabled = true;
-      //document.getElementById('redd_id_btn_register').disabled = true;
       return false;
     }
     //document.getElementById('redd_id_btn_order').disabled = false;
-    //document.getElementById('redd_id_btn_register').disabled = false;
     return true
   };
   priv.checkLength = function (name, namespace) {
@@ -255,11 +243,9 @@
     } else if (fqn.length > priv.maxNameLength) {
       $('#id_msg').text(`The name ${name} is too long. Maximum length allowed ${priv.maxNameLength - namespace.length} chars. Your name is ${name.length} chars`);
       //document.getElementById('redd_id_btn_order').disabled = true;
-      //document.getElementById('redd_id_btn_register').disabled = true;
       return false
     }
     //document.getElementById('redd_id_btn_order').disabled = false;
-    //document.getElementById('redd_id_btn_register').disabled = false;
     return true;
   };
 
@@ -340,7 +326,6 @@
     $('#redd_id_value').prop('title', id_msgTitle);
     $('#redd_id_value').val(id_value);
     $('#redd_id_btn_order').prop('disabled',id_btnOrderDisable);
-    $('#redd_id_btn_register').prop('disabled',id_btnRegisterDisable);
 
     priv.setStateValue('id_msg', 'value', id_msgText);
     priv.setStateValue('id_msg', 'title', id_msgTitle);
@@ -378,9 +363,6 @@
 			if (document.getElementById('redd_id_btn_order')) {
 				document.getElementById('redd_id_btn_order').disabled = true;
 			}
-			if (document.getElementById('redd_id_btn_register')) {
-				document.getElementById('redd_id_btn_register').disabled = true;
-			}
 
 			if (user.error) {
 			    document.getElementById('id_msg').innerText = user.error;
@@ -394,7 +376,6 @@
 			} else if (user.preordered.status === true && user.registered.status === false) {
 				document.getElementById('id_msg').innerText = user.uid + " preorder tx is confirmed on block : " + user.preordered.height;
 				document.getElementById('order_breadcrumb_txt').innerText = "Order => PreOrder Sent => Waiting => Confirmed on block : " + user.preordered.height;
-			    document.getElementById('redd_id_btn_register').disabled = false;
 			} else if (user.registered.status === 'pending') {
 				document.getElementById('id_msg').innerText = user.uid + " register tx has been sent. Waiting for first tx confirmation";
 				document.getElementById('register_breadcrumb_tx').innerText = "Register Sent => Waiting"
@@ -413,31 +394,26 @@
     if (data.preorder && !Object.keys(data.preorder).length) { // preordering has not started
       $("#orderLoading").hide();
       $('#redd_id_btn_order').prop('disabled', false);
-      $('#redd_id_btn_register').prop('disabled', true);
       $('#id_msg').text(`Please enter a name.`);
       $('#redd_id_input').prop('disabled', false);
     } else if (data.preorder && data.preorder.init && data.preorder.init === true) { // disable buttons Preordering started, cannot register manually
       $("#orderLoading").show();
       $('#redd_id_btn_order').prop('disabled', true);
-      $('#redd_id_btn_register').prop('disabled', true);
       $('#id_msg').text(`Pre-ordering has started, Check Status history`);
       $('#redd_id_input').prop('disabled', true);
     } else if (data.preorder && data.preorder.init && data.preorder.init === true && data.preorder.complete && data.preorder.complete === true){
       $('#redd_id_btn_order').prop('disabled', true);
-      $('#redd_id_btn_register').prop('disabled', false);
       $('#id_msg').text(`Pre-ordering complete, Check Status history`);
       $('#redd_id_input').prop('disabled', true);
     }
 
     if (data.register && data.register.init && data.register.init === true && data.register.complete && data.register.complete === false){
       $('#redd_id_btn_order').prop('disabled', true);
-      $('#redd_id_btn_register').prop('disabled', true);
       $('#id_msg').text(`Registering started, Check Status history`)
       $('#redd_id_input').prop('disabled', true);
     } else if (data.register && data.register.init && data.register.init === true && data.register.complete && data.register.complete === true){
       $("#orderLoading").hide();
       $('#redd_id_btn_order').prop('disabled', true);
-      $('#redd_id_btn_register').prop('disabled', true);
       $('#id_msg').text(`Registering complete, Check Status history`)
       $('#redd_id_input').prop('disabled', false);
     }
@@ -467,8 +443,6 @@
         document.getElementById('redd_id_input').value = '';
         document.getElementById('redd_id_btn_order').disabled = false;
         document.getElementById('redd_id_btn_order').disabled = true;
-        document.getElementById('redd_id_btn_register').disabled = true;
-        document.getElementById('redd_id_btn_register').disabled = true;
         document.getElementById('id_msg').innerText = '';
         document.getElementById('id_msg').innerText = 'Please enter a name.';
         document.getElementById('redd_id_value').value = '';
