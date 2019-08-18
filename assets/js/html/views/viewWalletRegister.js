@@ -114,17 +114,6 @@
         debug.log(`Wallet available`);
         $('#redd_id_btn_create').show();
 
-        const wallet = JSON.parse(localStorage.reddcoinWallet);
-
-        //owning address
-        $('#owning_address_input').val(wallet.accounts[0].addresses[0].address);
-        priv.setStateValue('owning_address_input', 'value', wallet.accounts[0].addresses[0].address);
-        //paying address
-        $('#paying_address_input').val(wallet.accounts[0].addresses[1].address);
-        priv.setStateValue('paying_address_input', 'value', wallet.accounts[0].addresses[1].address);
-
-        pub.getPayingAddrBalance();
-
         debug.log(wallet.accounts[0].addresses[1].address);
 
         Reddcoin.messenger.getUserIds(function(result){
@@ -496,20 +485,37 @@
         }*/
     return true;
   };
-  pub.getPayingAddrBalance = function () {
-    Reddcoin.messenger.getAddressBalance($('#paying_address_input').val(), function(data) {
-      priv.balance = data.balance.confirmed;
-      $('#redd_id_balance').val(`${data.balance.confirmed * COIN} RDD`)
-    });
+    pub.getPayingAddr = function () {
+        const wallet = JSON.parse(localStorage.reddcoinWallet);
 
-    window.setInterval(function () {
-      Reddcoin.messenger.getAddressBalance($('#paying_address_input').val(), function(data) {
-        priv.balance = data.balance.confirmed;
-        $('#redd_id_balance').val(`${data.balance.confirmed * COIN} RDD`)
-      })
-    },5000);
+        //paying address
+        if (wallet) {
+            return wallet.accounts[0].addresses[1].address;
+        }
+        return null
+    };
+    pub.getPayingAddrBalance = function (address) {
+        Reddcoin.messenger.getAddressBalance(address, function (data) {
+            priv.balance = data.balance.confirmed;
+            $('#redd_id_balance').val(`${data.balance.confirmed * COIN} RDD`)
+        });
+    };
+    pub.updatePayingAddrBalance = function () {
+        window.setInterval(function () {
+            let payingAddr = pub.getPayingAddr();
+            if (payingAddr) {
+                $('#paying_address_input').val(payingAddr);
+                Reddcoin.messenger.getAddressBalance(payingAddr, function (data) {
+                    priv.balance = data.balance.confirmed;
+                    $('#redd_id_balance').val(`${data.balance.confirmed * COIN} RDD`)
+                })
+            } else {
+                $('#paying_address_input').val('Create wallet first');
+            }
 
-  };
+        }, 5000);
+    };
+
 	pub.getView = function(data){
 
 	  if (data.action === 'open') {
@@ -537,6 +543,7 @@
     $('#redd_id_input').attr('title', `${newTitle} Up to ${priv.maxNameLength - priv.defaultNamespace.length} chars`);
 
 	};
+	pub.updatePayingAddrBalance();
 
 	exports.viewWalletRegister = pub;
 })(exports);
