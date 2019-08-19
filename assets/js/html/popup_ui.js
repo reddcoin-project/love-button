@@ -581,8 +581,15 @@
         const timeout = async ms => new Promise(res => setTimeout(res, ms));
 
         let next = false; // this is to be changed on user input
-        $('#passwordOkayOverlay').click(function() {
-            next = true
+        let sendOpt = false; // set to true if the send button clicked
+        $('#reddid_password_send').click(function() {
+            next = true;
+            sendOpt = true;
+        });
+
+        $('#reddid_password_cancel').click(function() {
+            next = true;
+            sendOpt = false;
         });
 
         async function waitUserInput() {
@@ -606,30 +613,41 @@
                 let msg = "You are about to send <strong>"+details.amount+" RDD</strong> to order the ID <strong>"+uid+"</strong>";
                 msg += '<br/>';
                 msg += '<br/>';
-                $("#passwordMessageOverlay").html(msg).show();
-                $(".reddidPopupPage_PasswordOverlay").show();
+
+                $("#frame-reddid-password-message").html(msg).show();
+
+                document.getElementById('frame-reddid-interact').classList.toggle("active");
+                document.getElementById('frame-reddid-password').classList.toggle("active");
+
+                $(".frame-reddid-password-message").show();
 
                 await waitUserInput();
-                let pwd = $('#passwordOverlay').val();
-                $("#pwLoadingOverlay").show();
-                let checkPwd = await checkPassword(pwd);
+                if (sendOpt === true) {
+                    let pwd = $('#reddid_password').val();
+                    $("#pwLoadingOverlay").show();
+                    let checkPwd = await checkPassword(pwd);
 
-                if (checkPwd) {
-                    $("#passwordErrorOverlay").hide();
-                    $("#pwLoadingOverlay").hide();
-                    $(".reddidPopupPage_PasswordOverlay").hide();
-                    document.getElementById('redd_id_input').disabled = true;
-                    document.getElementById('redd_id_btn_create').disabled = true;
-                    $('#error_msg_txt').text('');
-                    $("#orderLoading").show();
-                    let oi = await orderId(uid, priv.namespace, pwd);
-                    debug.log(`${JSON.stringify(oi)}`);
-                }
-                else {
-                    $("#passwordErrorOverlay").show();
-                    $(".reddidPopupPage_PasswordOverlay").hide();
-                    $('#passwordOverlay').val('');
-                    $('#error_msg_txt').text('Wrong Password');
+                    if (checkPwd) {
+                        $("#passwordErrorOverlay").hide();
+                        $("#pwLoadingOverlay").hide();
+                        $(".reddidPopupPage_PasswordOverlay").hide();
+                        document.getElementById('redd_id_input').disabled = true;
+                        document.getElementById('redd_id_btn_create').disabled = true;
+                        $('#reddid_error_msg_txt').text('');
+                        $("#orderLoading").show();
+                        let oi = await orderId(uid, priv.namespace, pwd);
+                        debug.log(`${JSON.stringify(oi)}`);
+
+
+                    } else {
+                        $('#reddid_error_msg_txt').text('The entered password was incorrect.');
+                    }
+
+                    // go back to 'Create Reddid' page
+                    document.getElementById('frame-reddid-interact').classList.toggle("active");
+                    document.getElementById('frame-reddid-password').classList.toggle("active");
+                    $('#walletSend_password').val('');
+
                 }
             }
         }
