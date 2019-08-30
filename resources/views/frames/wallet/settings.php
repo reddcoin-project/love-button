@@ -6,6 +6,8 @@
         <div class="icon icon--rotate180">
             <?= $svg('arrow/small') ?>
         </div>
+
+        &nbsp; <b>Back</b>
     </button>
 
     <span class="wallet-steps">
@@ -13,7 +15,7 @@
     </span>
 
     <div class="page-header page-header--center">
-        <h4 class="page-header-title">Please review the following settings</h4>
+        <h3 class="page-header-title"><b>Please review the following settings</b></h3>
         <span class="page-header-subtitle page-header-subtitle--small">
             If you are new to Reddcoin and ReddId, it is probably best to leave them as they are.
         </span>

@@ -6,16 +6,18 @@
         <div class="icon icon--rotate180">
             <?= $svg('arrow/small') ?>
         </div>
+
+        &nbsp; <b>Back</b>
     </button>
 
     <div class="wallet-shield">
-        <img src="" alt="" class="wallet-shield-image">
+        <img src="assets/images/stop.svg" alt="" class="wallet-shield-image">
     </div>
 
     <div class="page-header page-header--center">
-        <h4 class="page-header-title">
+        <h3 class="page-header-title page-header-title--primary">
             <b>Back up your wallet!</b>
-        </h4>
+        </h3>
         <span class="page-header-subtitle page-header-subtitle--small">
             In the next step you will receive a recovery phrase that will allow you to recover your wallet.
         </span>
@@ -23,11 +25,11 @@
 
     <div class="wallet-warning page-header page-header--center">
         <h5 class="page-header-title">
-            What if I lost my phrase or password?
+            <b>What if I lose my phrase?</b>
         </h5>
-        <span class="page-header-subtitle page-header-subtitle--small">
+        <b class="page-header-subtitle page-header-subtitle--small">
             WARNING: If you lose your recovery phrase, you will be unable to recover access to your account!
-        </span>
+        </b>
     </div>
 
     <div class="intro-buttons">

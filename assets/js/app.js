@@ -2503,7 +2503,7 @@ require(['directive', 'dom', 'node', 'modules/state'], function(directive, dom, 
     'use strict';
 
 
-    let attribute = 'data-frame',
+    let attribute = 'data-frame', 
         id = (k) => `frame-${k}`;
 
 

@@ -2,11 +2,13 @@
     "create-reddid",
     "feed",
     "frame",
+    "header",
     "intro",
     "nav",
     "news",
     "not-found",
     "settings",
+    "social",
     "status",
     "themes",
     "wallet"

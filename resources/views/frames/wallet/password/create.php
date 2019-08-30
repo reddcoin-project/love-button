@@ -6,6 +6,8 @@
         <div class="icon icon--rotate180">
             <?= $svg('arrow/small') ?>
         </div>
+
+        &nbsp; <b>Back</b>
     </button>
 
     <span class="wallet-steps">
@@ -13,19 +15,19 @@
     </span>
 
     <div class="page-header page-header--center">
-        <h4 class="page-header-title">Password</h4>
+        <h3 class="page-header-title"><b>Password</b></h3>
         <span class="page-header-subtitle page-header-subtitle--small">
-            Lorem ipsum
+            Create a password to protect your wallet from unauthorized spending
         </span>
     </div>
 
     <section class="page-section page-section--min">
         <div class="wallet-list list list--bulletpoint">
             <span class="list-item">
-                Write your phrase and password down. Keep them safe.
+                Write your password down. Keep your password safe!
             </span>
             <span class="list-item">
-                Never share phrase with others
+                Never share password with others!
             </span>
         </div>
 

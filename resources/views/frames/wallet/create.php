@@ -6,6 +6,8 @@
         <div class="icon icon--rotate180">
             <?= $svg('arrow/small') ?>
         </div>
+
+        &nbsp; <b>Back</b>
     </button>
 
     <span class="wallet-steps">
@@ -13,27 +15,34 @@
     </span>
 
     <div class="page-header page-header--center">
-        <h4 class="page-header-title">Recovery Phrase</h4>
+        <h3 class="page-header-title"><b>Recovery Phrase</b></h3>
         <span class="page-header-subtitle page-header-subtitle--small">
-            Write down and save your recovery phrase
+            Please read and understand the following instructions.
         </span>
+        <b class="page-header-subtitle page-header-subtitle--small">
+            It is crucial to be able to recover your ReddID account!
+        </b>
     </div>
 
     <section class="page-section page-section--min">
         <div class="wallet-list list list--bulletpoint">
             <span class="list-item">
-                Write your phrase and password down. Keep them safe.
+                Write your phrase and password down and keep it in a safe location.
             </span>
             <span class="list-item">
-                Never share phrase with others
+                Never disclose your phrase to anyone that shouldn't have access to your account
+            </span>
+            <span class="list-item">
+                This is the only way to recover your account if you forget your account password or your account is lost
             </span>
         </div>
 
         <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+            <b class="field-title" style='text-align:center'>This is your phrase key below</b>
             <label class="field-text field-text--textarea">
                 <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_recovery_phrase" readonly></textarea>
             </label>
-        </div>
+        </div> 
 
         <div class="wallet-field field field--full field--grey" data-focusinout='toggle' id="confirm_seed_fields" style='display: none;'>
             <label class="field-text field-text--textarea">

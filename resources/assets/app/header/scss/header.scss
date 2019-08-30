@@ -1,0 +1,13 @@
+.header {
+    @include grid(d12);
+    background: color('white');
+    border-bottom: 1px solid color('grey');
+    display: none;
+    height: size(600) + (size(500) * 2);
+    padding: 0 size(500);
+
+    &-logo {
+        @include position(absolute, center);
+        height: size(600);
+    }
+}

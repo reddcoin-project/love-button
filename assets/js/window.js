@@ -4,7 +4,7 @@ if (chrome) {
             url: chrome.runtime.getURL("popup.html"),
             type: "popup",
             focused: true,
-            height: 500,
+            height: 640,
             width: 480
         });
     });
@@ -15,7 +15,7 @@ else {
             url: chrome.runtime.getURL("popup.html"),
             type: "popup",
             focused: true,
-            height: 500,
+            height: 640,
             width: 480
         });
     });

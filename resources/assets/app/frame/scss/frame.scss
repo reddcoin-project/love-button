@@ -1,5 +1,7 @@
 .frames {
-    padding: 0 0 (size(800) * 2);
+    &--wallet {
+        padding: 0 0 (size(800) * 2);
+    }
 }
 
 .frame {

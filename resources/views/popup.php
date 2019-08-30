@@ -13,6 +13,10 @@
 
     <body id="reddidPopup">
         <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' id='site'>
+            <header class="header" id='header'>
+               <img src="/assets/images/logo-reddid.svg" alt="" class="header-logo">
+            </header>
+
             <div class="container container--small">
                 <div class="create-reddid button button--center button--faded button--full button--green button--large" data-click="frame" data-frame="reddid-register" id="menuRegister">
                     Create a Reddid
@@ -24,7 +28,7 @@
                     </div>
                 </div>
 
-                <section class="frames">
+                <section class="frames" id="frames">
                     <section class="nav" id="nav">
                         <div class="nav-link" data-click="frame" data-frame="feed">
                             <img src="assets/images/nav/feed.svg" alt="" class="nav-link-icon">
@@ -73,6 +77,7 @@
                             'intro',
                             'news',
                             'settings',
+                            'social',
                             'status'
                         ];
 

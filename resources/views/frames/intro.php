@@ -1,6 +1,12 @@
 <section class="intro frame active" id="frame-intro">
 
-    <section class="intro-frame frame active" id="frame-intro-1">
+    <section class="intro-frame frame" id="frame-intro-1">
+        <div class="intro-frame-button intro-frame-button--right button button--black button--icon" data-click="frame" data-frame="intro-2">
+            <div class="icon">
+                <?= $svg('arrow/small') ?>
+            </div>
+        </div>
+
         <div class="intro-frame-image">
             <img class='intro-frame-logo' src="assets/images/reddcoin_logo.svg" alt="">
         </div>
@@ -16,6 +22,18 @@
     </section>
 
     <section class="intro-frame frame" id="frame-intro-2">
+        <div class="intro-frame-button intro-frame-button--left button button--black button--icon" data-click="frame" data-frame="intro-1">
+            <div class="icon icon--rotate180">
+                <?= $svg('arrow/small') ?>
+            </div>
+        </div>
+
+        <div class="intro-frame-button intro-frame-button--right button button--black button--icon" data-click="frame" data-frame="intro-3">
+            <div class="icon">
+                <?= $svg('arrow/small') ?>
+            </div>
+        </div>
+
         <img src="assets/images/intro/1.svg" alt="" class="intro-frame-image">
 
         <div class="page-header page-header--center">
@@ -27,6 +45,18 @@
     </section>
 
     <section class="intro-frame frame" id="frame-intro-3">
+        <div class="intro-frame-button intro-frame-button--left button button--black button--icon" data-click="frame" data-frame="intro-2">
+            <div class="icon icon--rotate180">
+                <?= $svg('arrow/small') ?>
+            </div>
+        </div>
+
+        <div class="intro-frame-button intro-frame-button--right button button--black button--icon" data-click="frame" data-frame="intro-4">
+            <div class="icon">
+                <?= $svg('arrow/small') ?>
+            </div>
+        </div>
+
         <img src="assets/images/intro/2.svg" alt="" class="intro-frame-image">
 
         <div class="page-header page-header--center">
@@ -38,6 +68,18 @@
     </section>
 
     <section class="intro-frame frame" id="frame-intro-4">
+        <div class="intro-frame-button intro-frame-button--left button button--black button--icon" data-click="frame" data-frame="intro-3">
+            <div class="icon icon--rotate180">
+                <?= $svg('arrow/small') ?>
+            </div>
+        </div>
+
+        <div class="intro-frame-button intro-frame-button--right button button--black button--icon" data-click="frame" data-frame="intro-1">
+            <div class="icon">
+                <?= $svg('arrow/small') ?>
+            </div>
+        </div>
+
         <img src="assets/images/intro/3.svg" alt="" class="intro-frame-image">
 
         <div class="page-header page-header--center">
@@ -49,7 +91,7 @@
     </section>
 
     <div class="intro-bubbles">
-        <span class="intro-bubble bubble" data-click="frame" data-frame="intro-1"></span>
+        <span class="intro-bubble bubble" data-click="frame" data-frame="intro-1" data-ref='trigger:click'></span>
         <span class="intro-bubble bubble" data-click="frame" data-frame="intro-2"></span>
         <span class="intro-bubble bubble" data-click="frame" data-frame="intro-3"></span>
         <span class="intro-bubble bubble" data-click="frame" data-frame="intro-4"></span>

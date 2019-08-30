@@ -928,11 +928,41 @@ function displayWelcome() {
             $('#frame-wallet-interact').removeClass('active');
             $('#menuRegister').hide();
             $('#nav').hide();
+
+            let bubbles = $(".intro-bubble"),
+                frame;
+
+            setInterval(function() {
+                if (!$('#frame-intro').hasClass('active')) {
+                    return;
+                }
+
+                for (let i = 0, n = bubbles.length; i < n; i++) {
+                    let bubble = bubbles[i];
+
+                    if (bubble.classList.contains('active')) {
+                        let attribute = bubble.getAttribute('data-frame');
+
+                        frame = parseInt(attribute[attribute.length - 1]) + 1;
+
+                        if (frame > 4) {
+                            frame = 1;
+                        }
+
+                        $(`[data-frame='intro-${frame}']`).trigger('click');
+                        return;
+                    }
+                }
+            }, 1000 * 10);
         }
         else {
             $('#frame-intro').hide();
             $('#menuRegister').show();
             $('#nav').show();
+
+            $('#header').show();
+
+            $('#frames').addClass('frames--wallet');
 
             displayWallet();
 
