@@ -129,6 +129,16 @@ $.fn.enterKey = function (fnc) {
 
   pub.walletPasswordConfirm = function () {
     debug.log('walletPasswordConfirm');
+
+    let pw = $('#wallet_password').val();
+
+    if (!pw || pw.length < 8) {
+      $('#pw_error').show();
+      return;
+    }
+
+    $('#pw_error').hide();
+
     if (!priv.passwordsMatch()) {
       $('#pwd_error').text('Passwords do not match. Please try again');
       $('#wallet_password').val('');
@@ -138,7 +148,7 @@ $.fn.enterKey = function (fnc) {
       return
     }
     $('#pwd_error').hide();
-    $('#pwd_error').text('');
+    $('#pwd_error').text('Password must be longer than 8 characters');
     $('#walletSwapSettings').trigger('click');
   };
 

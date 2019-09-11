@@ -1,4 +1,4 @@
-<section class="feed frame" id="frame-feed">
+<section class="feed frame disabled" id="frame-feed">
     <section class="page-section">
         <div class="feed-header page-header">
             <h4 class="page-header-title page-header-title--icon">

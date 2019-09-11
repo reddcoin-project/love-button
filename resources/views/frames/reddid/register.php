@@ -20,7 +20,7 @@
     </div>
 
     <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
-        <span class="field-title">Username</span>
+        <span class="field-title">Desired Redd-ID Name</span>
 
         <label class="field-text field-text--input">
             <input class="field-mask field-tag" id="redd_id_input" placeholder="Register an ID" type="text">
@@ -31,6 +31,9 @@
         </label>
 
         <span class="field-description" id="id_msg">Please enter a name to continue</span>
+        <span class="field-description" id="id_submsg"></span>
+        <span class="field-description" id="id_breadcrumb"></span>
+        <span class="field-description" id="id_registration"></span>
     </div>
     <button class="wallet-button button button--center button--large button--primary right" id="redd_id_btn_create">Create ID</button>
         <p id="reddid_error_msg_txt"></p>

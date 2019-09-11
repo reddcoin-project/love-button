@@ -44,7 +44,7 @@
                 <input class="field-mask field-tag" id="wallet_password_confirm" type="password">
             </label>
 
-            <span class="field-description" id="pwd_error">Confirm your password</span>
+            <span class="field-description">Confirm your password</span>
         </div>
     </section>
 

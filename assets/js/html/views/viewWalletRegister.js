@@ -109,6 +109,11 @@
       debug.log(`${JSON.stringify(response)}`);
       priv.state.network = response;
       networkState = priv.state.network;
+
+      console.log({
+          networkState
+      });
+
       //Check the status of the wallet
       if (networkState.walletObj.dataAvailable) {
         debug.log(`Wallet available`);
@@ -226,6 +231,7 @@
 
     if (name.length < 1) {
       $('#id_msg').text("Please enter a name.");
+      $('#id_submsg').text('');
       $('#redd_id_balance').removeAttr('style');
       //document.getElementById('redd_id_btn_create').disabled = true;
       return false
@@ -272,6 +278,7 @@
           console.log("Status: " + data.status);
           console.log("ID Cost: " + data.cost.est_totalcost);
           console.log("UID: " + data.uid);
+
           if (data.error) {
             priv.available = false;
             id_msgText = data.error;
@@ -288,7 +295,9 @@
 
             id_uid = data.uid.substring(0, data.uid.indexOf('.'));
             id_msgText = data.uid + " is available. Cost: " + (data.cost.est_totalcost * COIN) + " RDD";
+            // ICJR TODO: Add as 'field-description'
             id_msgTitle = "Cost is made up of the following: Base Price (" + (data.cost.satoshis * COIN) + " RDD) Est. fee (" + (data.cost.est_fees * COIN) + " RDD) + Dev Subsidy (" + (data.cost.opt_subsidy * COIN) + " RDD)";
+
             id_value = (data.cost.est_totalcost * COIN) + " RDD";
 
             if (priv.cost <= priv.balance) {
@@ -312,12 +321,13 @@
     }
 
     $('#id_msg').text(id_msgText);
-    $('#redd_id_value').prop('title', id_msgTitle);
+    $('#id_submsg').text(id_msgTitle);
     $('#redd_id_value').val(id_value);
     $('#redd_id_btn_create').prop('disabled',id_btnOrderDisable);
 
+    $('#id_submsg').text(id_msgTitle);
+
     priv.setStateValue('id_msg', 'value', id_msgText);
-    priv.setStateValue('id_msg', 'title', id_msgTitle);
     priv.setStateValue('redd_id_value', 'value', id_value);
     priv.setStateValue('redd_id_btn_create', 'state', id_btnOrderDisable);
 
@@ -350,7 +360,7 @@
 			var user = data.user;
 
 			if (document.getElementById('redd_id_btn_create')) {
-				document.getElementById('redd_id_btn_create').disabled = true;
+				$('#redd_id_btn_create').removeClass('button--primary').addClass('button--black button--processing');
 			}
 
 			if (user.error) {
@@ -358,19 +368,19 @@
 			} else if(user.confirmed && user.confirmed.address) {
 				pub.displayBlockchainRecord(user)
 			} else if (user.preordered.status === false) {
-				document.getElementById('order_breadcrumb_txt').innerText = "Order => PreOrder Sent";
+				document.getElementById('id_breadcrumb').innerText = "Order => PreOrder Sent";
 			} else if (user.preordered.status === 'pending') {
 			    document.getElementById('id_msg').innerText = user.uid + " Preorder tx has been sent. Waiting for first tx confirmation";
-			    document.getElementById('order_breadcrumb_txt').innerText = "Order => PreOrder Sent => Waiting"
+			    document.getElementById('id_breadcrumb').innerText = "Order => PreOrder Sent => Waiting"
 			} else if (user.preordered.status === true && user.registered.status === false) {
 				document.getElementById('id_msg').innerText = user.uid + " preorder tx is confirmed on block : " + user.preordered.height;
-				document.getElementById('order_breadcrumb_txt').innerText = "Order => PreOrder Sent => Waiting => Confirmed on block : " + user.preordered.height;
+				document.getElementById('id_breadcrumb').innerText = "Order => PreOrder Sent => Waiting => Confirmed on block : " + user.preordered.height;
 			} else if (user.registered.status === 'pending') {
 				document.getElementById('id_msg').innerText = user.uid + " register tx has been sent. Waiting for first tx confirmation";
-				document.getElementById('register_breadcrumb_tx').innerText = "Register Sent => Waiting"
+				document.getElementById('id_registration').innerText = "Register Sent => Waiting"
 			} else if (user.registered.status === true) {
 			    document.getElementById('id_msg').innerText = user.uid + " register tx is confirmed on block : " + user.registered.height;
-			    document.getElementById('register_breadcrumb_tx').innerText = "Register Sent => Waiting => Confirmed on block : " + user.registered.height;
+			    document.getElementById('id_registration').innerText = "Register Sent => Waiting => Confirmed on block : " + user.registered.height;
 			} else if (user.error) {
 				document.getElementById('id_msg').innerText = user.error;
 			}
@@ -520,13 +530,14 @@
 
 	  if (data.action === 'open') {
 	  	pub.setDefaults();
+
 		} else if (data.status) {
 			priv.updateStatus(data);
 		} else if (data.request) {
 			priv.updateTransaction(data);
 		} else if (data.registration){
 			priv.updateRegistrationStatus(data);
-		}else if (data.user){
+		} else if (data.user){
 			priv.updateOrderStatus(data);
 	    } else if (data.confirmed){
 	    	pub.displayBlockchainRecord(data)
@@ -538,9 +549,6 @@
 			var html = ''
 			return html
 		}
-
-    let newTitle = 'This is the name that you will receive tips associated with your wallet.';
-    $('#redd_id_input').attr('title', `${newTitle} Up to ${priv.maxNameLength - priv.defaultNamespace.length} chars`);
 
 	};
 	pub.updatePayingAddrBalance();

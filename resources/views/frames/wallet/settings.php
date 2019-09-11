@@ -36,7 +36,7 @@
         </div>
 
         <p>
-            Using the Tip Jar will give you an account that isn't password protected. This makes tipping faster and easier but is less secure.
+            Using the tip jar will let you tip up to a certain threshold, making tipping faster and easier. The threshold can be adjusted in settings.
         </p>
 
         <div class="wallet-field field field--full field--grey" data-focusinout="toggle">

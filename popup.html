@@ -12,13 +12,18 @@
     </head>
 
     <body id="reddidPopup">
-        <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' id='site'>
+        <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' data-mousedown="drag.start"
+        data-mousemove="drag.move"
+        data-mouseup="drag.stop"
+        data-touchstart="drag.start"
+        data-touchmove="drag.move"
+        data-touchend="drag.stop" id='site'>
             <header class="header" id='header'>
                <img src="/assets/images/logo-reddid.svg" alt="" class="header-logo">
             </header>
 
             <div class="container container--small">
-                <div class="create-reddid button button--center button--faded button--full button--green button--large" data-click="frame" data-frame="reddid-register" id="menuRegister">
+                <div class="create-reddid button button--center button--faded button--full button--green button--large reddid--button-replace" data-click="frame" data-frame="reddid-register" id="menuRegister">
                     Create a Reddid
 
                     <div class="button button--green button--icon button--static button--inline">
@@ -39,7 +44,7 @@
                             News
                         </div>
 
-                        <div class="nav-link nav-link--center" data-click="frame" data-frame="reddid-register">
+                        <div class="nav-link nav-link--center reddid--greyed" data-click="frame" data-frame="reddid-register">
                             <div class="button button--green button--faded button--icon button--large tooltip" data-hover="toggle" id="menuRegister">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.001 15.699a.3.3 0 0 1-.3.3H6.3a.3.3 0 0 1-.3-.3V.299a.3.3 0 0 1 .3-.3h3.401a.3.3 0 0 1 .3.3v15.4z"/><path d="M16 9.7a.3.3 0 0 1-.3.3H.3a.3.3 0 0 1-.3-.3V6.3A.3.3 0 0 1 .3 6h15.4a.3.3 0 0 1 .3.3v3.4z"/></svg>                                </div>
@@ -75,7 +80,7 @@
     </span>
 
     <div class="page-header page-header--center">
-        <h3 class="page-header-title">Password</h3>
+        <h3 class="page-header-title"><b>Password</b></h3>
         <span class="page-header-subtitle page-header-subtitle--small">
             Create a password to protect your wallet from unauthorized spending
         </span>
@@ -104,7 +109,7 @@
                 <input class="field-mask field-tag" id="wallet_password_confirm" type="password">
             </label>
 
-            <span class="field-description" id="pwd_error">Confirm your password</span>
+            <span class="field-description">Confirm your password</span>
         </div>
     </section>
 
@@ -113,11 +118,14 @@
     </div>
 </section>
 <section class="wallet frame" id="frame-wallet-password-success">
+    <div class="intro-frame-image">
+        <img class='intro-frame-logo' src="assets/images/reddcoin_logo.svg" alt="">
+    </div>
+
     <div class="page-header">
         <h3 class="page-header-title">You have successfully created your Reddcoin wallet</b></h3>
         <span class="page-header-subtitle page-header-subtitle--small">
-            If you have imported your wallet this may take a few minutes for the process to complete
-            It is safe to close this tab, as the process will continue in the background.
+            It may take a few minutes for the process to complete in the background.
         </span>
     </div>
 
@@ -151,10 +159,10 @@
     <section class="page-section page-section--min">
         <div class="wallet-list list list--bulletpoint">
             <span class="list-item">
-                Write your phrase and password down and keep it in a safe location.
+                Write your phrase down and keep it in a safe location.
             </span>
             <span class="list-item">
-                Never disclose your phrase to anyone that shouldn't have access to your account
+                Never disclose your phrase to anyone
             </span>
             <span class="list-item">
                 This is the only way to recover your account if you forget your account password or your account is lost
@@ -246,24 +254,14 @@
             <h3 class="page-header-title">Send</h3>
         </div>
 
-        <div class="wallet-field wallet-field--first field field--full field--grey field--horizontal" data-focusinout="toggle">
-            <span class="field-title">From</span>
-
-            <label class="wallet-field-right field-text field-text--select">
-                <select class='field-mask' id="sendFromAccount" style='pointer-events: auto;'></select>
-            </label>
-        </div>
-
         <span class="wallet-field-left">To</span>
 
         <div class="wallet-field wallet-field-right field field--full field--grey" data-focusinout='toggle'>
-            <span class="field-title">
-                ReddID / Contact List
-            </span>
-
             <label class="field-text field-text--input">
                 <input class="field-mask field-tag" id="walletSend_contactname" type="text" list="contacts">
             </label>
+
+            <span class="field-description">ReddID / Contact List</span>
 
             <datalist id="contacts"></datalist>
         </div>
@@ -271,24 +269,12 @@
         <span class="wallet-field-right wallet-field-right--center">or</span>
 
         <div class="wallet-field wallet-field-right field field--full field--grey" data-focusinout='toggle'>
-            <span class="field-title">
-                Reddcoin Address
-            </span>
-
             <label class="field-text field-text--input">
                 <input class="field-mask field-tag" id="walletSend_address" type="text">
             </label>
+
+            <span class="field-description">Reddcoin Address</span>
         </div>
-
-        <!-- <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
-            <span class="field-title">
-                Contact Name (optional)
-            </span>
-
-            <label class="field-text field-text--input">
-                <input class="field-mask field-tag" id="walletSend_contact" type="text">
-            </label>
-        </div> -->
 
         <div class="wallet-field field field--full field--grey field--horizontal" data-focusinout='toggle'>
             <span class="field-title">
@@ -351,8 +337,18 @@
 
 </section>
 <section class="wallet frame" id="frame-wallet-recovery">
+
+    <div class="frame-spacer"></div>
+
+    <button class="intro-back frame-button frame-button--left button button--transparent button--icon" data-click="frame" data-frame="wallet-create">
+        <div class="icon icon--rotate180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.556 2.555a.3.3 0 0 0-.424 0l-.99.99a.3.3 0 0 0 0 .424L12.172 7H0v2h12.172l-3.03 3.03a.302.302 0 0 0 0 .424l.99.99a.3.3 0 0 0 .424 0L16 8l-5.444-5.445z"/></svg>        </div>
+
+        &nbsp; <b>Back</b>
+    </button>
+
     <div class="page-header">
-        <h4 class="page-header-title">To recover your wallet please insert your 12 word recovery phrase.</h4>
+        <h4 class="page-header-title">To recover your wallet balance please insert your 12 word recovery phrase.</h4>
     </div>
 
     <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
@@ -361,11 +357,6 @@
             <span class="field-description" id="import_error"></span>
         </label>
     </div>
-
-
-    <button class="wallet-button button button--center button--large button--black" data-click="frame" data-frame="wallet-create">
-        Create Wallet
-    </button>
 
     <button class="wallet-button button button--center button--large button--primary right" id="walletImportbtn">Import</button>
 </section>
@@ -406,7 +397,7 @@
         </div>
 
         <p>
-            Using the Tip Jar will give you an account that isn't password protected. This makes tipping faster and easier but is less secure.
+            Using the tip jar will let you tip up to a certain threshold, making tipping faster and easier. The threshold can be adjusted in settings.
         </p>
 
         <div class="wallet-field field field--full field--grey" data-focusinout="toggle">
@@ -459,7 +450,7 @@
     </div>
 
     <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
-        <span class="field-title">Username</span>
+        <span class="field-title">Desired Redd-ID Name</span>
 
         <label class="field-text field-text--input">
             <input class="field-mask field-tag" id="redd_id_input" placeholder="Register an ID" type="text">
@@ -470,6 +461,9 @@
         </label>
 
         <span class="field-description" id="id_msg">Please enter a name to continue</span>
+        <span class="field-description" id="id_submsg"></span>
+        <span class="field-description" id="id_breadcrumb"></span>
+        <span class="field-description" id="id_registration"></span>
     </div>
     <button class="wallet-button button button--center button--large button--primary right" id="redd_id_btn_create">Create ID</button>
         <p id="reddid_error_msg_txt"></p>
@@ -510,7 +504,8 @@
         <i class="fa fa-refresh fa-spin fa-3x"></i>
     </div>
     </section>
-</section><section class="feed frame" id="frame-feed">
+</section>
+<section class="feed frame disabled" id="frame-feed">
     <section class="page-section">
         <div class="feed-header page-header">
             <h4 class="page-header-title page-header-title--icon">
@@ -726,98 +721,7 @@
             </h4>
         </div>
 
-        <section class="news-articles">
-                            <div class="news-article">
-                    <div class="text-group">
-                        <span class="text text--small">Source</span>
-                        <span class="text text--small">1m</span>
-                    </div>
-
-                    <h5 class="news-article-title">
-                        Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit
-                    </h5>
-
-                    <div class="text text--icon text--small">
-                        <div class="text-icon icon icon--small">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.359"/><path d="M16 8c0-.272-.083-.525-.226-.735C13.099 2.467 8 2.674 8 2.674S2.901 2.467.226 7.266C.083 7.475 0 7.728 0 8s.083.526.226.735v-.001c.043.077.087.153.131.228C3.065 13.525 8 13.325 8 13.325s4.936.2 7.643-4.362h.001c.044-.075.088-.151.131-.228l-.001.001c.143-.21.226-.464.226-.736zm-8 3.679a3.678 3.678 0 1 1 0-7.358 3.679 3.679 0 1 1 0 7.358z"/></svg>                        </div>
-                        420
-                    </div>
-
-                    <img src="" alt="" class="news-article-image">
-                </div>
-                            <div class="news-article">
-                    <div class="text-group">
-                        <span class="text text--small">Source</span>
-                        <span class="text text--small">1m</span>
-                    </div>
-
-                    <h5 class="news-article-title">
-                        Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit
-                    </h5>
-
-                    <div class="text text--icon text--small">
-                        <div class="text-icon icon icon--small">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.359"/><path d="M16 8c0-.272-.083-.525-.226-.735C13.099 2.467 8 2.674 8 2.674S2.901 2.467.226 7.266C.083 7.475 0 7.728 0 8s.083.526.226.735v-.001c.043.077.087.153.131.228C3.065 13.525 8 13.325 8 13.325s4.936.2 7.643-4.362h.001c.044-.075.088-.151.131-.228l-.001.001c.143-.21.226-.464.226-.736zm-8 3.679a3.678 3.678 0 1 1 0-7.358 3.679 3.679 0 1 1 0 7.358z"/></svg>                        </div>
-                        420
-                    </div>
-
-                    <img src="" alt="" class="news-article-image">
-                </div>
-                            <div class="news-article">
-                    <div class="text-group">
-                        <span class="text text--small">Source</span>
-                        <span class="text text--small">1m</span>
-                    </div>
-
-                    <h5 class="news-article-title">
-                        Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit
-                    </h5>
-
-                    <div class="text text--icon text--small">
-                        <div class="text-icon icon icon--small">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.359"/><path d="M16 8c0-.272-.083-.525-.226-.735C13.099 2.467 8 2.674 8 2.674S2.901 2.467.226 7.266C.083 7.475 0 7.728 0 8s.083.526.226.735v-.001c.043.077.087.153.131.228C3.065 13.525 8 13.325 8 13.325s4.936.2 7.643-4.362h.001c.044-.075.088-.151.131-.228l-.001.001c.143-.21.226-.464.226-.736zm-8 3.679a3.678 3.678 0 1 1 0-7.358 3.679 3.679 0 1 1 0 7.358z"/></svg>                        </div>
-                        420
-                    </div>
-
-                    <img src="" alt="" class="news-article-image">
-                </div>
-                            <div class="news-article">
-                    <div class="text-group">
-                        <span class="text text--small">Source</span>
-                        <span class="text text--small">1m</span>
-                    </div>
-
-                    <h5 class="news-article-title">
-                        Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit
-                    </h5>
-
-                    <div class="text text--icon text--small">
-                        <div class="text-icon icon icon--small">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.359"/><path d="M16 8c0-.272-.083-.525-.226-.735C13.099 2.467 8 2.674 8 2.674S2.901 2.467.226 7.266C.083 7.475 0 7.728 0 8s.083.526.226.735v-.001c.043.077.087.153.131.228C3.065 13.525 8 13.325 8 13.325s4.936.2 7.643-4.362h.001c.044-.075.088-.151.131-.228l-.001.001c.143-.21.226-.464.226-.736zm-8 3.679a3.678 3.678 0 1 1 0-7.358 3.679 3.679 0 1 1 0 7.358z"/></svg>                        </div>
-                        420
-                    </div>
-
-                    <img src="" alt="" class="news-article-image">
-                </div>
-                            <div class="news-article">
-                    <div class="text-group">
-                        <span class="text text--small">Source</span>
-                        <span class="text text--small">1m</span>
-                    </div>
-
-                    <h5 class="news-article-title">
-                        Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit
-                    </h5>
-
-                    <div class="text text--icon text--small">
-                        <div class="text-icon icon icon--small">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.359"/><path d="M16 8c0-.272-.083-.525-.226-.735C13.099 2.467 8 2.674 8 2.674S2.901 2.467.226 7.266C.083 7.475 0 7.728 0 8s.083.526.226.735v-.001c.043.077.087.153.131.228C3.065 13.525 8 13.325 8 13.325s4.936.2 7.643-4.362h.001c.044-.075.088-.151.131-.228l-.001.001c.143-.21.226-.464.226-.736zm-8 3.679a3.678 3.678 0 1 1 0-7.358 3.679 3.679 0 1 1 0 7.358z"/></svg>                        </div>
-                        420
-                    </div>
-
-                    <img src="" alt="" class="news-article-image">
-                </div>
-                    </section>
+        <section class="news-articles" id='news-articles'></section>
 
     </section>
 </section>
@@ -1157,6 +1061,7 @@
                     <script type="text/javascript" src="assets/js/html/vendor/typeahead.bundle.js"></script>
                     <script type="text/javascript" src="assets/js/html/init.js"></script>
                     <script type="text/javascript" src="assets/js/html/views/setupWallet.js"></script>
+                    <script type="text/javascript" src="assets/js/html/views/viewNews.js"></script>
                     <script type="text/javascript" src="assets/js/html/views/viewSocialNetworks.js"></script>
                     <script type="text/javascript" src="assets/js/html/views/viewWalletAccount.js"></script>
                     <script type="text/javascript" src="assets/js/html/views/viewWalletBalance.js"></script>

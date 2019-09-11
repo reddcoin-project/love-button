@@ -638,6 +638,7 @@
                         let oi = await orderId(uid, priv.namespace, pwd);
                         debug.log(`${JSON.stringify(oi)}`);
 
+                        $('#redd_id_btn_create').removeClass('button--primary').addClass('button--black button--processing');
 
                     } else {
                         $('#reddid_error_msg_txt').text('The entered password was incorrect.');
@@ -968,6 +969,16 @@ function displayWelcome() {
 
             Reddcoin.messenger.getUserIds(function (result) {
                 debug.log(`${result.length} user ids registered`);
+
+                if (result.length > 0) {
+                    $('.reddid--greyed').addClass('disabled');
+
+                    $('.reddid--button-replace').replaceWith(`
+                        <div class="create-reddid button button--center button--faded button--full button--red button--large button--static">
+                            ${result[0]}
+                        </div>
+                    `);
+                }
             });
         }
     });

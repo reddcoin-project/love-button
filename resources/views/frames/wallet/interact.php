@@ -24,24 +24,14 @@
             <h3 class="page-header-title">Send</h3>
         </div>
 
-        <div class="wallet-field wallet-field--first field field--full field--grey field--horizontal" data-focusinout="toggle">
-            <span class="field-title">From</span>
-
-            <label class="wallet-field-right field-text field-text--select">
-                <select class='field-mask' id="sendFromAccount" style='pointer-events: auto;'></select>
-            </label>
-        </div>
-
         <span class="wallet-field-left">To</span>
 
         <div class="wallet-field wallet-field-right field field--full field--grey" data-focusinout='toggle'>
-            <span class="field-title">
-                ReddID / Contact List
-            </span>
-
             <label class="field-text field-text--input">
                 <input class="field-mask field-tag" id="walletSend_contactname" type="text" list="contacts">
             </label>
+
+            <span class="field-description">ReddID / Contact List</span>
 
             <datalist id="contacts"></datalist>
         </div>
@@ -49,24 +39,12 @@
         <span class="wallet-field-right wallet-field-right--center">or</span>
 
         <div class="wallet-field wallet-field-right field field--full field--grey" data-focusinout='toggle'>
-            <span class="field-title">
-                Reddcoin Address
-            </span>
-
             <label class="field-text field-text--input">
                 <input class="field-mask field-tag" id="walletSend_address" type="text">
             </label>
+
+            <span class="field-description">Reddcoin Address</span>
         </div>
-
-        <!-- <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
-            <span class="field-title">
-                Contact Name (optional)
-            </span>
-
-            <label class="field-text field-text--input">
-                <input class="field-mask field-tag" id="walletSend_contact" type="text">
-            </label>
-        </div> -->
 
         <div class="wallet-field field field--full field--grey field--horizontal" data-focusinout='toggle'>
             <span class="field-title">

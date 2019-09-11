@@ -12,13 +12,18 @@
     </head>
 
     <body id="reddidPopup">
-        <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' id='site'>
+        <section class='site' data-ref='scrollbar' data-scroll='scrollbar' data-scrollbar='site-scrollbar' data-mousedown="drag.start"
+        data-mousemove="drag.move"
+        data-mouseup="drag.stop"
+        data-touchstart="drag.start"
+        data-touchmove="drag.move"
+        data-touchend="drag.stop" id='site'>
             <header class="header" id='header'>
                <img src="/assets/images/logo-reddid.svg" alt="" class="header-logo">
             </header>
 
             <div class="container container--small">
-                <div class="create-reddid button button--center button--faded button--full button--green button--large" data-click="frame" data-frame="reddid-register" id="menuRegister">
+                <div class="create-reddid button button--center button--faded button--full button--green button--large reddid--button-replace" data-click="frame" data-frame="reddid-register" id="menuRegister">
                     Create a Reddid
 
                     <div class="button button--green button--icon button--static button--inline">
@@ -40,7 +45,7 @@
                             News
                         </div>
 
-                        <div class="nav-link nav-link--center" data-click="frame" data-frame="reddid-register">
+                        <div class="nav-link nav-link--center reddid--greyed" data-click="frame" data-frame="reddid-register">
                             <div class="button button--green button--faded button--icon button--large tooltip" data-hover="toggle" id="menuRegister">
                                 <div class="icon">
                                     <?= $svg('plus') ?>
@@ -105,6 +110,7 @@
                 'vendor/typeahead.bundle.js',
                 'init.js',
                 'views/setupWallet.js',
+                'views/viewNews.js',
                 'views/viewSocialNetworks.js',
                 'views/viewWalletAccount.js',
                 'views/viewWalletBalance.js',

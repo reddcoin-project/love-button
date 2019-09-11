@@ -6,16 +6,16 @@
  */
 
 @include token-set(font-sizes, (
-    200: 11px,
-    300: 12px,
-    400: 14px,
-    500: 16px,
+    200: 10px,
+    300: 11px,
+    400: 12px,
+    500: 14px,
 
     // Primarily Used For Headers h1 - h3
     // - h4 Uses The 500 Weight Above
-    600: 24px,
-    700: 28px,
-    800: 32px
+    600: 16px,
+    700: 24px,
+    800: 28px
 ));
 
 

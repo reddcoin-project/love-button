@@ -27,10 +27,10 @@
     <section class="page-section page-section--min">
         <div class="wallet-list list list--bulletpoint">
             <span class="list-item">
-                Write your phrase and password down and keep it in a safe location.
+                Write your phrase down and keep it in a safe location.
             </span>
             <span class="list-item">
-                Never disclose your phrase to anyone that shouldn't have access to your account
+                Never disclose your phrase to anyone
             </span>
             <span class="list-item">
                 This is the only way to recover your account if you forget your account password or your account is lost
@@ -42,7 +42,7 @@
             <label class="field-text field-text--textarea">
                 <textarea class="field-mask field-tag field-tag--autoresize" id="wallet_recovery_phrase" readonly></textarea>
             </label>
-        </div> 
+        </div>
 
         <div class="wallet-field field field--full field--grey" data-focusinout='toggle' id="confirm_seed_fields" style='display: none;'>
             <label class="field-text field-text--textarea">
