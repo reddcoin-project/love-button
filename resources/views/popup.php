@@ -20,6 +20,16 @@
         data-touchend="drag.stop" id='site'>
             <header class="header" id='header'>
                <img src="/assets/images/logo-reddid.svg" alt="" class="header-logo">
+
+               <div class="header-refresh button button--grey button--icon tooltip" data-click='refresh' data-hover='toggle'>
+                   <div class="icon">
+                       <?= $svg('arrow/swap') ?>
+                   </div>
+
+                   <span class="tooltip-content tooltip-content--message tooltip-content--w">
+                       Refresh Extension
+                   </span>
+               </div>
             </header>
 
             <div class="container container--small">

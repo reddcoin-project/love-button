@@ -10,4 +10,9 @@
         @include position(absolute, center);
         height: 28px;
     }
+
+    &-refresh {
+        @include position(absolute, vertical);
+        right: size(500);
+    }
 }
