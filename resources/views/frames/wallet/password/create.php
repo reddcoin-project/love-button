@@ -27,7 +27,7 @@
                 Write your password down. Keep your password safe!
             </span>
             <span class="list-item">
-                Never share password with others!
+                Never share your password with others!
             </span>
         </div>
 

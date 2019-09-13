@@ -3,7 +3,9 @@
     <div class="page-header">
         <h4 class="page-header-title">Create and register your ReddID name</h4>
         <span class="page-header-subtitle">
-            You can create and link a ReddID to an Reddcoin address. In doing so you are able to link yor various social media accounts and allow cross network transactions.
+            You can create and link your ReddID to a Reddcoin address.
+            In doing so you are able to link your various social media
+            accounts and allow cross network transactions
         </span>
     </div>
 
