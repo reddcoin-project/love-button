@@ -48,6 +48,17 @@
         }
 
         $('#news-articles').html(fragment);
+
+        $('#news-articles a').click(function(e) {
+            e.preventDefault();
+
+            if (chrome) {
+                chrome.tabs.create({ url: $(this).attr('href')});
+            }
+            else {
+                browser.tabs.create({ url: $(this).attr('href') });
+            }
+        });
     });
 
 })(exports);

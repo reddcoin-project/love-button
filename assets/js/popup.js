@@ -3,7 +3,7 @@ if(chrome) {
 
     for (let i = 0, n = elements.length; i < n; i++) {
         elements[i].addEventListener('click', (e) => {
-            chrome.tabs.create({ url: e.target.href });
+            chrome.tabs.create({ url: this.href });
         });
     }
 }
@@ -12,7 +12,7 @@ else {
 
     for (let i = 0, n = elements.length; i < n; i++) {
         elements[i].addEventListener('click', function(e) {
-            browser.tabs.create({ url: e.target.href });
+            browser.tabs.create({ url: this.href });
         });
     }
 }
