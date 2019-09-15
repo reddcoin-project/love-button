@@ -61,8 +61,8 @@
 
 // private
 	priv.getOwningAddress = function() {
-		if (localStorage.reddcoinWallet) {
-			var wallet = JSON.parse(localStorage.reddcoinWallet)
+		if (localStorage.getItem('reddcoinWallet')) {
+			var wallet = JSON.parse(localStorage.getItem('reddcoinWallet'))
 			return wallet.accounts[0].addresses[0].address;
 		}
 	};
@@ -75,8 +75,8 @@
 		} else {
 			index = 1
 		};
-		if (localStorage.reddcoinWallet) {
-			var wallet = JSON.parse(localStorage.reddcoinWallet)
+		if (localStorage.getItem('reddcoinWallet')) {
+			var wallet = JSON.parse(localStorage.getItem('reddcoinWallet'))
 			return wallet.accounts[0].addresses[index].data.pub;
 		}
 	};

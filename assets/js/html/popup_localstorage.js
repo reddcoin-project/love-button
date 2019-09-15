@@ -1,5 +1,5 @@
 function setWalletdata (data) {
-    if (localStorage.wallet) {
+    if (localStorage.getItem('wallet')) {
         console.log("Wallet already exist");
         return
     }
@@ -8,8 +8,8 @@ function setWalletdata (data) {
 }
 
 function getWalletdata () {
-    if (localStorage.wallet) {
-        var payload = JSON.parse(localStorage.wallet);
+    if (localStorage.getItem('wallet')) {
+        var payload = JSON.parse(localStorage.getItem('wallet'));
         console.log("Wallet data exist\n" + JSON.stringify(payload));
     }
 }

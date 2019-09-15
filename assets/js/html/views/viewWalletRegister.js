@@ -496,7 +496,7 @@
     return true;
   };
     pub.getPayingAddr = function () {
-        const wallet = JSON.parse(localStorage.reddcoinWallet);
+        const wallet = JSON.parse(localStorage.getItem('reddcoinWallet'));
 
         //paying address
         if (wallet) {
@@ -513,6 +513,7 @@
     pub.updatePayingAddrBalance = function () {
         window.setInterval(function () {
             let payingAddr = pub.getPayingAddr();
+
             if (payingAddr) {
                 $('#paying_address_input').val(payingAddr);
                 Reddcoin.messenger.getAddressBalance(payingAddr, function (data) {

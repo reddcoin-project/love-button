@@ -1012,7 +1012,7 @@ function displayReddID() {
         let useridsObject = localStorage.getItem('userids');
 
         if (useridsObject !== null) {
-            const userids = JSON.parse(localStorage.userids);
+            const userids = JSON.parse(localStorage.getItem('userids'));
             const user = userids[0].uid
             debug.log("Loading UID " + user);
             Reddcoin.popup.updateRegistered({user: user});
@@ -1037,14 +1037,14 @@ function displayTipFeed() {
 
 /* Display the Wallet page */
 function displayWallet() {
-    if (localStorage.reddcoinWallet) {
+    if (localStorage.getItem('reddcoinWallet')) {
         $('#walletSwapInteract').trigger('click');
     }
     else {
         $('#createWalletSetup').trigger('click');
     }
 
-    if (localStorage.reddcoinWallet || localStorage.user) {
+    if (localStorage.getItem('reddcoinWallet') || localStorage.getItem('user')) {
         Reddcoin.popup.updateBalance();
         Reddcoin.popup.updateHistory();
 
@@ -1070,7 +1070,7 @@ function displayStatus() {
 
 //set the menustate (on/off)
 function setPopupMenuDisplay(){
-    if (localStorage.reddcoinWallet) {
+    if (localStorage.getItem('reddcoinWallet')) {
         //wallet data available
         console.log("Wallet is set.. Welcome");
         document.getElementById('menuRegister').style.display = 'block';

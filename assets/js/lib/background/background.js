@@ -812,10 +812,10 @@ Reddcoin.backgnd = (function () {
 	 */
 	pub.process_tipurl = function(data) {
 		console.log("Processing Tip URL " + JSON.stringify(data));
-		if (localStorage.tip_links === undefined) {
+		if (localStorage.getItem('tip_links') === null) {
 			tip_links = [];
 		}else {
-			tip_links = JSON.parse(localStorage.tip_links);
+			tip_links = JSON.parse(localStorage.getItem('tip_links'));
 		}
 
 		tip_links.push(data);
