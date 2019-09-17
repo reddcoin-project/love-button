@@ -3,7 +3,7 @@
     "name": "ReddID Tipping Extension (beta)",
     "short_name": "ReddIDTipping",
     "description": "A button to tip the World",
-    "version": "0.99.19",
+    "version": "1.00.00",
     "minimum_chrome_version": "38",
 
     "icons": {
