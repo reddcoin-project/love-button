@@ -1,0 +1,25 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Banner Module Configuration
+ *
+ */
+
+@include module-set(banner, (
+    height: (
+        default: 640px,
+        small: 480px
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function banner($key) {
+    @return module-get(banner $key);
+}

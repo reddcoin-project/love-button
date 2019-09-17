@@ -50,8 +50,7 @@ exports.wallet = (function () {
     };
 
     priv.updateInterface = function(){
-        var popupWindow = browser.extension.getViews({type:'popup'})[0];
-
+        var popupWindow = browser.extension.getViews()[1];
         if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.popup){
             popupWindow.Reddcoin.popup.updateInterface({
                 interfaceData: pub.getInterfaceData(),
@@ -87,6 +86,12 @@ exports.wallet = (function () {
         debug.info(JSON.parse(walletObject));
         priv.wallet.fromObject(JSON.parse(walletObject));
         priv.startWallet();
+    };
+    priv.resetWallet = function () {
+        debug.log(`Reset Wallet:`);
+        localStorage.removeItem(priv.walletStorageKey);
+        priv.create();
+        browser.runtime.reload();
     };
 
     priv.create = function () {
@@ -171,7 +176,7 @@ exports.wallet = (function () {
     pub.getContacts = function(){
         var data = {
                 contacts  : priv.wallet.getContacts()
-            }; 
+            };
         return data
     }
 
@@ -258,7 +263,9 @@ exports.wallet = (function () {
     pub.decodeRawTransaction = function (rawTx) {
         return priv.wallet.decodeRawTransaction (rawTx)
     };
-
+    pub.resetWallet = function () {
+        priv.resetWallet()
+    };
     pub.getInterfaceData = function () {
         var format = bitcore.util.formatValue,
             addresses = priv.wallet.getAddresses('all'),

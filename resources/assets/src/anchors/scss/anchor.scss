@@ -1,0 +1,46 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Anchored Elements
+ *
+ */
+
+.anchor {
+    @include max-size(calc(100% - #{anchor(spacer) * 2}));
+    @include transition(opacity transform);
+    position: absolute;
+    pointer-events: all;
+
+    @include state(not-active) {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    &--ne,
+    &--nw {
+        top: anchor(spacer);
+    }
+
+    &--se,
+    &--sw {
+        bottom: anchor(spacer);
+    }
+
+    &--ne,
+    &--se {
+        right: anchor(spacer);
+    }
+
+    &--nw,
+    &--sw {
+        left: anchor(spacer);
+    }
+}

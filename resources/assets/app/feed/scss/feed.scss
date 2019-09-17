@@ -1,0 +1,24 @@
+.feed {
+    &-header {
+        margin: size(200) 0;
+    }
+
+    &-items {
+        margin: 0 0 0 (- size(500));
+        width: calc(100% + #{size(800)});
+    }
+
+    &-item { 
+        @include grid(d12);
+        border-bottom: 1px solid color('grey');
+        padding: size(500);
+
+        &-address.text {
+            margin: size(300) 0 size(200);
+        }
+
+        &-social {
+            border-radius: 3px;
+        }
+    }
+}

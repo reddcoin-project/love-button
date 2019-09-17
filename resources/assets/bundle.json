@@ -1,0 +1,12 @@
+{
+    "app": [
+        "src/system",
+
+        "src",
+        "app"
+    ],
+    "injected": [
+        "src/system",
+        "injected"
+    ]
+}

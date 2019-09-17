@@ -1,0 +1,6 @@
+{
+    "scss": [
+        "scss/anchors.scss",
+        "scss/anchor.scss"
+    ]
+}

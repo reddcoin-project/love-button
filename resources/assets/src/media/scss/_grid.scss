@@ -1,0 +1,146 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Grid-Like Media List ( Similar To Youtube )
+ *
+ *  Import Within Media Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-grid {
+    @include grid(d12);
+    display: flex;
+    flex-wrap: wrap;
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    &--content,
+    &--full {
+        margin: (- media(spacer grid top)) 0 0 0;
+        width: calc(100% + #{media(spacer grid right)});
+    }
+
+    &--gallery {
+        margin: (- media(spacer grid gallery)) 0 0 0;
+        width: calc(100% + #{media(spacer grid gallery)});
+    }
+
+    &--thumbnails {
+        margin: (- media(spacer grid thumbnails)) 0 0 0;
+        width: calc(100% + #{media(spacer grid thumbnails)});
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &--content .media {
+        margin: media(spacer grid top) media(spacer grid right) 0 0;
+
+        @include breakpoint(min-width, 1400px) {
+            @include items-per-row(5, media(spacer grid right));
+        }
+
+        @include breakpoint(between-width, 1100px 1400px) {
+            @include items-per-row(4, media(spacer grid right));
+        }
+
+        @include breakpoint(between-width, 600px 1100px) {
+            @include items-per-row(3, media(spacer grid right));
+        }
+
+        @include breakpoint(between-width, 400px 600px) {
+            @include items-per-row(2, media(spacer grid right));
+        }
+
+        @include breakpoint(max-width, 400px) {
+            @include items-per-row(1, media(spacer grid right));
+        }
+    }
+
+    &--full .media {
+        margin: media(spacer grid top) media(spacer grid right) 0 0;
+
+        @include breakpoint(min-width, 1300px) {
+            @include items-per-row(6, media(spacer grid right));
+        }
+
+        @include breakpoint(between-width, 1100px 1300px) {
+            @include items-per-row(5, media(spacer grid right));
+        }
+
+        @include breakpoint(between-width, 800px 1100px) {
+            @include items-per-row(4, media(spacer grid right));
+        }
+
+        @include breakpoint(between-width, 600px 800px) {
+            @include items-per-row(3, media(spacer grid right));
+        }
+
+        @include breakpoint(between-width, 400px 600px) {
+            @include items-per-row(2, media(spacer grid right));
+        }
+
+        @include breakpoint(max-width, 400px) {
+            @include items-per-row(1, media(spacer grid right));
+        }
+    }
+
+    &--gallery .media {
+        margin: media(spacer grid gallery) media(spacer grid gallery) 0 0;
+
+        @include breakpoint(min-width, 1200px) {
+            @include items-per-row(4, media(spacer grid gallery));
+        }
+
+        @include breakpoint(between-width, 600px 1200px) {
+            @include items-per-row(3, media(spacer grid gallery));
+        }
+
+        @include breakpoint(max-width, 600px) {
+            @include items-per-row(1, media(spacer grid gallery));
+        }
+    }
+
+    &--thumbnails .media {
+        margin: media(spacer grid thumbnails) media(spacer grid thumbnails) 0 0;
+
+        @include breakpoint(min-width, 1300px) {
+            @include items-per-row(10, media(spacer grid thumbnails));
+        }
+
+        @include breakpoint(between-width, 1100px 1300px) {
+            @include items-per-row(9, media(spacer grid thumbnails));
+        }
+
+        @include breakpoint(between-width, 900px 1100px) {
+            @include items-per-row(8, media(spacer grid thumbnails));
+        }
+
+        @include breakpoint(between-width, 700px 900px) {
+            @include items-per-row(7, media(spacer grid thumbnails));
+        }
+
+        @include breakpoint(between-width, 500px 700px) {
+            @include items-per-row(6, media(spacer grid thumbnails));
+        }
+
+        @include breakpoint(between-width, 400px 500px) {
+            @include items-per-row(5, media(spacer grid thumbnails));
+        }
+
+        @include breakpoint(max-width, 400px) {
+            @include items-per-row(4, media(spacer grid thumbnails));
+        }
+    }
+}

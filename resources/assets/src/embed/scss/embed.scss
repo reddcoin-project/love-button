@@ -1,0 +1,40 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Embed Modal
+ *
+ */
+
+.modal {
+
+    /**
+     *---------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &-embed {
+        @include grid(d12);
+        background: color('black' 500);
+        border-radius: border-radius();
+        overflow: hidden;
+        z-index: 0;
+
+
+        // Modifiers
+        &--pdf {
+            height: calc(100vh - #{container(spacer) * 2});
+        }
+
+        &--video {
+            @include aspect-ratio();
+        }
+
+
+        // Children
+        iframe {
+            @include position(absolute, full);
+        }
+    }
+}

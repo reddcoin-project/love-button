@@ -1,0 +1,41 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Shared Button Color Properties
+ *
+ */
+
+@mixin button-color($default, $highlight, $pressed, $inverted: true) {
+    background: $default;
+    border-color: $default;
+    color: button(color 'white' default);
+
+    @include state(highlight) {
+        background: $highlight;
+        border-color: $highlight;
+        color: button(color 'white' highlight);
+    }
+
+    @include state(pressed) {
+        background: $pressed;
+        border-color: $pressed;
+        color: button(color 'white' pressed);
+    }
+
+    // Invert Color When Stacking Modifiers
+    @if $inverted {
+        &.button--transparent,
+        &.button--grey,
+        &.button--white {
+            color: $default;
+
+            @include state(highlight) {
+                color: $highlight;
+            }
+
+            @include state(pressed) {
+                color: $pressed;
+            }
+        }
+    }
+}

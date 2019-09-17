@@ -1,0 +1,9 @@
+.status {
+    &-list-item-title {
+        @include grid(d12);
+    }
+
+    &-text {
+        font-weight: font-weight(600);
+    }
+}

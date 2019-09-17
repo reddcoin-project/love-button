@@ -56,10 +56,13 @@
 		userids : []
 		},
 		pub = {};
+
+	var defaults = priv;
+
 // private
 	priv.getOwningAddress = function() {
-		if (localStorage.reddcoinWallet) {
-			var wallet = JSON.parse(localStorage.reddcoinWallet)
+		if (localStorage.getItem('reddcoinWallet')) {
+			var wallet = JSON.parse(localStorage.getItem('reddcoinWallet'))
 			return wallet.accounts[0].addresses[0].address;
 		}
 	};
@@ -72,8 +75,8 @@
 		} else {
 			index = 1
 		};
-		if (localStorage.reddcoinWallet) {
-			var wallet = JSON.parse(localStorage.reddcoinWallet)
+		if (localStorage.getItem('reddcoinWallet')) {
+			var wallet = JSON.parse(localStorage.getItem('reddcoinWallet'))
 			return wallet.accounts[0].addresses[index].data.pub;
 		}
 	};
@@ -241,9 +244,9 @@
 
 		// If tx data missing raise an error on the UI
 		if (data.response.result === "") {
-			var popupWindow = browser.extension.getViews({type:'popup'})[0];
+			var popupWindow = browser.extension.getViews()[1];
 
-	        if(popupWindow){
+			if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.popup){
 	            popupWindow.Reddcoin.popup.updateRegister(data);
 	        }
 		}
@@ -265,9 +268,9 @@
 	};
 
     priv.updateInterface = function(){
-        var popupWindow = browser.extension.getViews({type:'popup'})[0];
+			var popupWindow = browser.extension.getViews()[1];
 
-        if(popupWindow){
+			if(popupWindow && popupWindow.Reddcoin && popupWindow.Reddcoin.popup){
             popupWindow.Reddcoin.popup.updateRegister({
                 user : priv.user
             });
@@ -362,14 +365,14 @@
 
     priv.loadUser = function (userObject) {
         debug.log("Loading User: ");
-        debug.log(JSON.parse(userObject));
-        priv.user = JSON.parse(userObject);
+        debug.log(userObject);
+        priv.user = userObject;
     };
 
     priv.loadUsers = function (useridsObject) {
         debug.log("Loading Users: ");
-        debug.log(JSON.parse(useridsObject));
-        priv.userids = JSON.parse(useridsObject);
+        debug.log(useridsObject);
+        priv.userids = useridsObject;
     };
     priv.fixProfiles = function () {
     	let isDirty = false;
@@ -386,6 +389,15 @@
 	};
 
 // public
+	pub.resetIDs = function() {
+		debug.log(`Reset IDs:`);
+		localStorage.removeItem(priv.userStorageKey);
+		localStorage.removeItem(priv.useridsStorageKey);
+		localStorage.removeItem(priv.reddidContactStorageKey);
+		pub.createUser();
+		browser.runtime.reload();
+	};
+
 	pub.createUser = function(update) {
 		update = update || false;
 
@@ -399,12 +411,18 @@
 		}
 
 		if(userObject !== null){
-			priv.loadUser(userObject);
+			userObject = JSON.parse(userObject);
+			if (!isEmpty(userObject)) {
+				priv.loadUser(userObject);
+			}
 		}
 
 		if(useridsObject !== null){
-			priv.loadUsers(useridsObject);
-			priv.fixProfiles();
+			useridsObject = JSON.parse(useridsObject);
+			if (!isEmpty(useridsObject)) {
+				priv.loadUsers(useridsObject);
+				priv.fixProfiles();
+			}
 		}
 
 		if(update) {

@@ -1,0 +1,97 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Text Crop Settings Dependent On Font Family
+ *
+ *  Use 'http://text-crop.eightshapes.com/' To Update When Changing Root Font
+ *  Family.
+ *
+ */
+
+@include token-set(text-crop, (
+    top: 2,
+    bottom: 2,
+    font-size: 8,
+    line-height: 1.2
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+// Remove Negative Space Created By Pseudo Elements
+@mixin text-crop($input: null, $crop: null) {
+
+    // Define Line Height
+    $line-height: line-height-filter($input);
+
+    // Filter Specific Crop Directions
+    @if list-contains($crop, first-child last-child) {
+        @if list-contains($crop, first-child) {
+            &:first-child {
+                @include text-crop($line-height, top);
+            }
+        }
+
+        @if list-contains($crop, last-child) {
+            &:last-child {
+                @include text-crop($line-height, bottom);
+            }
+        }
+    }
+
+    // Handle Everything Else
+    @else if $crop {
+        $top-crop: token-get(text-crop top);
+        $bottom-crop: token-get(text-crop bottom);
+        $crop-font-size: token-get(text-crop font-size);
+        $crop-line-height: token-get(text-crop line-height);
+
+        $dynamic-top-crop: max(($top-crop + ($line-height - $crop-line-height) * ($crop-font-size / 2)), 0) / $crop-font-size;
+        $dynamic-bottom-crop: max(($bottom-crop + ($line-height - $crop-line-height) * ($crop-font-size / 2)), 0) / $crop-font-size;
+
+        @if $crop == null or not list-contains($crop, both top bottom) {
+
+            @if list-contains($crop, update) {
+                $crop: join(both, $crop);
+            }
+            @else {
+                $crop: (both,);
+            }
+        }
+
+        @if not list-contains($crop, update) {
+            $targets: ();
+
+            @if list-contains($crop, both top)  {
+                $targets: append($targets, '&::before');
+            }
+            @if list-contains($crop, both bottom)  {
+                $targets: append($targets, '&::after');
+            }
+
+            #{list-implode(',', $targets)} {
+                content: '';
+                display: block;
+                height: 0;
+                width: 0;
+            }
+        }
+
+        @if list-contains($crop, both top)  {
+            &::before {
+                margin-bottom: -#{$dynamic-top-crop}em;
+            }
+        }
+
+        @if list-contains($crop, both bottom)  {
+            &::after {
+                margin-top: -#{$dynamic-bottom-crop}em;
+            }
+        }
+    }
+}

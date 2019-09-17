@@ -1,0 +1,345 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Input, Textarea, Select Fields
+ *
+ *  Import Within Field Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-text {
+    @include float();
+    clear: both;
+    width: 100%;
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Shared Properties
+     *
+     */
+
+    // On Active Grow Effect
+    &::after {
+        @include position(absolute, bottom);
+        @include size(100%, field(text border default));
+        @include transition(opacity transform);
+        border-color: color('text' 500);
+        border-radius: 1px 1px 0 0;
+        border-style: solid;
+        border-width: field(text border default) 0 0;
+        content: "";
+        overflow: hidden;
+        opacity: 0;
+        transform: scaleX(0);
+
+        #{state(active, '.field')} & {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+
+        // Modifiers
+        @include color-modifiers(border-color, color-keys(list), '.field--{r} &');
+    }
+
+
+    // Input Field, Select Field Design
+    .field-mask {
+        @include float();
+        border-color: field(border-color);
+        border-style: solid;
+        border-width: 0 0 field(text border small);
+        clear: both;
+        color: field(color);
+        line-height: icon(size default) / font-size();
+        width: 100%;
+        padding: field(text spacer default) 0;
+
+        &:invalid,
+        &:required {
+            box-shadow: none;
+        }
+
+        #{state(hover, '.field')} & {
+            box-shadow: box-shadow();
+        }
+
+
+        // Modifiers
+        @include color-modifiers(border-color, color-keys(list), '#{state(active, '.field--{r}')} &');
+        @include color-modifiers(color, color-keys(list), '.field--color.field--{r} &');
+        @include color-modifiers(color, join(color-keys(list), 'black' 'white' 'grey'));
+    }
+
+
+    // Use Margin Only When Title Is Present
+    .field--border .field-title ~ &,
+    .field--grey .field-title ~ &,
+    .field--white .field-title ~ & {
+        margin: field(text spacer top) 0 0;
+    }
+
+
+    // Grey/White Field Modifiers
+    .field--grey &,
+    .field--white & {
+        .field-mask {
+            border-color: rgba(field(color), 0.16);
+            border-radius: border-radius() border-radius() 0 0;
+            padding: field(text spacer default);
+        }
+    }
+
+    .field--grey & {
+        .field-mask {
+            background: color('grey');
+        }
+    }
+
+    .field--white & {
+        .field-mask {
+            background: color('white');
+        }
+    }
+
+
+    // Full Border Fields
+    .field--border & {
+        &::after {
+            display: none;
+        }
+
+        .field-mask {
+            border-radius: border-radius();
+            border-width: field(text border small);
+            padding: field(text spacer default);
+
+            &--large {
+                padding: size() field(text spacer default);
+            }
+        }
+    }
+
+    .field--curved & {
+        .field-mask {
+            border-radius: border-radius(800);
+        }
+    }
+
+
+    // Rounded Fields With No Borders
+    .field--full & {
+        &::after {
+            display: none;
+        }
+
+        .field-mask {
+            border-radius: border-radius();
+            border: 0;
+        }
+    }
+
+
+    // Display Title Next To Field
+    .field--horizontal & {
+        clear: unset;
+        width: auto;
+    }
+
+    // Margin Is Only Set When Field Title Is Present And 'border', 'grey', or
+    // 'white' Modifiers Are Used
+    .field--horizontal .field-title ~ & {
+        margin: 0;
+    }
+
+
+    // Remove Even Default Styles
+    .field--transparent & {
+        .field-mask {
+            border: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Input Field
+     *
+     */
+
+    &--input {
+        // Children
+        .field-icon {
+            @include position(absolute, vertical);
+            z-index: 1;
+
+            &[data-click='password'] {
+                @include cursor(pointer);
+                pointer-events: auto;
+            }
+
+            &:not(.field-icon--right) {
+                left: 0;
+
+                ~ .field-mask {
+                    padding-left: size() + (field(text spacer default) / 2);
+                }
+            }
+
+            &--right {
+                right: 0;
+
+                ~ .field-mask {
+                    padding-right: size() + (field(text spacer default) / 2);
+                }
+            }
+
+            .field--border &,
+            .field--grey &,
+            .field--white & {
+                &:not(.field-icon--right) {
+                    left: field(text spacer default);
+
+                    ~ .field-mask {
+                        padding-left: size() + field(text spacer default) * 1.5;
+                    }
+                }
+
+                &--right {
+                    right: field(text spacer default);
+
+                    ~ .field-mask {
+                        padding-right: size() + field(text spacer default) * 1.5;
+                    }
+                }
+            }
+        }
+
+        .field-mask {
+            @include cursor(text);
+            @include truncate();
+
+            &[type='number'] {
+                appearance: textfield;
+                -moz-appearance: textfield;
+                -webkit-appearance: textfield;
+            }
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Select Field
+     *
+     */
+
+    &--select {
+        .field-mask {
+            @include cursor(pointer);
+            @include truncate();
+            padding-right: field(text spacer select right);
+            pointer-events: none;
+
+            // Down Arrow
+            &::after {
+                @include position(absolute, null 1px calc(50% + 1px) null);
+                @include size(6px);
+                content: "";
+                transform: translateY(50%) rotate(45deg);
+
+                border-color: inherit;
+                border-style: solid;
+                border-width: 0 2px 2px 0;
+            }
+
+            // Adjust Right Spacers For Down Arrow
+            .field--border &,
+            .field--grey &,
+            .field--white & {
+                padding-right: field(text spacer select large right);
+
+                &::after {
+                    right: calc(#{field(text spacer select large arrow)} + 3px);
+                }
+            }
+
+            .field--transparent & {
+                padding-right: field(text spacer select right);
+
+                &::after {
+                    right: 1px;
+                }
+            }
+        }
+
+        .field-tag {
+            @include cursor(pointer);
+            @include position(absolute, top);
+            @include size(100%, calc(100% + 1px));
+            appearance: none;
+            opacity: 0;
+
+            // Color Modifiers Actually Override Option Text So Override It
+            option {
+                color: field(color);
+                transition: none;
+            }
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Textarea Field
+     *
+     */
+
+    &--textarea {
+        .field-mask {
+            @include cursor(text);
+            @include line-height(font-size());
+            min-height: size();
+            resize: vertical;
+        }
+
+        // JS Autoresizes Height Of Element
+        .field-tag--autoresize {
+            overflow: hidden;
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Field Upload
+     *
+     */
+
+    &--upload {
+        .field-mask {
+            @include cursor(pointer);
+            @include truncate();
+            border-style: dashed;
+            text-align: center;
+            z-index: 0;
+        }
+
+        .field-tag {
+            @include cursor(pointer);
+            @include position(absolute, top);
+            @include size(100%, calc(100% + 1px));
+            appearance: none;
+            opacity: 0;
+            z-index: 1;
+        }
+    }
+}

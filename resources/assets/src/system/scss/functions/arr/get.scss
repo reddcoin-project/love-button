@@ -1,0 +1,36 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Nested Map Get
+ *
+ */
+
+@function arr-get($key, $map, $default-value: false) {
+
+    // If Map Is An Empty List Do Not Through Error
+    @if type-of($map) != map and (type-of($map) != list and length($map) > 0) {
+        @error "#{$map} Is Not A Valid Map";
+    }
+
+    @each $k in $key {
+        // Make Sure $key Was Split Into A List Properly
+        @if type-of($k) == string and index($k, ' ') {
+            $k: str-explode($k);
+        }
+
+        // If $k Is A List Flatten By Running Through Function Again
+        @if type-of($k) == list {
+            $map: arr-get($k, $map);
+        }
+        // Update Map For Next Key
+        @else if type-of($map) == map and map-has-key($map, $k) {
+            $map: map-get($map, $k);
+        }
+        // Does Not Exist
+        @else {
+            @return $default-value;
+        }
+    }
+
+    @return $map;
+}

@@ -1,0 +1,33 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Horizontally Scrolling Cards
+ *
+ *  Import Within Cards Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-scroller {
+    @include grid(d12);
+    overflow: hidden;
+
+    .scroller-wrapper {
+        padding: card(spacer) 0;
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    .card {
+        margin: 0 card(spacer) 0 0;
+
+        &:last-child {
+            margin: 0;
+        }
+    }
+}

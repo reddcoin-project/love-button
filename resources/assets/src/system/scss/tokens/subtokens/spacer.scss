@@ -1,0 +1,50 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Commonly Used Sizes/Spacers
+ *
+ */
+
+@include token-set(spacers, (
+
+    // Margins Used For Large Sections Of Page Content |<->|
+    horizontal: (
+        300: size(500),
+        400: size(600),
+        500: size(800)
+    ),
+
+    // Vertical Margin For Text Based Elements Like <p>, <ol>, <ul>, <li>
+    text: (
+        200: size(100),
+
+        // Nested Text Elements
+        300: size(200),
+
+        // Default
+        400: size()
+    ),
+
+    // Margins Used For Large Sections Of Page Content
+    vertical: (
+        200: size(600),
+        300: size(700),
+        400: size(800)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function spacer($key) {
+    @if list-contains(100 200 300 400 500 600 700 800, $key) == false {
+        $key: append($key, token-weight(default));
+    }
+
+    @return token-get(spacers $key);
+}

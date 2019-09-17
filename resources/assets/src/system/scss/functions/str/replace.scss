@@ -1,0 +1,21 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Find And Replace A Value In String
+ *
+ */
+
+@function str-replace($find, $replace, $haystack) {
+
+    @if type-of($haystack) != string {
+        @error "#{$haystack} Is Not A Valid String";
+    }
+
+    $index: str-index($haystack, inspect($find));
+
+    @if $index {
+        $haystack: str-slice($haystack, 1, $index - 1) + $replace + str-replace($find, $replace, str-slice($haystack, $index + str-length($find)));
+    }
+
+    @return $haystack;
+}

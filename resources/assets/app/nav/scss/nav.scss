@@ -1,0 +1,39 @@
+.nav {
+    @include center-children();
+    @include position(fixed, bottom);
+    background: color('white');
+    box-shadow: 0 0 size() color('black' 500, 0.08);
+    padding: (size() + size(100)) size(500) size();
+    z-index: 9;
+
+    &-link {
+        font-size: font-size(300);
+        margin: 0 size(300);
+        padding: size(600) 0 0;
+        text-align: center;
+
+        &--center {
+            width: size(800);
+
+            .button {
+                @include position(absolute, horizontal);
+                padding: (size() + size(100));
+                top: (- size(200));
+
+                @include state(default highlight pressed) {
+                    box-shadow: 0 0 0 size(100) color('white'), 0 (- size()) size(500) color('black' 500, 0.08);
+                }
+            }
+        }
+
+        &:not(&--center) {
+            position: relative;
+        }
+
+        &-icon {
+            @include position(absolute, horizontal);
+            @include size(size(500));
+            top: 0;
+        }
+    }
+}

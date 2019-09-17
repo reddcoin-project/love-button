@@ -1,0 +1,57 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Modal ( Popup Windows )
+ *
+ */
+
+.modal {
+    @include position(absolute, center);
+    @include transition(opacity transform);
+    cursor: default;
+    transform: translate(50%, 50%) scale(1);
+    z-index: 1;
+
+
+    // Necessary To Pass Scroll To Parent
+    // - When Creating Modals Always Style/Use A Child Wrapper To Continue
+    //   Scrolling Through '.modals'
+    @include max-size(modal(max-width default), 100%);
+    @include size(modal(width), auto);
+
+
+    @include state(not-active) {
+        opacity: 0;
+        pointer-events: none;
+
+        // Prevent Scroll Overlap
+        position: fixed;
+
+        // Scale Used To Fix Scrollbar Flickr On Activation
+        transform: translate(50%, 50%) scale(modal(not-active scale));
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    &--small {
+        max-width: modal(max-width small);
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &-content {
+        margin: modal(content margin);
+    }
+}

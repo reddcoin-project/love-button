@@ -1,0 +1,98 @@
+.intro {
+
+    &-back {
+        margin: 0 0 0 (- size(200));
+    }
+
+    &-bubbles {
+        @include center-children();
+        @include grid(d12);
+    }
+
+    &-bubble {
+        background: color('grey' 500);
+        border-color: color('white');
+        margin: 0 (size(100) / 2);
+    }
+
+    &-frame {
+        min-height: 1px;
+        padding: 0 0 (size(500) * 2);
+
+        &-button {
+            @include position(absolute, vertical);
+            z-index: 1;
+
+            &--left {
+                left: 0;
+            }
+
+            &--right {
+                right: 0;
+            }
+        }
+
+        &-image {
+            @include grid(d12);
+            height: 240px;
+
+            &--black {
+                background-color: color('black');
+            }
+        }
+
+        &-logo {
+            @include position(absolute, center);
+            @include size(size(700) * 2);
+        }
+    }
+
+    &-frame.active:first-child ~ &-bubbles &-bubble:first-child {
+        background: color('primary');
+    }
+
+    @for $i from 1 through 4 {
+        &-frame.active:nth-child(#{$i}) ~ &-bubbles &-bubble:nth-child(#{$i}) {
+            background: color('primary');
+        }
+    }
+
+    &-buttons {
+        @include grid(d12);
+        margin: size(800) 0 0;
+        padding: 0 size(800) * 1.5;
+    }
+
+    &-button {
+        width: 100%;
+
+        &:not(:first-child) {
+            margin: size(200) 0 0;
+        }
+    }
+
+    &-illustration {
+        @include grid(d12);
+        background: color('grey' 300);
+        margin: 0 0 size(500);
+        padding: size(500) size(500) size(800);
+
+        &::after,
+        &::before {
+            @include circle(size(200));
+            @include position(absolute, horizontal);
+            background: color('black');
+            bottom: size();
+            content: "";
+        }
+
+        &::after {
+            background: color('grey' 500);
+            margin: 0 (- size(100) - 2px) 0 0;
+        }
+
+        &::before {
+            margin: 0 (size(100) + 2px) 0 0;
+        }
+    }
+}

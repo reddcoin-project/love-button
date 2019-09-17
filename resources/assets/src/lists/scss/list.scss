@@ -1,0 +1,83 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Bulletpoint/Numbered Lists
+ *
+ */
+
+.list {
+
+    &,
+    &-item {
+        @include grid(d12);
+        margin: list(spacer item default) 0 0;
+
+        &:first-child {
+            margin: 0;
+        }
+    }
+
+    &-item {
+        padding: 0 0 0 list(spacer indent);
+
+        &::before {
+            @include position(absolute, 0 calc(100% - #{list(spacer indent) - list(spacer pseudo)}) null null);
+        }
+
+        &--large {
+            @include font-size(font-size(500));
+        }
+
+        // Nested Lists
+        .list-item {
+            margin: list(spacer item nested) 0 0;
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Bulletpoint List
+     *
+     */
+
+    // Used Within Psuedo Element & '$top' Variable
+    $bullet-size: 6px;
+
+    // Vertically Centers Bullet With List Item Text
+    $top: ((font-size() * line-height-filter()) - $bullet-size) / 2;
+
+    &--bulletpoint &-item {
+        &::before {
+            @include circle($bullet-size);
+            background-color: color('text' 500);
+            content: "";
+            margin: $top list(spacer bullet) 0 0;
+            right: calc(100% - #{list(spacer indent) - list(spacer pseudo)});
+        }
+
+        .list-item::before {
+            background: transparent;
+            border: 1px solid color('text' 500);
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Numbered List
+     *
+     */
+
+    &--numbered &-item {
+        counter-increment: list;
+
+        &::before {
+            color: color('text' 500);
+            content: counter(list) ".";
+            font-weight: font-weight(600);
+        }
+    }
+}

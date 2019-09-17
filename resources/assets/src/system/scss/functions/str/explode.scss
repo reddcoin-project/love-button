@@ -1,0 +1,25 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Split String by A String
+ *
+ */
+
+@function str-explode($string, $seperator: ' ') {
+
+    @if type-of($string) != string {
+        @error "#{$string} Is Not A Valid String";
+    }
+
+    $index: str-index($string, inspect($seperator));
+    $output: ();
+
+    @if $index {
+        $output: append(str-slice($string, 1, $index - 1), str-explode(str-slice($string, $index + 1)));
+    }
+    @else {
+        $output: append($output, $string);
+    }
+
+    @return $output;
+}

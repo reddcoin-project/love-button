@@ -1,0 +1,62 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Button Module Configuration
+ *
+ */
+
+@include module-set(button, (
+
+    border-size: (
+        default: 2px,
+        glass: 1px
+    ),
+
+    // Color States
+    color: (
+        text: (
+            default:   color('text' 300),
+            highlight: color('text' 400),
+            pressed:   color('text' 500)
+        ),
+        'white': (
+            default:   color('white', 0.96),
+            highlight: color('white'),
+            pressed:   color('white')
+        )
+    ),
+
+    spacer: (
+
+        // Spacer Between Buttons In Groups
+        group: size(200),
+
+
+        /**
+         *----------------------------------------------------------------------
+         *
+         *  Spacers Used As Padding Around Each Button To Determine Button Size
+         *
+         *  Line height Set To 'size() / font-size()' Height Is Not Defined
+         *  So Vertical Padding + 'size()' Determines Height
+         *
+         */
+
+        badge:   size(100) size(200),
+        default: size(300) size(400),
+        large:   size(400) size(500),
+        small:   size(200) size(300)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function button($key) {
+    @return module-get(button $key);
+}

@@ -1,0 +1,10 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Return First Item From List/Map
+ *
+ */
+
+@function first($input) {
+    @return nth($input, 1);
+}

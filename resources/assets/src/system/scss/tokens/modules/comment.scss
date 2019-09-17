@@ -1,0 +1,60 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Comments Module Configuration
+ *
+ */
+
+@include module-set(comment, (
+
+    opacity: (
+        default: 0.04,
+        hover: 0.16,
+
+        // Comment Thread Is "highlighted" On Hover
+        hover-thread: 0.08,
+
+        pressed: 1
+    ),
+
+    spacer: (
+        // Top Margin
+        footer: size(100),
+
+        // Spacer To The Left Of All Comments ( Including Nested Comments )
+        left: size(500),
+
+        // Vertical Spacer Between Comments
+        vertical: size(),
+
+        nested: (
+            // Vertical Spacer Between Each Nested Comment
+            vertical: size(500)
+        ),
+
+        // Vertical Padding
+        reply: size(100),
+
+        // Top Spacer
+        text: size(200)
+    ),
+
+    thread: (
+        // Used For Horizontal Margin
+        spacer: size(100),
+
+        width: 2px
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function comment($key) {
+    @return module-get(comment $key);
+}

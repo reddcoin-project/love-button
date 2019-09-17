@@ -1,0 +1,8 @@
+{
+    "scss": [
+        "scss/container.scss",
+        "scss/right.scss",
+        "scss/site.scss",
+        "scss/structure.scss"
+    ]
+}

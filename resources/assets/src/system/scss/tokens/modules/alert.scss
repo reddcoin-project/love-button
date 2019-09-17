@@ -1,0 +1,43 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Alert Module Configuration
+ *
+ */
+
+@include module-set(alert, (
+
+    // Close Button Width
+    close: (
+        active: size(600),
+        inactive: size(100)
+    ),
+
+    spacer: (
+        // Padding On Alert Container
+        padding: size(),
+
+        // Top Margin For Paragraph Tags Within Alert ( Each Alert Message )
+        text: spacer(text 300)
+    ),
+
+    width: (
+        // Set As 'width' CSS Property
+        default: 24%,
+
+        // 'min-width' Property
+        min: size(600) * 10
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function alert($key) {
+    @return module-get(alert $key);
+}

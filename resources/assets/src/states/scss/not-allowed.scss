@@ -1,0 +1,12 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Wrapper To Keep 'not-allowed' Cursor On Disabled Elements
+ *
+ */
+
+.not-allowed {
+    @include cursor(not-allowed);
+    @include float();
+    max-width: 100%;
+}

@@ -1,0 +1,25 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Tooltip Menu
+ *
+ *  Import Within Tooltip Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&--menu {
+    cursor: default;
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    // Link Module Handle Most Of The Themeing
+    .link-menu {
+        border-radius: border-radius(300); 
+    }
+}

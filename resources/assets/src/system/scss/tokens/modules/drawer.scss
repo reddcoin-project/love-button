@@ -1,0 +1,36 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Drawer Module Configuration
+ *
+ */
+
+@include module-set(drawer, (
+    close: (
+        // Spacer Between Document Top & Right
+        spacer: size(100),
+
+        // On Hover Button Is Enlarged, Pressed Returns To Original Size
+        scale: (
+            hover: 1.24,
+            pressed: 1
+        )
+    ),
+
+    size: (
+        default: calc(100% - #{container(spacer) * 2}),
+        max: 400px
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function drawer($key) {
+    @return module-get(drawer $key);
+}

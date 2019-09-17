@@ -1,0 +1,40 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Modals Container
+ *
+ */
+
+.modals {
+    @include position(fixed, full);
+    @include transition(opacity, 0.24s);
+    background: color('black', 0.48);
+    float: unset;
+    overflow-x: hidden;
+    z-index: 8;
+
+    @include state(not-active) {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    &--black {
+        background: color('black', 0.8);
+    }
+
+    &--grey {
+        background: color('grey', 0.8);
+    }
+
+    &--transparent {
+        background: transparent;
+    }
+}

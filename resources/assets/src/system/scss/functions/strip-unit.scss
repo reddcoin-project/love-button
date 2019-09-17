@@ -1,0 +1,14 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Return Unitless Value
+ *
+ */
+
+@function strip-unit($input) {
+    @if type-of($input) == number and not unitless($input) {
+        $input: $input / ($input * 0 + 1);
+    }
+
+    @return $input;
+}

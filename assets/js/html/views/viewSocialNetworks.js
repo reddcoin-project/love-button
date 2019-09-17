@@ -273,8 +273,8 @@
     };
 
 
-    const wallet = JSON.parse(localStorage.reddcoinWallet);
-    const userids = JSON.parse(localStorage.userids);
+    const wallet = JSON.parse(localStorage.getItem('reddcoinWallet'));
+    const userids = JSON.parse(localStorage.getItem('userids'));
     const address = wallet.accounts[0].addresses[2].address; //TODO this must be user-selectable in a future version
     const proofURL = $('#socialNetworkProofURL').val().trim();
     
@@ -418,7 +418,7 @@
   priv.fillRegisteredNetworks = function fillRegisteredNetworks(reddIDuid) {
     $('#social_network_overview_msg').text(`No networks registered yet, click below to start or continue an existing registration`);
     
-    const userids = JSON.parse(localStorage.userids);
+    const userids = JSON.parse(localStorage.getItem('userids'));
     if (userids) {
       const foundUserIdEntry = userids.find(useridEntry => useridEntry.uid === reddIDuid);
       if(foundUserIdEntry && foundUserIdEntry.confirmed){
@@ -547,7 +547,7 @@
     
     if (uid && network && namespace) {
 
-      const userids = JSON.parse(localStorage.userids);
+      const userids = JSON.parse(localStorage.getItem('userids'));
       if (userids) {
         const foundUserIdEntry = userids.find(useridEntry => useridEntry.uid === uid);
         if(foundUserIdEntry){
@@ -597,7 +597,7 @@
 
   pub.getOwningAddrBalance = function () {
 
-    const wallet = JSON.parse(localStorage.reddcoinWallet);
+    const wallet = JSON.parse(localStorage.getItem('reddcoinWallet'));
     if (!wallet) {
       debug.log('No wallet available')
       return

@@ -1,0 +1,56 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Search Field
+ *
+ *  Dependent On Field Module
+ *
+ */
+
+.search {
+    @include transition(background box-shadow opacity transform);
+    overflow: visible;
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    &--small {
+        @include state(not-active) {
+            border-radius: 100%;
+            max-width: (field(text spacer default) * 2) + icon(size default);
+            transform: translateX(field(search translateX));
+
+            .field-mask {
+                @include cursor(pointer);
+                opacity: 0;
+                transform: scaleX(field(search scaleX));
+            }
+        }
+
+        &:not(.field--border):not(.field--grey):not(.field--white) {
+            display: none;
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    .field-description,
+    .field-title {
+        display: none;
+    }
+
+    .field-mask {
+        transform-origin: left center;
+    }
+}

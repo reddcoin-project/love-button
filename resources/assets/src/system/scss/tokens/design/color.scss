@@ -1,0 +1,215 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Color Scheme
+ *
+ */
+
+// Color list
+@include token-set(colors, (
+
+    // Color list Used To Create Default -> Hover -> Pressed Effects
+    // Within Each Module
+    // - 'black' 'grey' 'white' Are Manually Added When Needed
+    list: 'primary' 'red' 'secondary' 'blue' 'green' 'purple' 'yellow',
+
+
+    // Red
+    primary: (
+        300: #ff383d,
+        400: #ff3035,
+        500: #f52e33
+    ),
+
+    // Sometimes We Need A Red Specific Color ( Cancel Buttons etc. )
+    'red': (
+        300: #ff383d,
+        400: #ff3035,
+        500: #f52e33
+    ),
+
+
+    // Blue
+    secondary: (
+        300: #386fff,
+        400: #3069ff,
+        500: #2e65f5
+    ),
+
+    // Sometimes We Need A Blue Specific Color ( Info Buttons etc. )
+    'blue': (
+        300: #386fff,
+        400: #3069ff,
+        500: #2e65f5
+    ),
+
+
+    'black': (
+        300: #22252c,
+        400: #191c23,
+        500: #15171d
+    ),
+
+    // Redundant But Necessary To Use In Various Color Modifiers Loops
+    'white': (
+        300: #fff,
+        400: #fff,
+        500: #fff
+    ),
+
+    'grey': (
+        300: #f5f7fb,
+        400: #eef2f8,
+        500: #e0e4e9
+    ),
+
+    'green': (
+        300: #21e75f,
+        400: #18e658,
+        500: #17dd55
+    ),
+
+    'purple': (
+        300: #6242f0,
+        400: #5c3aef,
+        500: #5838e6
+    ),
+
+    'yellow': (
+        300: #ffeb47,
+        400: #ffea3f,
+        500: #f5e13d
+    ),
+
+    text: (
+        300: #3d4048,
+        400: #2e313a,
+        500: #1f232c
+    ),
+
+    misc: (
+        pdf: #FD001E
+    ),
+
+    social: (
+        facebook: #3b5998,
+        github: #171515,
+        instagram: #000000,
+        linkedin: #0077b5,
+        medium: #1F1F1F,
+        reddit: #ff4500,
+        snapchat: #fffc00,
+        soundcloud: #FF5510,
+        spotify: #1db954,
+        tradingview: #3BB3E4,
+        twitch: #6441a5,
+        twitter: #1DA1F3,
+        youtube: #ff0000
+    ),
+
+    // Instagram Is Difficult With Branding So Default Color Value Is Black
+    // Gradient Colors Listed Below Are Used For Button States
+    instagram: (
+        300: (
+            radial-gradient(circle farthest-corner at 35% 90%, lighten(#fec564, 3.2%), transparent 50%),
+            radial-gradient(circle farthest-corner at 0 140%, lighten(#fec564, 3.2%), transparent 50%),
+            radial-gradient(ellipse farthest-corner at 0 -25%, lighten(#5258cf, 3.2%), transparent 50%),
+            radial-gradient(ellipse farthest-corner at 20% -50%, lighten(#5258cf, 3.2%), transparent 50%),
+            radial-gradient(ellipse farthest-corner at 100% 0, lighten(#893dc2, 3.2%), transparent 50%),
+            radial-gradient(ellipse farthest-corner at 60% -20%, lighten(#893dc2, 3.2%), transparent 50%),
+            radial-gradient(ellipse farthest-corner at 100% 100%, lighten(#d9317a, 3.2%), transparent),
+            linear-gradient(lighten(#6559ca, 3.2%), lighten(#bc318f, 3.2%) 30%, lighten(#e33f5f, 3.2%) 50%, lighten(#f77638, 3.2%) 70%, lighten(#fec66d, 3.2%) 100%)
+        ),
+        400: (
+            radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%),
+            radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%),
+            radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%),
+            radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%),
+            radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%),
+            radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%),
+            radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent),
+            linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%)
+        ),
+        500: (
+            radial-gradient(circle farthest-corner at 35% 90%, darken(#fec564, 3.2%), transparent 50%),
+            radial-gradient(circle farthest-corner at 0 140%, darken(#fec564, 3.2%), transparent 50%),
+            radial-gradient(ellipse farthest-corner at 0 -25%, darken(#5258cf, 3.2%), transparent 50%),
+            radial-gradient(ellipse farthest-corner at 20% -50%, darken(#5258cf, 3.2%), transparent 50%),
+            radial-gradient(ellipse farthest-corner at 100% 0, darken(#893dc2, 3.2%), transparent 50%),
+            radial-gradient(ellipse farthest-corner at 60% -20%, darken(#893dc2, 3.2%), transparent 50%),
+            radial-gradient(ellipse farthest-corner at 100% 100%, darken(#d9317a, 3.2%), transparent),
+            linear-gradient(darken(#6559ca, 3.2%), darken(#bc318f, 3.2%) 30%, darken(#e33f5f, 3.2%) 50%, darken(#f77638, 3.2%) 70%, darken(#fec66d, 3.2%) 100%)
+        )
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function color($key, $transparency: 1){
+    @if length($key) == 1 {
+        $key: append($key, token-weight(default));
+    }
+
+    $color: color-group($key);
+
+    @if $color {
+        @return rgba($color, $transparency);
+    }
+
+    @return false;
+}
+
+@function color-group($key) {
+    @return token-get(colors $key);
+}
+
+// Return Keys To Loop Through; Typically To Create Module Modifiers
+@function color-keys($key) {
+    @if $key == list {
+        @return token-get(colors list);
+    }
+
+    @if $key == social {
+        @return map-keys(token-get(colors social));
+    }
+
+    @return false;
+}
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+// Simplify Creating Dynamic Color Modifiers
+@mixin color-modifiers($css-properties, $color-ids, $targets: ('&--{r}',)) {
+    @each $color-id in $color-ids {
+        $color-group: color-group($color-id);
+
+        @if $color-group {
+            $default-weight-color: arr-get(token-weight(default), $color-group);
+
+            // When A Color With '400' Weight Is Found Use It
+            @if $default-weight-color {
+                $color-group: ($color-id: $default-weight-color);
+            }
+
+            @each $color-name, $color-hex in $color-group {
+                @include modifiers($color-name, $targets) {
+                    @each $css-property in $css-properties {
+                        #{$css-property}: #{$color-hex};
+                    }
+                }
+            }
+        }
+    }
+}

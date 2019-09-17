@@ -1,0 +1,119 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Text Elements
+ *
+ */
+
+.text {
+    @include float();
+    font-size: font-size();
+    line-height: icon(size default) / font-size();
+    max-width: 100%;
+
+    &,
+    &-group,
+    &-list {
+        &--full {
+            width: 100%;
+        }
+
+        &--icon {
+            padding-left: text(icon size default);
+
+            &-large {
+                padding-left: text(icon size large);
+            }
+
+            &-small {
+                padding-left: text(icon size small);
+            }
+        }
+
+        &--image {
+            padding-left: text(image size default);
+
+            &-large {
+                padding-left: text(image size large);
+            }
+
+            &-small {
+                padding-left: text(image size small);
+            }
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    @include color-modifiers(color, join(color-keys(list), 'black' 'grey' 'white'));
+
+    &--center {
+        text-align: center;
+        width: 100%;
+    }
+
+    &--large {
+        font-size: font-size(500);
+    }
+
+    &--right {
+        text-align: right;
+        width: 100%;
+    }
+
+    &--small {
+        font-size: font-size(300);
+        line-height: normal;
+    }
+
+    &--truncate {
+        @include truncate();
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &-icon,
+    &-image {
+        @include position(absolute, vertical);
+        left: 0;
+    }
+
+    &-image {
+        @include size(text(image size default));
+        border-radius: border-radius();
+
+        &--large {
+            @include size(text(image size large));
+        }
+
+        &--small {
+            @include size(text(image size small));
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Import Children/Modifiers
+     *
+     */
+
+    @import
+        'crop',
+        'group',
+        'list'
+    ;
+}

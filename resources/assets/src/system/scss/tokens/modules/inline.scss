@@ -1,0 +1,27 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Inline Module Configuration
+ *
+ */
+
+@include module-set(inline, (
+    spacer: (
+        large: size(300),
+        default: size(200),
+        small: size(100),
+        tiny: size(100) / 2
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function inline($key) {
+    @return module-get(inline $key);
+}

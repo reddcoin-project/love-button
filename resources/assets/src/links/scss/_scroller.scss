@@ -1,0 +1,97 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Horizontally Scrolling Links
+ *
+ *  Import Within Link Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-scroller {
+    @include grid(d12);
+    overflow: hidden;
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    .link:first-child,
+    .not-allowed:first-child .link {
+        margin-left: 0;
+    }
+
+    .link:last-child,
+    .not-allowed:last-child .link {
+        margin-right: 0;
+    }
+
+    .link {
+        font-weight: font-weight(500);
+        margin: 0 link(spacer group);
+
+
+        // Rounded Bottom Border
+        &::after {
+            @include position(absolute, null null 0 0);
+            @include transition(border-color opacity transform, 0.24s);
+            border-color: inherit;
+            border-radius: link(border radius) link(border radius) 0 0;
+            border-style: solid;
+            border-width: link(border size default) 0 0;
+            content: '';
+            height: link(border size default);
+            opacity: 0;
+            width: 100%;
+        }
+
+        @include state(default) {
+            &::after {
+                transform: translateY(size(100));
+            }
+        }
+
+        &--border {
+            @include state(active hover) {
+                &::after {
+                    opacity: 1;
+                }
+            }
+        }
+
+        &--full {
+            margin: 0;
+
+            @include state(active) {
+                &::after {
+                    opacity: 1;
+                }
+            }
+        }
+
+        &--badge,
+        &--small {
+            &::after {
+                border-width: link(border size small) 0 0;
+                height: link(border size small);
+            }
+        }
+
+        &--large {
+            &::after {
+                border-width: link(border size large) 0 0;
+                height: link(border size large);
+            }
+        }
+
+        &--tab {
+            &::after {
+                border-width: link(border size tab) 0 0;
+                height: link(border size tab);
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Horizontally Scrolling Buttons
+ *
+ *  Import Within Button Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-scroller {
+    @include grid(d12);
+    overflow: hidden;
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+     .button {
+         margin: 0 button(spacer group) 0 0;
+
+         &:last-child {
+             margin: 0;
+         }
+     }
+}

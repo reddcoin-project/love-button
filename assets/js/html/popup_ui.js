@@ -116,114 +116,6 @@
         $("#walletSend_amount").val(amount || '');
     };
 
-    priv.sendGui = function (details) {
-        var $address = $("#walletSend_address"),
-            $amount = $("#walletSend_amount"),
-            name =  $.trim(details.contact),
-            toAddress = $.trim(details.address),
-            amount = $.trim(details.amount),
-            addressIsValid = /^[Rr][a-zA-Z0-9]{26,34}$/.test(toAddress),
-            amountIsValid = !isNaN(parseFloat(amount)),
-            sendFunction;
-
-            $address.removeClass("error");
-
-        if (!addressIsValid) {
-            $address.addClass("error");
-        }
-
-        $amount.removeClass("error");
-
-        if (!amountIsValid) {
-            $amount.addClass("error");
-        }
-
-        exports.messenger.updateContact(toAddress, name);
-
-        if (!amountIsValid || !addressIsValid) {
-            return;
-        }
-
-        sendFunction = function(password, requirePw){
-            var account = $("#sendAccount").val();
-
-            debug.log(`sendFunction sendTransaction`);
-
-            exports.messenger.sendTransaction(amount, account, requirePw, toAddress, password, function () {
-                priv.updateSendForm();
-
-                if(account === '-1' && requirePw){
-                    exports.messenger.unlockTipJar(password, function(){
-                        dbg('Tip Jar Unlocked!');
-                    });
-                }
-
-                priv.notification("Transaction is being broadcast.", `Sending ${amount} RDD`);
-
-                priv.openTab("tabSend");
-
-                var closePopup = function () { priv.closePopup(); };
-
-                if (priv.isFullPageMode) {
-                    setTimeout(closePopup, 4000);
-                }
-            });
-        };
-
-        var msg = "You are about to send <strong>"+details.amount+" RDD</strong> to <strong>"+details.address+"</strong>";
-        msg += '<br/>';
-        msg += '<br/>';
-        msg += 'This will debit the following account: ';
-        msg += '<select name="sendAccount" id="sendAccount">';
-
-        $.each(details.usableAccounts, function(i, account){
-            var requirePw = 'yes';
-
-            if(!account.requiresPassword){
-                requirePw = 'no';
-            }
-
-            msg += '<option data-with-pass="'+requirePw+'" value="'+account.index+'">'+account.name+'</option>';
-        });
-
-        msg +=  '</select>';
-
-        $("#pwLoading").hide();
-
-        priv.withPassword(sendFunction, msg);
-
-        $("#sendAccount").change(function(){
-            var $pwContainer = $('#sendPwContainer'),
-                requiresPw = $('option:selected', $(this)).attr('data-with-pass');
-
-            if(requiresPw === 'yes'){
-                $pwContainer.show();
-            }
-            else {
-                $pwContainer.hide();
-            }
-
-            amount = amount * 1;
-
-            var hideThreshold = priv.settings.hidePromptThreshold * 1;
-
-            debug.log(amount, hideThreshold, requiresPw);
-            debug.log(amount <= hideThreshold , requiresPw !== 'yes');
-
-            if(amount <= hideThreshold && requiresPw !== 'yes'){
-                console.log('triggering');
-                $("#passwordOkay").trigger('click');
-                priv.openTab('tabAutoSent');//TODO
-
-                setTimeout(function(){
-                    priv.openTab("tabSend");
-                }, 3000);
-            }
-        });
-
-        $("#sendAccount").trigger('change');
-    };
-
     priv.checkTipJar = function(data, balance){
         console.log('Checked Tipjar');
     };
@@ -263,12 +155,12 @@
         });
     };
 
-    priv.renderAccounts = function(data){
+    priv.renderAccounts = function(data, transactions){
         console.log('Render Accounts');
 
         var render = function(data) {
-            var html = exports.viewWalletAccounts.getView(data),
-                node = document.getElementById('WalletBalances');
+            var html = exports.viewWalletAccounts.getView(data, transactions),
+                node = document.getElementById('wallet-balance');
 
             if (node) {
                 node.innerHTML = html;
@@ -315,19 +207,6 @@
                 render(data);
             });
         });
-
-        exports.messenger.getWalletData(function (data) {
-            let accounts = data.accounts,
-                options = '',
-                select = $('#sendFromAccount');
-
-            accounts.forEach(account => {
-                options += `<option value="${account.index}">${account.name}</option>`;
-            });
-
-            select.append(options);
-            select.trigger('change');
-        });
     };
 
     priv.renderAddresses = function(data){
@@ -347,7 +226,7 @@
 
         var render = function(data) {
             var html = exports.viewWalletHistory.getView(data),
-                node = document.getElementById('WalletHistoryTable');
+                node = document.getElementById('wallet-history');
 
             if (node) {
                 node.innerHTML = html;
@@ -374,7 +253,16 @@
 
         var render = function(data) {
             var html = exports.viewWalletReceive.getView(data, account),
-                node = document.getElementById('WalletReceiveTable');
+                node = document.getElementById('frame-wallet-receive-table');
+
+            // HACKY MVP To Showcase/Test Nicknaming
+            let contacts = {};
+
+            $.each(data.addresses, function(i, address) {
+                contacts[address.address] = `me-${i + 1}`;
+            });
+
+            Reddcoin.popup.updateSend({contacts});
 
             if (node) {
                 node.innerHTML = html;
@@ -400,6 +288,7 @@
     priv.renderWalletData = function (data, transactions) {
         console.log("Update from background - render wallet data.");
 
+        var balance = data.totalBalance;
         var tipJarBalance = data.addresses[0].confirmed;
 
         if(balance == 0){
@@ -414,9 +303,9 @@
 
         priv.checkTipJar(data.totalBalance, tipJarBalance);
         priv.renderAccounts(data);
+        priv.renderHistory(transactions);
         priv.renderAddresses('#myAddressList');
         priv.renderContacts('#myContacts');
-        priv.renderHistory(transactions);
         priv.renderRegister(data);
     };
 
@@ -425,8 +314,186 @@
         console.log("setCost on: " + JSON.stringify(data))
     };
 
-    pub.sendGui = function (details) {
-        priv.sendGui(details);
+    pub.walletSend = function () {
+
+        let $address = $("#walletSend_address"),
+            $amount = $("#walletSend_amount"),
+            toAddress = $address.val(),
+            toContact = $("#walletSend_contact").val(),
+            amount = $amount.val(),
+            addressIsValid = /^[Rr][a-zA-Z0-9]{26,34}$/.test(toAddress),
+            amountIsValid = !isNaN(parseFloat(amount));
+
+        $address.removeClass("error");
+
+        if (!addressIsValid) {
+            $address.addClass("error");
+        }
+
+        $amount.removeClass("error");
+
+        if (!amountIsValid) {
+            $amount.addClass("error");
+        }
+
+        if (toContact != null || toContact !== "") {
+            Reddcoin.messenger.updateContact(toAddress, toContact);
+        }
+
+        if (!amountIsValid || !addressIsValid) {
+            $('#send_error_msg_txt').text('Missing transaction details.');
+            //document.getElementById('frame-wallet-send').classList.toggle("active");
+            //document.getElementById('frame-wallet-password').classList.toggle("active");
+            return;
+        }
+
+
+        // this is an async timeout util (very useful indeed)
+        const timeout = async ms => new Promise(res => setTimeout(res, ms));
+
+        let next = false; // this is to be changed on user input
+        let sendOpt = false; // set to true if the send button clicked
+        $('#walletSend_password_send').click(function() {
+            next = true;
+            sendOpt = true;
+        });
+
+        $('#walletSend_password_cancel').click(function() {
+            next = true;
+            sendOpt = false;
+        });
+
+        async function waitUserInput() {
+            while (next === false) await timeout(50); // pause script but avoid browser to freeze ;)
+            next = false; // reset var
+            console.log('user input detected');
+        }
+
+        async function send () {
+
+            $("#walletSend_loading").hide();
+
+            $('#send_error_msg_txt').text('');
+
+
+            let details = await checkTx(amount,true);
+            details.address = toAddress;
+
+            if (details.isPossible) {
+                debug.log(JSON.stringify(details));
+                let msg = "You are about to send <strong>"+details.amount+" RDD</strong> to <strong>"+details.address+"</strong>";
+                msg += '<br/>';
+                msg += '<br/>';
+                msg += 'This will debit the following account: ';
+                msg += '<select name="sendAccount" id="sendAccount">';
+
+                $.each(details.usableAccounts, function(i, account){
+                  let requirePw = 'yes';
+
+                  if(!account.requiresPassword){
+                    requirePw = 'no';
+                  }
+
+                  msg += '<option data-with-pass="'+requirePw+'" value="'+account.index+'">'+account.name+'</option>';
+                });
+
+                msg +=  '</select>';
+
+                $("#frame-wallet-password-message").html(msg).show();
+                //$("#frame-wallet-send").hide();
+                document.getElementById('frame-wallet-send').classList.toggle("active");
+                document.getElementById('frame-wallet-password').classList.toggle("active");
+                //$("#frame-wallet-password").addClass("active");
+
+                $("#sendAccount").change(async function(){
+                  let $pwContainer = $("#walletSend_password_field"),
+                      requiresPw = $('option:selected', $(this)).attr('data-with-pass');
+                  if(requiresPw === 'yes'){
+                    $pwContainer.show();
+                  }
+                  else {
+                    $pwContainer.hide();
+                  }
+
+                  amount = amount * 1;
+                  // Check some wallet setting to determine sending
+                  let hideThreshold = priv.settings.hidePromptThreshold * 1;
+                  debug.log(amount, hideThreshold, requiresPw);
+                  debug.log(amount <= hideThreshold , requiresPw !== 'yes');
+                  if(amount <= hideThreshold && requiresPw !== 'yes'){
+                    console.log('triggering');
+                    $("#passwordOkay").trigger('click');
+                    priv.openTab('tabAutoSent');//TODO
+                    setTimeout(function(){
+                      priv.openTab("tabSend");
+                    }, 3000);
+                  }
+
+                  await waitUserInput();
+                  if (sendOpt === true){
+                      let pwd = $('#walletSend_password').val();
+                      $("#walletSend_loading").show();
+                      let checkPwd = await checkPassword(pwd);
+
+                      if (checkPwd) {
+                          $("#walletSend_loading").show();
+                          let account = $("#sendAccount").val();
+
+                          $('#send_error_msg_txt').text('');
+                          $("#orderLoading").show();
+                          let result = await sendTransaction(details.amount, account, requiresPw, details.address, pwd);
+                          debug.log(`${JSON.stringify(result)}`);
+                          $("#walletSend_address").val('');
+                          $("#walletSend_amount").val('');
+
+                      }
+                      else {
+                          $('#send_error_msg_txt').text('The entered password was incorrect.');
+                      }
+
+                      // go back to 'Send Reddcoin' page
+                      document.getElementById('frame-wallet-send').classList.toggle("active");
+                      document.getElementById('frame-wallet-password').classList.toggle("active");
+                      $('#walletSend_password').val('');
+
+                  }
+                });
+
+                $("#sendAccount").trigger('change');
+
+            } else {
+                $('#send_error_msg_txt').text(`Not enough funds available to send ${amount} RDD to ${details.address}.`);
+            }
+        }
+
+        send();
+
+        // Check if transaction is possible
+        function checkTx(value, tipJarEnabled) {
+            return new Promise (resolve => {
+                Reddcoin.messenger.checkTransaction(value, tipJarEnabled, (data) => {
+                    resolve(data);
+                });
+            });
+        }
+
+        // Check if password is correct
+        function checkPassword(password) {
+          return new Promise ((resolve, reject) => {
+            Reddcoin.messenger.checkPassword(password, (data) => {
+              resolve(data);
+            });
+          });
+        }
+
+        // Send Transaction
+        function sendTransaction(amount, account, requirePw, toAddress, password) {
+          return new Promise ((resolve, reject) => {
+            Reddcoin.messenger.sendTransaction(amount, account, requirePw, toAddress, password, (data) => {
+              resolve(data);
+            });
+          });
+        };
     };
 
     pub.updateInterface = function (data) {
@@ -514,8 +581,15 @@
         const timeout = async ms => new Promise(res => setTimeout(res, ms));
 
         let next = false; // this is to be changed on user input
-        $('#passwordOkayOverlay').click(function() {
-            next = true
+        let sendOpt = false; // set to true if the send button clicked
+        $('#reddid_password_send').click(function() {
+            next = true;
+            sendOpt = true;
+        });
+
+        $('#reddid_password_cancel').click(function() {
+            next = true;
+            sendOpt = false;
         });
 
         async function waitUserInput() {
@@ -539,30 +613,42 @@
                 let msg = "You are about to send <strong>"+details.amount+" RDD</strong> to order the ID <strong>"+uid+"</strong>";
                 msg += '<br/>';
                 msg += '<br/>';
-                $("#passwordMessageOverlay").html(msg).show();
-                $(".reddidPopupPage_PasswordOverlay").show();
+
+                $("#frame-reddid-password-message").html(msg).show();
+
+                document.getElementById('frame-reddid-interact').classList.toggle("active");
+                document.getElementById('frame-reddid-password').classList.toggle("active");
+
+                $(".frame-reddid-password-message").show();
 
                 await waitUserInput();
-                let pwd = $('#passwordOverlay').val();
-                $("#pwLoadingOverlay").show();
-                let checkPwd = await checkPassword(pwd);
+                if (sendOpt === true) {
+                    let pwd = $('#reddid_password').val();
+                    $("#pwLoadingOverlay").show();
+                    let checkPwd = await checkPassword(pwd);
 
-                if (checkPwd) {
-                    $("#passwordErrorOverlay").hide();
-                    $("#pwLoadingOverlay").hide();
-                    $(".reddidPopupPage_PasswordOverlay").hide();
-                    document.getElementById('redd_id_input').disabled = true;
-                    document.getElementById('redd_id_btn_order').disabled = true;
-                    $('#error_msg_txt').text('');
-                    $("#orderLoading").show();
-                    let oi = await orderId(uid, priv.namespace, pwd);
-                    debug.log(`${JSON.stringify(oi)}`);
-                }
-                else {
-                    $("#passwordErrorOverlay").show();
-                    $(".reddidPopupPage_PasswordOverlay").hide();
-                    $('#passwordOverlay').val('');
-                    $('#error_msg_txt').text('Wrong Password');
+                    if (checkPwd) {
+                        $("#passwordErrorOverlay").hide();
+                        $("#pwLoadingOverlay").hide();
+                        $(".reddidPopupPage_PasswordOverlay").hide();
+                        document.getElementById('redd_id_input').disabled = true;
+                        document.getElementById('redd_id_btn_create').disabled = true;
+                        $('#reddid_error_msg_txt').text('');
+                        $("#orderLoading").show();
+                        let oi = await orderId(uid, priv.namespace, pwd);
+                        debug.log(`${JSON.stringify(oi)}`);
+
+                        $('#redd_id_btn_create').removeClass('button--primary').addClass('button--black button--processing');
+
+                    } else {
+                        $('#reddid_error_msg_txt').text('The entered password was incorrect.');
+                    }
+
+                    // go back to 'Create Reddid' page
+                    document.getElementById('frame-reddid-interact').classList.toggle("active");
+                    document.getElementById('frame-reddid-password').classList.toggle("active");
+                    $('#walletSend_password').val('');
+
                 }
             }
         }
@@ -602,23 +688,6 @@
         };
     };
 
-    pub.registerId = function () {
-        if (Reddcoin.viewWalletRegister.registerId() == true){
-            console.log("Register started");
-            document.getElementById('redd_id_btn_register').disabled = true;
-            let uid = $('#redd_id_input').val();
-            let password = $('#passwordOverlay').val();
-
-            Reddcoin.messenger.registerId(uid, priv.namespace, password, function(data) {
-                //TODO
-                // Check progress
-                /*Reddcoin.messenger.checkOrder(uid,'register', function(data) {
-                debug.log(JSON.stringify(data));
-                });*/
-            });
-        }
-    };
-
     priv.processFormdata = function (data) {
         var profile = {};
         var saveData = {};
@@ -642,9 +711,9 @@
     };
 
     pub.displayWalletSetup = function () {
-        let url = '/setup-wallet.html';
-        let win = window.open(url,'_blank');
-        win.focus();
+        //let url = '/setup-wallet.html';
+        //let win = window.open(url,'_blank');
+        //win.focus();
     };
 
     pub.init = function () {
@@ -683,9 +752,9 @@ function setPopupGuiListeners() {
                 Reddcoin.popup.updateRegistered({user: onchangeValue});
                 break;
             case 'walletSend_contactname':
-                var options = e.target.list.options
-
+                var options = e.target.list.options;
                 var address = '';
+
                 for (key in options){
                     if (options[key].value === onchangeValue){
                         address = options[key].getAttribute('data-value')
@@ -720,6 +789,7 @@ function setPopupGuiListeners() {
                     break;
                 case 'walletSend_contactname':
                     var data = {search: e.target.value};
+
                     Reddcoin.popup.updateSend(data);
                     break;
                 default:
@@ -751,6 +821,9 @@ function setPopupGuiListeners() {
             case 'menuWelcome':
                 displayWelcome();
                 break;
+            case 'reset':
+                reset();
+                break;
             case 'registerBtn':
             case 'registerContinueFromCreationBtn':
             case 'registerContinueFromRecoveryBtn':
@@ -777,17 +850,13 @@ function setPopupGuiListeners() {
                 displayStatus();
                 break;
             case 'walletSend_send':
-                walletSend();
+                Reddcoin.popup.walletSend();
                 break;
             // Register UI functions
             case 'redd_id_btn_reset':
                 Reddcoin.popup.resetId();
                 break;
-            case 'redd_id_btn_register':
-                Reddcoin.popup.registerId();
-                //registerid();
-                break;
-            case 'redd_id_btn_order':
+            case 'redd_id_btn_create':
                 Reddcoin.popup.orderId();
                 break;
             case 'passwordCancelOverLay':
@@ -854,20 +923,79 @@ function shouldShowRegisterButton(data) {
 * Function to display the welcome page
 */
 function displayWelcome() {
-    $('#createWalletSetup').hide();
-
     Reddcoin.messenger.getAppState(response => {
         if (!response.walletObj.dataAvailable) {
-            $('#createWalletSetup').show();
+            $('#frame-wallet-interact').hide();
+            $('#frame-wallet-interact').removeClass('active');
+            $('#menuRegister').hide();
+            $('#nav').hide();
+
+            let bubbles = $(".intro-bubble"),
+                frame;
+
+            setInterval(function() {
+                if (!$('#frame-intro').hasClass('active')) {
+                    return;
+                }
+
+                for (let i = 0, n = bubbles.length; i < n; i++) {
+                    let bubble = bubbles[i];
+
+                    if (bubble.classList.contains('active')) {
+                        let attribute = bubble.getAttribute('data-frame');
+
+                        frame = parseInt(attribute[attribute.length - 1]) + 1;
+
+                        if (frame > 4) {
+                            frame = 1;
+                        }
+
+                        $(`[data-frame='intro-${frame}']`).trigger('click');
+                        return;
+                    }
+                }
+            }, 1000 * 10);
         }
         else {
-            $('#createWalletSetup').hide();
+            $('#frame-intro').hide();
+            $('#menuRegister').show();
+            $('#nav').show();
+
+            $('#header').show();
+
+            $('#frames').addClass('frames--wallet');
+
+            displayWallet();
 
             Reddcoin.messenger.getUserIds(function (result) {
                 debug.log(`${result.length} user ids registered`);
+
+                if (result.length > 0) {
+                    $('.reddid--greyed').addClass('disabled');
+
+                    $('.reddid--button-replace').replaceWith(`
+                        <div class="create-reddid button button--center button--faded button--full button--red button--large button--static">
+                            ${result[0]}
+                        </div>
+                    `);
+                }
             });
         }
     });
+}
+
+// If this causes problems look for all keys and user, userids, reddcoinWallet
+// keys only
+function reset() {
+    Reddcoin.messenger.reset();
+
+    // Reload extension
+    if (chrome) {
+        chrome.tabs.reload();
+    }
+    else {
+        browser.tabs.reload();
+    }
 }
 
 /* Display the Register page */
@@ -884,7 +1012,7 @@ function displayReddID() {
         let useridsObject = localStorage.getItem('userids');
 
         if (useridsObject !== null) {
-            const userids = JSON.parse(localStorage.userids);
+            const userids = JSON.parse(localStorage.getItem('userids'));
             const user = userids[0].uid
             debug.log("Loading UID " + user);
             Reddcoin.popup.updateRegistered({user: user});
@@ -909,16 +1037,18 @@ function displayTipFeed() {
 
 /* Display the Wallet page */
 function displayWallet() {
-    if (localStorage.reddcoinWallet) {
+    if (localStorage.getItem('reddcoinWallet')) {
         $('#walletSwapInteract').trigger('click');
     }
     else {
         $('#createWalletSetup').trigger('click');
     }
 
-    if (localStorage.reddcoinWallet || localStorage.user) {
+    if (localStorage.getItem('reddcoinWallet') || localStorage.getItem('user')) {
         Reddcoin.popup.updateBalance();
         Reddcoin.popup.updateHistory();
+
+        // TODO: SEARCH
         Reddcoin.popup.updateSend();
         Reddcoin.popup.updateAccount();
         Reddcoin.popup.updateReceive();
@@ -940,7 +1070,7 @@ function displayStatus() {
 
 //set the menustate (on/off)
 function setPopupMenuDisplay(){
-    if (localStorage.reddcoinWallet) {
+    if (localStorage.getItem('reddcoinWallet')) {
         //wallet data available
         console.log("Wallet is set.. Welcome");
         document.getElementById('menuRegister').style.display = 'block';
@@ -978,29 +1108,5 @@ function setPopupMenuDisplay(){
             document.getElementById('menuTipFeed').style.display = 'none';
             document.getElementById('menuFollowing').style.display = 'none';
         }
-    });
-}
-
-function walletSend() {
-    var toAddress = document.getElementById('walletSend_address').value;
-    var toContact = document.getElementById('walletSend_contact').value;
-    var amount = document.getElementById('walletSend_amount').value;
-    var account = document.getElementById('sendFromAccount').value;
-    var requirePw = false;
-    var password = '';
-
-    // TODO tipjar enabled hardcoded? need to make this optional
-    Reddcoin.messenger.checkTransaction(amount, true, function (details) {
-        details.address = toAddress;
-        details.contact = toContact;
-
-        if (details.isPossible) {
-            $('#send_error_msg_txt').text('');
-            exports.popup.sendGui(details);
-        }
-        else {
-            $('#send_error_msg_txt').text('The transaction is not possible. Maybe you entered the wrong address or you do not have enough funds?');
-        }
-
     });
 }

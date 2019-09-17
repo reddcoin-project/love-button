@@ -1,0 +1,46 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Size
+ *
+ *  Save Typing Extra Characters And A Line...
+ *
+ */
+
+@mixin size($width, $height: $width) {
+    height: $height;
+    width:  $width;
+}
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Min/Max Size
+ *
+ */
+
+@mixin min-size($min-width, $min-height: $min-width) {
+    min-height: $min-height;
+    min-width:  $min-width;
+}
+
+@mixin max-size($max-width, $max-height: $max-width) {
+    max-height: $max-height;
+    max-width:  $max-width;
+}
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Circle
+ *
+ *  Simplify Creating A Circle
+ *
+ */
+
+@mixin circle($width, $height: $width) {
+    @include size($width, $height);
+    border-radius: border-radius(900);
+}

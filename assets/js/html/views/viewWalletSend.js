@@ -20,13 +20,13 @@
             let uid = username.slice(0, username.indexOf('.'));
             let namespace = username.slice(username.indexOf('.') + 1);
             var user = {uid: uid, namespace:namespace};
-            
+
             exports.messenger.lookup(user, function (response) {
                 document.getElementById("walletSend_address").value = response.address;
             });
         }
     };
-
+ 
     priv.createContactList = function(data){
         document.getElementById("contacts").innerHTML = ''
 

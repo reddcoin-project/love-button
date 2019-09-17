@@ -1,0 +1,52 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Form Fields
+ *
+ *  Fields Were Originally Placed Within A '.form' Selector BUT Fields Are Not
+ *  Always Used Within A Form Tag So Here We Are.
+ *
+ */
+
+.field {
+    @include float();
+    @include transition(border-color box-shadow color opacity);
+    max-width: 100%;
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Shared Properties
+     *
+     */
+
+    opacity: field(opacity default);
+
+    @include state(hover) {
+        opacity: field(opacity highlight);
+    }
+
+    @include state(active) {
+        opacity: field(opacity pressed);
+    }
+
+    &.disabled {
+        opacity: field(opacity disabled);
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Import Children/Modifiers
+     *
+     */
+
+    @import
+        'check',
+        'description',
+        'text',
+        'title'
+    ;
+}

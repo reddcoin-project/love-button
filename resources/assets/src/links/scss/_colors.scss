@@ -1,0 +1,84 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Link Color Variations
+ *
+ *  Import Within Link Stylesheet To Retain Class Inheritance
+ *
+ */
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Basic Link Colors
+ *  - Text Color Is Used By Default
+ *  - White Modifier Can Be Used Independently But It's Typically Paired
+ *    With A Brand Modifier.
+ *
+ */
+
+& {
+    border-color: link(color text default);
+    color: link(color text default);
+
+    @include state(hover) {
+        border-color: link(color text highlight);
+        color: link(color text highlight);
+    }
+
+    @include state(active pressed) {
+        border-color: link(color text pressed);
+        color: link(color text pressed);
+    }
+
+
+    &--inline {
+        color: link(color text pressed);
+    }
+
+    &--white {
+        border-color: link(color 'white' default);
+        color: link(color 'white' default);
+
+        @include state(hover) {
+            border-color: link(color 'white' highlight);
+            color: link(color 'white' highlight);
+        }
+
+        @include state(active pressed) {
+            border-color: link(color 'white' pressed);
+            color: link(color 'white' pressed);
+        }
+    }
+}
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Brand Colors
+ *
+ */
+
+@each $color in join(color-keys(list), 'black' 'grey') {
+    &--#{$color} {
+        @include link-color(color($color 400), color($color 300), color($color 500));
+    }
+}
+
+
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Misc Links
+ *
+ */
+
+@each $color, $hex in join(color-group(misc), color-group(social)) {
+    &--#{$color} {
+        @include link-color($hex, lighten($hex, 3.2%), darken($hex, 3.2%));
+    }
+}

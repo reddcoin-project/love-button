@@ -1,0 +1,60 @@
+.frames {
+    &--wallet {
+        padding: 0 0 (size(800) * 2);
+    }
+}
+
+.frame {
+    display: none;
+    padding: size(500) 0;
+
+    @include state(active) {
+        display: block;
+    }
+
+    &--border {
+        border-top: 1px solid color('grey');
+    }
+
+    &--min {
+        padding: 0;
+    }
+
+    &--tip_modal {
+        min-height: unset;
+        padding-bottom: 0;
+    }
+
+    &-button {
+        @include position(absolute, container(spacer) null null null);
+        z-index: 1;
+
+        &--left {
+            left: 0;
+        }
+
+        &--right {
+            right: 0;
+        }
+    }
+
+    &-spacer {
+        @include grid(d12);
+        height: size(700);
+        margin: container(spacer) 0 0;
+    }
+
+    &-wrapper {
+        @include grid(d12);
+        border-top: 1px solid color('grey');
+        padding: container(spacer) 0 0;
+    }
+
+    > .page-section:first-child {
+        margin: 0;
+    }
+
+    .field-description:empty {
+        margin: 0;
+    }
+}

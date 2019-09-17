@@ -1,0 +1,30 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Bubble
+ *
+ */
+
+.bubble {
+    @include circle(bubble(size default));
+    border: bubble(border-size) solid color('grey');
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    @include color-modifiers(background-color, join(color-keys(list), 'black' 'grey' 'white'));
+
+    &--icon {
+        @include float();
+        margin: ((icon(size default) - bubble(size default)) / 2) 0;
+    }
+
+    &--small {
+        @include circle(bubble(size small));
+    }
+}

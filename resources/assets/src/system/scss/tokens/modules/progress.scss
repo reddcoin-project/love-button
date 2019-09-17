@@ -1,0 +1,22 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Progress Module Configuration
+ *
+ */
+
+@include module-set(progress, (
+    height: size(100)
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function progress($key) {
+    @return module-get(progress $key);
+}

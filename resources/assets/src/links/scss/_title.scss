@@ -1,0 +1,40 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Link Title Used By Various Link Groups
+ *
+ *  Import Within Link Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-title {
+    @include float();
+    @include line-height(divide(size(), font-size()));
+    @include truncate();
+    clear: both;
+    color: color('text' 500);
+    font-size: font-size();
+    font-weight: font-weight(500);
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    @include color-modifiers(color, join(color-keys(list), 'black' 'grey' 'white'));
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &-spacer {
+        padding: 0 0 0 link(spacer icon);
+    }
+}

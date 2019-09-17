@@ -194,6 +194,10 @@
         priv.message('setSettings', {settings:settings}, callback);
     };
 
+    pub.reset = function() {
+        priv.message('reset');
+    };
+
     pub.setSetting = function(settingKey, settingValue, callback) {
         pub.getSettings(function(settings) {
             settings[settingKey] = settingValue;

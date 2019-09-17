@@ -125,7 +125,7 @@ function injectYouTube() {
     watchNewElementsWithTagName('ytd-comment-renderer', (elements) => addTippingOnComments(elements));
 
     let url = '';
-    
+
     setInterval(() => {
         if (url !== document.location.href) {
             console.log('scanning after url change');

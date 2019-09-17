@@ -1,0 +1,46 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Text Group
+ *
+ *  Import Within Text Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-group {
+    @include float();
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    > .text {
+        &:not(:last-child) {
+            padding: 0 text(spacer) 0 0;
+
+            // Used Within Psuedo Element & '$right' Variable
+            $bullet-size: 3px;
+
+            // Horizontal Spacer Between Each Text Element
+            $right: (text(spacer) - $bullet-size) / 2;
+
+            &::after {
+                @include circle($bullet-size);
+                @include position(absolute, vertical);
+                background-color: color('text');
+                content: "";
+                right: $right;
+            }
+        }
+
+        &--white {
+            &:not(:last-child)::after {
+                background-color: color('white');
+            }
+        }
+    }
+}

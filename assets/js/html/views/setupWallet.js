@@ -66,8 +66,31 @@ $.fn.enterKey = function (fnc) {
   pub.startNew = function () {
     debug.log('StartNew');
     Reddcoin.messenger.getNewSeed(function (seed) {
+        $('#confirm_seed_fields').hide();
+        $('#walletConfirmWallet').hide();
+
+     $("#wallet_confirm_phrase").val('');
       $("#wallet_recovery_phrase").val(seed);
+
+      let file = new Blob([seed], {type: 'text/plain'}),
+          link = $("#wallet_recovery_phrase_file");
+
+         link.show();
+
+    let today = new Date(),
+        timestamp = `${today.getMonth()}_${today.getDate()}_${today.getFullYear()}_${today.getHours()}:${today.getMinutes()}`;
+
+      link.attr('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(seed));
+      link.attr('download', `reddid_seed_${timestamp}.txt`);
+
       priv.swapPages('#walletCreating', '#walletCreate');
+
+      link.click(function() {
+          $('#confirm_seed_fields').show();
+          $('#walletConfirmWallet').show();
+
+          $(this).hide();
+      });
     });
   };
 
@@ -106,6 +129,16 @@ $.fn.enterKey = function (fnc) {
 
   pub.walletPasswordConfirm = function () {
     debug.log('walletPasswordConfirm');
+
+    let pw = $('#wallet_password').val();
+
+    if (!pw || pw.length < 8) {
+      $('#pw_error').show();
+      return;
+    }
+
+    $('#pw_error').hide();
+
     if (!priv.passwordsMatch()) {
       $('#pwd_error').text('Passwords do not match. Please try again');
       $('#wallet_password').val('');
@@ -115,7 +148,7 @@ $.fn.enterKey = function (fnc) {
       return
     }
     $('#pwd_error').hide();
-    $('#pwd_error').text('');
+    $('#pwd_error').text('Password must be longer than 8 characters');
     $('#walletSwapSettings').trigger('click');
   };
 
@@ -157,6 +190,8 @@ $.fn.enterKey = function (fnc) {
     debug.log('finishImport');
     let seed = $('#recovery_input').val();
 
+    $('[data-frame="wallet-create"]').hide();
+
     Reddcoin.messenger.checkSeed(seed, function (isValid) {
       if (!isValid) {
         //$error.show('slow');
@@ -180,7 +215,7 @@ $.fn.enterKey = function (fnc) {
   };
 
   $(function () {
-    $('#walletCreateNew').on('click', () => pub.startNew());
+    $('[data-frame="wallet-create"]').on('click', () => pub.startNew());
 
     $('#walletCreateWallet').on('click', () => pub.createWallet());
     $("#wallet_recovery_phrase").enterKey(pub.createWallet);
@@ -195,13 +230,22 @@ $.fn.enterKey = function (fnc) {
     $('#wallet_password_confirm').enterKey(pub.walletPasswordConfirm);
 
     $('#walletSettingsCreateWallet').on('click', () => pub.walletSettings());
-    $('#walletImport').on('click', () => pub.startImport());
+    $('[data-frame="wallet-recovery"]').on('click', () => pub.startImport());
 
     $('#walletImportbtn').on('click', () => pub.finishImport());
     $("#recovery_input").enterKey(pub.finishImport);
 
-    $('#walletBackBtn').on('click', () => pub.startOver());
-    $('#registerContinue').on('click', () => pub.walletFinished());
+    $('#extension_reload').on('click', () => {
+        if (chrome) {
+            chrome.tabs.reload();
+        }
+        else {
+            browser.tabs.reload();
+        }
+    })
+
+    //$('#walletBackBtn').on('click', () => pub.startOver());
+    //$('#registerContinue').on('click', () => pub.walletFinished());
   });
 
   exports.setupWallet = pub;

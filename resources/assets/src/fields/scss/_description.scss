@@ -1,0 +1,18 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Field Description
+ *
+ *  Import Within Field Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-description {
+    @include float();
+    clear: both;
+    font-size: font-size(300);
+    line-height: icon(size default) / font-size(300);
+    margin: field(description spacer) 0 0;
+    max-width: 100%;
+    word-wrap: break-word;
+}

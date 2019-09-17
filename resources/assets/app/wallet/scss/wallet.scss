@@ -1,0 +1,208 @@
+.wallet {
+    &-buttons {
+        @include grid(d12);
+        margin: container(spacer) 0;
+        z-index: 1;
+
+        .button {
+            width: calc(50% - #{container(spacer) / 2});
+
+            @include state(default) {
+                box-shadow: box-shadow();
+            }
+        }
+    }
+
+    &-centered {
+        @include center-children();
+    }
+
+    &-header {
+        padding: size() 0;
+    }
+
+    &-table {
+        @include float();
+        margin-left: - size(500);
+        width: calc(100% + #{size(800)});
+
+        &-all {
+            float: right;
+            font-weight: font-weight(500);
+            padding: 2px 0;
+        }
+
+        &-header {
+            @include grid(d12);
+            border-bottom: 1px solid color('grey');
+            border-top: 1px solid color('grey');
+            padding: size(200) size(500);
+        }
+
+        &-history {
+            @include float();
+            font-weight: font-weight(500);
+        }
+
+        &-row {
+            @include grid(d12);
+            border-bottom: 1px solid color('grey');
+            padding: size() size(500);
+
+            &-details {
+                padding: 0 0 0 size(300);
+                width: calc(100% - #{size(700)})
+            }
+        }
+    }
+
+    &-button {
+        margin: size(600) 0 0;
+    }
+
+    &-field {
+        margin: size(500) 0 0;
+        width: 100%;
+
+        &--first {
+            margin: size(600) 0 0;
+        }
+
+        &-left {
+            @include float();
+            margin: (size(500) - 2px) 0 0;
+            width: 20%;
+        }
+
+        &-right {
+            float: right;
+            width: 75% !important;
+
+            &--center {
+                margin: size() 0 (- size(200));
+                text-align: center;
+            }
+        }
+    }
+
+    &-history {
+        &-date {
+            width: 25%;
+        }
+
+        &-address {
+            @include truncate();
+            padding: 0 size() 0 0;
+            width: 40%;
+        }
+
+        &-amount {
+            text-align: right;
+            width: 35%;
+        }
+    }
+
+    &-row {
+        border-bottom: 1px solid color('grey');
+        padding: container(spacer) 0;
+
+        &:last-child {
+            margin: 0 0 (- container(spacer));
+        }
+
+        &,
+        &-balance,
+        &-title {
+            @include grid(d12);
+        }
+
+        &-balance {
+            color: color('text' 500);
+            font-weight: font-weight(500);
+            margin: size(100) 0 0;
+        }
+    }
+
+    &-shield {
+        @include grid(d12);
+        height: size(800) * 2;
+        margin: 0 0 size(500);
+
+        &-image {
+            @include position(absolute, center);
+            @include size(size(800) * 2);
+        }
+    } 
+
+    &-balance {
+        background: color('black');
+        border-radius: border-radius();
+        color: color('white');
+        padding: container(spacer);
+
+        &,
+        &-section {
+            @include grid(d12);
+        }
+
+        &-amount {
+            text-align: right;
+        }
+
+        &-title {
+            font-weight: font-weight(600);
+        }
+    }
+
+    &-steps {
+        @include grid(d12);
+        font-weight: font-weight(500);
+        margin: (- size(500)) 0 size(500);
+        text-align: center;
+    }
+
+    &-transaction {
+        @include grid(d12);
+        background: color('grey' 300);
+        border-radius: border-radius();
+        margin: 2px 0 0;
+        padding: size();
+
+        &-from {
+            @include grid(d12);
+
+            a {
+                font-weight: font-weight(500);
+            }
+        }
+
+        &-amount {
+            @include float(right);
+            margin: size(100) 0 0;
+        }
+
+        &-date {
+            @include float();
+            margin: size(100) 0 0;
+        }
+    }
+
+    &-warning {
+        background: color('primary', 0.1);
+        border-radius: border-radius();
+        border: 1px solid color('primary');
+        margin: (size(800) * 1.5) 0 (size(800) / 2);
+        padding: size(500) size(500) size(600);
+    }
+
+    &-list {
+        background: color('green', 0.1);
+        border-radius: border-radius();
+        padding: size(500) size(500) size(600);
+
+        &,
+        &:first-child {
+            margin: size() 0 size(200);
+        }
+    }
+}

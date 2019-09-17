@@ -1,0 +1,44 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Tooltip Messages
+ *
+ *  Import Within Tooltip Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&--message {
+    @include transition-timing-function();
+    border-radius: border-radius(300);
+    font-size: font-size(300);
+    font-weight: font-weight();
+    line-height: normal;
+    padding: tooltip(spacer message);
+    pointer-events: none;
+    white-space: nowrap;
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Basic Message Colors
+     *
+     */
+
+    & {
+        background: color('black');
+        box-shadow: 0 -1px 0 color('black', 0.04) inset;
+        color: color('white');
+
+
+        &.tooltip-content--grey {
+            background: color('grey');
+            color: color('text' 300);
+        }
+
+        &.tooltip-content--white {
+            background: color('white');
+            color: color('text' 300);
+        }
+    }
+}

@@ -40,7 +40,7 @@ function open_tiplink_tbl() {
 
 function process_tiplink_tbl() {
     var myTable = document.getElementById("reddidPopupTipFeed_tbl").getElementsByTagName('tbody')[0];
-    var tip_data = localStorage.tip_links ? JSON.parse(localStorage.tip_links) : [];
+    var tip_data = localStorage.getItem('tip_links') ? JSON.parse(localStorage.getItem('tip_links')) : [];
 
     var grouped = groupBy("url", tip_data);
 

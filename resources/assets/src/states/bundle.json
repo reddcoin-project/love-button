@@ -1,0 +1,14 @@
+{
+    "js": [
+        "js/state.js",
+
+        "js/activate.js",
+        "js/deactivate.js",
+        "js/toggle.js"
+    ],
+    "scss": [
+        "scss/disabled.scss",
+        "scss/hidden.scss",
+        "scss/not-allowed.scss"
+    ]
+}

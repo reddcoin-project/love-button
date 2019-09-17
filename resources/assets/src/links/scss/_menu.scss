@@ -1,0 +1,186 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Link Menu
+ *  - Typically Used For Tooltip Menu Dropdowns's, Off Canvas Menu's, etc
+ *
+ *  Import Within Link Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-menu {
+    @include grid(d12);
+    padding: link(spacer menu) 0;
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    .link,
+    .not-allowed {
+        width: 100%;
+        z-index: 1;
+    }
+
+    .link {
+        @include truncate();
+        padding: first(link(spacer default));
+
+        // Rounded Vertical Border
+        // - 'display' Needs To Be Overriden By Modules Using The Border
+        &::after {
+            @include position(absolute, 0 null null 0);
+            @include transition(border-color opacity transform, 0.24s);
+            border-color: inherit;
+            border-radius: 0 link(border radius) link(border radius) 0;
+            border-style: solid;
+            border-width: 0 link(border size default) 0 0;
+            content: '';
+            height: 100%;
+            opacity: 0;
+            width: link(border size default);
+        }
+
+        @include state(default) {
+            &::after {
+                transform: translateX(- size(100));
+            }
+        }
+
+        &--border {
+            @include state(active hover) {
+                &::after {
+                    opacity: 1;
+                }
+            }
+        }
+
+        // Modifiers
+        &--badge,
+        &--small {
+            &::after {
+                border-width: 0 link(border size small) 0 0;
+                width: link(border size small);
+            }
+        }
+
+        &--large {
+            &::after {
+                border-width: 0 link(border size large) 0 0;
+                width: link(border size large);
+            }
+        }
+
+        @each $size in 'badge' 'large' 'small' 'tab' {
+            &--#{$size} {
+                padding: first(link(spacer $size));
+            }
+        }
+
+        // Children
+        &-border {
+            margin: link(spacer menu) 0;
+        }
+
+        &-title + .link-border  {
+            margin-top: 0;
+        }
+
+        &-title {
+            padding: link(spacer default);
+            width: 100%;
+            z-index: 0;
+
+            @each $size in 'badge' 'large' 'small' 'tab' {
+                &--#{$size} {
+                    padding: first(link(spacer $size));
+                }
+            }
+        }
+
+        // Match Spacing Created By '.link-border' When It's Missing
+        & + .link-title {
+            margin-top: link(spacer menu) * 2.5;
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    &--black {
+        .link {
+            @include state(default) {
+                color: color('white', 0.8);
+            }
+
+            @include state(active hover) {
+                background: color('black' 300, 0.64);
+            }
+
+            @include state(pressed) {
+                background: color('black' 500, 0.64);
+            }
+
+            &-border {
+                background: color('black' 300, 0.64);
+            }
+        }
+    }
+
+    &--grey {
+        .link {
+            @include state(active hover) {
+                background: color('grey' 300, 0.64);
+            }
+
+            @include state(pressed) {
+                background: color('grey' 500, 0.64);
+            }
+
+            &-border {
+                background: color('grey' 500, 0.64);
+            }
+
+            &-title {
+                @include box-grey();
+            }
+        }
+    }
+
+    &--quicknav {
+        padding: 0;
+
+        .link-title + .link {
+            margin: size(200) 0 0;
+        }
+
+        .link + .link-title {
+            margin: size(200) 0 0;
+        }
+    }
+
+    &--white {
+        .link {
+            @include state(active hover) {
+                background: color('grey' 300, 0.64);
+            }
+
+            @include state(pressed) {
+                background: color('grey', 0.64);
+            }
+
+            &-border {
+                background: color('grey', 0.64);
+            }
+        }
+    }
+}

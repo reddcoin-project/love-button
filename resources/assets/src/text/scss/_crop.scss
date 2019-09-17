@@ -1,0 +1,29 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Text Crop
+ *
+ */
+
+&-crop {
+    @include text-crop(font-size(), first-child last-child);
+}
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Headings
+ *
+ */
+
+// Loop Through Font Size Keys To Set Header Font Size + Line Height
+$i: last( font-size-keys() );
+
+@each $h in h1 h2 h3 h4 h5 h6 {
+    @at-root #{$h}.text-crop {
+        @include text-crop(font-size($i), first-child last-child);
+    }
+
+    $i: $i - token-weight(difference);
+}

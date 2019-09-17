@@ -1,0 +1,99 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Minimal Links Used In Numerous Modules
+ *
+ */
+
+.link {
+    @include float();
+    @include cursor(pointer);
+    @include transition(background border-color color opacity);
+    font-weight: font-weight();
+    line-height: divide(size(), font-size());
+    padding: first(link(spacer default)) 0;
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Modifiers
+     *
+     */
+
+    // Default Full Padding Modifier
+    &--full {
+        padding: link(spacer default);
+    }
+
+    &--badge,
+    &--small {
+        font-size: font-size(300);
+        line-height: divide(size(), font-size(300));
+    }
+
+    &--inline {
+        float: none;
+        line-height: inherit;
+        padding: 0;
+    }
+
+    &--right {
+        float: right;
+    }
+
+    &--tab {
+        text-align: center;
+    }
+
+    &--underline {
+        @include state(hover) {
+            text-decoration: underline;
+        }
+    }
+
+    @each $size in 'badge' 'large' 'small' 'tab' {
+        &--#{$size} {
+            padding: first(link(spacer $size)) 0;
+
+            &.link--full {
+                padding: last(link(spacer $size));
+            }
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    > .button {
+        margin: (- first(button(spacer default)));
+
+        @each $size in 'badge' 'large' 'small' {
+            &--#{$size} {
+                margin: (- first(button(spacer $size)));
+            }
+        }
+    }
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Import Children/Modifiers
+     *
+     */
+
+    @import
+        'border',
+        'colors',
+        'column',
+        'menu',
+        'scroller',
+        'title'
+    ;
+}

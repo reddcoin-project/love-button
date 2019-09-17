@@ -1,0 +1,76 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Base Stylesheet
+ *
+ */
+
+body,
+html {
+    @include size(100%);
+    overflow-x: hidden;
+}
+
+html {
+    // Global Box Element Properties
+    *,
+    *::after,
+    *::before {
+        box-sizing: border-box;
+        transition: inherit;
+    }
+
+    // Prevent Page Load Flash Caused By Overlays/Transitions
+    &:not(.html--ready) {
+        *,
+        *::after,
+        *::before {
+            transition: all 0s;
+        }
+    }
+
+    // Fixes Cross Browser/Device Delegated Click Issues (ios, opera)
+    [data-click] {
+        @include cursor(pointer);
+    }
+
+    [data-mousemove="drag.move"] {
+        cursor: grab;
+
+        &:active {
+            cursor: grabbing;
+        }
+
+        ::selection {
+            background: transparent;
+        }
+    }
+
+    &.html--center {
+        background: color('grey');
+    }
+}
+
+body {
+    @include font-size();
+    color: color('text');
+    font-weight: font-weight();
+
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @if base(html css) {
+        @each $property, $value in base(html css) {
+            #{$property}: #{$value};
+        }
+    }
+
+    &.body--center {
+        @include position(absolute, horizontal);
+        background: color('white');
+        height: auto;
+        top: size(500);
+        width: 500px;
+    }
+}

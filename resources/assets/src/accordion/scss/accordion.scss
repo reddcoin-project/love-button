@@ -1,0 +1,20 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Accordion
+ *
+ */
+
+.accordion {
+    @include transition(max-height);
+    max-height: 0;
+    overflow: hidden;
+
+    &-arrow {
+        transform: rotate(90deg);
+
+        #{state(active, '')} > & {
+            transform: rotate(-90deg);
+        }
+    }
+} 

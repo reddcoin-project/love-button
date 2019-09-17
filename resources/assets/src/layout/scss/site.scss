@@ -1,0 +1,14 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Primary Wrapper To Seperate Elements From JS
+ *
+ */
+
+.site {
+    z-index: 0;
+}
+
+.html--overlay #site-scrollbar {
+    opacity: 0;
+}

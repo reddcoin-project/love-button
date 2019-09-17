@@ -1,0 +1,30 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Store Module Tokens In 'modules' '$tokens' Map Key
+ *
+ */
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function module-get($key) {
+    @return token-get(modules $key);
+}
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+@mixin module-set($key, $value) {
+    @include token-set(modules $key, $value);
+}

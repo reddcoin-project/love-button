@@ -1,0 +1,52 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Horizontal Progress Bar
+ *
+ */
+
+.progress {
+    @include grid(d12);
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    &-item {
+        @include float();
+        @include transition(transform);
+        height: progress(height);
+
+        &::after {
+            @include position(absolute, 0 0 0 null);
+            @include size(100%);
+            content: "";
+        }
+
+        &:not(:first-child) {
+            &::after {
+                width: calc(100% - #{size(100)});
+            }
+        }
+
+
+        // Modifiers
+        @include color-modifiers(background, join(color-keys(list), 'black' 'white'), '&--{r}::after');
+
+        &--grey {
+            &::after {
+                background: color('grey' 500);
+            }
+        }
+
+        &--rounded {
+            &::after {
+                border-radius: border-radius(800);
+            }
+        }
+    }
+}

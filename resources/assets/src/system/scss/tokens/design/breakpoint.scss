@@ -1,0 +1,113 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Breakpoint Configuration
+ *
+ *  Desktop Grid Choice Is Applied As The Default Element Width By 'grid' Mixin;
+ *  Remaining Breakpoints Use 'max-width' Media Query
+ *
+ */
+
+@include token-set(breakpoints, (
+    desktop: (           // Device Key
+        grid-prefix: d,  // Grid Mixin Column Prefix
+        width: 1400px    // Used In Breakpoint Mixin When Device Key Is '$param'
+    ),
+
+    tablet: (
+        grid-prefix: t,
+        width: 1000px
+    ),
+
+    mobile: (
+        grid-prefix: m,
+        width: 800px
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function breakpoints() {
+    @return token-get(breakpoints);
+}
+
+@function breakpoint($key) {
+    @if type-of($key) == number {
+        @return $key;
+    }
+
+    @if length($key) == 1 {
+        $key: append($key, width);
+    }
+
+    @return token-get(breakpoints $key);
+}
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Mixins
+ *
+ */
+
+@mixin breakpoint($function, $param: null) {
+    @if $function == min-width {
+        $min: breakpoint($param);
+
+        @if $min {
+            @media only screen and (min-width: $min + 1px) {
+                @content;
+            }
+        }
+    }
+    @else if $function == max-width {
+        $max: breakpoint($param);
+
+        @if $max {
+            @media only screen and (max-width: $max) {
+                @content;
+            }
+        }
+    }
+    @else if $function == between-width {
+        $min: breakpoint( nth($param, 1) );
+        $max: breakpoint( nth($param, 2) );
+
+        @if $min and $max {
+            @media only screen and (min-width: $min + 1px) and (max-width: $max) {
+                @content;
+            }
+        }
+    }
+    @else if $function == orientation {
+        @if $param == landscape {
+            @media only screen and (min-aspect-ratio: 13/9) {
+                @content;
+            }
+        }
+        @else if $param == portrait {
+            @media only screen and (max-aspect-ratio: 13/9) {
+                @content;
+            }
+        }
+    }
+    @else if $function == retina {
+        @media
+            only screen and (-webkit-min-device-pixel-ratio: 1.25),
+            only screen and ( min--moz-device-pixel-ratio: 1.25),
+            only screen and ( -o-min-device-pixel-ratio: 1.25/1),
+            only screen and ( min-device-pixel-ratio: 1.25),
+            only screen and ( min-resolution: 200dpi),
+            only screen and ( min-resolution: 1.25dppx)
+        {
+            @content;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Bubble Module Configuration
+ *
+ */
+
+@include module-set(bubble, (
+    border-size: size(100) / 2,
+    size: (
+        default: size(300),
+        small: size(200)
+    )
+));
+
+
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Functions
+ *
+ */
+
+@function bubble($key) {
+    @return module-get(bubble $key);
+}

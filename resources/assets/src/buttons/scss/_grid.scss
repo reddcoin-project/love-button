@@ -1,0 +1,44 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Grid-Like Button List
+ *
+ *  Import Within Button Stylesheet To Retain Class Inheritance
+ *
+ */
+
+&-grid {
+    @include grid(d12);
+    display: flex;
+    flex-wrap: wrap;
+    margin: (- card(spacer)) 0 0 0;
+    width: calc(100% + #{card(spacer)});
+
+
+    /**
+     *--------------------------------------------------------------------------
+     *
+     *  Children
+     *
+     */
+
+    > .button {
+        margin: card(spacer) card(spacer) 0 0;
+
+        @include breakpoint(min-width, 1200px) {
+            @include items-per-row(4, card(spacer));
+        }
+
+        @include breakpoint(between-width, 640px 1200px) {
+            @include items-per-row(3, card(spacer));
+        }
+
+        @include breakpoint(between-width, 480px 640px) {
+            @include items-per-row(2, card(spacer));
+        }
+
+        @include breakpoint(max-width, 480px) {
+            @include items-per-row(1, card(spacer));
+        }
+    }
+}

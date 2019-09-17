@@ -1,0 +1,176 @@
+/**
+ *------------------------------------------------------------------------------
+ *
+ *  Tooltip Positions
+ *
+ *  Import Within Tooltip Stylesheet To Retain Class Inheritance
+ *
+ */
+
+
+// '.tooltip.active &'
+$active: '#{state(active, '.tooltip')} &';
+
+$scale:  tooltip(scale);
+$spacer: tooltip(spacer content);
+
+
+&--c {
+    bottom: 50%;
+    position: absolute;
+    right: 50%;
+    transform: translate(50%, 50%) scale($scale);
+    transform-origin: center center;
+
+    #{$active} {
+        transform: translate(50%, 50%);
+    }
+}
+ 
+
+&--e {
+    bottom: 50%;
+    left: calc(100% - #{$spacer});
+    position: absolute;
+    transform: translateY(50%) scale($scale);
+    transform-origin: center left;
+
+    #{$active} {
+        transform: translate(#{$spacer * 2}, 50%);
+    }
+}
+
+&--en {
+    left: calc(100% - #{$spacer});
+    position: absolute;
+    top: $spacer;
+    transform: scale($scale);
+    transform-origin: top left;
+
+    #{$active} {
+        transform: translate(#{$spacer * 2}, - #{$spacer});
+    }
+}
+
+&--es {
+    bottom: $spacer;
+    left: calc(100% - #{$spacer});
+    position: absolute;
+    transform: scale($scale);
+    transform-origin: bottom left;
+
+    #{$active} {
+        transform: translate(#{$spacer * 2}, #{$spacer});
+    }
+}
+
+
+&--n {
+    bottom: calc(100% - #{$spacer});
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%) scale($scale);
+    transform-origin: center bottom;
+
+    #{$active} {
+        transform: translate(50%, - #{$spacer * 2});
+    }
+}
+
+&--ne {
+    bottom: calc(100% - #{$spacer});
+    position: absolute;
+    right: $spacer;
+    transform: scale($scale);
+    transform-origin: bottom right;
+
+    #{$active} {
+        transform: translate($spacer, - #{$spacer * 2});
+    }
+}
+
+&--nw {
+    bottom: calc(100% - #{$spacer});
+    left: $spacer;
+    position: absolute;
+    transform: scale($scale);
+    transform-origin: bottom left;
+
+    #{$active} {
+        transform: translate(- $spacer, - #{$spacer * 2});
+    }
+}
+
+
+&--s {
+    position: absolute;
+    right: 50%;
+    top: calc(100% - #{$spacer});
+    transform: translateX(50%) scale($scale);
+    transform-origin: center top;
+
+    #{$active} {
+        transform: translate(50%, #{$spacer * 2});
+    }
+}
+
+&--se {
+    position: absolute;
+    right: $spacer;
+    top: calc(100% - #{$spacer});
+    transform: scale($scale);
+    transform-origin: top right;
+
+    #{$active} {
+        transform: translate($spacer, #{$spacer * 2});
+    }
+}
+
+&--sw {
+    left: $spacer;
+    position: absolute;
+    top: calc(100% - #{$spacer});
+    transform: scale($scale);
+    transform-origin: top left;
+
+    #{$active} {
+        transform: translate(- $spacer, #{$spacer * 2});
+    }
+}
+
+
+&--w {
+    bottom: 50%;
+    position: absolute;
+    right: calc(100% - #{$spacer});
+    transform: translateY(50%) scale($scale);
+    transform-origin: center right;
+
+    #{$active} {
+        transform: translate(- #{$spacer * 2}, 50%);
+    }
+}
+
+&--wn {
+    position: absolute;
+    right: calc(100% - #{$spacer});
+    top: $spacer;
+    transform: scale($scale);
+    transform-origin: top right;
+
+    #{$active} {
+        transform: translate(- #{$spacer * 2}, - #{$spacer});
+    }
+}
+
+&--ws {
+    bottom: $spacer;
+    position: absolute;
+    right: calc(100% - #{$spacer});
+    transform: scale($scale);
+    transform-origin: bottom right;
+
+    #{$active} {
+        transform: translate(- #{$spacer * 2}, #{$spacer});
+    }
+}
