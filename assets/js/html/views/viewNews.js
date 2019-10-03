@@ -14,7 +14,7 @@
                 </div>
 
                 <h4 class="news-article-title">
-                    <a class='link link--primary link--inline' href='${data.url}'><b>${data.title}</b></a>
+                    <a class='link link--primary link--inline external-link' href='${data.url}'><b>${data.title}</b></a>
                 </h4>
 
                 <div class="text text--icon text--small">
@@ -49,7 +49,7 @@
 
         $('#news-articles').html(fragment);
 
-        $('#news-articles a').click(function(e) {
+        $('.external-link').click(function(e) {
             e.preventDefault();
 
             if (chrome) {

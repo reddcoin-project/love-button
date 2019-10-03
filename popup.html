@@ -56,7 +56,7 @@
                         <div class="nav-link nav-link--center reddid--greyed" data-click="frame" data-frame="reddid-register">
                             <div class="button button--green button--faded button--icon button--large tooltip" data-hover="toggle" id="menuRegister">
                                 <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M10.001 15.699a.3.3 0 0 1-.3.3H6.3a.3.3 0 0 1-.3-.3V.299a.3.3 0 0 1 .3-.3h3.401a.3.3 0 0 1 .3.3v15.4z"/><path d="M16 9.7a.3.3 0 0 1-.3.3H.3a.3.3 0 0 1-.3-.3V6.3A.3.3 0 0 1 .3 6h15.4a.3.3 0 0 1 .3.3v3.4z"/></svg>                                </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M7.369 14.729c-1.708 1.72-4.38 1.72-6.088 0-1.707-1.72-1.707-4.486 0-6.131L3.583 6.28c-.075.823 0 1.72.296 2.468L2.69 9.943c-.891.896-.891 2.393 0 3.289a2.321 2.321 0 0 0 3.267 0l2.449-2.467c.893-.896.893-2.394 0-3.291-.371-.374-.371-1.047 0-1.42.373-.374 1.041-.374 1.412 0 1.709 1.72 1.709 4.486 0 6.13l-2.449 2.545zm5.049-5.084c.074-.821 0-1.72-.299-2.468l1.189-1.196c.891-.897.891-2.393 0-3.29a2.323 2.323 0 0 0-3.268 0L7.59 5.158c-.89.897-.89 2.393 0 3.29.373.374.373 1.047 0 1.421-.37.373-1.04.373-1.41 0-1.708-1.72-1.708-4.486 0-6.131l2.449-2.467c1.709-1.719 4.455-1.719 6.092 0a4.31 4.31 0 0 1 0 6.13l-2.303 2.244z"/></svg>                                </div>
 
                                 <span class="tooltip-content tooltip-content--n tooltip-content--message">Create a Reddid</span>
                             </div>
@@ -516,6 +516,311 @@
     </div>
     </section>
 </section>
+<section class="wallet frame" id="frame-reddid-socials">
+
+    <section class="page-section">
+        <div class="page-header">
+            <h4 class="page-header-title">Connect Your Social Media Accounts</h4>
+        </div>
+
+        <div class="settings-field field field--full field--grey" data-focusinout="toggle">
+            <span class="field-title">Select A ReddID To Pair With Your Account</span>
+
+            <label class="field-text field-text--select" data-change="select">
+                <div class="field-mask"></div>
+
+                <select class="field-tag" data-ref="trigger:change">
+                    <option value="">ReddID Here</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+            <label class="field-text field-text--input">
+                <input class="field-mask field-tag" id="" type="hash" placeholder="ICJR TODO: When reddid is selected populate this field with 'reddid:user-reddid'">
+            </label>
+
+            <span class="field-description" id="">
+                Please paste the text above on the social media account you are verifying.
+                This code is only required for verification and can be removed once the reddid has been synced with your account.
+            </span>
+        </div>
+
+        <div class="wallet-field field field--full field--grey" data-focusinout='toggle'>
+            <span class="field-title">
+                Full Url To Your Social Media Account
+            </span>
+
+            <label class="field-text field-text--input">
+                <input class="field-mask field-tag" id="" type="hash">
+            </label>
+
+            <span class="field-description" id="">
+                Ex: https://www.twitter.com/reddcoin
+            </span>
+        </div>
+
+        <button class="wallet-button button button--center button--large button--primary right">Submit</button>
+    </section>
+
+    <section class="social-accounts">
+        <div class="page-header" style='margin-top: 24px;'>
+            <h4 class="page-header-title">Linked Social Accounts</h4>
+        </div>
+
+                    <div class="social-account">
+                <div class="social-account-button social-account-button--left button button--icon button--small button--static button--twitter">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.558 1.743a6.717 6.717 0 0 1-2.084.796 3.283 3.283 0 0 0-5.596 2.992 9.305 9.305 0 0 1-6.767-3.43A3.273 3.273 0 0 0 .667 3.75a3.277 3.277 0 0 0 1.46 2.732 3.214 3.214 0 0 1-1.486-.41v.043a3.286 3.286 0 0 0 2.632 3.219c-.483.133-.989.15-1.482.057a3.29 3.29 0 0 0 3.065 2.279A6.579 6.579 0 0 1 0 13.029a9.248 9.248 0 0 0 5.032 1.474c6.037 0 9.341-5.001 9.341-9.339 0-.143-.005-.284-.011-.426A6.779 6.779 0 0 0 16 3.04a6.736 6.736 0 0 1-1.888.518 3.31 3.31 0 0 0 1.446-1.815z"/></svg>                    </div>
+                </div>
+
+                <div class="text-list">
+                    <b class="text">
+                        <a href="https://www.twitter.com/reddcoin" class="link link--inline link--primary external-link">
+                            https://www.twitter.com/reddcoin
+                        </a>
+                    </b>
+                    <div class="text-group">
+                        <b class="text text--small">Pending</b>
+                        <span class="text text--small">Code: <b class='text--red'>reddid:reddcoin</b></span>
+                    </div>
+                </div>
+
+                <div class="social-account-button social-account-button--right button button--grey button--icon button--small tooltip" data-hover='toggle'>
+                    <div class="icon icon--small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--ne">Remove Account</span>
+                </div>
+            </div>
+                    <div class="social-account">
+                <div class="social-account-button social-account-button--left button button--icon button--small button--static button--twitter">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.558 1.743a6.717 6.717 0 0 1-2.084.796 3.283 3.283 0 0 0-5.596 2.992 9.305 9.305 0 0 1-6.767-3.43A3.273 3.273 0 0 0 .667 3.75a3.277 3.277 0 0 0 1.46 2.732 3.214 3.214 0 0 1-1.486-.41v.043a3.286 3.286 0 0 0 2.632 3.219c-.483.133-.989.15-1.482.057a3.29 3.29 0 0 0 3.065 2.279A6.579 6.579 0 0 1 0 13.029a9.248 9.248 0 0 0 5.032 1.474c6.037 0 9.341-5.001 9.341-9.339 0-.143-.005-.284-.011-.426A6.779 6.779 0 0 0 16 3.04a6.736 6.736 0 0 1-1.888.518 3.31 3.31 0 0 0 1.446-1.815z"/></svg>                    </div>
+                </div>
+
+                <div class="text-list">
+                    <b class="text">
+                        <a href="https://www.twitter.com/reddcoin" class="link link--inline link--primary external-link">
+                            https://www.twitter.com/reddcoin
+                        </a>
+                    </b>
+                    <div class="text-group">
+                        <b class="text text--small">Pending</b>
+                        <span class="text text--small">Code: <b class='text--red'>reddid:reddcoin</b></span>
+                    </div>
+                </div>
+
+                <div class="social-account-button social-account-button--right button button--grey button--icon button--small tooltip" data-hover='toggle'>
+                    <div class="icon icon--small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--ne">Remove Account</span>
+                </div>
+            </div>
+                    <div class="social-account">
+                <div class="social-account-button social-account-button--left button button--icon button--small button--static button--twitter">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.558 1.743a6.717 6.717 0 0 1-2.084.796 3.283 3.283 0 0 0-5.596 2.992 9.305 9.305 0 0 1-6.767-3.43A3.273 3.273 0 0 0 .667 3.75a3.277 3.277 0 0 0 1.46 2.732 3.214 3.214 0 0 1-1.486-.41v.043a3.286 3.286 0 0 0 2.632 3.219c-.483.133-.989.15-1.482.057a3.29 3.29 0 0 0 3.065 2.279A6.579 6.579 0 0 1 0 13.029a9.248 9.248 0 0 0 5.032 1.474c6.037 0 9.341-5.001 9.341-9.339 0-.143-.005-.284-.011-.426A6.779 6.779 0 0 0 16 3.04a6.736 6.736 0 0 1-1.888.518 3.31 3.31 0 0 0 1.446-1.815z"/></svg>                    </div>
+                </div>
+
+                <div class="text-list">
+                    <b class="text">
+                        <a href="https://www.twitter.com/reddcoin" class="link link--inline link--primary external-link">
+                            https://www.twitter.com/reddcoin
+                        </a>
+                    </b>
+                    <div class="text-group">
+                        <b class="text text--small">Pending</b>
+                        <span class="text text--small">Code: <b class='text--red'>reddid:reddcoin</b></span>
+                    </div>
+                </div>
+
+                <div class="social-account-button social-account-button--right button button--grey button--icon button--small tooltip" data-hover='toggle'>
+                    <div class="icon icon--small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--ne">Remove Account</span>
+                </div>
+            </div>
+                    <div class="social-account">
+                <div class="social-account-button social-account-button--left button button--icon button--small button--static button--twitter">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.558 1.743a6.717 6.717 0 0 1-2.084.796 3.283 3.283 0 0 0-5.596 2.992 9.305 9.305 0 0 1-6.767-3.43A3.273 3.273 0 0 0 .667 3.75a3.277 3.277 0 0 0 1.46 2.732 3.214 3.214 0 0 1-1.486-.41v.043a3.286 3.286 0 0 0 2.632 3.219c-.483.133-.989.15-1.482.057a3.29 3.29 0 0 0 3.065 2.279A6.579 6.579 0 0 1 0 13.029a9.248 9.248 0 0 0 5.032 1.474c6.037 0 9.341-5.001 9.341-9.339 0-.143-.005-.284-.011-.426A6.779 6.779 0 0 0 16 3.04a6.736 6.736 0 0 1-1.888.518 3.31 3.31 0 0 0 1.446-1.815z"/></svg>                    </div>
+                </div>
+
+                <div class="text-list">
+                    <b class="text">
+                        <a href="https://www.twitter.com/reddcoin" class="link link--inline link--primary external-link">
+                            https://www.twitter.com/reddcoin
+                        </a>
+                    </b>
+                    <div class="text-group">
+                        <b class="text text--small">Pending</b>
+                        <span class="text text--small">Code: <b class='text--red'>reddid:reddcoin</b></span>
+                    </div>
+                </div>
+
+                <div class="social-account-button social-account-button--right button button--grey button--icon button--small tooltip" data-hover='toggle'>
+                    <div class="icon icon--small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--ne">Remove Account</span>
+                </div>
+            </div>
+                    <div class="social-account">
+                <div class="social-account-button social-account-button--left button button--icon button--small button--static button--twitter">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.558 1.743a6.717 6.717 0 0 1-2.084.796 3.283 3.283 0 0 0-5.596 2.992 9.305 9.305 0 0 1-6.767-3.43A3.273 3.273 0 0 0 .667 3.75a3.277 3.277 0 0 0 1.46 2.732 3.214 3.214 0 0 1-1.486-.41v.043a3.286 3.286 0 0 0 2.632 3.219c-.483.133-.989.15-1.482.057a3.29 3.29 0 0 0 3.065 2.279A6.579 6.579 0 0 1 0 13.029a9.248 9.248 0 0 0 5.032 1.474c6.037 0 9.341-5.001 9.341-9.339 0-.143-.005-.284-.011-.426A6.779 6.779 0 0 0 16 3.04a6.736 6.736 0 0 1-1.888.518 3.31 3.31 0 0 0 1.446-1.815z"/></svg>                    </div>
+                </div>
+
+                <div class="text-list">
+                    <b class="text">
+                        <a href="https://www.twitter.com/reddcoin" class="link link--inline link--primary external-link">
+                            https://www.twitter.com/reddcoin
+                        </a>
+                    </b>
+                    <div class="text-group">
+                        <b class="text text--small">Pending</b>
+                        <span class="text text--small">Code: <b class='text--red'>reddid:reddcoin</b></span>
+                    </div>
+                </div>
+
+                <div class="social-account-button social-account-button--right button button--grey button--icon button--small tooltip" data-hover='toggle'>
+                    <div class="icon icon--small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--ne">Remove Account</span>
+                </div>
+            </div>
+                    <div class="social-account">
+                <div class="social-account-button social-account-button--left button button--icon button--small button--static button--twitter">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.558 1.743a6.717 6.717 0 0 1-2.084.796 3.283 3.283 0 0 0-5.596 2.992 9.305 9.305 0 0 1-6.767-3.43A3.273 3.273 0 0 0 .667 3.75a3.277 3.277 0 0 0 1.46 2.732 3.214 3.214 0 0 1-1.486-.41v.043a3.286 3.286 0 0 0 2.632 3.219c-.483.133-.989.15-1.482.057a3.29 3.29 0 0 0 3.065 2.279A6.579 6.579 0 0 1 0 13.029a9.248 9.248 0 0 0 5.032 1.474c6.037 0 9.341-5.001 9.341-9.339 0-.143-.005-.284-.011-.426A6.779 6.779 0 0 0 16 3.04a6.736 6.736 0 0 1-1.888.518 3.31 3.31 0 0 0 1.446-1.815z"/></svg>                    </div>
+                </div>
+
+                <div class="text-list">
+                    <b class="text">
+                        <a href="https://www.twitter.com/reddcoin" class="link link--inline link--primary external-link">
+                            https://www.twitter.com/reddcoin
+                        </a>
+                    </b>
+                    <div class="text-group">
+                        <b class="text text--small">Pending</b>
+                        <span class="text text--small">Code: <b class='text--red'>reddid:reddcoin</b></span>
+                    </div>
+                </div>
+
+                <div class="social-account-button social-account-button--right button button--grey button--icon button--small tooltip" data-hover='toggle'>
+                    <div class="icon icon--small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--ne">Remove Account</span>
+                </div>
+            </div>
+                    <div class="social-account">
+                <div class="social-account-button social-account-button--left button button--icon button--small button--static button--twitter">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.558 1.743a6.717 6.717 0 0 1-2.084.796 3.283 3.283 0 0 0-5.596 2.992 9.305 9.305 0 0 1-6.767-3.43A3.273 3.273 0 0 0 .667 3.75a3.277 3.277 0 0 0 1.46 2.732 3.214 3.214 0 0 1-1.486-.41v.043a3.286 3.286 0 0 0 2.632 3.219c-.483.133-.989.15-1.482.057a3.29 3.29 0 0 0 3.065 2.279A6.579 6.579 0 0 1 0 13.029a9.248 9.248 0 0 0 5.032 1.474c6.037 0 9.341-5.001 9.341-9.339 0-.143-.005-.284-.011-.426A6.779 6.779 0 0 0 16 3.04a6.736 6.736 0 0 1-1.888.518 3.31 3.31 0 0 0 1.446-1.815z"/></svg>                    </div>
+                </div>
+
+                <div class="text-list">
+                    <b class="text">
+                        <a href="https://www.twitter.com/reddcoin" class="link link--inline link--primary external-link">
+                            https://www.twitter.com/reddcoin
+                        </a>
+                    </b>
+                    <div class="text-group">
+                        <b class="text text--small">Pending</b>
+                        <span class="text text--small">Code: <b class='text--red'>reddid:reddcoin</b></span>
+                    </div>
+                </div>
+
+                <div class="social-account-button social-account-button--right button button--grey button--icon button--small tooltip" data-hover='toggle'>
+                    <div class="icon icon--small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--ne">Remove Account</span>
+                </div>
+            </div>
+                    <div class="social-account">
+                <div class="social-account-button social-account-button--left button button--icon button--small button--static button--twitter">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.558 1.743a6.717 6.717 0 0 1-2.084.796 3.283 3.283 0 0 0-5.596 2.992 9.305 9.305 0 0 1-6.767-3.43A3.273 3.273 0 0 0 .667 3.75a3.277 3.277 0 0 0 1.46 2.732 3.214 3.214 0 0 1-1.486-.41v.043a3.286 3.286 0 0 0 2.632 3.219c-.483.133-.989.15-1.482.057a3.29 3.29 0 0 0 3.065 2.279A6.579 6.579 0 0 1 0 13.029a9.248 9.248 0 0 0 5.032 1.474c6.037 0 9.341-5.001 9.341-9.339 0-.143-.005-.284-.011-.426A6.779 6.779 0 0 0 16 3.04a6.736 6.736 0 0 1-1.888.518 3.31 3.31 0 0 0 1.446-1.815z"/></svg>                    </div>
+                </div>
+
+                <div class="text-list">
+                    <b class="text">
+                        <a href="https://www.twitter.com/reddcoin" class="link link--inline link--primary external-link">
+                            https://www.twitter.com/reddcoin
+                        </a>
+                    </b>
+                    <div class="text-group">
+                        <b class="text text--small">Pending</b>
+                        <span class="text text--small">Code: <b class='text--red'>reddid:reddcoin</b></span>
+                    </div>
+                </div>
+
+                <div class="social-account-button social-account-button--right button button--grey button--icon button--small tooltip" data-hover='toggle'>
+                    <div class="icon icon--small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--ne">Remove Account</span>
+                </div>
+            </div>
+                    <div class="social-account">
+                <div class="social-account-button social-account-button--left button button--icon button--small button--static button--twitter">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.558 1.743a6.717 6.717 0 0 1-2.084.796 3.283 3.283 0 0 0-5.596 2.992 9.305 9.305 0 0 1-6.767-3.43A3.273 3.273 0 0 0 .667 3.75a3.277 3.277 0 0 0 1.46 2.732 3.214 3.214 0 0 1-1.486-.41v.043a3.286 3.286 0 0 0 2.632 3.219c-.483.133-.989.15-1.482.057a3.29 3.29 0 0 0 3.065 2.279A6.579 6.579 0 0 1 0 13.029a9.248 9.248 0 0 0 5.032 1.474c6.037 0 9.341-5.001 9.341-9.339 0-.143-.005-.284-.011-.426A6.779 6.779 0 0 0 16 3.04a6.736 6.736 0 0 1-1.888.518 3.31 3.31 0 0 0 1.446-1.815z"/></svg>                    </div>
+                </div>
+
+                <div class="text-list">
+                    <b class="text">
+                        <a href="https://www.twitter.com/reddcoin" class="link link--inline link--primary external-link">
+                            https://www.twitter.com/reddcoin
+                        </a>
+                    </b>
+                    <div class="text-group">
+                        <b class="text text--small">Pending</b>
+                        <span class="text text--small">Code: <b class='text--red'>reddid:reddcoin</b></span>
+                    </div>
+                </div>
+
+                <div class="social-account-button social-account-button--right button button--grey button--icon button--small tooltip" data-hover='toggle'>
+                    <div class="icon icon--small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--ne">Remove Account</span>
+                </div>
+            </div>
+                    <div class="social-account">
+                <div class="social-account-button social-account-button--left button button--icon button--small button--static button--twitter">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.558 1.743a6.717 6.717 0 0 1-2.084.796 3.283 3.283 0 0 0-5.596 2.992 9.305 9.305 0 0 1-6.767-3.43A3.273 3.273 0 0 0 .667 3.75a3.277 3.277 0 0 0 1.46 2.732 3.214 3.214 0 0 1-1.486-.41v.043a3.286 3.286 0 0 0 2.632 3.219c-.483.133-.989.15-1.482.057a3.29 3.29 0 0 0 3.065 2.279A6.579 6.579 0 0 1 0 13.029a9.248 9.248 0 0 0 5.032 1.474c6.037 0 9.341-5.001 9.341-9.339 0-.143-.005-.284-.011-.426A6.779 6.779 0 0 0 16 3.04a6.736 6.736 0 0 1-1.888.518 3.31 3.31 0 0 0 1.446-1.815z"/></svg>                    </div>
+                </div>
+
+                <div class="text-list">
+                    <b class="text">
+                        <a href="https://www.twitter.com/reddcoin" class="link link--inline link--primary external-link">
+                            https://www.twitter.com/reddcoin
+                        </a>
+                    </b>
+                    <div class="text-group">
+                        <b class="text text--small">Pending</b>
+                        <span class="text text--small">Code: <b class='text--red'>reddid:reddcoin</b></span>
+                    </div>
+                </div>
+
+                <div class="social-account-button social-account-button--right button button--grey button--icon button--small tooltip" data-hover='toggle'>
+                    <div class="icon icon--small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.849 13.162L10.688 8l5.162-5.162a.302.302 0 0 0-.001-.425L13.586.15a.3.3 0 0 0-.424 0L8 5.313 2.838.151a.3.3 0 0 0-.424 0L.151 2.414a.3.3 0 0 0 0 .425L5.313 8 .151 13.162a.3.3 0 0 0 0 .424l2.263 2.263a.301.301 0 0 0 .425.001L8 10.688l5.162 5.162a.3.3 0 0 0 .424-.001l2.263-2.263a.3.3 0 0 0 0-.424z"/></svg>                    </div>
+
+                    <span class="tooltip-content tooltip-content--message tooltip-content--ne">Remove Account</span>
+                </div>
+            </div>
+            </section>
+
+</section>
 <section class="feed frame disabled" id="frame-feed">
     <section class="page-section">
         <div class="feed-header page-header">
@@ -737,6 +1042,7 @@
     </section>
 </section>
 <section class="settings frame" id="frame-settings">
+    
     <section class="page-section">
         <div class="page-header">
             <h4 class="page-header-title">Settings</h4>

@@ -58,7 +58,7 @@
                         <div class="nav-link nav-link--center reddid--greyed" data-click="frame" data-frame="reddid-register">
                             <div class="button button--green button--faded button--icon button--large tooltip" data-hover="toggle" id="menuRegister">
                                 <div class="icon">
-                                    <?= $svg('plus') ?>
+                                    <?= $svg('link') ?>
                                 </div>
 
                                 <span class="tooltip-content tooltip-content--n tooltip-content--message">Create a Reddid</span>
@@ -87,6 +87,7 @@
                             'wallet/settings',
 
                             'reddid/register',
+                            'reddid/socials',
 
                             'feed',
                             'intro',
