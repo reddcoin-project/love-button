@@ -138,7 +138,7 @@ window.onload = function() {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         // The url points to a json file that contains an array of user names
         prefetch: {
-            url: 'http://reddid01.reddcoin.com:5000/api/name/allnames/tester',
+            url: 'http://167.71.25.225:8082/api/v1/names',
             cache: false,
             transform: function(data) {return data.results}
         }

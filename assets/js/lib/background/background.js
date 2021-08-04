@@ -12,127 +12,128 @@ let namespace = '/websocket/';
 let startPing;
 
 debug.info(`Connecting to server ${SERVER_HOST}:${SERVER_PORT}.`);
-let socket = new ReconnectingWebSocket(SERVER_HOST + ':' + SERVER_PORT + namespace );
-
-socket.onopen = function() {
-	let msg = `Connected to server: ${SERVER_HOST}:${SERVER_PORT}. ${(socket.readyState = 1) ? true : false }`;
-
-	startPing = Date.now();
-	debug.info(msg);
-	Reddcoin.backgnd.connectionState(msg);
-	let manifestData = browser.runtime.getManifest();
-	let payload = {
-		'type': 'version',
-		'payload': {
-			'version': manifestData.version
-		}
-	};
-	socket.send(JSON.stringify({'type': 'ping', 'payload': startPing}));
-	socket.send(JSON.stringify(payload))
-};
-
-
-const interval = setInterval(() => {
-	debug.log(`send ping`);
-	startPing = Date.now();
-
-	if (socket.readyState === ReconnectingWebSocket.OPEN) {
-		socket.send(JSON.stringify({'type': 'ping', 'payload': startPing}));
-	}
-}, 60000);
-
-socket.onclose = function(e) {
-	let msg = `Connection Closed code:${e.code}, reason:${e.reason}`;
-	debug.log(msg);
-	Reddcoin.backgnd.connectionState(msg);
-	switch (e.code) {
-		case 1000: // CLOSE_NORMAL
-			debug.info(`Websocket: Closed Normally`);
-			break;
-		case 1001: // GOING AWAY
-			debug.info(`Websocket: Going Away`);
-			break;
-		case 1002: // PROTOCOL ERORR
-			debug.info(`Websocket: Protocol Error`);
-			break;
-		case 1003: // UNSUPPORTED DATA
-			debug.info(`Websocket: Unsupported Data`);
-			break;
-		case 1007: // INVALID FRAME PAYLOAD DATA
-			debug.info(`Websocket: Invalid Frame Payload Data`);
-			break;
-		case 1008: // POLICY VIOLATION
-			debug.info(`Websocket: Policy Violation`);
-			break;
-		case 1009: // MESSAGE TOO BIG
-			debug.info(`Websocket: Message Too Big`);
-			break;
-		case 1010: // MISSING EXTENSION
-			debug.info(`Websocket: Missing Extension`);
-			break;
-		case 1011: // INTERNAL ERROR
-			debug.info(`Websocket: Internal Error`);
-			break;
-		case 1012: // SERVER RESTART
-			debug.info(`Websocket: Server Restart`);
-			break;
-		case 1013: // TRY AGAIN LATER
-			debug.info(`Websocket: Try Again Later`);
-			break;
-		case 1014: // BAD GATEWAY
-			debug.info(`Websocket: Bad Gateway`);
-			break;
-		case 1015: // TLS HANDSHAKE
-			debug.info(`Websocket: TLS Handshake`);
-			break;
-		default:
-	}
-};
-
-socket.onmessage = function(msg) {
-	try {
-		msg = JSON.parse(msg.data)
-	} catch (e) {
-		return
-	}
-
-	switch (msg.type) {
-		case 'pong':
-			let endPong = Date.now();
-			let time = endPong - msg.payload;
-			var msg_ = `Ping time: ${time} ms. ${SERVER_HOST}:${SERVER_PORT}`
-			debug.info(msg_);
-			Reddcoin.backgnd.pingState(time);
-			break;
-		case 'date':
-			debug.info(JSON.stringify(msg.payload))
-			break;
-		case 'connections':
-			debug.info(JSON.stringify(msg.payload))
-			Reddcoin.backgnd.setConnectionInfo(msg.payload);
-			break;
-		case 'network':
-			debug.info(JSON.stringify(msg.payload));
-			Reddcoin.backgnd.process_network(msg.payload);
-			break;
-		case 'tipurl':
-			debug.info(JSON.stringify(msg.payload));
-			Reddcoin.backgnd.process_tipurl(msg.payload);
-			break;
-		case 'version':
-			debug.info(JSON.stringify(msg.payload));
-			Reddcoin.backgnd.checkVersion(msg.payload);
-			break;
-		default:
-			debug.info(JSON.stringify(msg))
-	}
-};
-
-socket.onerror = function(error) {
-	let msg = `Socket encountered error with: ${SERVER_HOST}:${SERVER_PORT} ${error.message}.`;
-	Reddcoin.backgnd.connectionState(msg);
-	debug.info(msg);
-};
+//No websocket for defcon
+// let socket = new ReconnectingWebSocket(SERVER_HOST + ':' + SERVER_PORT + namespace );
+//
+// socket.onopen = function() {
+// 	let msg = `Connected to server: ${SERVER_HOST}:${SERVER_PORT}. ${(socket.readyState = 1) ? true : false }`;
+//
+// 	startPing = Date.now();
+// 	debug.info(msg);
+// 	Reddcoin.backgnd.connectionState(msg);
+// 	let manifestData = browser.runtime.getManifest();
+// 	let payload = {
+// 		'type': 'version',
+// 		'payload': {
+// 			'version': manifestData.version
+// 		}
+// 	};
+// 	socket.send(JSON.stringify({'type': 'ping', 'payload': startPing}));
+// 	socket.send(JSON.stringify(payload))
+// };
+//
+//
+// const interval = setInterval(() => {
+// 	debug.log(`send ping`);
+// 	startPing = Date.now();
+//
+// 	if (socket.readyState === ReconnectingWebSocket.OPEN) {
+// 		socket.send(JSON.stringify({'type': 'ping', 'payload': startPing}));
+// 	}
+// }, 60000);
+//
+// socket.onclose = function(e) {
+// 	let msg = `Connection Closed code:${e.code}, reason:${e.reason}`;
+// 	debug.log(msg);
+// 	Reddcoin.backgnd.connectionState(msg);
+// 	switch (e.code) {
+// 		case 1000: // CLOSE_NORMAL
+// 			debug.info(`Websocket: Closed Normally`);
+// 			break;
+// 		case 1001: // GOING AWAY
+// 			debug.info(`Websocket: Going Away`);
+// 			break;
+// 		case 1002: // PROTOCOL ERORR
+// 			debug.info(`Websocket: Protocol Error`);
+// 			break;
+// 		case 1003: // UNSUPPORTED DATA
+// 			debug.info(`Websocket: Unsupported Data`);
+// 			break;
+// 		case 1007: // INVALID FRAME PAYLOAD DATA
+// 			debug.info(`Websocket: Invalid Frame Payload Data`);
+// 			break;
+// 		case 1008: // POLICY VIOLATION
+// 			debug.info(`Websocket: Policy Violation`);
+// 			break;
+// 		case 1009: // MESSAGE TOO BIG
+// 			debug.info(`Websocket: Message Too Big`);
+// 			break;
+// 		case 1010: // MISSING EXTENSION
+// 			debug.info(`Websocket: Missing Extension`);
+// 			break;
+// 		case 1011: // INTERNAL ERROR
+// 			debug.info(`Websocket: Internal Error`);
+// 			break;
+// 		case 1012: // SERVER RESTART
+// 			debug.info(`Websocket: Server Restart`);
+// 			break;
+// 		case 1013: // TRY AGAIN LATER
+// 			debug.info(`Websocket: Try Again Later`);
+// 			break;
+// 		case 1014: // BAD GATEWAY
+// 			debug.info(`Websocket: Bad Gateway`);
+// 			break;
+// 		case 1015: // TLS HANDSHAKE
+// 			debug.info(`Websocket: TLS Handshake`);
+// 			break;
+// 		default:
+// 	}
+// };
+//
+// socket.onmessage = function(msg) {
+// 	try {
+// 		msg = JSON.parse(msg.data)
+// 	} catch (e) {
+// 		return
+// 	}
+//
+// 	switch (msg.type) {
+// 		case 'pong':
+// 			let endPong = Date.now();
+// 			let time = endPong - msg.payload;
+// 			var msg_ = `Ping time: ${time} ms. ${SERVER_HOST}:${SERVER_PORT}`
+// 			debug.info(msg_);
+// 			Reddcoin.backgnd.pingState(time);
+// 			break;
+// 		case 'date':
+// 			debug.info(JSON.stringify(msg.payload))
+// 			break;
+// 		case 'connections':
+// 			debug.info(JSON.stringify(msg.payload))
+// 			Reddcoin.backgnd.setConnectionInfo(msg.payload);
+// 			break;
+// 		case 'network':
+// 			debug.info(JSON.stringify(msg.payload));
+// 			Reddcoin.backgnd.process_network(msg.payload);
+// 			break;
+// 		case 'tipurl':
+// 			debug.info(JSON.stringify(msg.payload));
+// 			Reddcoin.backgnd.process_tipurl(msg.payload);
+// 			break;
+// 		case 'version':
+// 			debug.info(JSON.stringify(msg.payload));
+// 			Reddcoin.backgnd.checkVersion(msg.payload);
+// 			break;
+// 		default:
+// 			debug.info(JSON.stringify(msg))
+// 	}
+// };
+//
+// socket.onerror = function(error) {
+// 	let msg = `Socket encountered error with: ${SERVER_HOST}:${SERVER_PORT} ${error.message}.`;
+// 	Reddcoin.backgnd.connectionState(msg);
+// 	debug.info(msg);
+// };
 
 
 Reddcoin.backgnd = (function () {
@@ -164,7 +165,7 @@ Reddcoin.backgnd = (function () {
 			online_users : 0
 		},
     	socialNetworkSnapshot: {},
-		url: 'https://api.reddcoin.com/api/v1/'
+		url: 'http://167.71.25.225:8082/api/v1/'
 },
 		pub = {};
 
