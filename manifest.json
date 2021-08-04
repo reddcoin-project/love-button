@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-    "name": "ReddID Tipping Extension (beta)",
+    "name": "ReddID Tipping Extension - Defcon (beta)",
     "short_name": "ReddIDTipping",
-    "description": "A button to tip the World",
+    "description": "A button to tip the World - Defcon Edition",
     "version": "1.00.00",
     "minimum_chrome_version": "38",
 
