@@ -319,9 +319,9 @@
         let $address = $("#walletSend_address"),
             $amount = $("#walletSend_amount"),
             toAddress = $address.val(),
-            toContact = $("#walletSend_contact").val(),
+            toContact = $("#walletSend_contactname").val(),
             amount = $amount.val(),
-            addressIsValid = /^[Rr][a-zA-Z0-9]{26,34}$/.test(toAddress),
+            addressIsValid = /^[Rrmn][a-zA-Z0-9]{26,34}$/.test(toAddress),
             amountIsValid = !isNaN(parseFloat(amount));
 
         $address.removeClass("error");
