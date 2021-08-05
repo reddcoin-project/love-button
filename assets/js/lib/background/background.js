@@ -11,7 +11,7 @@ let SERVER_PORT = 443;
 let namespace = '/websocket/';
 let startPing;
 
-debug.info(`Connecting to server ${SERVER_HOST}:${SERVER_PORT}.`);
+// debug.info(`Connecting to server ${SERVER_HOST}:${SERVER_PORT}.`);
 //No websocket for defcon
 // let socket = new ReconnectingWebSocket(SERVER_HOST + ':' + SERVER_PORT + namespace );
 //
